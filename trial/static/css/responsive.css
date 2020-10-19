@@ -54,7 +54,9 @@
 		margin-top: 0px;
 		display: none;
 	}
-	
+	.our_project_area .col-md-3{
+		width: 100%;
+	}
 	.project_left_side .our_project_filter {
 		position: relative;
 		right: 0px;
@@ -71,7 +73,9 @@
 		display: inline-block;
 		margin-right: 20px;
 	}
-	
+	.our_project_area .col-md-9 {
+		width: 100%;
+	}
 	.our_project_details .project_item img {
 		width: 100%;
 	}

@@ -141,7 +141,86 @@
 
 /* Our Service2 area css
 ============================================================================================ */
-
+.our_service_area2{
+    background: #f5f5f5;
+    padding: 100px 0px 65px 0px;
+    .main_c_b_title{
+        padding-bottom: 40px;
+    }
+}
+.service2_inner{
+    margin-bottom: -30px;
+    overflow: hidden;
+    .col-md-4{
+        margin-bottom: 30px;
+    }
+    .service2_item{
+		height: 304px;
+        .service2_item_inner{
+            text-align: center;
+            background: #fff;
+            padding: 45px 20px 16px 20px;
+            min-height: 304px;
+            @include transition;
+            .service_icon{
+                position: relative;
+                display: inline-block;
+                img{
+                    opacity: 1;
+                    & + img{
+                        position: absolute;
+                        left: 0px;
+                        top: 0px;
+                        opacity: 0;
+                    }    
+                }
+            }
+            h4{
+                font-size: 18px;
+                color: $dip;
+                font-family: $mon;
+                font-weight: bold;
+                padding: 20px 0px 18px 0px;
+                text-transform: uppercase;
+            }
+            p{
+                font-size: 15px;
+                color: $pfont;
+                line-height: 26px;
+                font-family: $open;
+                transition: all 200ms linear;
+            }
+            .view_btn{
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        &:hover{
+            .service2_item_inner{
+                transform: rotateY(180deg);
+                background: $baseColor;
+                .service2_item_inner_content{
+                    transform: rotateY(-180deg);
+                    .service_icon{
+                        img{
+                            opacity: 0;
+                            & + img{
+                                opacity: 1;
+                            }
+                        }
+                    }
+                    p{
+                        display: none;
+                    }
+                    .view_btn{
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
 /* End Our Service2 area css
 ============================================================================================ */
 
