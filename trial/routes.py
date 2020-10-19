@@ -15,3 +15,8 @@ def blog():
 @app.route('/divisions')
 def division():
     return render_template('divisions.html', title='Division')
+
+#Create a route for divisions
+@app.route('/basic')
+def basic():
+    return render_template('basic_temp.html', title='Basic')

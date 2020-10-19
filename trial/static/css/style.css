@@ -3770,7 +3770,20 @@ iframe {
   padding-bottom: 30px;
 }
 
+.f_w_title_1 {
+  padding-bottom: 2px;
+}
+
 .f_w_title h3 {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "PT Sans", sans-serif;
+  font-weight: bold;
+  color: #ffcd00;
+}
+
+.f_w_title_1 h3 {
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;

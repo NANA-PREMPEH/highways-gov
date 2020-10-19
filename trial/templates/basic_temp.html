@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <!--================Banner Area =================-->
+    <section class="banner_area" style="background: url(static/img/banner/single-page-banner3.jpg); background-size: cover">
+        <div class="container">
+            <div class="banner_inner_text">
+                <h4>Blog Details</h4>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li class="active"><a href="{{ url_for('blog') }}">Blog detail with right sidebar</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--================End Banner Area =================-->
+    
+    <!--================Blog Details Area =================-->
+    <section class="blog_details_area p_100">
+        <div class="container">
+            <div class="row blog_details_inner">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar_area"> 
+                        <aside class="right_widget r_post_widget" >
+                            <div class="r_w_title" >
+                                <h3>Trending Post</h3>
+                            </div>
+                            <div class="r_post_inner">
+                                <div class="r_post_item">
+                                    <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-1.jpg') }}" alt="">
+                                    <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
+                                </div>
+                                <div class="r_post_item">
+                                    <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-2.jpg') }}" alt="">
+                                    <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
+                                </div>
+                                <div class="r_post_item">
+                                    <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-3.jpg') }}" alt="">
+                                    <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
+                                </div>
+                            </div>
+                        </aside>
+                        <aside class="right_widget r_social_widget">
+                            <div class="r_w_title">
+                                <h3>we are social</h3>
+                            </div>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            </ul>
+                        </aside>
+                        <aside class="right_widget r_twitter_widget">
+                            <div class="r_w_title">
+                                <h3>twitter feed</h3>
+                            </div>
+                            <div class="tweets_feed"></div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Blog Details Area =================-->
+{% endblock content %}
