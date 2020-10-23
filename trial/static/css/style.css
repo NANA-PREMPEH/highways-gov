@@ -2442,6 +2442,77 @@ iframe {
 
 /* End Clients area css
 ============================================================================================ */
+
+/* Form Styling*/
+#content_1 {
+  border-style: solid;
+  padding-bottom: 100px; 
+  border-style: solid; 
+  padding-top: 30px; 
+  border-color: rgb(244, 248, 238);
+}
+
+#leave {
+  padding-bottom: 100px;
+  margin-top: 30px;
+  border-style: inherit; 
+  padding-top: 30px; 
+  border-color: rgb(234, 240, 227);
+}
+
+#leave h4{
+  border-style: solid;
+  padding: 2px;
+  padding-left: 10px;
+  border-color: bisque;
+  border-width: 2px;
+  margin-bottom: 10px;
+  background-color: rgba(225, 243, 145, 0.637);
+}
+
+#content_1 label.fieldN {
+  width: 90px; 
+  float: left;
+}
+
+fieldset legend {
+  border: inherit; 
+  margin-bottom: 1px; 
+  float: left;
+  font-weight: bold; 
+  font-size: 1em;
+}
+
+#content_1 .obj {
+  width: 100%; 
+  clear: both; 
+  float: left;
+}
+
+#content_1 .items {
+  float: left; 
+  width: 45%; 
+  padding-bottom: 5px; 
+  padding-right: 5px; 
+  padding-left: 5px;
+}
+
+#leave h3 {
+  margin-top: 5px; 
+  margin-left: 10px; 
+  text-decoration: underline; 
+  border: inherit; 
+  margin-bottom: 10px; 
+  font-weight: bold; 
+  font-size: 1em;
+}
+
+#leave label.pers {
+  margin-left: 5px; 
+  width: 180px; 
+  float: left;
+}
+
 /* Project Single area css
 ============================================================================================ */
 .project_title {

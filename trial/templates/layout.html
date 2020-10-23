@@ -8,7 +8,7 @@
         <link rel="icon" href="{{ url_for('static', filename='img/Coat_of_arms_of_Ghana.png') }}" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         {% if title %}
-            <title>{{ title }} - Ghana Highway Authority</title>
+            <title>Ghana Highway Authority - {{ title }}</title>
         {% else %}
             <title>Ghana Highway Authority- Being a world-class provider of safe road infrastructure.</title>
         {% endif %}
@@ -45,8 +45,8 @@
             <div class="header_top_area">
                 <div class="container">
                     <div class="pull-left">
-                        <a href="#"><i class="fa fa-phone"></i>(012) - 3456789</a>
-                        <a href="#"><i class="fa fa-map-marker"></i>1234 Cafficic, California</a>
+                        <a href="#"><i class="fa fa-phone"></i>3456789</a>
+                        <a href="#"><i class="fa fa-map-marker"></i>Adum Ministries</a>
                         <a href="#"><i class="mdi mdi-clock"></i>07 AM - 5 PM</a>
                     </div>
                     <div class="pull-right">
@@ -83,7 +83,7 @@
                                         <li><a href="#">Vision &#38; Mission</a></li>
                                         <li><a href="#">Organizational Structure</a></li>
                                         <li><a href="#">Director's Office</a></li>
-                                        <li><a href="#">Divisions</a></li>
+                                        <li><a href="{{ url_for('division') }}">Divisions</a></li>
                                         <li><a href="#">Institution Profile</a></li>
                                     </ul>
                                 </li>
@@ -135,7 +135,7 @@
                             </div>
                             <div class="media-body">
                                 <h4>Office Address :</h4>
-                                <h5>1234 Cafficic, California, USA</h5>
+                                <h5>Adum Ministries</h5>
                             </div>
                         </div>
                     </div>
@@ -145,8 +145,8 @@
                                 <img src="{{ url_for('static', filename='img/icon/phone-icon.png') }}" alt="">
                             </div>
                             <div class="media-body">
-                                <h5>(012) 3456789</h5>
-                                <h5>(012) 3456789</h5>
+                                <h5>3456789</h5>
+                                <h5>3456789</h5>
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                                             <i class="fa fa-map-marker"></i>
                                         </div>
                                         <div class="media-body">
-                                            <p>1234 Cafficic, California, USA</p>
+                                            <p>Adum Ministries</p>
                                         </div>
                                     </div>
                                     <div class="media">
@@ -229,8 +229,8 @@
                                             <i class="fa fa-phone"></i>
                                         </div>
                                         <div class="media-body">
-                                            <p>(012) 3456789 </p>
-                                            <p>(012) 3456789 </p>
+                                            <p>3456789 </p>
+                                            <p>3456789 </p>
                                         </div>
                                     </div>
                                     <div class="media">
@@ -247,7 +247,7 @@
                         <div class="col-md-3 col-sm-6">
                             <aside class="f_widget give_us_widget">
                                 <h5>Give Us A Call</h5>
-                                <h4>(012) 3456789</h4>
+                                <h4>3456789</h4>
                                 <h5>or</h5>
                                 <a class="get_bg_btn" href="#">GET A QUOTE</a>
                             </aside>
@@ -263,9 +263,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 </div>
             </div>
         </footer>
+
         <!--================End Footer Area =================-->
-
-
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="{{ url_for('static', filename='js/jquery-2.2.4.js') }}"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -289,7 +288,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <!--gmaps Js-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
         <script src="js/gmaps.min.js"></script>
-        
         <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
     </body>
 </html>

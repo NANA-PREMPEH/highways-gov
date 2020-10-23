@@ -1,0 +1,199 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" style=" padding-bottom: 100px;
+    margin-top: 30px;
+    border-style: inherit; 
+    padding-top: 30px; 
+    border-color: rgb(234, 240, 227);">
+        <form action="">
+            <div class="col-md-6" id="content_1">
+                    <h4 class="" style=" border-style: solid;
+                                padding: 2px;
+                                padding-left: 10px;
+                                border-color: bisque;
+                                border-width: 2px;
+                                margin-bottom: 10px;
+                                background-color: rgba(225, 243, 145, 0.637);">
+                    Location
+                    </h4>
+                    <label>
+                        <fieldset>
+                            <p>
+                                I would like to 
+                                <input type="radio" name="type" id="type1">
+                                <label for="type1">&nbsp;report</label>&nbsp;/&nbsp;
+                                <input type="radio" name="type" id="type2">
+                                <label for="type2">&nbsp;complain</label>
+                                the following defects
+                            </p>
+                        </fieldset>
+                    </label>
+                    <div class="form-group">
+                        <label for="comp_" style="width: 90px; float: left;">Road:</label>
+                        <input type="text" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="comp_" style="width: 90px; float: left;">District:</label>
+                        <input type="text" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="comp_" style="width: 90px; float: left;">Region:</label>
+                        <input type="text" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comp_" style="width: 90px; float: left;">Direction:</label>
+                        <input type="text" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                    </div></br>
+                    <h4 class="" style=" border-style: solid;
+                                padding: 2px;
+                                padding-left: 10px;
+                                border-color: bisque;
+                                border-width: 2px;
+                                margin-bottom: 10px;
+                                background-color: rgba(225, 243, 145, 0.637);">
+                    Defect
+                    </h4>
+                    <fieldset>
+                        <legend style="border: inherit; margin-bottom: 1px; float: left; font-weight: bold; font-size: 1em;">Truck</legend>
+                        <div style="width: 100%; clear: both; float: left;">
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Uneven Surface</label>
+                            </div>  
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Pothole</label>
+                            </div>  
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Damaged Manhole</label>
+                            </div>  
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend style="border: inherit; margin-bottom: 1px; float: left; font-weight: bold; font-size: 1em;">Structures</legend>
+                        <div style="width: 100%; clear: both; float: left;">
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Damaged Surface</label>
+                            </div>  
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Damaged Furniture</label>
+                            </div>   
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend style="border: inherit; margin-bottom: 1px; float: left; font-weight: bold; font-size: 1em;">Roadworks</legend>
+                        <div style="width: 100%; clear: both; float: left;">
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Unattended Site</label>
+                            </div>  
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Traffic Obstruction</label>
+                            </div>  
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Poor Traffic Arrangement</label>
+                            </div>  
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Filthy site</label>
+                            </div>  
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend style="border: inherit; margin-bottom: 1px; float: left; font-weight: bold; font-size: 1em;">Lighting</legend>
+                        <div style="width: 100%; clear: both; float: left;">
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Poor or No Lighting Provision</label>
+                            </div>  
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Unlit Street</label>
+                            </div>  
+                            <div style="float: left; width: 45%; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;">
+                                <input type="checkbox" name="dd" id="" value="Uneven Surface">
+                                <label style="font-weight: inherit;" for="dd">Subway Lighting</label>
+                            </div>   
+                        </div>
+                    </fieldset>
+            </div>
+            <div class="col-md-6" >
+                <div class="sidebar_area" id="content_1"> 
+                        
+                            <h4 class="" style=" border-style: solid;
+                                padding: 2px;
+                                padding-left: 10px;
+                                border-color: bisque;
+                                border-width: 2px;
+                                margin-bottom: 10px;
+                                background-color: rgba(225, 243, 145, 0.637);">
+                            Details
+                            </h4>
+                            <p style="margin-bottom: 10px;">
+                                <textarea style="margin-left: 10px; width: 98%;" name="" id="" cols="30" rows="5"></textarea>
+                            </p>
+                            <h4 class="" style=" border-style: solid;
+                                padding: 2px;
+                                padding-left: 10px;
+                                border-color: bisque;
+                                border-width: 2px;
+                                margin-bottom: 10px;
+                                background-color: rgba(225, 243, 145, 0.637);">
+                                <span style="visibility: hidden;">Personal Details</span>
+                            </h4>
+                            <h3 style="margin-top: 5px; margin-left: 10px; text-decoration: underline; border: inherit; margin-bottom: 10px; font-weight: bold; font-size: 1em; ">Notes about Personal Data</h3>
+                            <p style="margin-left: 5px;">
+                                The personal data provided by you below will be used by the Highways Department, 
+                                relevant Government departments and bureaux for the purpose of facilitating 
+                                communication between the Government and yourself for activities 
+                                relating to the complaint or enquiry made by you. Should you refuse
+                                to supply the required data, no reply with respect to your complaint
+                                or enquiry will be made to you.
+                            </p>
+                            <h3 style="margin-top: 5px; margin-left: 10px; text-decoration: underline; border: inherit; margin-bottom: 10px; font-weight: bold; font-size: 1em; ">Personal Data Statement</h3>
+                            <p style="margin-left: 5px; margin-bottom: 20px; ">
+                                I have read and acknowledge the above "Notes about Personal Data".
+                            </p>
+                            <fieldset>
+                                <p style="margin-left: 5px; margin-bottom: 50px;">
+                                    I &nbsp; 
+                                    <input type="radio" name="type" id="type1">
+                                    <label for="type1">&nbsp;agree</label>&nbsp;/&nbsp;
+                                    <input type="radio" name="type" id="type2">
+                                    <label for="type2">&nbsp;disagree</label>
+                                    to refer my personal contact to other relevant organizations, 
+                                    agents, contractors or consultants for follow-up 
+                                    of this case and direct reply to me.
+                                </p>
+                            </fieldset>
+                            <div class="form-group">
+                                <label for="comp_" style="margin-left: 5px; width: 180px; float: left;">Name:</label>
+                                <input type="text" style="width: 360px;" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="comp_" style="width: 180px; float: left;">Telephone No.:</label>
+                                <input type="text" style="width: 360px;" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="comp_" style="width: 180px; float: left;">Email:</label>
+                                <input type="text" style="width: 360px;" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="comp_" style="width: 180px; float: left;">Date:</label>
+                                <input type="date" style="width: 360px;" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                            </div></br></br>
+                    </aside>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

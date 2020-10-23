@@ -20,3 +20,8 @@ def division():
 @app.route('/basic')
 def basic():
     return render_template('basic_temp.html', title='Basic')
+
+#Create a route for divisions
+@app.route('/defect')
+def defect():
+    return render_template('defect_report.html', title='Road Defects Report')
