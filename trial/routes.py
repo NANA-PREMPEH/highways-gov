@@ -1,4 +1,5 @@
 from flask import render_template, url_for
+from trial.forms import DefectForm, LeaveForm
 from trial import app
 
 #Create route for home app
@@ -24,4 +25,12 @@ def basic():
 #Create a route for divisions
 @app.route('/defect')
 def defect():
-    return render_template('defect_report.html', title='Road Defects Report')
+    form = DefectForm()
+    return render_template('defect.html', title='Road Defects Report', form=form)
+
+    
+#Create a route for divisions
+@app.route('/leave')
+def leave():
+    form = LeaveForm()
+    return render_template('leave_form.html', title='Leave Form Report', form=form)

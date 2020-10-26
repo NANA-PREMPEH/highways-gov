@@ -3,36 +3,37 @@
 <div class="container">
     <div class="row blog_details_inner" id="leave">
         <form action="">
+            {{ form.hidden_tag() }}  <!--Adds CSRF token to our form. Protects against forgery attacks-->
             <div class="col-md-6" id="content_1">
                     <h4 class="">Location</h4>
                     <label>
                         <fieldset>
                             <p>
                                 I would like to 
-                                <input type="radio" name="type" id="type1">
-                                <label for="type1">&nbsp;report</label>&nbsp;/&nbsp;
-                                <input type="radio" name="type" id="type2">
-                                <label for="type2">&nbsp;complain</label>
+                                {% for subfield in form.report %}
+                                    {{ subfield }}
+                                    {{ subfield.label }} &nbsp;
+                                {% endfor %}
                                 the following defects
                             </p>
                         </fieldset>
                     </label>
                     <div class="form-group">
-                        <label for="comp_" class="fieldN">Road:</label>
-                        <input type="text" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                        {{ form.road_desc.label(class="fieldN") }}
+                        {{ form.road_desc(size=50)}}
                     </div>
                     <div class="form-group">
-                        <label for="comp_" class="fieldN">District:</label>
-                        <input type="text" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                        {{ form.dist_desc.label(class="fieldN") }}
+                        {{ form.dist_desc(size=50)}}
                     </div>
                     <div class="form-group">
-                        <label for="comp_" class="fieldN">Region:</label>
-                        <input type="text" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                        {{ form.reg_desc.label(class="fieldN") }}
+                        {{ form.reg_desc(size=50)}}
                     </div>
                     
                     <div class="form-group">
-                        <label for="comp_" class="fieldN">Direction:</label>
-                        <input type="text" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                        {{ form.direction.label(class="fieldN") }}
+                        {{ form.direction(size=50)}}
                     </div></br>
                     <h4 class="">Defect</h4>
                     <fieldset>
@@ -108,7 +109,7 @@
                 <div class="sidebar_area" id="content_1"> 
                             <h4 class="">Details</h4>
                             <p style="margin-bottom: 10px;">
-                                <textarea style="margin-left: 10px; width: 98%;" name="" id="" cols="30" rows="5"></textarea>
+                                {{ form.details(class="txt_area", cols="30", rows="5") }}
                             </p>
                             <h4 class="">
                                 <span style="visibility: hidden;">Personal Details</span>
@@ -139,21 +140,22 @@
                                 </p>
                             </fieldset>
                             <div class="form-group">
-                                <label for="comp_" class="pers">Name:</label>
-                                <input type="text" style="width: 360px;" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                                {{ form.name_desc.label(class="pers") }}
+                                {{ form.name_desc(style="width: 360px", size="50") }}
+                                
                             </div>
                             <div class="form-group">
-                                <label for="comp_" class="pers">Telephone No.:</label>
-                                <input type="text"  style="width: 360px;" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                                {{ form.mobile_no.label(class="pers") }}
+                                {{ form.mobile_no(style="width: 360px", size="50") }}
                             </div>
                             <div class="form-group">
-                                <label for="comp_" class="pers">Email:</label>
-                                <input type="text" style="width: 360px;" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                                {{ form.email.label(class="pers") }}
+                                {{ form.email(style="width: 360px", size="50") }}
                             </div>
                             
                             <div class="form-group">
-                                <label for="comp_" class="pers">Date:</label>
-                                <input type="date" style="width: 360px;" size="50"  class="" id="comp_" name="comp_" placeholder="">
+                                {{ form.date.label(class="pers") }}
+                                {{ form.date(style="width: 360px", size="50") }}
                             </div></br></br>
                     </aside>
                 </div>

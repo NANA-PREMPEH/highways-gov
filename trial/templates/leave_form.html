@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" id="leave">
+        <form action="">
+            {{ form.hidden_tag() }}  <!--Adds CSRF token to our form. Protects against forgery attacks-->
+            <div class="col-md-6" id="content_1" >
+                    <h4 class="">Personal Details</h4>
+                    <div class="form-group">
+                        {{ form.name.label }}
+                        {{ form.name(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.rank.label }}
+                        {{ form.rank(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.section.label }}
+                        {{ form.section(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.date.label }}
+                        {{ form.date(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.tel_no.label }}
+                        {{ form.tel_no(class="form-control") }}
+                    </div></br>
+                    <h4 class="">Leave Details</h4>
+                    <fieldset>
+                        <div class="form-group">
+                            {{ form.leave_cat.label }}                            
+                            {{ form.leave_cat(class="form-control") }}                            
+                        </div>
+                        <div class="form-group">
+                            {{ form.no_of_days.label }}
+                            {{ form.no_of_days(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            <p style="font-weight: bold; margin-bottom: 15px;">Duration(All Dates Included)</p>
+                            <div style="float: left;">
+                                {{ form.start_date.label }}
+                                {{ form.start_date(style="width: fit-content; margin-right: 30px;") }}
+                                {{ form.end_date.label }}
+                                {{ form.end_date(style="width: fit-content; margin-right: 30px;") }}
+                            </div>
+                        </div></br></br>
+                        
+                    </fieldset>
+                    
+            </div>
+            <div class="col-md-6" >
+                <div class="sidebar_area" id="content_1">
+                            <div class="form-group">
+                                {{ form.supp_info.label }}
+                                {{ form.supp_info(class="form-control", cols="30", rows="5") }}
+                            </div> 
+                            <h4 class="">Contact Details While on Leave</h4>
+                            <div class="form-group">
+                                {{ form.address.label }}
+                                {{ form.address(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.mobile_no.label }}
+                                {{ form.mobile_no(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.email.label }}
+                                {{ form.email(class="form-control") }}
+                            </div>
+                            <h4 class="">
+                                <span style="visibility: hidden;">Personal Details</span>
+                            </h4>
+                            <div class="form-group">
+                                {{ form.days_proceed.label }}
+                                {{ form.days_proceed(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.effec_date.label }}
+                                {{ form.effec_date(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.resump_date.label }}
+                                {{ form.resump_date(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.outs_days.label }}
+                                {{ form.outs_days(class="form-control") }}
+                            </div>
+                    </aside>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

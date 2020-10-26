@@ -2452,6 +2452,11 @@ iframe {
   border-color: rgb(244, 248, 238);
 }
 
+#content_1 .txt_area {
+  margin-left: 10px; 
+  width: 98%;
+}
+
 #leave {
   padding-bottom: 100px;
   margin-top: 30px;
