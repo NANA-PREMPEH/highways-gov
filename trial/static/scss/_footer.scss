@@ -5,7 +5,7 @@
 }
 .footer_widgets_area{
     background: $dip;
-    padding: 70px 0px;
+    padding: 30px 0px;
 	&.footer_bg{
 		background: linear-gradient(0deg, rgba(49,53,61,0.96), rgba(49,53,61,.96)), url(../img/footer-bg.jpg) no-repeat scroll center center;
 		background-size: cover;
@@ -143,7 +143,7 @@
 .footer_copy_right{
     text-align: center;
     background: #262a31;
-    padding: 41px 0px;
+    padding: 10px 0px;
     h4{
         color: $dw;
         font-size: 18px;

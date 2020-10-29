@@ -1,0 +1,275 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" id="leave">
+        <form action="" method="POST">
+            <div class="col-md-6" id="content_1">
+                <h4 class="">Location</h4>
+                <label>
+                    <fieldset>
+                        <p>
+                            I would like to 
+                            {% for subfield in form.report %}
+                                {{ subfield }}
+                                {{ subfield.label }} &nbsp;
+                            {% endfor %}
+                            the following defects
+                        </p>
+                    </fieldset>
+                </label>
+                <div class="form-group">
+                    {{ form.road_desc.label(class="fieldN") }}
+
+                    <!--If form had errors-->
+                    {% if form.road_desc.errors %}
+                    {{ form.road_desc(class="form-control", style="width: 27em; border-color: #a94442;") }}
+                    <div class="form-group has-error">
+                        {% for error in form.road_desc.errors %}
+                            <span style="margin-left: 120px;" class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <!--if there are no errors-->
+                    {% else %}
+                        {{ form.road_desc(class="form-control", style="width: 27em;")}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.dist_desc.label(class="fieldN") }}
+
+                    <!--If form had errors-->
+                    {% if form.dist_desc.errors %}
+                    {{ form.dist_desc(class="form-control", style="width: 27em; border-color: #a94442;") }}
+                    <div class="form-group has-error">
+                        {% for error in form.dist_desc.errors %}
+                            <span style="margin-left: 120px;" class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <!--if there are no errors-->
+                    {% else %}
+                        {{ form.dist_desc(class="form-control", style="width: 27em;")}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.reg_desc.label(class="fieldN") }}
+
+                    <!--If form had errors-->
+                    {% if form.reg_desc.errors %}
+                    {{ form.reg_desc(class="form-control", style="width: 27em; border-color: #a94442;") }}
+                    <div class="form-group has-error">
+                        {% for error in form.reg_desc.errors %}
+                            <span style="margin-left: 120px;" class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <!--if there are no errors-->
+                    {% else %}
+                        {{ form.reg_desc(class="form-control", style="width: 27em;")}}
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.direction.label(class="fieldN") }}
+
+                    <!--If form had errors-->
+                    {% if form.direction.errors %}
+                    {{ form.direction(class="form-control", style="width: 27em; border-color: #a94442;") }}
+                    <div class="form-group has-error">
+                        {% for error in form.direction.errors %}
+                            <span style="margin-left: 120px;" class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <!--if there are no errors-->
+                    {% else %}
+                        {{ form.direction(class="form-control", style="width: 27em;")}}
+                    {% endif %}
+                </div></br>
+                <h4 class="">Defect</h4>
+                <fieldset>
+                    <legend>Truck</legend>
+                    <div class="obj">
+                        <div class="items">
+                            <input type="checkbox" name="truck" id="" value="Uneven Surface">
+                            <label style="font-weight: inherit;" for="truck">Uneven Surface</label>
+                        </div>  
+                        <div class="items">
+                            <input type="checkbox" name="truck" id="" value="Pothole">
+                            <label style="font-weight: inherit;" for="truck">Pothole</label>
+                        </div>  
+                        <div class="items">
+                            <input type="checkbox" name="truck" id="" value="Damaged Manhole">
+                            <label style="font-weight: inherit;" for="truck">Damaged Manhole</label>
+                        </div> 
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Structures</legend>
+                    <div class="obj">
+                        <div class="items">
+                            <input type="checkbox" name="structures" id="" value="Damaged Surface">
+                            <label style="font-weight: inherit;" for="structures">Damaged Surface</label>
+                        </div>  
+                        <div class="items">
+                            <input type="checkbox" name="structures" id="" value="Damaged Furniture">
+                            <label style="font-weight: inherit;" for="structures">Damaged Furniture</label>
+                        </div>   
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Roadworks</legend>
+                    <div class="obj">
+                        <div class="items">
+                            <input type="checkbox" name="roadworks" id="" value="Unattended Site">
+                            <label style="font-weight: inherit;" for="roadworks">Unattended Site</label>
+                        </div>  
+                        <div class="items">
+                            <input type="checkbox" name="roadworks" id="" value="Traffic Obstruction">
+                            <label style="font-weight: inherit;" for="roadworks">Traffic Obstruction</label>
+                        </div>  
+                        <div class="items">
+                            <input type="checkbox" name="roadworks" id="" value="Poor Traffic Arrangement">
+                            <label style="font-weight: inherit;" for="roadworks">Poor Traffic Arrangement</label>
+                        </div>  
+                        <div class="items">
+                            <input type="checkbox" name="roadworks" id="" value="Filthy Site">
+                            <label style="font-weight: inherit;" for="roadworks">Filthy Site</label>
+                        </div>  
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Lighting</legend>
+                    <div class="obj">
+                        <div class="items">
+                            <input type="checkbox" name="lighting" id="" value="Poor or No Lighting Provision">
+                            <label style="font-weight: inherit;" for="lighting">Poor or No Lighting Provision</label>
+                        </div>  
+                        <div class="items">
+                            <input type="checkbox" name="lighting" id="" value="Unlit Street">
+                            <label style="font-weight: inherit;" for="lighting">Unlit Street</label>
+                        </div>  
+                        <div class="items">
+                            <input type="checkbox" name="lighting" id="" value="Subway Lighting">
+                            <label style="font-weight: inherit;" for="lighting">Subway Lighting</label>
+                        </div>   
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <div class="sidebar_area" id="content_1">
+                    <h4 class="">Details</h4>
+                    <p style="margin-bottom: 10px;">
+                
+                        <!--If form had errors-->
+                        {% if form.details.errors %}
+                        {{ form.details(class="form-control", cols="30", rows="5", style="border-color: #a94442;") }}
+                        <div class="form-group has-error">
+                            {% for error in form.details.errors %}
+                                <span class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <!--if there are no errors-->
+                        {% else %}
+                            {{ form.details(class="form-control", cols="30", rows="5")}}
+                    {% endif %}
+                    </p>
+                    <h4 class="">
+                        <span style="visibility: hidden;">Personal Details</span>
+                    </h4>
+                    <h3>Notes about Personal Data</h3>
+                    <p style="margin-left: 5px;">
+                        The personal data provided by you below will be used by the Highways Department, 
+                        relevant Government departments and bureaux for the purpose of facilitating 
+                        communication between the Government and yourself for activities 
+                        relating to the complaint or enquiry made by you. Should you refuse
+                        to supply the required data, no reply with respect to your complaint
+                        or enquiry will be made to you.
+                    </p>
+                    <h3>Personal Data Statement</h3>
+                    <p style="margin-left: 5px; margin-bottom: 20px;">
+                        I have read and acknowledge the above "Notes about Personal Data".
+                    </p>
+                    <fieldset>
+                        <p style="margin-left: 5px; margin-bottom: 50px;">
+                            I &nbsp; 
+                            <input type="radio" name="type" id="type1">
+                            <label for="type1">&nbsp;agree</label>&nbsp;/&nbsp;
+                            <input type="radio" name="type" id="type2">
+                            <label for="type2">&nbsp;disagree</label>
+                            to refer my personal contact to other relevant organizations, 
+                            agents, contractors or consultants for follow-up 
+                            of this case and direct reply to me.
+                        </p>
+                    </fieldset>
+                    <div class="form-group">
+                        {{ form.name_desc.label(class="pers") }}
+
+                        <!--If form had errors-->
+                        {% if form.name_desc.errors %}
+                        {{ form.name_desc(class="form-control", style="width: 360px; border-color: #a94442;") }}
+                        <div class="form-group has-error">
+                            {% for error in form.name_desc.errors %}
+                                <span style="margin-left: 14em;" class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <!--if there are no errors-->
+                        {% else %}
+                            {{ form.name_desc(class="form-control", style="width: 360px;")}}
+                        {% endif %}
+                        
+                    </div>
+                    <div class="form-group">
+                        {{ form.mobile_no.label(class="pers") }}
+
+                        <!--If form had errors-->
+                        {% if form.mobile_no.errors %}
+                        {{ form.mobile_no(class="form-control", style="width: 360px; border-color: #a94442;") }}
+                        <div class="form-group has-error">
+                            {% for error in form.mobile_no.errors %}
+                                <span style="margin-left: 14em;" class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <!--if there are no errors-->
+                        {% else %}
+                            {{ form.mobile_no(class="form-control", style="width: 360px;")}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email.label(class="pers") }}
+                        <!--If form had errors-->
+                        {% if form.email.errors %}
+                        {{ form.email(class="form-control", style="width: 360px; border-color: #a94442;") }}
+                        <div class="form-group has-error">
+                            {% for error in form.email.errors %}
+                                <span style="margin-left: 14em;" class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <!--if there are no errors-->
+                        {% else %}
+                            {{ form.email(class="form-control", style="width: 360px;")}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.date.label(class="pers") }}
+
+                        <!--If form had errors-->
+                        {% if form.date.errors %}
+                        {{ form.date(class="form-control", style="width: 360px; border-color: #a94442;") }}
+                        <div class="form-group has-error">
+                            {% for error in form.date.errors %}
+                                <span style="margin-left: 14em;" class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <!--if there are no errors-->
+                        {% else %}
+                            {{ form.date(class="form-control", style="width: 360px;")}}
+                        {% endif %} 
+                    </div></br></br>
+
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                {{ form.submit(class="btn submit_btn form-control", style="margin-left: 270px;") }}
+            </div> 
+            {{ form.csrf_token }}
+        </form>
+    </div>
+</div>
+{% endblock %}
