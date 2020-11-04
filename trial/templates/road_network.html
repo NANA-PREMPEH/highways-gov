@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px;">
+        <div class="col-md-8" >
+            <h3 id="table_h3">Road Network</h3>
+            <table id="road_id" style="margin-bottom: 20%;">
+                <thead>
+                    <tr>
+                        <td>Number</td>
+                        <td>Route</td>
+                        <td>Length (km)</td>
+                        <td>Length (mi)</td> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>N1</td>
+                        <td>Elubo - Tema</td>
+                        <td>540</td>
+                        <td>340</td>
+                    </tr>
+                    <tr id="ta_rw" >
+                        <td>N2</td>
+                        <td>Tema - Bakwu</td>
+                        <td>640</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>N3</td>
+                        <td>Kpong - Koforidua</td>
+                        <td>40</td>
+                        <td>25</td>
+                    </tr>
+                    <tr id="ta_rw" >
+                        <td >N4</td>
+                        <td>Accra - Bunso</td>
+                        <td>110</td>
+                        <td>68</td>
+                    </tr>
+                    <tr>
+                        <td>N5</td>
+                        <td>Adome - Ho</td>
+                        <td>40</td>
+                        <td>25</td>
+                    </tr>
+                    <tr id="ta_rw" >
+                        <td>N6</td>
+                        <td>Accra - Kumasi</td>
+                        <td>250</td>
+                        <td>160</td>
+                    </tr>
+                    <tr>
+                        <td>N7</td>
+                        <td>Sawla - Larabanga</td>
+                        <td>140</td>
+                        <td>87</td>
+                    </tr>
+                    <tr id="ta_rw" >
+                        <td>N8</td>
+                        <td>Yamoransa - Kumasi</td>
+                        <td>170</td>
+                        <td>110</td>
+                    </tr>
+                    <tr>
+                        <td>N9</td>
+                        <td>Tamale - Yendi</td>
+                        <td>100</td>
+                        <td>62</td>
+                    </tr>
+                    <tr id="ta_rw" >
+                        <td>N10</td>
+                        <td>Kumasi - Paga</td>
+                        <td>610</td>
+                        <td>380</td>
+                    </tr>
+                    <tr>
+                        <td>N11</td>
+                        <td>Bolgatanga - Bimpiela</td>
+                        <td>100</td>
+                        <td>62</td>
+                    </tr>
+                    <tr id="ta_rw" >
+                        <td>N12</td>
+                        <td>Elubo - Hamile</td>
+                        <td>670</td>
+                        <td>420</td>
+                    </tr>
+                    <tr>
+                        <td>N13</td>
+                        <td>Lawra - Navrongo</td>
+                        <td>180</td>
+                        <td>110</td>
+                    </tr>
+                    <tr id="ta_rw" >
+                        <td>N14</td>
+                        <td>Sakpeigu - Yawgu</td>
+                        <td>120</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>N16</td>
+                        <td>Tumu - Kapulima</td>
+                        <td>20</td>
+                        <td>12</td>
+                    </tr>
+                    <tr id="ta_rw" >
+                        <td>N18</td>
+                        <td>Wa - Heng</td>
+                        <td>79</td>
+                        <td>49</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <div class="sidebar_area" > 
+                <aside class="right_widget r_post_widget" style="border: none;" >
+                    <img src="{{ url_for('static', filename='img/road_net.png') }}" alt="" style="width: 420px; margin-left: -15%; height: 620px; margin-top: 60px;">      
+                </aside>
+            </div>
+        </div>
+    </div>  
+</div>
+{% endblock content %}

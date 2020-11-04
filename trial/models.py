@@ -24,4 +24,7 @@ class Leave(db.Model):
     outs_days = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f"User('{self.name}', '{self.rank}', '{self.section}', '{self.leave_cat}', '{self.address}')"
+        return f"Leave('{self.name}', '{self.rank}', '{self.section}', '{self.date_app}', '{self.tele_no}', \
+            '{self.leave_cat}','{self.no_of_days}','{self.start_date}','{self.end_date}','{self.supp_info}', \
+            '{self.address}', '{self.mobile_no}', '{self.email}', '{self.days_proceed}', '{self.effec_date}', \
+            '{self.resump_date}', '{self.outs_days}')"

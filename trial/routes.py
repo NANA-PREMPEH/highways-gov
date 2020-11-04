@@ -1,7 +1,9 @@
 from flask import render_template, url_for, flash, redirect
-from trial.forms import DefectReportForm, LeaveForm
+from trial.forms import DefectReportForm, LeaveForm, LoginForm, BlogPostForm
 from trial.models import Leave
 from trial import app, db
+
+
 
 #Create route for home app
 @app.route('/')
@@ -9,6 +11,18 @@ from trial import app, db
 def home():
     return render_template('home.html')
 
+#Route for Login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.username.data == "santana" and form.password.data == "password":
+            return redirect(url_for('home'))
+        else:
+            flash(f'Unsuccessful Login. Please check username and password', 'danger')
+    return render_template('login.html', title='Login', form=form)
+
+#Route for Latest news Page
 @app.route('/blog')
 def blog():
     return render_template('blog.html', title='Latest News')
@@ -28,7 +42,8 @@ def basic():
 def defect():
     form = DefectReportForm()
     if form.validate_on_submit():
-        return redirect(url_for('home'))
+        flash(f'Defect Report Form submitted successfully', 'success') 
+        return redirect(url_for('defect'))
     return render_template('defect_rep.html', title='Road Defects Report', form=form)
 
 
@@ -46,6 +61,34 @@ def leave():
         db.session.add(le_ave)
         db.session.commit()
         flash(f"Leave form submitted successfully", 'success')
-        return redirect(url_for('just'))
+        return redirect(url_for('view_form'))
     return render_template('leave_form.html', title='Leave Form Report', form=form)
 
+@app.route('/table')
+def table():
+    return render_template('tables.html', title='Basic')
+
+#Route for View form 
+@app.route('/view_form')
+def view_form():
+    data = Leave.query.all()
+    return render_template('view_lv_form.html', title='Leave', data=data)
+
+
+#Create route for Blog news update
+@app.route('/blog_news/new', methods=['GET', 'POST'])
+def blog_news():
+    form = BlogPostForm()
+    return render_template('create_news.html', title='New Post', form=form)
+
+@app.route('/road_net')
+def road_net():
+    return render_template('road_network.html', title='Basic')
+
+@app.route('/mission')
+def mission():
+    return render_template('mission.html', title='Basic')
+
+@app.route('/leaders')
+def leaders():
+    return render_template('leadership.html', title='Basic')

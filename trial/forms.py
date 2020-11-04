@@ -1,12 +1,26 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, RadioField, TextAreaField, IntegerField, SelectField, SubmitField
+from wtforms import StringField, RadioField, TextAreaField, IntegerField, SelectField, SubmitField, BooleanField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, Length, Email, NumberRange
 
 
+#Create Login Form
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = StringField('Password', validators=[DataRequired()])
+    remember = BooleanField('Remember me')
+    submit = SubmitField('Login')
+
+#Create Blog Post Form
+class BlogPostForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    blog_content = TextAreaField('Content', validators=[DataRequired()])
+    submit = SubmitField('Login')
+
+
 #Create a Defect Report Form
 class DefectReportForm(FlaskForm):
-    report = RadioField('label', validators=[DataRequired()], choices=[('report', 'report /'), ('complain', 'complain')])
+    report = RadioField('label', validators=[DataRequired(message="Please")], choices=[('report', 'report /'), ('complain', 'complain')])
     road_desc = StringField('Road', validators=[DataRequired(), Length(min=2, max=50)])
     dist_desc = StringField('District', validators=[DataRequired(), Length(min=2, max=50)])
     reg_desc = StringField('Region', validators=[DataRequired(), Length(min=2, max=50)])
@@ -18,7 +32,7 @@ class DefectReportForm(FlaskForm):
     date = DateField('Date:', validators=[DataRequired()], format='%Y-%m-%d')
     submit = SubmitField('Submit')
 
-
+#Create Leave Form
 class LeaveForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=2, max=50)])
     rank = StringField('Rank', validators=[DataRequired(), Length(min=2, max=50)])

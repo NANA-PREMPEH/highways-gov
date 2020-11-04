@@ -133,20 +133,7 @@
         </header>
         <!--================Header Area =================-->
 
-        <!--Display Flash messages if any-->
-        <div>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
-                <p class="alert alert-{{ category }}" style="width: 43.4%; margin-left: 90px; margin-bottom: 1%;">
-                    {{ message }}
-                </p>
-              {% endfor %}
-            {% endif %}
-            {% endwith %}
-        </div>
         <!--Area for the Display of other contents/pages-->
-       
         {% block content %}{% endblock %}
         <!--================Address Area =================-->
         <section class="address_area">
@@ -313,7 +300,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{{ url_for('static', filename='js/jquery-2.2.4.js') }}"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-        
 
         <!-- Rev slider js -->
         <script src="{{ url_for('static', filename='vendors/revolution/js/jquery.themepunch.tools.min.js') }}"></script>

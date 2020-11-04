@@ -2,17 +2,18 @@
 {% block content %}
 <div class="container">
     <div class="row blog_details_inner" id="leave">
-        <form action="" method="POST">
+        <form action="" method="POST" onsubmit="return isChecked();">
             <div class="col-md-6" id="content_1">
                 <h4 class="">Location</h4>
                 <label>
                     <fieldset>
                         <p>
                             I would like to 
-                            {% for subfield in form.report %}
+                            {% for subfield in form.report %} 
                                 {{ subfield }}
                                 {{ subfield.label }} &nbsp;
                             {% endfor %}
+                            <span id="message"></span>
                             the following defects
                         </p>
                     </fieldset>
@@ -153,7 +154,7 @@
                 </fieldset>
             </div>
             <div class="col-md-6">
-                <div class="sidebar_area" id="content_1">
+                <div class="sidebar_area" id="content_1" style="padding-bottom: 0%;">
                     <h4 class="">Details</h4>
                     <p style="margin-bottom: 10px;">
                 
@@ -193,6 +194,7 @@
                             <label for="type1">&nbsp;agree</label>&nbsp;/&nbsp;
                             <input type="radio" name="type" id="type2">
                             <label for="type2">&nbsp;disagree</label>
+                            <span id="msg"></span>
                             to refer my personal contact to other relevant organizations, 
                             agents, contractors or consultants for follow-up 
                             of this case and direct reply to me.
@@ -261,9 +263,9 @@
                         {% else %}
                             {{ form.date(class="form-control", style="width: 360px;")}}
                         {% endif %} 
-                    </div></br></br>
+                    </div></br>
 
-                </div>
+                </div></br></br>
             </div>
             <div class="form-group col-md-6">
                 {{ form.submit(class="btn submit_btn form-control", style="margin-left: 270px;") }}
