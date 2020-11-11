@@ -92,3 +92,11 @@ def mission():
 @app.route('/leaders')
 def leaders():
     return render_template('leadership.html', title='Basic')
+
+@app.route('/contractors')
+def contractors():
+    return render_template('contractor_list.html', title='Basic')
+
+@app.route('/organogram')
+def organogram():
+    return render_template('organogram.html', title='Organogram')

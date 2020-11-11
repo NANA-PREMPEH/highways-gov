@@ -85,12 +85,18 @@
                                 <li><a href="{{ url_for('home') }}">Home</a></li>
                                 <li class="dropdown submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About US</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Vision &#38; Mission</a></li>
-                                        <li><a href="#">Organizational Structure</a></li>
+                                    <ul class="dropdown-menu" id="hello">
+                                        <li><a href="{{ url_for('mission') }}">Vision &#38; Mission</a></li>
+                                        <li><a href="#">Organizational Structure</a>
+                                            <ul class="dropdown-menu" >
+                                                <li ><a href="{{ url_for('leaders') }}" >Leadership</a></li>
+                                                <li ><a href="{{ url_for('organogram') }}">Organogram</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="#">Director's Office</a></li>
                                         <li><a href="{{ url_for('division') }}">Divisions</a></li>
                                         <li><a href="#">Institution Profile</a></li>
+                                        <li><a href="{{ url_for('contractors') }}">Eng. Consultancies</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown submenu">
@@ -119,6 +125,7 @@
                                         <li><a href="{{ url_for('blog')}}">Latest News</a></li>
                                         <li><a href="#">Photo Gallery</a></li>
                                         <li><a href="#">Video Gallery</a></li>
+                                        <li><a href="{{ url_for('road_net') }}">Road Network</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Contact</a></li>
@@ -149,7 +156,7 @@
        
         {% block content %}{% endblock %}
         <!--================Address Area =================-->
-        <section class="address_area">
+        <section class="address_area" style="margin-top: 8%;">
             <div class="container">
                 <div class="row address_inner">
                     <div class="col-md-4">
