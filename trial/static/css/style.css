@@ -2764,6 +2764,18 @@ span.psw {
   opacity: 1;
 }
 
+#periodic {
+  margin-top: 10%; 
+  font-size: 22px; 
+  font-weight: 18px; 
+  line-height: 50px; 
+  font-family: 'Open Sans', sans-serif;
+}
+
+#periodic table a {
+  color: #31353d;
+}
+
 /*End of Styling*/
 
 /* Project Single area css

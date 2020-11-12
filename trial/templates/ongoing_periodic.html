@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3" style="margin-top: 3%;">ONGOING PERIODIC PROJECTS</h3>
+        <div class="col-md-8" id="periodic">
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a href="">Rehabilitation</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="">Resealing</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="">Upgrading</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a href="">Regravelling</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="">Pre-Construction</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="">Alsphaltic Overlay</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a href="">Construction</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="">Resurfacing</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="">Repairs &#38; Alsphaltic</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="sidebar_area" style="margin-top: 33px;">
+                <aside class="right_widget r_post_widget">
+                    <div class="r_w_title">
+                        <h3>Trending Post</h3>
+                    </div>
+                    <div class="r_post_inner">
+                        <div class="r_post_item">
+                            <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-1.jpg') }}" alt="">
+                            <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
+                        </div>
+                        <div class="r_post_item">
+                            <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-2.jpg') }}" alt="">
+                            <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
+                        </div>
+                        <div class="r_post_item">
+                            <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-3.jpg') }}" alt="">
+                            <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="right_widget r_social_widget">
+                    <div class="r_w_title">
+                        <h3>we are social</h3>
+                    </div>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    </ul>
+                </aside>
+                <aside class="right_widget r_twitter_widget">
+                    <div class="r_w_title">
+                        <h3>twitter feed</h3>
+                    </div>
+                    <div class="tweets_feed"></div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %} 

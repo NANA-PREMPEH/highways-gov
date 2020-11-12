@@ -1,7 +1,12 @@
+import re
 from flask import render_template, url_for, flash, redirect
 from trial.forms import DefectReportForm, LeaveForm, LoginForm, BlogPostForm
-from trial.models import Leave
+from trial.models import Leave, Rehabilitation, Upgrading, Construction, Regravelling
 from trial import app, db
+from trial.construc import construc_data, update_construc
+from trial.rehab import rehab_data, update_rehab
+from trial.regrav import regrav_data, update_regrav
+from trial.upgrage import upgrade_data, update_upgrade
 
 
 
@@ -100,3 +105,55 @@ def contractors():
 @app.route('/organogram')
 def organogram():
     return render_template('organogram.html', title='Organogram')
+
+@app.route('/completed/periodic', methods=['GET'])
+def completed_periodic():
+    return render_template('completed_periodic.html', title='Completed Periodic Projects')
+
+@app.route('/ongoing/periodic', methods=['GET'])
+def ongoing_periodic():
+    return render_template('ongoing_periodic.html', title='Ongoing Periodic Projects')
+
+@app.route('/planning/periodic', methods=['GET'])
+def planning_periodic():
+    return render_template('planning_periodic.html', title='Periodic Projects Under Planning')
+
+@app.route('/const')
+def const():
+    update_construc(construc_data)
+    return redirect(url_for('home'))
+
+@app.route('/regrav')
+def regrav():
+    update_regrav(regrav_data)
+    return redirect(url_for('home'))
+
+@app.route('/rehab')
+def rehab():
+    update_rehab(rehab_data)
+    return redirect(url_for('home'))
+
+@app.route('/upgrade')
+def upgrade():
+    update_upgrade(upgrade_data)
+    return redirect(url_for('home'))
+
+@app.route('/rehabilitation', methods=['GET', 'POST'])
+def rehabilitation():
+    rehab_list = Rehabilitation.query.all()
+    return render_template('rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list)
+
+@app.route('/upgrading', methods=['GET', 'POST'])
+def upgrading():
+    upgrade_list = Upgrading.query.all()
+    return render_template('Upgrading.html', title='Upgrading', upgrade_list=upgrade_list)
+
+@app.route('/construction', methods=['GET', 'POST'])
+def construction():
+    const_list = Construction.query.all()
+    return render_template('construction.html', title='Construction', const_list=const_list)
+
+@app.route('/regravelling', methods=['GET', 'POST'])
+def regravelling():
+    regrav_list = Regravelling.query.all()
+    return render_template('regravelling.html', title='Regravelling', regrav_list=regrav_list)
