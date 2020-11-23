@@ -2578,7 +2578,7 @@ fieldset legend {
   margin-bottom: 20px;
 }*/
 
-.loginbtn {
+.sub_btn {
   width: 90px;
   margin-top: 20px;
   background-color:  #ffcd00;
@@ -2588,14 +2588,14 @@ fieldset legend {
   border: none;
   display: inline-block;
   font-family: "Montserrat", sans-serif;
-  font-size: 14px;
+  font-size: 14px; 
   text-align: center;
   color: #00040cfd;
   
     
 }
 
-.loginbtn:hover {
+.sub_btn:hover {
   background-color: #0a0000fd;
   color: #ffffff;
   opacity: 0.8;

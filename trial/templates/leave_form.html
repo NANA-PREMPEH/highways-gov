@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="container">
-        <div class="row blog_details_inner" id="leave">
+        <div class="row blog_details_inner" id="leave" style="margin-left: 2%;">
             <form action="" method="post">
                 <div class="col-md-6" id="content_1" >
                     <h4 class="">Personal Details</h4>
@@ -54,19 +54,12 @@
                     </div>
                     <div class="form-group">
                         {{ form.date_app.label }}
-
-                        <!--If form had errors-->
-                        {% if form.date_app.errors %}
-                            {{ form.date_app(class="form-control", id="datepicker", style="border-color: #a94442;") }}
-                            <div class="form-group has-error">
-                                {% for error in form.date_app.errors %}
-                                    <span class="help-block">{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        <!--if there are no errors-->
-                        {% else %}
-                            {{ form.date_app(class="form-control", id="datepicker")}}
-                        {% endif %}
+                        <div class="input-group datepicker">
+                            {{ form.date_app(class="form-control")}}
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div> 
                     </div>
                     <div class="form-group">
                         {{ form.tele_no.label }}
@@ -121,36 +114,23 @@
                         </div>
                         <div class="form-group">
                             <p style="font-weight: bold; margin-bottom: 15px;">Duration(All Dates Included)</p>
-                            <div style="float: left;">
+                            <div class="col-sm-6">
                                 {{ form.start_date.label }}
-
-                                <!--If form had errors-->
-                                {% if form.start_date.errors %}
-                                {{ form.start_date(style="border-color: #a94442; width: fit-content; margin-right: 30px;") }}
-                                <div class="form-group has-error">
-                                    {% for error in form.start_date.errors %}
-                                        <span class="help-block">{{ error }}</span>
-                                    {% endfor %}
+                                <div class="input-group datepicker">
+                                    {{ form.start_date(class="form-control")}}
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
                                 </div>
-                                <!--if there are no errors-->
-                                {% else %}
-                                    {{ form.start_date(style="width: fit-content; margin-right: 30px;")}}
-                                {% endif %}
-
+                            </div>
+                            <div class="col-sm-6">
                                 {{ form.end_date.label }}
-
-                                <!--If form had errors-->
-                                {% if form.end_date.errors %}
-                                {{ form.end_date(style="border-color: #a94442; width: fit-content; margin-right: 30px;") }}
-                                <div class="form-group has-error">
-                                    {% for error in form.end_date.errors %}
-                                        <span class="help-block">{{ error }}</span>
-                                    {% endfor %}
+                                <div class="input-group datepicker">
+                                    {{ form.end_date(class="form-control")}}
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
                                 </div>
-                                <!--if there are no errors-->
-                                {% else %}
-                                    {{ form.end_date(style="width: fit-content; margin-right: 30px;")}}
-                                {% endif %}
                             </div>
                         </div></br></br>
                     </fieldset> 
@@ -244,34 +224,22 @@
                         <div class="form-group">
                             {{ form.effec_date.label }}
 
-                            <!--If form had errors-->
-                            {% if form.effec_date.errors %}
-                            {{ form.effec_date(class="form-control", style="border-color: #a94442;") }}
-                            <div class="form-group has-error">
-                                {% for error in form.effec_date.errors %}
-                                    <span class="help-block">{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                            <!--if there are no errors-->
-                            {% else %}
+                            <div class="input-group datepicker">
                                 {{ form.effec_date(class="form-control")}}
-                            {% endif %}
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                         <div class="form-group">
                             {{ form.resump_date.label }}
 
-                            <!--If form had errors-->
-                            {% if form.resump_date.errors %}
-                            {{ form.resump_date(class="form-control", style="border-color: #a94442;") }}
-                            <div class="form-group has-error">
-                                {% for error in form.resump_date.errors %}
-                                    <span class="help-block">{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                            <!--if there are no errors-->
-                            {% else %}
+                            <div class="input-group datepicker">
                                 {{ form.resump_date(class="form-control")}}
-                            {% endif %}
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                         <div class="form-group">
                             {{ form.outs_days.label }}

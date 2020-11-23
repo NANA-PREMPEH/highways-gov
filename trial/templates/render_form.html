@@ -4,6 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% if title %}
+            <title>{{ title }} Leave Form</title>
+        {% else %}
+            <title>Ghana Highway Authority- Being a world-class provider of safe road infrastructure.</title>
+        {% endif %}
         
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -82,13 +87,12 @@
                                 
                             </tr>
                         </thead>
-                        {% if post.leave_cat %}
                         <tbody>
                             <tr>
-                                {% if post.leave_cat == "Annual Leave" %}
+                                {% if post.leave_cat == "Annual/Part Leave" %}
                                     <td><label for="">1. ANNUAL/PART TIME</label></td>
                                     <td>
-                                        <input type="text" value="{{post.no_of_days}}">
+                                        <input type="text" value="{{ post.no_of_days }}">
                                     </td>
                                     <td>
                                         <label for="">FROM :</label>
@@ -321,7 +325,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                        {% endif %}
+                        
                     </table>
                 </div>
                 <div>

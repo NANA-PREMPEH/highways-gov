@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-    <div class="row blog_details_inner">
-        <div class="col-md-8" >
+    <div class="row blog_details_inner" style="margin-left: 4%;">
+        <div class="col-md-8" style="margin-top: 2px;" >
             <div class="modal_th" >
                 <form action="" method="POST">
                     <div class="form-group">
@@ -10,27 +10,51 @@
                     </div>
                     <div class="loginwrap">
                         <div class="form-group">
-                            {{ form.username.label }}
-                            {{ form.username(class="form-control", placeholder="Enter Username" ) }}
+                            {{ form.email.label }}
+
+                            <!--If form had errors-->
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control", style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.email.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %}
+                                {{ form.email(class="form-control", placeholder="Enter Email")}}
+                            {% endif %}
+                            
                         </div>
                         <div class="form-group">
                             {{ form.password.label}}
-                            {{ form.password(class="form-control", placeholder="Enter password" ) }}
+                            <!--If form had errors-->
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control", style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.password.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %}
+                                {{ form.password(class="form-control", placeholder="Enter Password")}}
+                            {% endif %}
                         </div>
                         <div class="form-group">
-                            {{ form.submit(class="loginbtn") }} </br>
+                            {{ form.submit(class="sub_btn") }} </br>
                         </div>
                         <div class="form-group">
-                            {{ form.remember }}
-                            {{ form.remember.label }}
-                            <span class="psw">Forgot <a href="#">password?</a></span>
+                            {{ form.remember(class="form-check-input" ) }}
+                            {{ form.remember.label(class="form-check-label") }}
+                            <span class="psw">Forgot <a href="{{ url_for('reset_request') }}">password?</a></span>
                         </div>     
                     </div> 
                     {{ form.csrf_token }} 
                 </form>
             </div> 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-top: 1%;">
             <div class="sidebar_area"> 
                 <aside class="right_widget r_post_widget" >
                     <div class="r_w_title" >

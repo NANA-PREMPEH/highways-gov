@@ -6,41 +6,41 @@
             <div class="modal_th" style="height: 570px;">
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div class="loginwrap" style="margin-top: 4%;">
-                            <legend>ADD POST</legend>
+                            <legend>RESET PASSWORD</legend>
                         <div class="form-group">
-                            {{ form.title.label }}
+                            {{ form.password.label }}
 
                             <!--If form had errors-->
-                            {% if form.title.errors %}
-                                {{ form.title(class="form-control", style="border-color: #a94442;") }}
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control", style="border-color: #a94442;") }}
                                 <div class="form-group has-error">
-                                    {% for error in form.title.errors %}
+                                    {% for error in form.password.errors %}
                                         <span class="help-block">{{ error }}</span>
                                     {% endfor %}
                                 </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.title(class="form-control")}}
+                                {{ form.password(class="form-control")}}
                             {% endif %}
                         </div>
                         <div class="form-group">
-                            {{ form.blog_content.label }}
+                            {{ form.confirm_password.label }}
 
                             <!--If form had errors-->
-                            {% if form.blog_content.errors %}
-                                {{ form.blog_content(class="form-control", cols="30", rows="5",  style="border-color: #a94442;") }}
+                            {% if form.confirm_password.errors %}
+                                {{ form.confirm_password(class="form-control", style="border-color: #a94442;") }}
                                 <div class="form-group has-error">
-                                    {% for error in form.blog_content.errors %}
+                                    {% for error in form.confirm_password.errors %}
                                         <span class="help-block">{{ error }}</span>
                                     {% endfor %}
                                 </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.blog_content(class="form-control", cols="30", rows="5")}}
-                            {% endif %}    
+                                {{ form.confirm_password(class="form-control")}}
+                            {% endif %}
                         </div>
                         <div class="form-group">
-                            {{ form.submit(class="sub_btn") }} </br>
+                            {{ form.submit(class="btn submit_btn form-control", style="color: #494848;") }} </br>
                         </div>     
                     </div> 
                     {{ form.csrf_token }} 

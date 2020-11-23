@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-    <div class="row blog_details_inner" id="leave">
+    <div class="row blog_details_inner" id="leave" style="margin-left: 2%;">
         <form action="" method="POST" onsubmit="return isChecked();">
             <div class="col-md-6" id="content_1">
                 <h4 class="">Location</h4>
@@ -251,18 +251,12 @@
                     <div class="form-group">
                         {{ form.date.label(class="pers") }}
 
-                        <!--If form had errors-->
-                        {% if form.date.errors %}
-                        {{ form.date(class="form-control", style="width: 360px; border-color: #a94442;") }}
-                        <div class="form-group has-error">
-                            {% for error in form.date.errors %}
-                                <span style="margin-left: 14em;" class="help-block">{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        <!--if there are no errors-->
-                        {% else %}
-                            {{ form.date(class="form-control", style="width: 360px;")}}
-                        {% endif %} 
+                        <div class="input-group datepicker">
+                            {{ form.date(class="form-control")}}
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div> 
                     </div></br>
 
                 </div></br></br>

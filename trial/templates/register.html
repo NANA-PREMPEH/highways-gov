@@ -2,42 +2,75 @@
 {% block content %}
 <div class="container">
     <div class="row blog_details_inner" style="margin-left: 4%;">
+        
         <div class="col-md-8"  style="margin-top: 2px;">
-            <div class="modal_th" style="height: 570px;">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="loginwrap" style="margin-top: 4%;">
-                            <legend>ADD POST</legend>
+            <div class="modal_th">
+                <form action="" method="POST">
+                    <div class="loginwrap" style="margin-top: 7%;">
                         <div class="form-group">
-                            {{ form.title.label }}
+                            {{ form.username.label }}
 
                             <!--If form had errors-->
-                            {% if form.title.errors %}
-                                {{ form.title(class="form-control", style="border-color: #a94442;") }}
+                            {% if form.username.errors %}
+                                {{ form.username(class="form-control", style="border-color: #a94442;") }}
                                 <div class="form-group has-error">
-                                    {% for error in form.title.errors %}
+                                    {% for error in form.username.errors %}
                                         <span class="help-block">{{ error }}</span>
                                     {% endfor %}
                                 </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.title(class="form-control")}}
+                                {{ form.username(class="form-control", placeholder="Enter Username")}}
                             {% endif %}
                         </div>
                         <div class="form-group">
-                            {{ form.blog_content.label }}
+                            {{ form.email.label }}
 
                             <!--If form had errors-->
-                            {% if form.blog_content.errors %}
-                                {{ form.blog_content(class="form-control", cols="30", rows="5",  style="border-color: #a94442;") }}
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control", style="border-color: #a94442;") }}
                                 <div class="form-group has-error">
-                                    {% for error in form.blog_content.errors %}
+                                    {% for error in form.email.errors %}
                                         <span class="help-block">{{ error }}</span>
                                     {% endfor %}
                                 </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.blog_content(class="form-control", cols="30", rows="5")}}
-                            {% endif %}    
+                                {{ form.email(class="form-control", placeholder="Enter Email")}}
+                            {% endif %}
+                            
+                        </div>
+                        <div class="form-group">
+                            {{ form.password.label}}
+
+                            <!--If form had errors-->
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control", style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.password.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %}
+                                {{ form.password(class="form-control", placeholder="Enter Password")}}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.confirm_password.label}}
+
+                            <!--If form had errors-->
+                            {% if form.confirm_password.errors %}
+                                {{ form.confirm_password(class="form-control", style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.confirm_password.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %}
+                                {{ form.confirm_password(class="form-control", placeholder="Re-enter Password" )}}
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             {{ form.submit(class="sub_btn") }} </br>
