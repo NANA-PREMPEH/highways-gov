@@ -2,6 +2,8 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
 from flask_login import UserMixin
 from trial import db, login_manager, app
+from sqlalchemy import event
+from slugify import slugify
 
 
 #Function to reload user from user id stored in session
@@ -39,6 +41,31 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+#Create a Blog Post Model
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(180), nullable=False)
+    slug = db.Column(db.String(180), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    comments = db.Column(db.Integer, default=0)
+    views = db.Column(db.Integer, default=0)
+    image = db.Column(db.String(120), default='image.jpg')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    author = db.relationship('User', backref=db.backref('author', lazy=True))
+    pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"User('{self.title}', '{self.body}', '{self.image}')"
+
+    #Create a static method
+    @staticmethod
+    def generate_slug(target, value, oldvalue, initiator):
+        if value and (not target.slug or value != oldvalue):
+            target.slug = slugify(value)
+
+db.event.listen(Post.title, 'set', Post.generate_slug, retval=False)
+
 
 #Create Leave Form Model
 class Leave(db.Model):

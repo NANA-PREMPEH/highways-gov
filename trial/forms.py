@@ -62,6 +62,7 @@ class UpdateAccountForm(FlaskForm):
 class BlogPostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     blog_content = TextAreaField('Content', validators=[DataRequired()])
+    picture = FileField('Upload Image', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Post')
 
 class RequestResetForm(FlaskForm):

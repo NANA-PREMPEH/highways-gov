@@ -8,7 +8,7 @@ from flask_mail import Message
 from flask_login import login_user, current_user, logout_user, login_required
 from trial.forms import (DefectReportForm, LeaveForm, LoginForm, BlogPostForm, RegistrationForm, 
                         UpdateAccountForm, RequestResetForm, ResetPasswordForm)
-from trial.models import Leave, Rehabilitation, Upgrading, Construction, Regravelling, User
+from trial.models import Leave, Post, Rehabilitation, Upgrading, Construction, Regravelling, User
 from trial.construc import construc_data, update_construc
 from trial.rehab import rehab_data, update_rehab
 from trial.regrav import regrav_data, update_regrav
@@ -22,7 +22,8 @@ import pdfkit
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('home.html', posts=posts)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -39,7 +40,8 @@ def register():
         db.session.commit()
         flash('New user has been added successfully. You can now log in', 'success')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('register.html', title='Register', form=form, posts=posts)
 
 #Route for Login
 @app.route('/login', methods=['GET', 'POST'])
@@ -58,7 +60,8 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Unsuccessful Login. Please check email and password again', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('login.html', title='Login', form=form, posts=posts)
 
 @app.route('/logout')
 def logout():
@@ -85,6 +88,8 @@ def save_picture(form_picture):
 
     return picture_fn
 
+
+
 #route for account template
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
@@ -107,7 +112,8 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='Account', form=form, image_file=image_file)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('account.html', title='Account', form=form, image_file=image_file, posts=posts)
 
 
 #Function to send reset email
@@ -135,7 +141,8 @@ def reset_request():
         send_reset_email(user)
         flash('An email has been sent with instructions to reset your password', 'info')
         return redirect(url_for('login'))
-    return render_template('reset_request.html', title='Reset Password', form=form)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('reset_request.html', title='Reset Password', form=form, posts=posts)
 
 #Route for Reset Password
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
@@ -155,29 +162,43 @@ def reset_token(token):
         db.session.commit()
         flash('Password has been updated successfully!. You can now log in', 'success')
         return redirect(url_for('login'))
-    return render_template('reset_token.html', title='Reset Password', form=form) 
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('reset_token.html', title='Reset Password', form=form, posts=posts) 
 
 
 #Route to view the Leave form
 @app.route('/post/<int:post_id>')
 def post(post_id):
     post = Leave.query.get_or_404(post_id)
-    return render_template('render_form.html', post=post)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('render_form.html', post=post, posts=posts)
+
+
 
 #Route for Latest news Page
 @app.route('/blog')
 def blog():
-    return render_template('blog.html', title='Latest News')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('blog.html', title='Latest News', posts=posts)
+
+#Route for Latest news Page
+@app.route('/blog_post/<int:post_id>/<string:slug>')
+def blog_post(post_id, slug):
+    single_post = Post.query.get_or_404(post_id)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('blog_post.html', title='Latest News', single_post=single_post, posts=posts)
 
 #Create a route for divisions
 @app.route('/divisions')
 def division():
-    return render_template('divisions.html', title='Division')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('divisions.html', title='Division', posts=posts)
 
 #Create a route for basic layout
 @app.route('/basic')
 def basic():
-    return render_template('basic_temp.html', title='Basic')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('basic_temp.html', title='Basic', posts=posts)
 
 #Create a route for defect form
 @app.route('/defect', methods=['GET', 'POST'])
@@ -186,7 +207,8 @@ def defect():
     if form.validate_on_submit():
         flash(f'Defect Report Form submitted successfully', 'success') 
         return redirect(url_for('defect'))
-    return render_template('defect_rep.html', title='Road Defects Report', form=form)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('defect_rep.html', title='Road Defects Report', form=form, posts=posts)
 
 
 #Create a route for just form layout    
@@ -205,23 +227,27 @@ def leave():
         db.session.commit()
         flash(f"Leave form submitted successfully", 'success')
         return redirect(url_for('view_form', post_id=le_ave.id))
-    return render_template('leave_form.html', title='Leave Form Report', form=form)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('leave_form.html', title='Leave Form Report', form=form, posts=posts)
 
 @app.route('/table')
 def table():
-    return render_template('tables.html', title='Basic')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('tables.html', title='Basic', posts=posts)
 
 #Route for View form 
 @app.route('/view_form/<int:post_id>', methods=['GET', 'POST'])
 def view_form(post_id):
     post = Leave.query.get_or_404(post_id)
-    return render_template('view_lv_form.html', title='Leave', post=post)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('view_lv_form.html', title='Leave', post=post, posts=posts)
 
 @app.route('/get_pdf/<int:post_id>', methods=['GET','POST'])
 def get_pdf(post_id):
 
     post = Leave.query.get_or_404(post_id)
-    rendered= render_template('render_form.html', title=current_user.username, post=post)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    rendered= render_template('render_form.html', title=current_user.username, post=post, posts=posts)
     css = ['trial/static/css/bootstrap.min.css', 'trial/static/css/style.css']
 
     options = {'enable-local-file-access': None}
@@ -234,20 +260,48 @@ def get_pdf(post_id):
     return response
     
 
+#Takes picture data as an argument
+def save_photo(photo):
+    #Randomize the name of the picture(to prevent collision with other image with the same name)
+    random_hex = secrets.token_hex(8)
+    #Grab the file extension
+    _, f_ext = os.path.splitext(photo.filename)      #Use of underscore to discard the filename
+    #Combine the random_hex eith the file extension to get the new filename of image
+    photo_name = random_hex + f_ext
+    photo_path = os.path.join(app.root_path, 'static/blog_images', photo_name)
+
+    photo.save(photo_path)
+
+    return photo_name
+
 #Create route for Blog news update
 @app.route('/blog_news/new', methods=['GET', 'POST'])
 @login_required
 def blog_news():
     form = BlogPostForm()
-    return render_template('create_news.html', title='New Post', form=form)
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.blog_content.data
+        picture = save_photo(form.picture.data) 
+
+        #Upload post into the database
+        post = Post(title=title, body=content, image=picture, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your Post has been submitted', 'success')
+        return redirect(url_for('home'))
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('create_news.html', title='New Post', form=form, posts=posts)
 
 @app.route('/road_net')
 def road_net():
-    return render_template('road_network.html', title='Basic')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('road_network.html', title='Basic', posts=posts)
 
 @app.route('/mission')
 def mission():
-    return render_template('mission.html', title='Basic')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('mission.html', title='Basic', posts=posts)
 
 @app.route('/leaders')
 def leaders():
@@ -255,23 +309,33 @@ def leaders():
 
 @app.route('/contractors')
 def contractors():
-    return render_template('contractor_list.html', title='Basic')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('contractor_list.html', title='Basic', posts=posts)
 
 @app.route('/organogram')
 def organogram():
-    return render_template('organogram.html', title='Organogram')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('organogram.html', title='Organogram', posts=posts)
 
-@app.route('/completed/periodic', methods=['GET'])
+@app.route('/completed/periodic', methods=['GET', 'POST'])
 def completed_periodic():
-    return render_template('completed_periodic.html', title='Completed Periodic Projects')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('completed_periodic.html', title='Completed Periodic Projects', posts=posts)
 
-@app.route('/ongoing/periodic', methods=['GET'])
+@app.route('/ongoing/periodic', methods=['GET', 'POST'])
 def ongoing_periodic():
-    return render_template('ongoing_periodic.html', title='Ongoing Periodic Projects')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('ongoing_periodic.html', title='Ongoing Periodic Projects', posts=posts)
 
-@app.route('/planning/periodic', methods=['GET'])
+@app.route('/planning/periodic', methods=['GET', 'POST'])
 def planning_periodic():
-    return render_template('planning_periodic.html', title='Periodic Projects Under Planning')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('planning_periodic.html', title='Periodic Projects Under Planning', posts=posts)
+
+@app.route('/others', methods=['GET', 'POST'])
+def others():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('others.html', title='Other Forms', posts=posts)
 
 @app.route('/const')
 def const():
@@ -296,24 +360,29 @@ def upgrade():
 @app.route('/rehabilitation', methods=['GET', 'POST'])
 def rehabilitation():
     rehab_list = Rehabilitation.query.all()
-    return render_template('rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list, posts=posts)
 
 @app.route('/upgrading', methods=['GET', 'POST'])
 def upgrading():
     upgrade_list = Upgrading.query.all()
-    return render_template('Upgrading.html', title='Upgrading', upgrade_list=upgrade_list)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('Upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts)
 
 @app.route('/construction', methods=['GET', 'POST'])
 def construction():
     const_list = Construction.query.all()
-    return render_template('construction.html', title='Construction', const_list=const_list)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('construction.html', title='Construction', const_list=const_list, posts=posts)
 
 @app.route('/regravelling', methods=['GET', 'POST'])
 def regravelling():
     regrav_list = Regravelling.query.all()
-    return render_template('regravelling.html', title='Regravelling', regrav_list=regrav_list)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('regravelling.html', title='Regravelling', regrav_list=regrav_list, posts=posts)
 
 @app.route('/render/<int:post_id>', methods=['GET', 'POST'])
 def render(post_id):
     post = Leave.query.get_or_404(post_id)
-    return render_template('render_form.html', post=post, title=current_user.username)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('render_form.html', post=post, title=current_user.username, posts=posts)

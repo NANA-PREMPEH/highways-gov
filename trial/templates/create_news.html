@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row blog_details_inner" style="margin-left: 4%;">
         <div class="col-md-8"  style="margin-top: 2px;">
-            <div class="modal_th" style="height: 570px;">
+            <div class="modal_th" style="height: 80.9em;">
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div class="loginwrap" style="margin-top: 4%;">
                             <legend>ADD POST</legend>
@@ -15,7 +15,7 @@
                                 {{ form.title(class="form-control", style="border-color: #a94442;") }}
                                 <div class="form-group has-error">
                                     {% for error in form.title.errors %}
-                                        <span class="help-block">{{ error }}</span>
+                                        <span class="help-block">{{ error }}</span> 
                                     {% endfor %}
                                 </div>
                             <!--if there are no errors-->
@@ -28,16 +28,25 @@
 
                             <!--If form had errors-->
                             {% if form.blog_content.errors %}
-                                {{ form.blog_content(class="form-control", cols="30", rows="5",  style="border-color: #a94442;") }}
+                                {{ form.blog_content(class="form-control", cols="35", rows="10",  style="border-color: #a94442;") }}
                                 <div class="form-group has-error">
                                     {% for error in form.blog_content.errors %}
-                                        <span class="help-block">{{ error }}</span>
+                                        <span class="help-block">{{ error }}</span> 
                                     {% endfor %}
                                 </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.blog_content(class="form-control", cols="30", rows="5")}}
+                                {{ form.blog_content(class="form-control", cols="35", rows="10")}}
                             {% endif %}    
+                        </div>
+                        <div class="form-group">
+                            {{ form.picture.label() }}
+                            {{ form.picture}}
+                            {% if form.picture.errors %}
+                                {% for error in form.picture.errors %}
+                                    <span class="text-danger">{{ error }}</span>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             {{ form.submit(class="sub_btn") }} </br>
@@ -47,47 +56,7 @@
                 </form>
             </div> 
         </div>
-        <div class="col-md-4" style="margin-top: 1%;">
-            <div class="sidebar_area"> 
-                <aside class="right_widget r_post_widget" >
-                    <div class="r_w_title" >
-                        <h3>Trending Post</h3>
-                    </div>
-                    <div class="r_post_inner">
-                        <div class="r_post_item">
-                            <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-1.jpg') }}" alt="">
-                            <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
-                        </div>
-                        <div class="r_post_item">
-                            <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-2.jpg') }}" alt="">
-                            <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
-                        </div>
-                        <div class="r_post_item">
-                            <img src="{{ url_for('static', filename='img/blog/trending-post/t-post-3.jpg') }}" alt="">
-                            <a href="#"><p>But I must explain to you how all this mistaken idea</p></a>
-                        </div>
-                    </div>
-                </aside>
-                <aside class="right_widget r_social_widget">
-                    <div class="r_w_title">
-                        <h3>we are social</h3>
-                    </div>
-                    <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                    </ul>
-                </aside>
-                <aside class="right_widget r_twitter_widget">
-                    <div class="r_w_title">
-                        <h3>twitter feed</h3>
-                    </div>
-                    <div class="tweets_feed"></div>
-                </aside>
-            </div>
-        </div> 
+        {% include 'sidebar.html' %} 
     </div>
 </div>
 {% endblock content %}

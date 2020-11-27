@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3" style="margin-top: 3%;">OTHER FORMS</h3> 
+        <div class="col-md-8" id="periodic">
+            <div class="col-sm-12">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a href="#">Hospital Form</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-12">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a href="#">Request For Accomodation</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% include 'sidebar.html' %}
+    </div>
+</div>
+{% endblock content %} 

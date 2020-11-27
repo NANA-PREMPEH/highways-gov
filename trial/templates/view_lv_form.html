@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
         <div class="container">
-            <div class="row blog_details_inner" id="leave"> 
-                <form action="{{ url_for('render', post_id=post.id) }}" method="POST" target="_blank"> 
+            <div class="row blog_details_inner" id="leave">  
+                <form action="{{ url_for('get_pdf', post_id=post.id) }}" method="POST" target="_blank"> 
                     <div class="col-md-6" id="content_1" > 
                             <h4 class="">Personal Details</h4>
                             <div class="form-group">

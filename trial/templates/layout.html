@@ -46,8 +46,6 @@
        
     </head>
     <body>
-       
-       
         <!--================Header Area =================-->
         <header class="main_header_area">
             <div class="header_top_area">
@@ -112,19 +110,19 @@
                                         <li ><a href="#">Completed Projects</a>
                                             <ul class="dropdown-menu">
                                                 <li ><a href="{{ url_for('completed_periodic') }}">Periodic</a></li>
-                                                <li ><a href="" >Routine</a></li>   
+                                                <li ><a href="#" >Routine</a></li>   
                                             </ul>
                                         </li>
                                         <li ><a href="#">Ongoing Projects</a>
                                             <ul class="dropdown-menu">
                                                 <li ><a href="{{ url_for('ongoing_periodic') }}">Periodic</a></li>
-                                                <li ><a href="" >Routine</a></li>   
+                                                <li ><a href="#" >Routine</a></li>   
                                             </ul>
                                         </li>
                                         <li><a href="#">Projects Under Planning</a>
                                             <ul class="dropdown-menu">
                                                 <li ><a href="{{ url_for('planning_periodic') }}">Periodic</a></li>
-                                                <li ><a href="" >Routine</a></li>   
+                                                <li ><a href="#" >Routine</a></li>   
                                             </ul>
                                         </li>
                                     </ul>
@@ -137,6 +135,7 @@
                                             <ul class="dropdown-menu" >
                                                 <li ><a href="{{ url_for('defect') }}" >Defect/Damage Report</a></li>
                                                 <li ><a href="{{ url_for('leave', post_id=current_user.id) }}">Leave</a></li>
+                                                <li ><a href="{{ url_for('others') }}">Others</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -211,8 +210,7 @@
                                 <img src="{{ url_for('static', filename='img/icon/inbox-icon.png') }}" alt="">
                             </div>
                             <div class="media-body">
-                                <h5>info@domain.com</h5>
-                                <h5>info@domain.com</h5>
+                                <h5>ashanti@highways.gov.gh</h5>
                             </div>
                         </div>
                     </div>
@@ -246,22 +244,16 @@
                                     <h3>Recent Posts</h3>
                                 </div>
                                 <div class="recent_w_inner">
+                                    {% for post in posts[:2] %}
                                     <div class="media">
                                         <div class="media-left">
-                                            <img src="{{ url_for('static', filename='img/blog/recent-post/recent-1.png') }}" alt="">
+                                            <img src="{{ url_for('static', filename='blog_images/' + post.image) }}" style="width: 95px; height: 63px;" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <a href="#"><p>The road to success is always under con-struction</p></a>
+                                            <a href="{{ url_for('blog_post', post_id=post.id, slug=post.slug) }}"><p>{{ post.body | truncate(60, True) }}</p></a>
                                         </div>
                                     </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <img src="{{ url_for('static', filename='img/blog/recent-post/recent-2.png') }}" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <a href="#"><p>The road to success is always under con-struction</p></a>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </aside>
                         </div>
@@ -309,7 +301,7 @@
                                             <i class="fa fa-envelope"></i>
                                         </div>
                                         <div class="media-body">
-                                            <p>info@domain.com</p>
+                                            <p>ashanti@highways.gov.gh</p>
                                         </div>
                                     </div>
                                     
@@ -352,17 +344,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
         <script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
         
-        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-        <script src="vendors/isotope/isotope.pkgd.min.js"></script>
-        <script src="vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
-        <script src="vendors/counterup/waypoints.min.js"></script>
-        <script src="vendors/counterup/jquery.counterup.min.js"></script>
+        <script src="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendors/isotope/imagesloaded.pkgd.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendors/isotope/isotope.pkgd.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendors/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendors/counterup/waypoints.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendors/counterup/jquery.counterup.min.js') }}"></script>
         <script src="{{ url_for('static', filename='vendors/flex-slider/jquery.flexslider-min.js') }}"></script>
         
         <!--gmaps Js-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-        <script src="js/gmaps.min.js"></script>
+        <script src="{{ url_for('static', filename='js/gmaps.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
         <!-- DataTables -->
         <script src="{{ url_for('static', filename='DataTables/js/jquery.dataTables.min.js') }}"></script>
