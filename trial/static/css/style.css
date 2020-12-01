@@ -1,7 +1,7 @@
 /*----------------------------------------------------
 @File: Default Styles
 @Author: Rocky Ahmed
-@URL: http://wethemez.com
+@URL: http://wethemez.com 
 Author E-mail: rockybd1995@gmail.com
 
 This file contains the styling for the actual theme, this
@@ -2459,7 +2459,6 @@ iframe {
 }
 
 #leave {
-  padding-bottom: 100px;
   padding-top: 2px; 
   margin-top: 2;
   border-style: inherit;  
@@ -2659,6 +2658,17 @@ span.psw {
   text-transform: uppercase;
 }
 
+#err_h3 {
+  margin-bottom: 20px; 
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold; 
+  font-size: 25px; 
+  width: auto;
+  padding-bottom: 7px;
+  text-transform: uppercase;
+  margin-left: 40px;
+}
+
 #tbl_h3 div>h3{
   margin-bottom: 10px; 
   font-size: 25px; 
@@ -2684,6 +2694,37 @@ span.psw {
   font-size: 15px; 
   line-height: 24px; 
   color: #444444;
+}
+
+
+#tbl_h4 div>h3{
+  margin-bottom: 10px; 
+  font-size: 25px; 
+  font-family: "Montserrat", sans-serif;
+}
+
+.table-borderless > tbody > tr > td,
+    .table-borderless > tbody > tr > th,
+    .table-borderless > tfoot > tr > td,
+    .table-borderless > tfoot > tr > th,
+    .table-borderless > thead > tr > td,
+    .table-borderless > thead > tr > th {
+        border: none;
+}
+
+#tbl_h4 div{
+  margin-bottom: 25px; 
+}
+#tbl_h4 table{ 
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 15px; 
+  line-height: 24px; 
+  color: #444444;
+}
+
+#tbl_h4 {
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 14px;
 }
 
 #ta_rw {
@@ -2713,6 +2754,8 @@ span.psw {
   display: block;
   width: 95%;
   height: auto;
+  width: 263px; 
+  height: 180px;
 }
 
 #pro {
@@ -2744,7 +2787,7 @@ span.psw {
   
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5);  
-  width: 275px;
+  width: 262px;
   transition: .5s ease;
   opacity:0;
   color: white;
@@ -2760,7 +2803,7 @@ span.psw {
 }
 
 /* When you mouse over the container, fade in the overlay title */
-.img_disp:hover .overlay {
+.img_disp:hover .overlay { 
   opacity: 1;
 }
 

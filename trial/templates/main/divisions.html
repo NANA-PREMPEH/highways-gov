@@ -1,0 +1,90 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+    <!--================Latest News Area =================-->
+    <section class="latest_news_area"  style="margin-left: 5%;">
+        <div class="container">
+            <div class="main_c_b_title">
+                <h2 style="margin-bottom: 40px;">DIVISIONS</h2>
+            </div>
+            <div class="row latest_news_inner">
+                <div class="col-md-4 col-sm-6">
+                    <div class="latest_news_item">
+                        <div class="news_image">
+                            <img src="{{ url_for('static', filename='img/blog/l-news/l-news-1.jpg') }}" alt="">
+                        </div>
+                        <div class="news_content">
+                            <a href="#"><h4>Development Department</h4></a>
+                            <table style="width: 100%; text-align: left; font-size: 16px;">
+                                <tr>
+                                    <td>Materials</td>
+                                </tr>
+                                <tr>
+                                    <td>Contracts</td>
+                                </tr>
+                                <tr>
+                                    <td>Quantity Surveying</td>
+                                </tr>
+                                <tr>
+                                    <td>Survey &#38; Design</td>
+                                </tr>
+                                <tr>
+                                    <td>Road Safety and Environment</td>
+                                </tr>
+                                <tr>
+                                    <td>Planning</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="latest_news_item">
+                        <div class="news_image">
+                            <img src="{{ url_for('static', filename='img/blog/l-news/l-news-2.jpg') }}" alt="">
+                        </div>
+                        <div class="news_content" style="padding-bottom: 45px;">
+                            <a href="#"><h4>Administration Department</h4></a>
+                            <table style="width: 100%; text-align: left; font-size: 16px;">
+                                <tr>
+                                    <td>Human Resource</td>
+                                </tr>
+                                <tr>
+                                    <td>Training &#38; Development</td>
+                                </tr>
+                                <tr>
+                                    <td>MIS Division</td>
+                                </tr>
+                                <tr>
+                                    <td>Finance</td>
+                                </tr>
+                                <tr>
+                                    <td>Public Affairs</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="latest_news_item">
+                        <div class="news_image">
+                            <img src="{{ url_for('static', filename='img/blog/l-news/l-news-3.jpg') }}" alt="">
+                        </div>
+                        <div class="news_content" style="padding-bottom:116px;">
+                            <a href="#"><h4>Maintenance Department</h4></a>
+                            <table style="width: 100%; text-align: left; font-size: 16px;">
+                                <tr>
+                                    <td>Road Maintenance</td>
+                                </tr>
+                                <tr>
+                                    <td>Plant &#38; Equipment</td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Latest News Area =================-->
+{% endblock content %}

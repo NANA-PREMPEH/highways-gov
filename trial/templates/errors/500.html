@@ -1,0 +1,12 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
+        <div class="col-md-8"> 
+            <h6 id="err_h3">Something went wrong! (500)</h6>
+            <h4 style="margin-left: 40px;">We are experiencing some trouble on our end. Please try again later</h4>
+        </div>
+        {% include 'includes/sidebar.html' %} 
+    </div>
+</div> 
+{% endblock content %}

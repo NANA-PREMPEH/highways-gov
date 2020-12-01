@@ -1,0 +1,38 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3" style="margin-top: 3%;">UPGRADING</h3>
+        
+        <table id="mytable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>NAME OF CONTRACT</th>
+                    <th>LENGTH (Km)</th>
+                    <th>LOT</th>
+                    <th>CONTRACT SUM (GHS)</th>
+                    <th>CONTRACTOR</th>
+                    <th>DATE OF COMMENCE</th>
+                    <th>DATE OF COMPLETION</th>
+                    <th>VIEW DETAILS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for table_data in contract %}
+                    <tr>
+                        <td>{{ table_data.name_of_contract }}</td>
+                        <td>{{ table_data.length }}</td>
+                        <td>{{ table_data.lot }}</td>
+                        <td>{{ table_data.contract_sum }}</td>
+                        <td>{{ table_data.contractor }}</td>
+                        <td>{{ table_data.date_commenced }}</td>
+                        <td>{{ table_data.date_completed }}</td>
+                        <td style="text-align: center;"><a href="{{ url_for('projects.view_contract', contract_id=table_data.id)}}"><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+{% endblock content %} 

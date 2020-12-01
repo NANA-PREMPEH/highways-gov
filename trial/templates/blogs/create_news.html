@@ -1,0 +1,62 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 4%;">
+        <div class="col-md-8"  style="margin-top: 2px;">
+            <div class="modal_th" style="height: 80.9em;">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="loginwrap" style="margin-top: 4%;">
+                            <legend>ADD POST</legend>
+                        <div class="form-group">
+                            {{ form.title.label }}
+
+                            <!--If form had errors-->
+                            {% if form.title.errors %}
+                                {{ form.title(class="form-control", style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.title.errors %}
+                                        <span class="help-block">{{ error }}</span> 
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %}
+                                {{ form.title(class="form-control")}}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.blog_content.label }}
+
+                            <!--If form had errors-->
+                            {% if form.blog_content.errors %}
+                                {{ form.blog_content(class="form-control", cols="35", rows="10",  style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.blog_content.errors %}
+                                        <span class="help-block">{{ error }}</span> 
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %}
+                                {{ form.blog_content(class="form-control", cols="35", rows="10")}}
+                            {% endif %}    
+                        </div>
+                        <div class="form-group">
+                            {{ form.picture.label() }}
+                            {{ form.picture}}
+                            {% if form.picture.errors %}
+                                {% for error in form.picture.errors %}
+                                    <span class="text-danger">{{ error }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="sub_btn") }} </br>
+                        </div>     
+                    </div> 
+                    {{ form.csrf_token }} 
+                </form>
+            </div> 
+        </div>
+        {% include 'includes/sidebar.html' %} 
+    </div>
+</div>
+{% endblock content %}
