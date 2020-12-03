@@ -6,7 +6,7 @@ from trial.models import Leave, Post
 import pdfkit
 
 
-generalforms = Blueprint('generalforms', __name__)
+generalforms = Blueprint('generalforms', __name__) 
 
 
 #Create a route for defect form
@@ -83,6 +83,7 @@ def render(post_id):
 
 #Route to view other forms   
 @generalforms.route('/other_forms', methods=['GET', 'POST'])
+@login_required
 def others():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('generalforms/other_forms.html', title='Other Forms', posts=posts)

@@ -126,8 +126,11 @@ class Leave(db.Model):
             '{self.address}', '{self.mobile_no}', '{self.email}', '{self.days_proceed}', '{self.effec_date}', \
             '{self.resump_date}', '{self.outs_days}')"
 
+
+
 #Create Upgrading Table
 class Upgrading(db.Model):
+    
     id = db.Column(db.Integer, primary_key=True)
     name_of_contract = db.Column(db.String(120), nullable=True)
     length = db.Column(db.String(50), nullable=True, default='N/A')

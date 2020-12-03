@@ -61,3 +61,4 @@ def ongoing_periodic():
 def planning_periodic():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/planning_periodic.html', title='Periodic Projects Under Planning', posts=posts)
+
