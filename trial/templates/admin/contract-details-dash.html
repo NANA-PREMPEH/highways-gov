@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dashboard</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    </head>
+
+    <body>
+        <div class="jumbotron text-center">
+            <h2>ADD CONTRACT DETAILS</h2>
+        </div>
+        
+        <div class="container">
+            {% include "admin/header.html" %}
+            {% include "admin/messages.html" %}
+            
+            {% if contract %}    
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col col-2 ">Thumbnail</th>
+                    <th scope="col" class="col col-5">Title</th>
+                    <th scope="col" class="col col-2 text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for video in contract %}
+                    <tr>
+                        <td class="col col-2">
+                            <a href="{{ url_for('projects.view_contract', contract_id=video.id)}}">
+                                <img src="{{ url_for('static', filename='thumbs/'+ video.video_thumb) }}" width="150" height="100" alt="Thumbnail">
+                            </a>
+                        </td>
+                        <td class="col col-5">
+                            <a href="{{ url_for('projects.view_contract', contract_id=video.id)}}" class="h5" style="font-weight: bold; font-size: 15px;">{{ video.video_title }}</a>
+                            </br></br>
+                            <p><b>Description: </b>{{ video.video_description[:80] }}...</p>
+                        </td>
+                        <td class="col col-2 text-center">
+                            <a href="{{ url_for('admin.edit_video', contract_id=video.id) }}" class="btn btn-info">Edit</a>&nbsp; &nbsp;
+                            <a href="#" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    You don't have uploaded any video! &nbsp; &nbsp;
+                    <button class="btn btn-info" data-toggle="modal" data-target="#modalupload" data-backdrop="static" data-keyboard="false">
+                        <i class="fa fa-upload" aria-hidden="true"></i>&nbsp; &nbsp;Upload
+                    </button>
+                </div>
+            {% endif %}
+        </div> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".datepicker").datetimepicker({
+                    format: 'YYYY-MM-DD',                         
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+

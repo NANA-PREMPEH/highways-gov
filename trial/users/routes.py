@@ -1,29 +1,13 @@
 from flask import render_template, redirect, url_for, flash, request, Blueprint
+from werkzeug.urls import url_parse
 from flask_login import current_user, logout_user, login_required, login_user
 from trial import db, bcrypt
-from trial.users.forms import RegistrationForm, RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm
+from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm
 from trial.users.utils import send_reset_email, save_picture
 from trial.models import User, Post
 
 users = Blueprint('users', __name__)
 
-@users.route('/register', methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        #Hash Password
-        hashed_pswd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        #Create Instance of the user
-        user = User(username=form.username.data, email=form.email.data, password=hashed_pswd)
-        #Add user to the database
-        db.session.add(user)
-        db.session.commit()
-        flash('New user has been added successfully. You can now log in', 'success')
-        return redirect(url_for('users.login'))
-    posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('users/register.html', title='Register', form=form, posts=posts)
 
 #Route for Login
 @users.route('/login', methods=['GET', 'POST'])
@@ -35,21 +19,24 @@ def login():
         #Get User from Database
         user = User.query.filter_by(email=form.email.data).first()
         #Check to see if user can be found then log in user
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        if form.email.data=="admin123@gmail.com" and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             #Get the next parameter(if it exists redirect the user the requested page)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home'))
+            return redirect(next_page) if next_page else redirect(url_for('admin.dashboard'))
+
+        elif user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            #Get the next parameter(if it exists redirect the user the requested page)
+            next_page = request.args.get('next')
+            if not next_page or url_parse(next_page).netloc != '':
+                next_page = url_for('main.home')
+            return redirect(next_page)
+
         else:
             flash('Unsuccessful Login. Please check email and password again', 'danger')
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('users/login.html', title='Login', form=form, posts=posts)
-
-#Route for logout
-@users.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('users.login'))
 
 #route for account template
 @users.route('/account', methods=['GET', 'POST'])
@@ -59,7 +46,7 @@ def account():
     if form.validate_on_submit():
         #Check if there is a picture data
         if form.picture.data:
-            #Set the user profile picture
+            #Set the user profile picture 
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
         #Set Updated details in the database
@@ -76,6 +63,12 @@ def account():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('users/account.html', title='Account', form=form, image_file=image_file, posts=posts)
 
+
+#Route for logout
+@users.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('users.login'))
 
 #Route to request reset Password(Where Email is entered to reset password)
 @users.route('/reset_password', methods=['GET', 'POST'])

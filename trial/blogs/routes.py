@@ -1,9 +1,6 @@
-from flask import render_template, redirect, url_for, flash, request, Blueprint
-from flask_login import current_user, login_required
+from flask import render_template, redirect, request, Blueprint
 from trial import db
 from trial.models import Post, Comment
-from trial.blogs.forms import BlogPostForm
-from trial.blogs.utils import save_photo
 
 blogs = Blueprint('blogs', __name__)
  
@@ -31,8 +28,8 @@ def blog_post(post_id, slug):
         name = request.form.get('name')
         email = request.form.get('email')
         message = request.form.get('message')
-
-        comment = Comment(name=name, email=email, message=message, post_id=single_post.id)
+        
+        comment = Comment(name=name, email=email, message=message, post_id=single_post.id) 
         db.session.add(comment)
         single_post.comments += 1
         
@@ -41,22 +38,5 @@ def blog_post(post_id, slug):
 
     return render_template('blogs/blog_post.html', title='Latest News', single_post=single_post, posts=posts, comments=comments)
 
-#Create route for Blog news update
-@blogs.route('/blog_news/new', methods=['GET', 'POST'])
-@login_required
-def blog_news():
-    form = BlogPostForm()
-    if form.validate_on_submit():
-        title = form.title.data
-        content = form.blog_content.data
-        picture = save_photo(form.picture.data) 
 
-        #Upload post into the database
-        post = Post(title=title, body=content, image=picture, author=current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your Post has been submitted', 'success')
-        return redirect(url_for('blogs.blog'))
-    posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('blogs/create_news.html', title='New Post', form=form, posts=posts)
 

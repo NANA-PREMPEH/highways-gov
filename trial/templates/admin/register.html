@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dashboard</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    </head>
+    <body>
+        <div class="jumbotron text-center">
+            <h2>REGISTER</h2>
+        </div>
+        <div class="container">
+            {% include "admin/header.html" %}
+            {% include "admin/messages.html" %} 
+                <div class="col-md-6" style="margin-left: 25%;">
+                    <div>
+                        <form action="" method="POST">
+                            <div style="margin-top: 3%;"> 
+                                <div class="form-group">
+                                    {{ form.username.label }}
+
+                                    <!--If form had errors-->
+                                    {% if form.username.errors %}
+                                        {{ form.username(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.username.errors %}
+                                                <span class="help-block">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %}
+                                        {{ form.username(class="form-control", placeholder="Enter Username")}}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.email.label }}
+        
+                                    <!--If form had errors-->
+                                    {% if form.email.errors %}
+                                        {{ form.email(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.email.errors %}
+                                                <span class="help-block">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %}
+                                        {{ form.email(class="form-control", placeholder="Enter Email")}}
+                                    {% endif %}
+                                    
+                                </div>
+                                <div class="form-group">
+                                    {{ form.password.label}}
+        
+                                    <!--If form had errors-->
+                                    {% if form.password.errors %}
+                                        {{ form.password(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.password.errors %}
+                                                <span class="help-block">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %}
+                                        {{ form.password(class="form-control", placeholder="Enter Password")}}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.confirm_password.label}}
+        
+                                    <!--If form had errors-->
+                                    {% if form.confirm_password.errors %}
+                                        {{ form.confirm_password(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.confirm_password.errors %}
+                                                <span class="help-block">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %}
+                                        {{ form.confirm_password(class="form-control", placeholder="Re-enter Password" )}}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.submit(class="btn btn-primary") }}</br>
+                                </div>     
+                            </div> 
+                            {{ form.csrf_token }} 
+                        </form>
+                    </div> 
+                </div>
+            
+        </div> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".datepicker").datetimepicker({
+                    format: 'YYYY-MM-DD',                         
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+

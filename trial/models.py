@@ -3,8 +3,55 @@ from datetime import datetime
 from flask import current_app
 from flask_login import UserMixin
 from trial import db, login_manager
+from trial.search import add_to_index, remove_from_index, query_index
 from sqlalchemy import event
 from slugify import slugify 
+
+
+
+class SearchableMixin(object):
+    @classmethod
+    def search(cls, expression, page, per_page):
+        ids, total = query_index(cls.__tablename__, expression, page, per_page)
+        if total == 0:
+            return cls.query.filter_by(id=0), 0
+        when = []
+        for i in range(len(ids)):
+            when.append((ids[i], i))
+        return cls.query.filter(cls.id.in_(ids)).order_by(
+            db.case(when, value=cls.id)), total
+
+    @classmethod
+    def before_commit(cls, session):
+        session._changes = {
+            'add': list(session.new),
+            'update': list(session.dirty),
+            'delete': list(session.deleted)
+        }
+
+    @classmethod
+    def after_commit(cls, session):
+        for obj in session._changes['add']:
+            if isinstance(obj, SearchableMixin):
+                add_to_index(obj.__tablename__, obj)
+        for obj in session._changes['update']:
+            if isinstance(obj, SearchableMixin):
+                add_to_index(obj.__tablename__, obj)
+        for obj in session._changes['delete']:
+            if isinstance(obj, SearchableMixin):
+                remove_from_index(obj.__tablename__, obj)
+        session._changes = None
+
+    @classmethod
+    def reindex(cls):
+        for obj in cls.query:
+            add_to_index(cls.__tablename__, obj)
+
+
+db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit)
+db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
+
+
 
 
 #Function to reload user from user id stored in session
@@ -14,7 +61,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-#Create Registration Form
+#Create User Model
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
@@ -83,20 +130,6 @@ class Comment(db.Model):
         return f"Comment('{self.name}')"
 
 
-class Video(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
-    video_thumb = db.Column(db.String(50), default='default.png')
-    uploaded_time = db.Column(db.DateTime, default=datetime.now)
-
-    # this is the column with which we are creating the relation with user table
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-    def __repr__(self):
-        return f"Video('{self.id}','{self.video_title}','{self.video_link}')"
-
 
 #Create Leave Form Model
 class Leave(db.Model):
@@ -129,8 +162,8 @@ class Leave(db.Model):
 
 
 #Create Upgrading Table
-class Upgrading(db.Model):
-    
+class Upgrading(SearchableMixin, db.Model):
+    __searchable__ = ['name_of_contract', 'contractor']
     id = db.Column(db.Integer, primary_key=True)
     name_of_contract = db.Column(db.String(120), nullable=True)
     length = db.Column(db.String(50), nullable=True, default='N/A')

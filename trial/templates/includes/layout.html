@@ -52,7 +52,7 @@
                 <div class="container">
                     <div class="pull-left">
                         <a href="#"><i class="fa fa-phone"></i>(03220)-23331/23332</a>
-                        <a href="#"><i class="fa fa-map-marker"></i>Adum Ministries, Kumasi-Ghana</a>
+                        <a href="#"><i class="fa fa-map-marker"></i>Adum Ministries, Kumasi-Ghana</a> 
                         <a href="#"><i class="mdi mdi-clock"></i>07 AM - 5 PM</a>
                     </div>
                     <div class="pull-right">
@@ -62,7 +62,6 @@
                             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             {% if current_user.is_authenticated %}
                                 <li><a href="{{ url_for('users.account') }}">ACCOUNT</a></li>
-                                <li><a href="{{ url_for('blogs.blog_news') }}">ADD POST</a></li>
                                 <li><a href="{{ url_for('users.logout') }}"><i class="fa fa-sign-out mr-20"></i>&nbsp;LOGOUT</a></li>
                             {% else %}
                                 <li><a href="{{ url_for('users.login') }}"><i class="fa fa-sign-in mr-20"></i>&nbsp;LOG IN</a></li>
@@ -151,9 +150,17 @@
                                     </ul>
                                 </li>
                                 <li><a href="#">Contact</a></li>
-                                <li><a href="#"><input type="text" size="20" 
-                                    style="height: 36px; color: #31353d; border: 1px solid #aaa; border-radius: 3px; font-family: 'Montserrat', sans-serif;" 
-                                    id="myInput" placeholder="Search...">
+                                <li><a href="#">
+                                    {% if g.search_form %}
+                                        <form method="get" action="{{ url_for('main.search') }}">
+                                            <div class="form-group">
+                                                {{ g.search_form.q(size=20,style="height: 36px; color: #31353d; 
+                                                                    border: 1px solid #aaa; border-radius: 3px; 
+                                                                    font-family: 'Montserrat', sans-serif;",  
+                                                                    placeholder=g.search_form.q.label.text) }}
+                                            </div>
+                                        </form>
+                                    {% endif %}
                                     </a>
                                 </li>    
                             </ul>
@@ -165,11 +172,11 @@
         <!--================Header Area =================-->
 
         <!--Display Flash messages if any-->
-        <div>
+        <div style="margin-top: 13%;">
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
               {% for category, message in messages %}
-                <p class="alert alert-{{ category }}" style="width: 43.4%; margin-left: 12%; margin-bottom: 1%;">
+                <p class="alert alert-{{ category }}" style="width: 43.4%; margin-left: 12%; margin-bottom: 5px;">
                     {{ message }}
                 </p>
               {% endfor %}
@@ -232,7 +239,14 @@
                                 <div class="f_w_title_1">
                                     <h3>Ghana Highway Authority</h3>
                                 </div> 
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan-tium doloremque laudantium. ed quia consequuntur magni dolores eos qui ratione.</p>
+                                <p>
+                                    The Ghana Highway Authority was established as a 
+                                    body corporate under NRC Decree 298 in December 1974. 
+                                    The NRCD 298 was repealed by GHA Act 1997 (Act 540 ) which limited 
+                                    the Authority's responsibility to the administration, control, 
+                                    development and maintenance of the country's trunk road network 
+                                    totalling 13,367 km and related facilities in Ghana.
+                                </p>
                                 <ul>
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -373,7 +387,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script type="text/javascript">
             $(function () {
                 $(".datepicker").datetimepicker({
-                    format: 'YYYY-MM-DD',                         
+                    format: 'YYYY-MM-DD',                          
                 });
             });
         </script>

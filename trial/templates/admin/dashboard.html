@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dashboard</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+        
+    </head>
+
+    <body>
+
+        <div class="jumbotron text-center">
+            <h1>DASHBOARD</h1>
+        </div>
+        
+        <div class="container">
+          {% include "admin/messages.html" %}
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+                  </div>
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{ url_for('main.home') }}">Home</a></li>
+                    <li><a href="{{ url_for('admin.create_blog') }}">Add Post</a></li>
+                    <li><a href="{{ url_for('admin.add_contract') }}">Add contract</a></li>
+                    <li><a href="{{ url_for('admin.contract_view_dash') }}">View Contract Details Dashboard</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('admin.register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                    <li><a href="{{ url_for('admin.admin_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                  </ul>
+                </div>
+              </nav>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".datepicker").datetimepicker({
+                    format: 'YYYY-MM-DD',                         
+                });
+            });
+        </script>
+    </body>
+</html>
+
