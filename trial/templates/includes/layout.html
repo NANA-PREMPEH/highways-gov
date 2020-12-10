@@ -31,7 +31,7 @@
         
         <!-- Extra plugin css -->
         <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet"> 
 
         <!--DataTables--> 
         <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/css/jquery.dataTables.min.css') }}">
@@ -152,7 +152,7 @@
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="#">
                                     {% if g.search_form %}
-                                        <form method="get" action="{{ url_for('main.search') }}">
+                                        <form method="get" action="#">
                                             <div class="form-group">
                                                 {{ g.search_form.q(size=20,style="height: 36px; color: #31353d; 
                                                                     border: 1px solid #aaa; border-radius: 3px; 

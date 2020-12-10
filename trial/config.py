@@ -10,6 +10,12 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
+    USER_APP_NAME = "Admin Dashboard"
+    USER_ENABLE_EMAIL = False      # Disable email authentication
+    USER_ENABLE_USERNAME = False    # Enable username authentication
+    USER_REQUIRE_RETYPE_PASSWORD = False    # Simplify register form
+
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
     POSTS_PER_PAGE = 3
     

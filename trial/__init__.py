@@ -2,10 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_user import UserManager
 from flask_migrate import Migrate, migrate
 from elasticsearch import Elasticsearch
 from flask_mail import Mail
 from trial.config import Config
+
 
 
 
@@ -16,6 +18,7 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 migrate = Migrate()
 login_manager = LoginManager()
+
 
 login_manager.login_view = 'users.login' 
 login_manager.login_message_category = 'info' 
@@ -36,6 +39,9 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
+
+    from trial.models import User
+    user_manager = UserManager(app, db, User)
 
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
         if app.config['ELASTICSEARCH_URL'] else None

@@ -2,6 +2,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
 from flask import current_app
 from flask_login import UserMixin
+from flask_user import UserMixin as UM
 from trial import db, login_manager
 from trial.search import add_to_index, remove_from_index, query_index
 from sqlalchemy import event
@@ -62,13 +63,16 @@ def load_user(user_id):
 
 
 #Create User Model
-class User(db.Model, UserMixin):
+class User(db.Model, UM):
     id = db.Column(db.Integer, primary_key=True)
+    active = db.Column('is_active', db.Boolean(), nullable=False, server_default='1')
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(60), nullable=False)
     image_file = db.Column(db.String(30), nullable=False, default='default.jpg')
     posts = db.relationship('Leave', backref='author', lazy=True)
+
+    roles = db.relationship('Role', secondary='user_roles')
 
     #Create methods that make it easy to create tokens
     def get_reset_token(self, expires_sec=1800):
@@ -89,6 +93,20 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+#Define the Role data-model
+class Role(db.Model):
+    __tablename__ = 'roles'
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(50), unique=True)
+
+# Define the UserRoles association table
+class UserRoles(db.Model):
+    __tablename__ = 'user_roles'
+    id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    role_id = db.Column(db.Integer(), db.ForeignKey('roles.id'))
+
 
 #Create a Blog Post Model
 class Post(db.Model):

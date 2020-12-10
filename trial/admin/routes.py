@@ -1,9 +1,11 @@
 import secrets
+from werkzeug.urls import url_parse
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
-from datetime import datetime
-from flask_login import current_user, logout_user, login_required
-from trial.models import Post, User, Contract
+from flask_login import current_user, logout_user, login_user
+from flask_user import roles_required
+from trial.models import Post, User, Contract, Role
 from trial.admin.forms import RegistrationForm, BlogPostForm, ContractDetailsForm
+from trial.users.forms import LoginForm
 from trial.admin.utils import save_photo
 import re
 import requests
@@ -15,7 +17,7 @@ admin = Blueprint('admin', __name__)
 
 
 @admin.route('/dashboard')
-@login_required
+@roles_required('Admin')
 def dashboard():
     return render_template('admin/dashboard.html')
 
@@ -26,13 +28,23 @@ def register():
     if form.validate_on_submit():
         #Hash Password
         hashed_pswd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        #Create Instance of the user
-        user = User(username=form.username.data, email=form.email.data, password=hashed_pswd)
-        #Add user to the database
-        db.session.add(user)
-        db.session.commit()
-        flash('New user has been added successfully. You can now log in', 'success')
-        return redirect(url_for('admin.register'))
+        if form.email.data == "admin@highways.com":
+            #Create Instance of the user
+            user = User(username=form.username.data, email=form.email.data, password=hashed_pswd)
+            #Add user to the database
+            user.roles.append(Role(name='Admin'))
+            db.session.add(user)
+            db.session.commit()
+            flash('Admin has been created successfully. You can now log in', 'success')
+            return redirect(url_for('admin.register'))
+        else:
+            #Create Instance of the user
+            user = User(username=form.username.data, email=form.email.data, password=hashed_pswd)
+            #Add user to the database
+            db.session.add(user)
+            db.session.commit()
+            flash('New user has been added successfully. You can now log in', 'success')
+            return redirect(url_for('admin.register'))
     return render_template('admin/register.html', title='Register', form=form)
 
 #Create route for Blog news update

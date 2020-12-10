@@ -10,7 +10,7 @@ regrav_data = {
             "lot": 3,
             "contract_sum": 7378176.78,
             "contractor": "TONY MACHINERIES LTD.",
-            "date_commenced": datetime.strptime("31-07-2019", "%d-%m-%Y").strftime("%Y-%m-%d"),
+            "date_commenced": datetime.strptime("31-07-2019", "%d-%m-%Y").strftime("%Y-%m-%d"), 
             "date_completed": datetime.strptime("31-07-2020", "%d-%m-%Y").strftime("%Y-%m-%d")
         }, 
         {

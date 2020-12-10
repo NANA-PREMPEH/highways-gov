@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash, request, Blueprint
 from werkzeug.urls import url_parse
 from flask_login import current_user, logout_user, login_required, login_user
-from trial import db, bcrypt
+from trial import db, bcrypt 
 from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm
 from trial.users.utils import send_reset_email, save_picture
 from trial.models import User, Post
@@ -18,14 +18,8 @@ def login():
     if form.validate_on_submit():
         #Get User from Database
         user = User.query.filter_by(email=form.email.data).first()
-        #Check to see if user can be found then log in user
-        if form.email.data=="admin123@gmail.com" and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
-            #Get the next parameter(if it exists redirect the user the requested page)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('admin.dashboard'))
 
-        elif user and bcrypt.check_password_hash(user.password, form.password.data):
+        if user and bcrypt.check_password_hash(user.password, form.password.data): 
             login_user(user, remember=form.remember.data)
             #Get the next parameter(if it exists redirect the user the requested page)
             next_page = request.args.get('next')
