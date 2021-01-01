@@ -1,0 +1,34 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3" style="margin-top: 3%;">CONSTRUCTION PROJECTS</h3>
+        <table id="mytable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>NAME OF CONTRACT</th>
+                    <th>LENGTH (KM)</th>
+                    <th>LOT</th>
+                    <th>CONTRACT SUM (GHS)</th>
+                    <th>CONTRACTOR</th>
+                    <th>DATE OF COMMENCE</th>
+                    <th>DATE OF COMPLETION</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resealing in reseal_list %}
+                    <tr>
+                        <td>{{ resealing.name_of_contract }}</td>
+                        <td>{{ resealing.length }}</td>
+                        <td>{{ resealing.lot }}</td>
+                        <td>{{ resealing.contract_sum }}</td>
+                        <td>{{ resealing.contractor }}</td>
+                        <td>{{ resealing.date_commenced }}</td>
+                        <td>{{ resealing.date_completed}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %} 

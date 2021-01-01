@@ -5,12 +5,12 @@
     <section class="banner_area" style="background: #ffcd00; width: 1348px; height: 237px; background-size: cover">
         <div class="container">
             <div class="banner_inner_text">
-                <h4 style="color: #161515; font-weight: bold;">{{ single_post.title }}</h4>
+                <h4 style="color: #161515; font-weight: bold;">{{ single_post.title }}</h4> 
             </div>
         </div>
     </section>
     <!--================End Banner Area =================-->
-    
+     
     <!--================Blog Details Area =================-->
     <section class="blog_details_area p_100">
         <div class="container">
@@ -88,6 +88,7 @@
                             <div class="r_w_title">
                                 <h3 style="font-weight: bolder;">Trending Post</h3>
                             </div>
+                            {% if posts %}
                             <div class="r_post_inner">
                                 {% for post in posts[:4] %}
                                 <div class="r_post_item">
@@ -96,6 +97,11 @@
                                 </div>
                                 {% endfor %}
                             </div>
+                            {% else %}
+                            <div>
+                                No Trending Posts
+                            </div>
+                            {% endif %}
                         </aside>
                         <aside class="right_widget r_social_widget">
                             <div class="r_w_title">

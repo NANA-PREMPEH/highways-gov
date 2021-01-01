@@ -1,15 +1,13 @@
 import secrets
-from werkzeug.urls import url_parse
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
-from flask_login import current_user, logout_user, login_user
-from flask_user import roles_required
-from trial.models import Post, User, Contract, Role
+from flask_login import current_user, logout_user, login_required
+from trial.models import Post, User, Contract
 from trial.admin.forms import RegistrationForm, BlogPostForm, ContractDetailsForm
-from trial.users.forms import LoginForm
 from trial.admin.utils import save_photo
 import re
 import requests
 from trial import db, bcrypt
+from trial.users.utils import admin_required, permission_required
 
 
 admin = Blueprint('admin', __name__)
@@ -17,38 +15,33 @@ admin = Blueprint('admin', __name__)
 
 
 @admin.route('/dashboard')
-@roles_required('Admin')
+@login_required
+@admin_required
 def dashboard():
     return render_template('admin/dashboard.html')
 
 
 @admin.route('/register', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         #Hash Password
         hashed_pswd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        if form.email.data == "admin@highways.com":
-            #Create Instance of the user
-            user = User(username=form.username.data, email=form.email.data, password=hashed_pswd)
-            #Add user to the database
-            user.roles.append(Role(name='Admin'))
-            db.session.add(user)
-            db.session.commit()
-            flash('Admin has been created successfully. You can now log in', 'success')
-            return redirect(url_for('admin.register'))
-        else:
-            #Create Instance of the user
-            user = User(username=form.username.data, email=form.email.data, password=hashed_pswd)
-            #Add user to the database
-            db.session.add(user)
-            db.session.commit()
-            flash('New user has been added successfully. You can now log in', 'success')
-            return redirect(url_for('admin.register'))
+        #Create Instance of the user
+        user = User(username=form.username.data, email=form.email.data, password=hashed_pswd)
+        #Add user to the database
+        db.session.add(user)
+        db.session.commit()
+        flash('New user has been added successfully. You can now log in', 'success')
+        return redirect(url_for('admin.register'))
     return render_template('admin/register.html', title='Register', form=form)
 
 #Create route for Blog news update
 @admin.route('/blog_news/new', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def create_blog():
     form = BlogPostForm()
     if form.validate_on_submit():
@@ -66,6 +59,8 @@ def create_blog():
 
 #Add new Contract details to the database
 @admin.route('/add_contract', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def add_contract():
 
     form = ContractDetailsForm()
@@ -101,7 +96,9 @@ def add_contract():
 
 
 #Route for logout
-@admin.route('/logout')
+@admin.route('/admin_logout')
+@login_required
+@admin_required
 def admin_logout():
     logout_user()
     return redirect(url_for('users.login'))
@@ -109,6 +106,8 @@ def admin_logout():
 
 
 @admin.route('/video/edit/<int:contract_id>', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def edit_video(contract_id):
 
     contract = Contract.query.get_or_404(contract_id)
@@ -138,7 +137,7 @@ def edit_video(contract_id):
         contract.contract_sum = form.contract_sum.data
         contract.contractor = form.contractor.data
         contract.date_commenced = form.date_commenced.data
-        contract.date_completed = form.date_completed.data
+        contract.date_completed = form.date_completed.data 
         contract.video_title = form.video_title.data
         contract.video_link = form.video_link.data
         contract.video_description = form.video_description.data
@@ -165,6 +164,8 @@ def edit_video(contract_id):
 
 
 @admin.route("/contract_details/dashboard", methods=['GET', 'POST'])
+@login_required
+@admin_required
 def contract_view_dash():
     contract = Contract.query.order_by(Contract.id.desc()).all()
 

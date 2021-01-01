@@ -1,9 +1,12 @@
 import os
-from flask import url_for, current_app
+from flask import url_for, current_app, abort
 import secrets
+from functools import wraps
 from PIL import Image
 from trial import mail
 from flask_mail import Message
+from flask_login import current_user
+from trial.models import Permission
 
 #define a save picture function
 #Takes picture data as an argument
@@ -31,10 +34,23 @@ def send_reset_email(user):
     #Create email message
     msg = Message('Password Reset Request', sender='noreply@demo.com', recipients=[user.email])
     msg.body = f''' To reset your password, visit the following link:
-{url_for('reset_token', token=token, _external=True)}
+{url_for('users.reset_token', token=token, _external=True)}
 
 If you did not make this request then simply ignore this email and no changes will be made
 '''
 
     #Send message
     mail.send(msg)
+
+def permission_required(permission):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if not current_user.can(permission):
+                abort(403)
+            return f(*args, **kwargs)
+        return decorated_function
+    return decorator
+
+def admin_required(f):
+    return permission_required(Permission.ADMIN)(f)

@@ -1,25 +1,40 @@
-from flask import render_template, redirect, url_for, flash, current_app, Blueprint
+from flask import render_template, redirect, url_for, Blueprint, jsonify
+from flask.globals import request
 from trial import db
-from flask_login import current_user
-from trial.models import Post, Contract, Rehabilitation, Regravelling, Upgrading, Construction
+from trial.models import (Post, Contract, Rehabilitation, Regravelling, Upgrading, Construction,
+                            Preconstruction, Resealing, Resurfacing, Repairs, Asphalticoverlay)
 from trial.projects.regrav import update_regrav, regrav_data
 from trial.projects.rehab import update_rehab, rehab_data
 from trial.projects.construc import update_construc, construc_data
 from trial.projects.upgrage import update_upgrade, upgrade_data
-import secrets
+from trial.projects.reseal import update_reseal, reseal_data
+from trial.projects.overlay import update_overlay, overlay_data
+from trial.projects.precons import update_precons, precons_data
+from trial.projects.repairs import update_repairs, repairs_data
+from trial.projects.resurface import update_resurface, resurface_data
+from trial.projects.forms import DateForm
 import re
-import requests 
+from datetime import datetime
 
 projects = Blueprint('projects', __name__) 
 
 
 
 #Route to view Contract Lists
-@projects.route('/table', methods=['GET', 'POST '])
+@projects.route('/table', methods=['GET', 'POST'])
 def table():
+    form = DateForm()
+    
     contract = Contract.query.all()
-    posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/tables.html', title='Basic', posts=posts, contract=contract)
+    posts = Post.query.order_by(Post.id.desc()).all()        
+    
+    if request.method == "POST":
+        start_date = datetime.strptime(request.form['start_date'], "%Y-%m-%d").strftime("%Y-%m-%d") 
+        end_date = datetime.strptime(request.form['end_date'], "%Y-%m-%d").strftime("%Y-%m-%d")  
+        q = db.session.query(db.func.sum(Contract.contract_sum)).filter(Contract.date_commenced>=start_date).filter(Contract.date_completed<=end_date).first()
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/tables.html', title='Basic', posts=posts, contract=contract, form=form)
 
 
 @projects.route('/const')
@@ -32,6 +47,31 @@ def regrav():
     update_regrav(regrav_data)
     return redirect(url_for('main.home'))
 
+@projects.route('/reseal')
+def reseal():
+    update_reseal(reseal_data)
+    return redirect(url_for('main.home'))
+
+@projects.route('/repairs')
+def repairs():
+    update_repairs(repairs_data)
+    return redirect(url_for('main.home'))
+
+@projects.route('/resurface')
+def resurface():
+    update_resurface(resurface_data)
+    return redirect(url_for('main.home'))
+
+@projects.route('/precons')
+def precons():
+    update_precons(precons_data)
+    return redirect(url_for('main.home'))
+
+@projects.route('/overlay')
+def overlay():
+    update_overlay(overlay_data)
+    return redirect(url_for('main.home'))
+
 @projects.route('/rehab')
 def rehab():
     update_rehab(rehab_data)
@@ -42,25 +82,55 @@ def upgrade():
     update_upgrade(upgrade_data)
     return redirect(url_for('main.home'))
 
-@projects.route('/rehabilitation', methods=['GET', 'POST'])
-def rehabilitation():
+@projects.route('/completed/periodic/rehabilitation', methods=['GET', 'POST'])
+def rehabilitation(): 
     rehab_list = Rehabilitation.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list, posts=posts)
 
-@projects.route('/upgrading', methods=['GET', 'POST'])
+@projects.route('/completed/periodic/resealing', methods=['GET', 'POST'])
+def resealing():
+    reseal_list = Resealing.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/resealing.html', title='Resealing', reseal_list=reseal_list, posts=posts)
+
+@projects.route('/completed/periodic/resurfacing', methods=['GET', 'POST'])
+def resurfacing():
+    resurface_list = Resurfacing.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/resurfacing.html', title='Resurfacing', resurface_list=resurface_list, posts=posts)
+
+@projects.route('/completed/periodic/repairs_asphaltic', methods=['GET', 'POST'])
+def repairs_asphaltic():
+    repairs_list = Repairs.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/repairs_asphaltic.html', title='Repairs & Asphaltic', repairs_list=repairs_list, posts=posts)
+
+@projects.route('/completed/periodic/preconstruction', methods=['GET', 'POST'])
+def preconstruct():
+    precons_list = Preconstruction.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/preconstruction.html', title='Preconstruction', precons_list=precons_list, posts=posts)
+
+@projects.route('/completed/periodic/asphalticoverlay', methods=['GET', 'POST'])
+def asphalticoverlay():
+    overlay_list = Asphalticoverlay.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/asphaltic_overlay.html', title='Asphaltic Overlay', overlay_list=overlay_list, posts=posts)
+
+@projects.route('/completed/periodic/upgrading', methods=['GET', 'POST'])
 def upgrading():
     upgrade_list = Upgrading.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/Upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts)
 
-@projects.route('/construction', methods=['GET', 'POST'])
+@projects.route('/completed/periodic/construction', methods=['GET', 'POST'])
 def construction():
     const_list = Construction.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/construction.html', title='Construction', const_list=const_list, posts=posts)
 
-@projects.route('/regravelling', methods=['GET', 'POST'])
+@projects.route('/completed/periodic/regravelling', methods=['GET', 'POST'])
 def regravelling():
     regrav_list = Regravelling.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()

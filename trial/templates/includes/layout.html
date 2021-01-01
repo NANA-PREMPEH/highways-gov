@@ -260,6 +260,7 @@
                                 <div class="f_w_title">
                                     <h3>Recent Posts</h3>
                                 </div>
+                                {% if posts %}
                                 <div class="recent_w_inner">
                                     {% for post in posts[:2] %}
                                     <div class="media">
@@ -272,6 +273,13 @@
                                     </div>
                                     {% endfor %}
                                 </div>
+                                {% else %}
+                                <div class="recent_w_inner">
+                                    <p style="color: #e8e8e8;font-family: 'Open Sans', sans-serif; line-height: 20px;font-size: 15px;">
+                                        There are no recent Posts
+                                    </p> 
+                                </div>
+                                {% endif %}
                             </aside>
                         </div>
                         <div class="col-md-3 col-sm-6">
@@ -377,11 +385,58 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{{ url_for('static', filename='DataTables/js/jquery.dataTables.min.js') }}"></script>
         <!-- page script -->    
         <script>
-        $(function () {
-            $("#mytable").DataTable();
-        });
+            $(function () {
+                $("#mytable").DataTable();
+            });
         </script>
 
+        <!--Ajax script for completed periodic projects' sum-->
+        <script>
+            $(document).ready(function(){
+                $('#sumbutton').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('main.completed_periodic') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#contract_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for project sum Table-->
+        <script>
+            $(document).ready(function(){
+                $('#table_sum').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.table') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#project_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
         <script type="text/javascript">
@@ -391,6 +446,26 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 });
             });
         </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker6').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                });
+
+                $('#datetimepicker7').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    useCurrent: false //Important! See issue #1075
+            });
+                $("#datetimepicker6").on("dp.change", function (e) {
+                    $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                });
+                $("#datetimepicker7").on("dp.change", function (e) {
+                    $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                });
+            });
+        </script>
+        
 
     </body>
 </html>

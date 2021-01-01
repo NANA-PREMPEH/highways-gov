@@ -1,0 +1,54 @@
+{% extends "includes/layout.html" %}
+
+{% block content %}
+    <!--================Banner Area =================-->
+    <section class="banner_area" style="background: #ffcd00; width: 1348px; height: 237px; background-size: cover">
+        <div class="container">
+            <div class="banner_inner_text">
+                <h4 style="color: #161515; font-weight: bold;">Photo Gallery</h4> 
+            </div>
+        </div>
+    </section>
+    <!--================End Banner Area =================-->
+
+    <div class="container"> 
+        <div class="row blog_details_inner" style="margin-left: 2%;">
+            <h3 id="table_h3" style="margin-top: 3%;">LEADERSHIP</h3>
+            <div class="row" style="display: inline-flex; margin-bottom: 30px; margin-left: auto;">
+                <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/pre-cons-left.jpg') }}" alt="pre-cons-left" class="image_file">
+                <div class="overlay">
+                    <div id="pro">
+                        <a href="">Profile</a>
+                    </div> 
+                </div>
+                </div>
+                <div class="img_disp" id="try" >
+                <img src="{{ url_for('static', filename='img/video-1.jpg') }}" alt="pre-cons-right" class="image_file">
+                <div class="overlay">
+                    <div id="pro">
+                        <a href="">Profile</a>
+                    </div> 
+                </div>
+                </div>        
+                <div class="img_disp" id="try" >
+                <img src="{{ url_for('static', filename='img/pre-cons-left.jpg') }}" alt="pre-cons-left" class="image_file">
+                <div class="overlay">
+                    <div id="pro">
+                        <a href="">Profile</a>
+                    </div>
+                </div>
+                </div>        
+                <div class="img_disp" id="try" >
+                <img src="{{ url_for('static', filename='img/pre-cons-left.jpg') }}" alt="pre-cons-left" class="image_file">
+                <div class="overlay">
+                    <div id="pro">
+                        <a href="">Profile</a>
+                    </div>
+                </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

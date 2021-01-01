@@ -1,0 +1,34 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3" style="margin-top: 3%;">CONSTRUCTION PROJECTS</h3>
+        <table id="mytable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>NAME OF CONTRACT</th>
+                    <th>LENGTH (KM)</th>
+                    <th>LOT</th>
+                    <th>CONTRACT SUM (GHS)</th>
+                    <th>CONTRACTOR</th>
+                    <th>DATE OF COMMENCE</th>
+                    <th>DATE OF COMPLETION</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for repairs in repairs_list %}
+                    <tr>
+                        <td>{{ repairs.name_of_contract }}</td>
+                        <td>{{ repairs.length }}</td>
+                        <td>{{ repairs.lot }}</td>
+                        <td>{{ repairs.contract_sum }}</td>
+                        <td>{{ repairs.contractor }}</td>
+                        <td>{{ repairs.date_commenced }}</td>
+                        <td>{{ repairs.date_completed}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %} 

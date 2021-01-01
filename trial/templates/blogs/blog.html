@@ -4,8 +4,9 @@
     <section class="blog_details_area p_100">
         <div class="container">
             <div class="row blog_details_inner" style="margin-left: 2%;">
-                <h3 id="table_h3" style="margin-top: -5%;">LATEST NEWS</h3>
+                <h3 id="table_h3" style="margin-top: -5%;">LATEST NEWS</h3> 
                 <div class="col-md-8">
+                    {% if posts %}
                     <div>
                         {% for post in posts[:1] %}
                         <div class="blog_details_img">
@@ -23,7 +24,7 @@
                         {% endfor %}
                     </div>
     
-                    <div class="like_post">
+                    <div class="like_post"> 
                         <h3 style="padding-bottom: 20px;">You may also like</h3>
                         <div class="row">
                             {% for post in posts_pag.items %}
@@ -48,14 +49,21 @@
                                 {% endif %}
                             {% endfor %}
                         </div> 
-                    </div> 
+                    </div>
+                    {% else %}
+                    <div id="no_news">
+                        There are no Posts
+                    </div>
+                    {% endif %} 
                 </div>
                 <div class="col-md-4">
                     <div class="sidebar_area">
+                        
                         <aside class="right_widget r_post_widget">
                             <div class="r_w_title">
-                                <h3 style="font-weight: bolder;">Trending Post</h3>
+                                <h3 style="font-weight: bolder;">Trending Posts</h3>
                             </div>
+                            {% if posts %}
                             <div class="r_post_inner">
                                 {% for post in posts[:4] %}
                                 <div class="r_post_item">
@@ -64,6 +72,11 @@
                                 </div>
                                 {% endfor %}
                             </div>
+                            {% else %}
+                            <div>
+                                No Trending Posts
+                            </div>
+                            {% endif %}
                         </aside>
                         <aside class="right_widget r_social_widget">
                             <div class="r_w_title">

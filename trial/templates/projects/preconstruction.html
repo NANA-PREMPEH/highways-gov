@@ -1,0 +1,34 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3" style="margin-top: 3%;">CONSTRUCTION PROJECTS</h3>
+        <table id="mytable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>NAME OF CONTRACT</th>
+                    <th>LENGTH (KM)</th>
+                    <th>LOT</th>
+                    <th>CONTRACT SUM (GHS)</th>
+                    <th>CONTRACTOR</th>
+                    <th>DATE OF COMMENCE</th>
+                    <th>DATE OF COMPLETION</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for precons in precons_list %}
+                    <tr>
+                        <td>{{ precons.name_of_contract }}</td>
+                        <td>{{ precons.length }}</td>
+                        <td>{{ precons.lot }}</td>
+                        <td>{{ precons.contract_sum }}</td>
+                        <td>{{ precons.contractor }}</td>
+                        <td>{{ precons.date_commenced }}</td>
+                        <td>{{ precons.date_completed}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %} 

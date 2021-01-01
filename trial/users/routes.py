@@ -6,11 +6,11 @@ from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, Up
 from trial.users.utils import send_reset_email, save_picture
 from trial.models import User, Post
 
-users = Blueprint('users', __name__)
+users = Blueprint('users', __name__) 
 
 
 #Route for Login
-@users.route('/login', methods=['GET', 'POST'])
+@users.route('/login', methods=['GET', 'POST']) 
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
@@ -21,6 +21,7 @@ def login():
 
         if user and bcrypt.check_password_hash(user.password, form.password.data): 
             login_user(user, remember=form.remember.data)
+            
             #Get the next parameter(if it exists redirect the user the requested page)
             next_page = request.args.get('next')
             if not next_page or url_parse(next_page).netloc != '':
@@ -30,10 +31,10 @@ def login():
         else:
             flash('Unsuccessful Login. Please check email and password again', 'danger')
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('users/login.html', title='Login', form=form, posts=posts)
+    return render_template('users/login.html', title='Login', form=form, posts=posts) 
 
 #route for account template
-@users.route('/account', methods=['GET', 'POST'])
+@users.route('/account', methods=['GET', 'POST']) 
 @login_required
 def account():
     form = UpdateAccountForm()
@@ -46,7 +47,7 @@ def account():
         #Set Updated details in the database
         current_user.username = form.username.data
         current_user.email = form.email.data
-        db.session.commit()
+        db.session.commit() 
         flash('Your account has been updated!', 'success')
         return redirect(url_for('users.account'))
     #Populate fields with data from the database
@@ -61,7 +62,7 @@ def account():
 #Route for logout
 @users.route('/logout')
 def logout():
-    logout_user()
+    logout_user() 
     return redirect(url_for('users.login'))
 
 #Route to request reset Password(Where Email is entered to reset password)
@@ -83,7 +84,7 @@ def reset_request():
 def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
-    user = User.verify_reset_token(token)
+    user = User.verify_reset_token(token) 
     if user is None:
         flash('Token is invalid or expired', 'warning')
         return redirect(url_for('users.reset_request'))

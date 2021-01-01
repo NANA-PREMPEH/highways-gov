@@ -2669,6 +2669,16 @@ span.psw {
   margin-left: 40px;
 }
 
+#no_news {
+  margin-bottom: 20px; 
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold; 
+  font-size: 20px; 
+  width: auto;
+  padding-bottom: 7px;
+  text-transform: uppercase;
+}
+
 #tbl_h3 div>h3{
   margin-bottom: 10px; 
   font-size: 25px; 

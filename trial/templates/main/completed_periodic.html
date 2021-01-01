@@ -11,7 +11,7 @@
                             <td><a href="{{ url_for('projects.rehabilitation') }}">Rehabilitation</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Resealing</a></td>
+                            <td><a href="{{ url_for('projects.resealing') }}">Resealing</a></td>
                         </tr>
                         <tr>
                             <td><a href="{{ url_for('projects.upgrading') }}">Upgrading</a></td>
@@ -26,10 +26,10 @@
                             <td><a href="{{ url_for('projects.regravelling') }}">Regravelling</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Pre-Construction</a></td>
+                            <td><a href="{{ url_for('projects.preconstruct') }}">Pre-Construction</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Alsphaltic Overlay</a></td>
+                            <td><a href="{{ url_for('projects.asphalticoverlay') }}">Alsphaltic Overlay</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -41,17 +41,49 @@
                             <td><a href="{{ url_for('projects.construction') }}">Construction</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Resurfacing</a></td>
+                            <td><a href="{{ url_for('projects.resurfacing') }}">Resurfacing</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Repairs &#38; Alsphaltic</a></td> 
+                            <td><a href="{{ url_for('projects.repairs_asphaltic') }}">Repairs &#38; Alsphaltic</a></td> 
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <div style="margin-top: 8em;">
+                <form action="" method="post">
+                    <div class="col-md-6" >
+                        <label for="start_date" style="font-size: 15px;">From :</label>
+                        <div class="input-group date" id="datetimepicker6">
+                            <input type="text" class="form-control" name="start_date" id="start_date">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="end_date" style="font-size: 15px;">To :</label>
+                        <div class="input-group date" id="datetimepicker7">
+                            <input type="text" class="form-control" name="end_date" id="end_date">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div></br>
+                        <div class="col-md-6" id="contract_sum">
+                            <label for="" style="font-size: 15px;">Contract Sum</label>
+                            <input class="form-control" type="text" name="" id="contractsum" value="{{ results }}">
+                        </div></br></br></br>
+                    <div class="form-group col-md-6">
+                        <input type="submit" class="btn btn-info" id="sumbutton" name="submit" value="Submit">
+                    </div>
+                    {{ form.csrf_token }} 
+                </form>        
+            </div>
             
         </div>
-        {% include 'includes/sidebar.html' %}
+        {% include 'includes/sidebar.html' %} 
     </div>
 </div>
+
 {% endblock content %} 

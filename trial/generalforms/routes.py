@@ -1,5 +1,7 @@
 from flask import render_template, redirect, url_for, flash, send_file, make_response, Blueprint
-from flask_login import login_required, current_user
+from flask_login import current_user
+import flask_login
+from flask_login.utils import login_required
 from trial import db
 from trial.generalforms.forms import DefectReportForm, LeaveForm
 from trial.models import Leave, Post
@@ -35,13 +37,14 @@ def leave():
         db.session.commit()
         flash(f"Leave form submitted successfully", 'success')
         return redirect(url_for('generalforms.view_form', post_id=le_ave.id))
-    posts = Post.query.order_by(Post.id.desc()).all()
+    posts = Post.query.order_by(Post.id.desc()).all() 
     return render_template('generalforms/leave_form.html', title='Leave Form Report', form=form, posts=posts)
 
 
 
 #Route to view the Leave form
 @generalforms.route('/post/<int:post_id>')
+@login_required
 def post(post_id):
     post = Leave.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
@@ -49,14 +52,16 @@ def post(post_id):
 
 #Route for View form 
 @generalforms.route('/view_form/<int:post_id>', methods=['GET', 'POST'])
+@login_required
 def view_form(post_id):
     post = Leave.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
     
-    return render_template('view_lv_form.html', title='Leave', post=post, posts=posts)
+    return render_template('view_lv_form.html', title='Leave', post=post, posts=posts) 
 
 #Generate pdf from the Leave Form
 @generalforms.route('/get_pdf/<int:post_id>', methods=['GET','POST'])
+@login_required
 def get_pdf(post_id):
 
     post = Leave.query.get_or_404(post_id)
@@ -90,6 +95,7 @@ def others():
 
 #Route to download Hospital Form
 @generalforms.route('/download_hospital-form')
+@login_required
 def download_hosp():
     p = './static/other_forms/GHANA HIGHWAY AUTHORITY (HOSPITAL FORM).pdf'
 
@@ -97,6 +103,7 @@ def download_hosp():
 
 #Route to download Accomodation Form
 @generalforms.route('/download_accomodation-form')
+@login_required     
 def download_accom():
     p = './static/other_forms/GHANA HIGHWAY AUTHORITY (REQUEST FOR ACCOMODATION).pdf'
 

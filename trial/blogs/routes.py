@@ -3,7 +3,7 @@ from trial import db
 from trial.models import Post, Comment
 
 blogs = Blueprint('blogs', __name__)
- 
+  
 #Route for Latest news Page
 @blogs.route('/blog')
 def blog():
@@ -11,7 +11,7 @@ def blog():
     page = request.args.get('page', 1, type=int)
     posts_pag = Post.query.order_by(Post.id.desc()).paginate(page=page, per_page=4)
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('blogs/blog.html', title='Latest News', posts=posts, posts_pag=posts_pag)
+    return render_template('blogs/blog.html', title='Latest News', posts=posts, posts_pag=posts_pag) 
 
 #Route for Latest news Page
 @blogs.route('/blog_post/<int:post_id>/<string:slug>', methods=['GET', 'POST'])
@@ -19,7 +19,7 @@ def blog_post(post_id, slug):
     
     single_post = Post.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
-    comments = Comment.query.filter_by(post_id=single_post.id).all()
+    comments = Comment.query.filter_by(post_id=single_post.id).all() 
     if request.method == 'GET':
         single_post.views += 1
         db.session.commit()

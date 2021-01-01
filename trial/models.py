@@ -1,11 +1,9 @@
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
 from flask import current_app
-from flask_login import UserMixin
-from flask_user import UserMixin as UM
+from flask_login import UserMixin, AnonymousUserMixin
 from trial import db, login_manager
 from trial.search import add_to_index, remove_from_index, query_index
-from sqlalchemy import event
 from slugify import slugify 
 
 
@@ -63,7 +61,7 @@ def load_user(user_id):
 
 
 #Create User Model
-class User(db.Model, UM):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     active = db.Column('is_active', db.Boolean(), nullable=False, server_default='1')
     username = db.Column(db.String(40), nullable=False, unique=True)
@@ -71,8 +69,22 @@ class User(db.Model, UM):
     password = db.Column(db.String(60), nullable=False)
     image_file = db.Column(db.String(30), nullable=False, default='default.jpg')
     posts = db.relationship('Leave', backref='author', lazy=True)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
-    roles = db.relationship('Role', secondary='user_roles')
+    def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+        if self.role is None:
+            if self.email == current_app.config['GHA_ADMIN']:
+                self.role = Role.query.filter_by(name='Administrator').first()
+            if self.role is None:
+                self.role = Role.query.filter_by(default=True).first()
+
+    def can(self, perm):
+        return self.role is not None and self.role.has_permission(perm)
+
+    def is_administrator(self):
+        return self.can(Permission.ADMIN)
+
 
     #Create methods that make it easy to create tokens
     def get_reset_token(self, expires_sec=1800):
@@ -94,18 +106,74 @@ class User(db.Model, UM):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
+
+class AnonymousUser(AnonymousUserMixin):
+
+    def can(self, permissions):
+        return False
+
+    def is_administrator(self):
+        return False
+
+login_manager.anonymous_user = AnonymousUser
+
 #Define the Role data-model
 class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), unique=True)
+    default = db.Column(db.Boolean, default=False, index=True)
+    permissions = db.Column(db.Integer)
+    users = db.relationship('User', backref='role', lazy='dynamic')
 
-# Define the UserRoles association table
-class UserRoles(db.Model):
-    __tablename__ = 'user_roles'
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
-    role_id = db.Column(db.Integer(), db.ForeignKey('roles.id'))
+    def __init__(self, **kwargs):
+        super(Role, self).__init__(**kwargs)
+        if self.permissions is None:
+            self.permissions = 0
+
+    def add_permission(self, perm):
+        if not self.has_permission(perm):
+            self.permissions += perm
+
+    def remove_permission(self, perm):
+        if self.has_permission(perm):
+            self.permissions -= perm
+
+    def reset_permissions(self):
+        self.permissions = 0
+
+    def has_permission(self, perm):
+        return self.permissions & perm == perm
+
+    @staticmethod
+    def insert_roles():
+        roles = {
+            'User' : [Permission.WRITE],
+            'Moderator' : [Permission.WRITE, Permission.MODERATE],
+            'Administrator' : [Permission.WRITE, Permission.MODERATE, Permission.ADMIN],
+        }
+
+        default_role = 'User'
+        for r in roles:
+            role = Role.query.filter_by(name=r).first()
+            if role is None:
+                role = Role(name=r)
+            role.reset_permissions()
+            for perm in roles[r]:
+                role.add_permission(perm)
+            role.default = (role.name == default_role)
+            db.session.add(role)
+        db.session.commit()
+
+    def __repr__(self):
+        return '<Role %r>' % self.name 
+
+
+class Permission:
+    WRITE = 1
+    MODERATE = 2
+    ADMIN = 4
+
 
 
 #Create a Blog Post Model
@@ -122,7 +190,7 @@ class Post(db.Model):
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"User('{self.title}', '{self.body}', '{self.image}')"
+        return f"Post('{self.title}', '{self.body}', '{self.image}')"
 
     #Create a static method
     @staticmethod
@@ -241,6 +309,76 @@ class Rehabilitation(db.Model):
 
     def __repr__(self):
         return f"Rehabilitation('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
+                                 '{self.date_commenced}','{self.date_completed}')"
+#Create Resealing Table
+class Resealing(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name_of_contract = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A')
+    lot = db.Column(db.String(50), nullable=True, default='N/A')
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+
+    def __repr__(self):
+        return f"Resealing('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
+                                 '{self.date_commenced}','{self.date_completed}')"
+#Create Preconstruction Table
+class Preconstruction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name_of_contract = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A')
+    lot = db.Column(db.String(50), nullable=True, default='N/A')
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+
+    def __repr__(self):
+        return f"Preconstruction('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
+                                 '{self.date_commenced}','{self.date_completed}')"
+#Create Resurfacing Table
+class Resurfacing(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name_of_contract = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A')
+    lot = db.Column(db.String(50), nullable=True, default='N/A')
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+
+    def __repr__(self):
+        return f"Resurfacing('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
+                                 '{self.date_commenced}','{self.date_completed}')"
+#Create Repairs Table
+class Repairs(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name_of_contract = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A')
+    lot = db.Column(db.String(50), nullable=True, default='N/A')
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+
+    def __repr__(self):
+        return f"Repairs('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
+                                 '{self.date_commenced}','{self.date_completed}')"
+#Create Asphalticoverlay Table
+class Asphalticoverlay(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name_of_contract = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A')
+    lot = db.Column(db.String(50), nullable=True, default='N/A')
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+
+    def __repr__(self):
+        return f"Asphalticoverlay('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
                                  '{self.date_commenced}','{self.date_completed}')"
 
 
