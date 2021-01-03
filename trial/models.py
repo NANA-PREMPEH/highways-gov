@@ -173,7 +173,7 @@ class Permission:
     WRITE = 1
     MODERATE = 2
     ADMIN = 4
-
+ 
 
 
 #Create a Blog Post Model
