@@ -94,7 +94,7 @@ def completed_periodic():
     return render_template('main/completed_periodic.html', title='Completed Periodic Projects', posts=posts, form=form)
 
 
-@main.route('/ongoing/periodic', methods=['GET', 'POST']) 
+@main.route('/ongoing/periodic', methods=['GET', 'POST'])  
 def ongoing_periodic():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/ongoing_periodic.html', title='Ongoing Periodic Projects', posts=posts)

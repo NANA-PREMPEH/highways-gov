@@ -11,6 +11,7 @@ from trial.config import Config
 
 
 
+
 #Create a database Instance 
 mail = Mail()
 db = SQLAlchemy()
@@ -60,5 +61,6 @@ def create_app(config_class=Config):
     app.register_blueprint(main)
     app.register_blueprint(errors)
     app.register_blueprint(admin)
+
 
     return app
