@@ -3,7 +3,7 @@ import os
 class Config:
     
     SECRET_KEY = '2c52cdd22c951b91edf8e9a683441d2f'
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:mysql@localhost/newdb'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
