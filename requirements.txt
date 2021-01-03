@@ -45,7 +45,7 @@ MarkupSafe==1.1.1
 mccabe==0.6.1
 more-itertools==8.4.0
 numpy==1.18.5
-packaging==20.4
+packaging==20.8
 passlib==1.7.2
 pdfkit==0.6.1
 Pillow==7.1.2
@@ -54,6 +54,7 @@ pluggy==0.13.1
 py==1.9.0
 pycparser==2.20
 pylint==2.5.2
+PyMySQL==0.10.1
 pyparsing==2.4.7
 pytest==5.4.3
 python-dateutil==2.8.1

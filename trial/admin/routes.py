@@ -22,8 +22,6 @@ def dashboard():
 
 
 @admin.route('/register', methods=['GET', 'POST'])
-@login_required
-@admin_required
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():

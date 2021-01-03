@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "610053cd426600c6b14fa9f18179930097ab31c2c274575dc61ebd12125b67f7"
+            "sha256": "7241f536ec7711e6b0196a8ecc97c72038440792512bdd954b49f1785bfb34eb"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -491,17 +491,6 @@
             "index": "pypi",
             "version": "==8.4.0"
         },
-        "mysqlclient": {
-            "hashes": [
-                "sha256:1f4d3c3fa7d7f1683071ad12096e5494179e7fa837c5210c3032c81d72f33e3a",
-                "sha256:4c82187dd6ab3607150fbb1fa5ef4643118f3da122b8ba31c3149ddd9cf0cb39",
-                "sha256:9e6080a7aee4cc6a06b58b59239f20f1d259c1d2fddf68ddeed242d2311c7087",
-                "sha256:f3fdaa9a38752a3b214a6fe79d7cae3653731a53e577821f9187e67cbecb2e16",
-                "sha256:f646f8d17d02be0872291f258cce3813497bc7888cd4712a577fd1e719b2f213"
-            ],
-            "path": "./mysqlclient-1.4.6-cp38-cp38-win32.whl",
-            "version": "==1.4.6"
-        },
         "numpy": {
             "hashes": [
                 "sha256:0172304e7d8d40e9e49553901903dc5f5a49a703363ed756796f5808a06fc233",
@@ -623,6 +612,14 @@
             ],
             "index": "pypi",
             "version": "==2.5.2"
+        },
+        "pymysql": {
+            "hashes": [
+                "sha256:263040d2779a3b84930f7ac9da5132be0fefcd6f453a885756656103f8ee1fdd",
+                "sha256:44f47128dda8676e021c8d2dbb49a82be9e4ab158b9f03e897152a3a287c69ea"
+            ],
+            "index": "pypi",
+            "version": "==0.10.1"
         },
         "pyparsing": {
             "hashes": [
