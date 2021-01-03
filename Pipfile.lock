@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f3cab138acbcbc37950adad56d8cd84bd6d23fd2188ff427172767513638f33d"
+            "sha256": "610053cd426600c6b14fa9f18179930097ab31c2c274575dc61ebd12125b67f7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -492,7 +492,6 @@
             "version": "==8.4.0"
         },
         "mysqlclient": {
-            "file": "https://download.lfd.uci.edu/pythonlibs/z4tqcw5k/mysqlclient-1.4.6-cp38-cp38-win32.whl",
             "hashes": [
                 "sha256:1f4d3c3fa7d7f1683071ad12096e5494179e7fa837c5210c3032c81d72f33e3a",
                 "sha256:4c82187dd6ab3607150fbb1fa5ef4643118f3da122b8ba31c3149ddd9cf0cb39",
@@ -500,11 +499,8 @@
                 "sha256:f3fdaa9a38752a3b214a6fe79d7cae3653731a53e577821f9187e67cbecb2e16",
                 "sha256:f646f8d17d02be0872291f258cce3813497bc7888cd4712a577fd1e719b2f213"
             ],
-            "index": "pypi",
+            "path": "./mysqlclient-1.4.6-cp38-cp38-win32.whl",
             "version": "==1.4.6"
-        },
-        "mysqlclient==1.4.6": {
-            "file": "https://download.lfd.uci.edu/pythonlibs/z4tqcw5k/mysqlclient-1.4.6-cp38-cp38-win32.whl"
         },
         "numpy": {
             "hashes": [
