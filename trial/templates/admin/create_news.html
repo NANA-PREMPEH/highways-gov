@@ -17,7 +17,7 @@
         <div class="container">
             {% include "admin/header.html" %}
             {% include "admin/messages.html" %}
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6" style="margin-left: 25%;">
                     <div class="form-group">
                         {{ form.title.label }}
