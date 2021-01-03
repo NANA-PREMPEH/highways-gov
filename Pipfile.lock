@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "582991b32289c17986dc7182d7072a5fae606146b51b46f70b8d87d9b209bbff"
+            "sha256": "f3cab138acbcbc37950adad56d8cd84bd6d23fd2188ff427172767513638f33d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -502,6 +502,9 @@
             ],
             "index": "pypi",
             "version": "==1.4.6"
+        },
+        "mysqlclient==1.4.6": {
+            "file": "https://download.lfd.uci.edu/pythonlibs/z4tqcw5k/mysqlclient-1.4.6-cp38-cp38-win32.whl"
         },
         "numpy": {
             "hashes": [

@@ -82,6 +82,7 @@ Werkzeug = "==1.0.1"
 WTForms = "==2.3.1"
 Flask-Moment = "==0.10.0"
 mysqlclient = {file = "https://download.lfd.uci.edu/pythonlibs/z4tqcw5k/mysqlclient-1.4.6-cp38-cp38-win32.whl"}
+"mysqlclient==1.4.6" = {file = "https://download.lfd.uci.edu/pythonlibs/z4tqcw5k/mysqlclient-1.4.6-cp38-cp38-win32.whl"}
 
 [dev-packages]
 
