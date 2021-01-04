@@ -15,4 +15,4 @@ def save_photo(photo):
 
     photo.save(photo_path)
 
-    return photo_name
+    return photo_name 

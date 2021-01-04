@@ -122,7 +122,7 @@ def asphalticoverlay():
 def upgrading():
     upgrade_list = Upgrading.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/Upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts)
+    return render_template('projects/upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts)
 
 @projects.route('/completed/periodic/construction', methods=['GET', 'POST'])
 def construction():

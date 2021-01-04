@@ -20,11 +20,10 @@ def blog_post(post_id, slug):
     single_post = Post.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
     comments = Comment.query.filter_by(post_id=single_post.id).all() 
-    if request.method == 'GET':
-        single_post.views += 1
-        db.session.commit()
+    single_post.views += 1
+    db.session.commit()  
 
-    elif request.method == 'POST':
+    if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
         message = request.form.get('message')
