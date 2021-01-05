@@ -98,9 +98,9 @@
                                                 <li ><a href="{{ url_for('main.organogram') }}">Organogram</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">Director's Office</a></li>
+                                        <li><a href="{{ url_for('main.directors_office') }}">Director's Office</a></li>
                                         <li><a href="{{ url_for('main.division') }}">Divisions</a></li>
-                                        <li><a href="#">Institution Profile</a></li>
+                                        <li><a href="{{ url_for('main.inst_prof') }}">Institution Profile</a></li>
                                         <li><a href="{{ url_for('main.contractors') }}">Eng. Consultancies</a></li>
                                     </ul>
                                 </li>
@@ -109,20 +109,20 @@
                                     <ul class="dropdown-menu" id="hello">
                                         <li ><a href="#">Completed Projects</a>
                                             <ul class="dropdown-menu">
-                                                <li ><a href="{{ url_for('main.completed_periodic') }}">Periodic</a></li>
-                                                <li ><a href="#" >Routine</a></li>   
+                                                <li><a href="{{ url_for('main.completed_periodic') }}">Periodic</a></li>
+                                                <li><a href="{{ url_for('main.completed_routine') }}" >Routine</a></li>   
                                             </ul>
                                         </li>
                                         <li ><a href="#">Ongoing Projects</a>
                                             <ul class="dropdown-menu">
                                                 <li ><a href="{{ url_for('main.ongoing_periodic') }}">Periodic</a></li>
-                                                <li ><a href="#" >Routine</a></li>   
+                                                <li ><a href="{{ url_for('main.ongoing_routine') }}" >Routine</a></li>   
                                             </ul>
                                         </li>
                                         <li><a href="#">Projects Under Planning</a>
                                             <ul class="dropdown-menu">
                                                 <li ><a href="{{ url_for('main.planning_periodic') }}">Periodic</a></li>
-                                                <li ><a href="#" >Routine</a></li>   
+                                                <li ><a href="{{ url_for('main.planning_routine') }}" >Routine</a></li>   
                                             </ul>
                                         </li>
                                     </ul>
@@ -130,7 +130,7 @@
                                 <li class="dropdown submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downloads</a>
                                     <ul class="dropdown-menu" id="hello">
-                                        <li><a href="#">Report</a></li>
+                                        <li><a href="{{ url_for('projects.reports') }}">Report</a></li>
                                         <li><a href="#">Forms</a>
                                             <ul class="dropdown-menu" >
                                                 <li ><a href="{{ url_for('generalforms.defect') }}" >Defect/Damage Report</a></li>
@@ -144,12 +144,13 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ url_for('blogs.blog')}}">Latest News</a></li>
-                                        <li><a href="#">Photo Gallery</a></li>
-                                        <li><a href="#">Video Gallery</a></li>
+                                        <li><a href="{{ url_for('main.photo_gallery') }}">Photo Gallery</a></li>
+                                        
+                                        <!--<li><a href="#">Video Gallery</a></li>-->
                                         <li><a href="{{ url_for('main.road_net') }}">Road Network</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="{{ url_for('main.contacts_page') }}">Contact</a></li>
                                 <li><a href="#">
                                     {% if g.search_form %}
                                         <form method="get" action="#">

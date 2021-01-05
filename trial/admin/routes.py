@@ -145,7 +145,7 @@ def edit_video(contract_id):
 
         # saving to database
         db.session.commit()
-        flash('Video updated successfully', 'success')
+        flash('Data updated successfully', 'success')
         return redirect(url_for('admin.contract_view_dash'))
     
     elif request.method == 'GET':

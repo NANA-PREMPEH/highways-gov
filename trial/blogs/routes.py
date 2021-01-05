@@ -9,7 +9,7 @@ blogs = Blueprint('blogs', __name__)
 def blog():
     #Get the page you want from a query parameter
     page = request.args.get('page', 1, type=int)
-    posts_pag = Post.query.order_by(Post.id.desc()).paginate(page=page, per_page=4)
+    posts_pag = Post.query.order_by(Post.id.desc()).paginate(page=page, per_page=2, error_out=True)
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('blogs/blog.html', title='Latest News', posts=posts, posts_pag=posts_pag) 
 
@@ -30,7 +30,6 @@ def blog_post(post_id, slug):
         
         comment = Comment(name=name, email=email, message=message, post_id=single_post.id) 
         db.session.add(comment)
-        single_post.comments += 1
         
         db.session.commit()
         return redirect(request.url)

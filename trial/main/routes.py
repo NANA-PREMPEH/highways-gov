@@ -26,6 +26,16 @@ def basic():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/basic_temp.html', title='Basic', posts=posts)
 
+@main.route('/institution_profile')
+def inst_prof():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/institution_profile.html', title='Institution Profile', posts=posts)
+
+@main.route('/directors_office')
+def directors_office():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/directors_office.html', title='Institution Profile', posts=posts)
+
 @main.route('/road_net')
 def road_net():
     posts = Post.query.order_by(Post.id.desc()).all()
@@ -51,10 +61,15 @@ def contractors():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/contractor_list.html', title='Contractor List', posts=posts)
 
+@main.route('/contacts')
+def contacts_page():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/contacts_page.html', title='Contractor List', posts=posts)
+
 @main.route('/organogram')
 def organogram():
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('main/organogram.html', title='Organogram', posts=posts)
+    return render_template('main/organogram.html', title='Organogram', posts=posts) 
 
 @main.route('/completed/periodic', methods=['GET', 'POST'])
 def completed_periodic():
@@ -93,16 +108,34 @@ def completed_periodic():
         return jsonify({'data': render_template('main/periodic_json.html', results=results, form=form)}) 
     return render_template('main/completed_periodic.html', title='Completed Periodic Projects', posts=posts, form=form)
 
+@main.route('/completed/routine', methods=['GET', 'POST'])
+def completed_routine():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/completed_routine.html', title='Completed Routine Projects', posts=posts)
+
 
 @main.route('/ongoing/periodic', methods=['GET', 'POST'])  
 def ongoing_periodic():
+
+    form=DateForm()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('main/ongoing_periodic.html', title='Ongoing Periodic Projects', posts=posts)
+    return render_template('main/ongoing_periodic.html', title='Ongoing Periodic Projects', posts=posts, form=form)
+
+@main.route('/ongoing/routine', methods=['GET', 'POST'])
+def ongoing_routine():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/ongoing_routine.html', title='Ongoing Periodic Projects', posts=posts)
 
 @main.route('/planning/periodic', methods=['GET', 'POST'])
 def planning_periodic():
+    form=DateForm()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('main/planning_periodic.html', title='Periodic Projects Under Planning', posts=posts)
+    return render_template('main/planning_periodic.html', title='Periodic Projects Under Planning', posts=posts, form=form)
+
+@main.route('/planning/routine', methods=['GET', 'POST'])
+def planning_routine():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/planning_routine.html', title='Routine Projects Under Planning', posts=posts)
 
 @main.before_app_request 
 def before_request():

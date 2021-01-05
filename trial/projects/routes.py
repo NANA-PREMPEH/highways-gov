@@ -119,7 +119,7 @@ def asphalticoverlay():
     return render_template('projects/asphaltic_overlay.html', title='Asphaltic Overlay', overlay_list=overlay_list, posts=posts)
 
 @projects.route('/completed/periodic/upgrading', methods=['GET', 'POST'])
-def upgrading():
+def upgrading(): 
     upgrade_list = Upgrading.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts)
@@ -135,6 +135,11 @@ def regravelling():
     regrav_list = Regravelling.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/regravelling.html', title='Regravelling', regrav_list=regrav_list, posts=posts)
+
+@projects.route('/reports')
+def reports():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/reports.html', title='Report',  posts=posts)
 
 
 #View Contract list from the database
