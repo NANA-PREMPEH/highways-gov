@@ -31,10 +31,11 @@
         
         <!-- Extra plugin css -->
         <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/lightbox.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet"> 
 
         <!--DataTables--> 
-        <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/css/jquery.dataTables.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/css/jquery.dataTables.min.css') }}"> 
 
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -358,6 +359,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{{ url_for('static', filename='js/radio.js') }}"></script>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="{{ url_for('static', filename='js/jquery-2.2.4.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+        <script>
+            lightbox.option({
+              'resizeDuration': 200,
+              'wrapAround': true,
+              'disableScrolling': true
+            })
+        </script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         

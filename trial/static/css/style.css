@@ -2471,7 +2471,7 @@ iframe {
   padding-left: 10px;
   border-color: bisque;
   border-width: 2px;
-  margin-bottom: 10px;
+  margin-bottom: 10px; 
   background-color: rgba(225, 243, 145, 0.637);
 }
 
@@ -2790,6 +2790,35 @@ span.psw {
   clear: both;
   display: table;
 }
+
+/*Photo Gallery modal window(Lightbox)*/
+.thumbnails {
+  padding-right: -15px;
+}
+.thumbnails a {
+  
+  float: left;
+  padding-right: 15px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+.thumbnails img {
+  height: 180px;
+  width: 225px;
+  display: block;
+  transition: all .3s ease-in-out;
+
+}
+.thumbnails:hover img {
+  opacity: .6;
+  transform: scale(.92);
+}
+.thumbnails img:hover {
+  opacity: 1;
+  transform: scale(1) rotate(2deg);
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+}
+/*End photo Gallery Modal*/
 
 /* The overlay effect - lays on top of the container and over the image */
 .overlay {

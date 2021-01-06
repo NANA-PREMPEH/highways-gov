@@ -124,7 +124,7 @@ class Role(db.Model):
     name = db.Column(db.String(50), unique=True)
     default = db.Column(db.Boolean, default=False, index=True)
     permissions = db.Column(db.Integer)
-    users = db.relationship('User', backref='role', lazy='dynamic')
+    users = db.relationship('User', backref='role', lazy='dynamic') 
 
     def __init__(self, **kwargs):
         super(Role, self).__init__(**kwargs)

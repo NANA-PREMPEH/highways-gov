@@ -9,7 +9,7 @@ from trial.models import User, Post
 users = Blueprint('users', __name__) 
 
 
-#Route for Login
+#Route for Login 
 @users.route('/login', methods=['GET', 'POST']) 
 def login():
     if current_user.is_authenticated:
