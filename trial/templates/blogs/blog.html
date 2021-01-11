@@ -76,10 +76,10 @@
                             <div class="r_post_inner">
                                 {% for post in posts[:4] %}
                                 <div class="r_post_item">
-                                    <img src="{{ url_for('static', filename='blog_images/' + post.image) }}" style="width: 246px; height: 123px;" alt="">
+                                    <img src="{{ url_for('static', filename='blog_images/' + post.image) }}" style="width: 246px; height: 123px;" alt="image_file">
                                     <a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}"><p>{{ post.title | truncate(80, True) }}</p></a>
                                 </div>
-                                {% endfor %}
+                                {% endfor %} 
                             </div>
                             {% else %}
                             <div>

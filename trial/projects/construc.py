@@ -11,7 +11,7 @@ construc_data = {
             "contract_sum": 198771.21,
             "contractor": "BREWECKS COMPANY",
             "date_commenced": datetime.strptime("30-07-2019", "%d-%m-%Y").strftime("%Y-%m-%d"),
-            "date_completed": datetime.strptime("30-12-2019", "%d-%m-%Y").strftime("%Y-%m-%d")
+            "date_completed": datetime.strptime("30-12-2019", "%d-%m-%Y").strftime("%Y-%m-%d") 
         }, 
         {
             "name_of_contract": "KUMASI-ACCRA ROAD",

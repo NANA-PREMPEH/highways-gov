@@ -2518,21 +2518,39 @@ fieldset legend {
   float: left;
 }
 
-#hello ul {
+/*div.main_menu_area{
+  height: 100px;
+}
+@media (max-width: 992px) {
+  div.main_menu_area{
+      height: inherit;
+  }
+}*/
+/* Styling for multi-level drop down*/
+
+
+#hello li ul{
+  position: absolute;
+  width: 232px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  margin-top: -20%;
+  margin-left: 232px;
+  display: inline-block;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 400ms linear;
+  -o-transition: all 400ms linear;
+  transition: all 400ms linear;
+  transition: .3s;
+}
+#hello li:hover > ul{   
+  opacity: 1;  
+  visibility: visible;
+}
+#hello li .fa-plus{
   display: none;
 }
-
-#hello li {
-  position: relative;
-}
-
-#hello li:hover > ul {
-  display: inline;  
-  margin-left: 100%; 
-  float: left;
-  margin-top: -19.9%;
-}
-
 #hello ul a{
   background: #eeeeee;
   color: #494848;
@@ -2540,12 +2558,44 @@ fieldset legend {
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
   width: auto;
-
+  -webkit-transition: all 400ms linear 0s;
+  -o-transition: all 400ms linear 0s;
+  transition: all 400ms linear 0s;
 }
 #hello ul a:hover{
   background: #ffcd00;
   color: #fff;
 }
+
+
+@media screen and (max-width: 992px){
+  
+  #hello li .fa-plus{
+      display: inline;
+  }
+  #hello ul a{
+      background: transparent;
+  }
+
+  #hello li ul {
+      position: static;
+      float: none;
+      margin-left: 5%;
+      margin-top: 0%;
+      display: none;
+      opacity: 1;
+      visibility: visible;
+      
+  }
+  #hello :hover .test{
+      color:#ffc905;
+      background-color: transparent;
+      
+  }
+}
+/* End of Styling*/
+
+
 
 
 .modal_th {

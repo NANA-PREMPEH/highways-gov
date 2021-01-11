@@ -1,3 +1,4 @@
+import os
 import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, logout_user, login_required
@@ -6,7 +7,7 @@ from trial.admin.forms import RegistrationForm, BlogPostForm, ContractDetailsFor
 from trial.admin.utils import save_photo
 import re
 import requests
-from trial import db, bcrypt
+from trial import db, bcrypt, photos
 from trial.users.utils import admin_required, permission_required
 
 
@@ -36,7 +37,7 @@ def register():
         db.session.commit()
         flash('New user has been added successfully. You can now log in', 'success')
         return redirect(url_for('admin.register'))
-    return render_template('admin/register.html', title='Register', form=form)
+    return render_template('admin/register.html', title='Register', form=form) 
 
 #Create route for Blog news update
 @admin.route('/blog_news/new', methods=['GET', 'POST'])
@@ -47,7 +48,7 @@ def create_blog():
     if form.validate_on_submit():
         title = form.title.data
         content = form.blog_content.data
-        picture = save_photo(form.picture.data) 
+        picture = photos.save(form.picture.data, name=secrets.token_hex(16) + ".") 
 
         #Upload post into the database
         post = Post(title=title, body=content, image=picture, author=current_user)

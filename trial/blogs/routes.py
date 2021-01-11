@@ -19,7 +19,7 @@ def blog_post(post_id, slug):
     
     single_post = Post.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
-    comments = Comment.query.filter_by(post_id=single_post.id).all() 
+    comments = Comment.query.filter_by(post_id=single_post.id).all()  
     single_post.views += 1
     db.session.commit()  
 

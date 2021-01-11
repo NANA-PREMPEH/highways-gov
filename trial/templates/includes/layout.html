@@ -46,6 +46,9 @@
         <![endif]-->
        
     </head>
+    <style>
+        
+    </style>
     <body>
         <!--================Header Area =================-->
         <header class="main_header_area">
@@ -84,8 +87,10 @@
                             </button>
                             <a class="navbar-brand" href="{{ url_for('main.home') }}"><img src="{{ url_for('static', filename='img/GHA.jpg') }}" alt="" style="width:190px;height:72px;"></a>
                         </div>
+                        
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
+                        
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="{{ url_for('main.home') }}">Home</a></li>
@@ -93,10 +98,14 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About US</a>
                                     <ul class="dropdown-menu" id="hello">
                                         <li><a href="{{ url_for('main.mission') }}">Vision &#38; Mission</a></li>
-                                        <li><a href="#">Organizational Structure</a>
-                                            <ul class="dropdown-menu" >
-                                                <li ><a href="{{ url_for('main.leaders') }}" >Leadership</a></li>
-                                                <li ><a href="{{ url_for('main.organogram') }}">Organogram</a></li>
+
+                                        <li class="dropdown submenu">
+                                            <a href="#" class="test">Organizational Structure&nbsp;
+                                                <span class="fa fa-plus"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ url_for('main.leaders') }}">Leadership</a></li>
+                                                <li><a href="{{ url_for('main.organogram') }}">Organogram</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="{{ url_for('main.directors_office') }}">Director's Office</a></li>
@@ -108,20 +117,26 @@
                                 <li class="dropdown submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
                                     <ul class="dropdown-menu" id="hello">
-                                        <li ><a href="#">Completed Projects</a>
-                                            <ul class="dropdown-menu">
+                                        <li><a href="#" class="test">Completed Projects&nbsp;
+                                                <span class="fa fa-plus"></span>
+                                            </a>
+                                            <ul>
                                                 <li><a href="{{ url_for('main.completed_periodic') }}">Periodic</a></li>
                                                 <li><a href="{{ url_for('main.completed_routine') }}" >Routine</a></li>   
                                             </ul>
                                         </li>
-                                        <li ><a href="#">Ongoing Projects</a>
-                                            <ul class="dropdown-menu">
+                                        <li><a href="#" class="test">Ongoing Projects&nbsp;
+                                                <span class="fa fa-plus"></span>
+                                            </a>
+                                            <ul>
                                                 <li ><a href="{{ url_for('main.ongoing_periodic') }}">Periodic</a></li>
                                                 <li ><a href="{{ url_for('main.ongoing_routine') }}" >Routine</a></li>   
                                             </ul>
                                         </li>
-                                        <li><a href="#">Projects Under Planning</a>
-                                            <ul class="dropdown-menu">
+                                        <li><a href="#" class="test">Projects Under Planning&nbsp;
+                                                <span class="fa fa-plus"></span>
+                                            </a>
+                                            <ul>
                                                 <li ><a href="{{ url_for('main.planning_periodic') }}">Periodic</a></li>
                                                 <li ><a href="{{ url_for('main.planning_routine') }}" >Routine</a></li>   
                                             </ul>
@@ -132,9 +147,11 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downloads</a>
                                     <ul class="dropdown-menu" id="hello">
                                         <li><a href="{{ url_for('projects.reports') }}">Report</a></li>
-                                        <li><a href="#">Forms</a>
-                                            <ul class="dropdown-menu" >
-                                                <li ><a href="{{ url_for('generalforms.defect') }}" >Defect/Damage Report</a></li>
+                                        <li><a href="#" class="test">Forms&nbsp;
+                                                <span class="fa fa-plus"></span>
+                                            </a>
+                                            <ul>
+                                                <li ><a href="{{ url_for('generalforms.defect') }}" >Defect Report</a></li>
                                                 <li ><a href="{{ url_for('generalforms.leave', post_id=current_user.id) }}">Leave</a></li>
                                                 <li ><a href="{{ url_for('generalforms.others') }}">Others</a></li>
                                             </ul>
@@ -142,7 +159,7 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media</a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media/News</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ url_for('blogs.blog')}}">Latest News</a></li>
                                         <li><a href="{{ url_for('main.photo_gallery') }}">Photo Gallery</a></li>
@@ -369,7 +386,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-        
+        <script>
+            $(document).ready(function(){
+              $('.submenu a.test').on("click", function(e){
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+              });
+            });
+        </script>
 
         <!-- Rev slider js -->
         <script src="{{ url_for('static', filename='vendors/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
