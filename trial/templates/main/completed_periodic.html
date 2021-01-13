@@ -54,7 +54,7 @@
                     <div class="col-md-6" >
                         <label for="start_date" style="font-size: 15px;">From :</label>
                         <div class="input-group date" id="datetimepicker6">
-                            <input type="text" class="form-control" name="start_date" id="start_date">
+                            <input type="text" class="form-control" name="start_date" id="start_date" required>
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -64,7 +64,7 @@
                     <div class="col-md-6">
                         <label for="end_date" style="font-size: 15px;">To :</label>
                         <div class="input-group date" id="datetimepicker7">
-                            <input type="text" class="form-control" name="end_date" id="end_date">
+                            <input type="text" class="form-control" name="end_date" id="end_date" required>
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -75,7 +75,8 @@
                             <input class="form-control" type="text" name="" id="contractsum" value="{{ results }}">
                         </div></br></br></br>
                     <div class="form-group col-md-6">
-                        <input type="submit" class="btn btn-info" id="sumbutton" name="submit" value="Submit">
+                        {{form.submit(class="btn btn-info", id="sumbutton")}}
+                        <!--<input type="submit" class="btn btn-info" id="sumbutton" name="submit" value="Submit">-->
                     </div>
                     {{ form.csrf_token }} 
                 </form>        

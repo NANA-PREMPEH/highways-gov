@@ -106,6 +106,7 @@ def completed_periodic():
                                     start_date, end_date, start_date, end_date, start_date, end_date)).first()
         
         return jsonify({'data': render_template('main/periodic_json.html', results=results, form=form)}) 
+        
     return render_template('main/completed_periodic.html', title='Completed Periodic Projects', posts=posts, form=form)
 
 @main.route('/completed/routine', methods=['GET', 'POST'])

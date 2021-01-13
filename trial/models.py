@@ -258,10 +258,17 @@ class Upgrading(SearchableMixin, db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Upgrading('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                            '{self.date_commenced}','{self.date_completed}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
 
 
 #Create Regravelling Table
@@ -274,11 +281,17 @@ class Regravelling(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
- 
-    def __repr__(self):
-        return f"Regravelling('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                                '{self.date_commenced}','{self.date_completed}')"
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
 
 #Create Construction Table
 class Construction(db.Model):
@@ -290,10 +303,17 @@ class Construction(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Construction('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                                '{self.date_commenced}','{self.date_completed}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
 
 
 #Create Rehabilitation Table
@@ -306,10 +326,18 @@ class Rehabilitation(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Rehabilitation('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                                 '{self.date_commenced}','{self.date_completed}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+
 #Create Resealing Table
 class Resealing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -320,10 +348,18 @@ class Resealing(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Resealing('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                                 '{self.date_commenced}','{self.date_completed}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+
 #Create Preconstruction Table
 class Preconstruction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -334,10 +370,18 @@ class Preconstruction(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Preconstruction('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                                 '{self.date_commenced}','{self.date_completed}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+
 #Create Resurfacing Table
 class Resurfacing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -348,10 +392,18 @@ class Resurfacing(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Resurfacing('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                                 '{self.date_commenced}','{self.date_completed}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+
 #Create Repairs Table
 class Repairs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -362,10 +414,17 @@ class Repairs(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Repairs('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                                 '{self.date_commenced}','{self.date_completed}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
 #Create Asphalticoverlay Table
 class Asphalticoverlay(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -376,10 +435,17 @@ class Asphalticoverlay(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    video_title = db.Column(db.String(300))
+    video_link = db.Column(db.String(250))
+    video_description = db.Column(db.Text)
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Asphalticoverlay('{self.name_of_contract}', '{self.length}', '{self.lot}', '{self.contract_sum}', '{self.contractor}',\
-                                 '{self.date_commenced}','{self.date_completed}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
 
 
 class Contract(db.Model):
@@ -401,4 +467,4 @@ class Contract(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Video('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"

@@ -83,58 +83,174 @@ def upgrade():
     return redirect(url_for('main.home'))
 
 @projects.route('/completed/periodic/rehabilitation', methods=['GET', 'POST'])
-def rehabilitation(): 
+def rehabilitation():
+    form = DateForm()
     rehab_list = Rehabilitation.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list, posts=posts)
+
+    if request.method == "POST":
+        start_date = datetime.strptime(request.form['start_date'], "%Y-%m-%d").strftime("%Y-%m-%d") 
+        end_date = datetime.strptime(request.form['end_date'], "%Y-%m-%d").strftime("%Y-%m-%d")  
+
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM resealing \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list, posts=posts, form=form)
 
 @projects.route('/completed/periodic/resealing', methods=['GET', 'POST'])
 def resealing():
+    form = DateForm()
     reseal_list = Resealing.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/resealing.html', title='Resealing', reseal_list=reseal_list, posts=posts)
 
-@projects.route('/completed/periodic/resurfacing', methods=['GET', 'POST'])
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM resealing \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/resealing.html', title='Resealing', reseal_list=reseal_list, posts=posts, form=form)
+
+@projects.route('/completed/periodic/resurfacing', methods=['GET', 'POST']) 
 def resurfacing():
+    form = DateForm()
     resurface_list = Resurfacing.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/resurfacing.html', title='Resurfacing', resurface_list=resurface_list, posts=posts)
+    
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM resurfacing \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/resurfacing.html', title='Resurfacing', resurface_list=resurface_list, posts=posts, form=form)
 
 @projects.route('/completed/periodic/repairs_asphaltic', methods=['GET', 'POST'])
 def repairs_asphaltic():
+    form = DateForm()
     repairs_list = Repairs.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/repairs_asphaltic.html', title='Repairs & Asphaltic', repairs_list=repairs_list, posts=posts)
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM repairs \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/repairs_asphaltic.html', title='Repairs & Asphaltic', repairs_list=repairs_list, posts=posts, form=form)
 
 @projects.route('/completed/periodic/preconstruction', methods=['GET', 'POST'])
 def preconstruct():
+    form = DateForm()
     precons_list = Preconstruction.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/preconstruction.html', title='Preconstruction', precons_list=precons_list, posts=posts)
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM preconstruction \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/preconstruction.html', title='Preconstruction', precons_list=precons_list, posts=posts, form=form)
 
 @projects.route('/completed/periodic/asphalticoverlay', methods=['GET', 'POST'])
 def asphalticoverlay():
+    form = DateForm()
     overlay_list = Asphalticoverlay.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/asphaltic_overlay.html', title='Asphaltic Overlay', overlay_list=overlay_list, posts=posts)
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM asphalticoverlay \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/asphaltic_overlay.html', title='Asphaltic Overlay', overlay_list=overlay_list, posts=posts, form=form)
 
 @projects.route('/completed/periodic/upgrading', methods=['GET', 'POST'])
 def upgrading(): 
+    form = DateForm()
     upgrade_list = Upgrading.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts)
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM upgrading \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+    return render_template('projects/upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts, form=form)
 
 @projects.route('/completed/periodic/construction', methods=['GET', 'POST'])
 def construction():
+    form = DateForm()
     const_list = Construction.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/construction.html', title='Construction', const_list=const_list, posts=posts)
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM construction \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/construction.html', title='Construction', const_list=const_list, posts=posts, form=form)
 
 @projects.route('/completed/periodic/regravelling', methods=['GET', 'POST'])
 def regravelling():
+    form = DateForm()
     regrav_list = Regravelling.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/regravelling.html', title='Regravelling', regrav_list=regrav_list, posts=posts)
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM regravelling \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+
+    return render_template('projects/regravelling.html', title='Regravelling', regrav_list=regrav_list, posts=posts, form=form)
 
 @projects.route('/reports')
 def reports():
