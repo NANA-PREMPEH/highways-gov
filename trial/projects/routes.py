@@ -93,11 +93,11 @@ def rehabilitation():
         end_date = datetime.strptime(request.form['end_date'], "%Y-%m-%d").strftime("%Y-%m-%d")  
 
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM resealing \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM rehabilitation \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/rehab_json.html', q=q, form=form)})
 
     return render_template('projects/rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list, posts=posts, form=form)
 
@@ -116,7 +116,7 @@ def resealing():
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/reseal_json.html', q=q, form=form)})
 
     return render_template('projects/resealing.html', title='Resealing', reseal_list=reseal_list, posts=posts, form=form)
 
@@ -135,7 +135,7 @@ def resurfacing():
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/resurface_json.html', q=q, form=form)})
 
     return render_template('projects/resurfacing.html', title='Resurfacing', resurface_list=resurface_list, posts=posts, form=form)
 
@@ -154,7 +154,7 @@ def repairs_asphaltic():
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/repairs_json.html', q=q, form=form)})
 
     return render_template('projects/repairs_asphaltic.html', title='Repairs & Asphaltic', repairs_list=repairs_list, posts=posts, form=form)
 
@@ -173,7 +173,7 @@ def preconstruct():
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/precons_json.html', q=q, form=form)})
 
     return render_template('projects/preconstruction.html', title='Preconstruction', precons_list=precons_list, posts=posts, form=form)
 
@@ -192,7 +192,7 @@ def asphalticoverlay():
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/asphaltic_json.html', q=q, form=form)})
 
     return render_template('projects/asphaltic_overlay.html', title='Asphaltic Overlay', overlay_list=overlay_list, posts=posts, form=form)
 
@@ -211,7 +211,7 @@ def upgrading():
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/upgrade_json.html', q=q, form=form)})
     return render_template('projects/upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts, form=form)
 
 @projects.route('/completed/periodic/construction', methods=['GET', 'POST'])
@@ -229,7 +229,7 @@ def construction():
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/const_json.html', q=q, form=form)})
 
     return render_template('projects/construction.html', title='Construction', const_list=const_list, posts=posts, form=form)
 
@@ -245,10 +245,10 @@ def regravelling():
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
                                     FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM regravelling \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1",\
                                     (start_date, end_date)).first()
 
-        return jsonify({'data': render_template('projects/tables_json.html', q=q, form=form)})
+        return jsonify({'data': render_template('projects/regrav_json.html', q=q, form=form)})
 
     return render_template('projects/regravelling.html', title='Regravelling', regrav_list=regrav_list, posts=posts, form=form)
 
@@ -268,3 +268,105 @@ def view_contract(contract_id):
 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/video.html', contract=contract, contract_id=contract_id, posts=posts)
+
+#View Regravelling Projects details from the database
+@projects.route('/regrav/view/<int:contract_id>/details') 
+def regrav_contract(contract_id):
+    regrav = Regravelling.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", regrav.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/regrav_details.html', regrav=regrav, contract_id=contract_id, posts=posts)
+
+#View Reghabilitation Projects details from the database
+@projects.route('/rehab/view/<int:contract_id>/details') 
+def rehab_contract(contract_id):
+    rehab = Rehabilitation.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", rehab.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/rehab_details.html', rehab=rehab, contract_id=contract_id, posts=posts)
+
+#View Asphaltic Overlay Projects details from the database
+@projects.route('/asphaltic/view/<int:contract_id>/details') 
+def asphaltic_contract(contract_id):
+    asphaltic = Asphalticoverlay.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", asphaltic.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/asphaltic_details.html', asphaltic=asphaltic, contract_id=contract_id, posts=posts)
+    
+#View Construction Projects details from the database
+@projects.route('/const/view/<int:contract_id>/details') 
+def const_contract(contract_id):
+    const = Construction.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", const.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/const_details.html', const=const, contract_id=contract_id, posts=posts)
+
+#View Pre-Construction Projects details from the database
+@projects.route('/precons/view/<int:contract_id>/details') 
+def precons_contract(contract_id):
+    precons = Preconstruction.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", precons.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/precons_details.html', precons=precons, contract_id=contract_id, posts=posts)
+
+#View Repairs & Asphaltic Projects details from the database
+@projects.route('/repairs/view/<int:contract_id>/details') 
+def repairs_contract(contract_id):
+    repairs = Repairs.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", repairs.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/repairs_details.html', repairs=repairs, contract_id=contract_id, posts=posts)
+
+#View Resealing Projects details from the database
+@projects.route('/reseal/view/<int:contract_id>/details') 
+def reseal_contract(contract_id):
+    reseal = Resealing.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", reseal.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/reseal_details.html', reseal=reseal, contract_id=contract_id, posts=posts)
+
+#View Resurfacing Projects details from the database
+@projects.route('/resurface/view/<int:contract_id>/details') 
+def resurface_contract(contract_id):
+    resurface = Resurfacing.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", resurface.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/resurface_details.html', resurface=resurface, contract_id=contract_id, posts=posts)
+
+#View Upgrading Projects details from the database
+@projects.route('/upgrade/view/<int:contract_id>/details')  
+def upgrade_contract(contract_id):
+    upgrade = Upgrading.query.get_or_404(contract_id)
+
+    match = re.search(r"youtube\.com/.*v=([^&]*)", upgrade.video_link)
+    contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/upgrade_details.html', upgrade=upgrade, contract_id=contract_id, posts=posts)
+
+
+

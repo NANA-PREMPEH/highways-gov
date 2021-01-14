@@ -347,7 +347,7 @@ construc_data = {
             "date_completed": datetime.strptime("17-02-2019", "%d-%m-%Y").strftime("%Y-%m-%d")
         }, 
         {
-            "name_of_contract": "KUMASI-SUNYANI RAOD",
+            "name_of_contract": "KUMASI-SUNYANI ROAD",
             "length": 0.6,
             "lot": 7,
             "contract_sum": 199383.98,

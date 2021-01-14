@@ -8,29 +8,29 @@
 <div class="container"> 
     <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
         <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
-            <h3 id="table_h3" style="text-transform: uppercase;">{{ contract.name_of_contract }}</h3>
+            <h3 id="table_h3" style="text-transform: uppercase;">{{ const.name_of_contract }}</h3>
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
             </div>
             <div></div>
-            <div><b>Descripton: &nbsp;</b>{{ contract.video_description }}</div> 
+            <div><b>Descripton: &nbsp;</b>{{ const.video_description }}</div> 
             <table class="table table-striped table-borderless ">
                 <tbody style="border-collapse: collapse;">
                     <tr>
                         <th>Project Title</th>
-                        <td>{{ contract.name_of_contract }}</td>
+                        <td>{{ const.name_of_contract }}</td>
                     </tr>
                     <tr> 
                         <th>Contract Sum (GHS)</th>
-                        <td>{{ contract.contract_sum}}</td>
+                        <td>{{ const.contract_sum}}</td>
                     </tr>
                     <tr>
                         <th>Date of Commence</th>
-                        <td>{{ contract.date_commenced.strftime('%d %B %Y') }}</td>
+                        <td>{{ const.date_commenced.strftime('%d %B %Y') }}</td>
                     </tr>
                     <tr>
                         <th>Date Completed</th>
-                        <td>{{ contract.date_completed.strftime('%d %B %Y') }}</td>
+                        <td>{{ const.date_completed.strftime('%d %B %Y') }}</td>
                     </tr>
                 </tbody>
             </table>           

@@ -25,7 +25,7 @@ class LeaveForm(FlaskForm):
     effec_date = StringField('Effective Date of Leave', validators=[DataRequired()])
     resump_date = StringField('Date of Resumption', validators=[DataRequired()])
     outs_days = IntegerField('Outstanding Leave Day(s)', validators=[DataRequired(message="Please enter a valid number")])
-    submit = SubmitField('Submit & Preview')
+    submit = SubmitField('Submit & Preview') 
 
 
 #Create a Defect Report Form

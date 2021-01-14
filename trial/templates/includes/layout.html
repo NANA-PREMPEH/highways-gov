@@ -448,23 +448,207 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 });
             });
         </script>
-        <!--Ajax script for project sum Table-->
+        <!--Ajax script for regravelling project's sum-->
         <script>
             $(document).ready(function(){
-                $('.table_sum').on('click', function(event){
+                $('#regrav_sub').on('click', function(event){
 
                     var start_date = $('#start_date').val();
                     var end_date = $('#end_date').val();
 
                     $.ajax({
                         type : "POST",
-                        url : "{{ url_for('projects.table') }}",
+                        url : "{{ url_for('projects.regravelling') }}",
                         dataType: "json",
                         data : {
                             start_date: start_date, end_date : end_date
                         },
                         success: function(data){
-                            $('.project_sum').replaceWith(data.data)
+                            $('#regrav_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for rehabilitation project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#rehab_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.rehabilitation') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#rehab_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for resealing project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#reseal_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.resealing') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#reseal_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for asphalticoverlay project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#asphaltic_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.asphalticoverlay') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#asphaltic_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for resurfacing project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#resurface_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.resurfacing') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#resurface_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for repairs & asphaltic project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#repairs_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.repairs_asphaltic') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#repairs_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for preconstruction project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#precons_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.preconstruct') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#precons_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for upgrading project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#upgrade_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.upgrading') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#upgrade_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for construction project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#const_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.construction') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#const_sum').replaceWith(data.data)
                         }
                     });
                     event.preventDefault();

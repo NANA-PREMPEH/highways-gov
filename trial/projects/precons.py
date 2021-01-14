@@ -11,7 +11,7 @@ precons_data = {
             "contract_sum": 7378176.78,
             "contractor": "TONY MACHINERIES LTD.",
             "date_commenced": datetime.strptime("31-07-2019", "%d-%m-%Y").strftime("%Y-%m-%d"), 
-            "date_completed": datetime.strptime("31-07-2020", "%d-%m-%Y").strftime("%Y-%m-%d")
+            "date_completed": datetime.strptime("31-07-2020", "%d-%m-%Y").strftime("%Y-%m-%d") 
         },  
         {
             "name_of_contract": "EJURA-ANYINOFI-BONDASO ROAD",

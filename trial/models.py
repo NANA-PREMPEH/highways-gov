@@ -248,8 +248,7 @@ class Leave(db.Model):
 
 
 #Create Upgrading Table
-class Upgrading(SearchableMixin, db.Model):
-    __searchable__ = ['name_of_contract', 'contractor']
+class Upgrading(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name_of_contract = db.Column(db.String(120), nullable=True)
     length = db.Column(db.String(50), nullable=True, default='N/A')
@@ -467,4 +466,4 @@ class Contract(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')" 
