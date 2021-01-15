@@ -1,6 +1,6 @@
 from datetime import datetime
 from trial.models import Rehabilitation
-from trial import db
+from trial import db 
 
 rehab_data = {
     "all contract": [
@@ -11,7 +11,7 @@ rehab_data = {
             "contract_sum": 23000,
             "contractor": "Joshob Construction Limited",
             "date_commenced": datetime.strptime("17-04-2018", "%d-%m-%Y").strftime("%Y-%m-%d"),
-            "date_completed": datetime.strptime("17-05-2020", "%d-%m-%Y").strftime("%Y-%m-%d")
+            "date_completed": datetime.strptime("17-05-2020", "%d-%m-%Y").strftime("%Y-%m-%d") 
         },
         {
             "name_of_contract": "KODIE - ADUMAN",

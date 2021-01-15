@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, Blueprint, jsonify
 from flask.globals import request
 from trial import db
-from trial.models import (Post, Contract, Rehabilitation, Regravelling, Upgrading, Construction,
+from trial.models import (Post, Contract, Rehabilitation, Regravelling, Roadcondition, Upgrading, Construction,
                             Preconstruction, Resealing, Resurfacing, Repairs, Asphalticoverlay)
 from trial.projects.regrav import update_regrav, regrav_data
 from trial.projects.rehab import update_rehab, rehab_data
@@ -12,6 +12,7 @@ from trial.projects.overlay import update_overlay, overlay_data
 from trial.projects.precons import update_precons, precons_data
 from trial.projects.repairs import update_repairs, repairs_data
 from trial.projects.resurface import update_resurface, resurface_data
+from trial.road_conditions import rd_cond_data, update_rd_cond
 from trial.projects.forms import DateForm
 import re
 from datetime import datetime
@@ -81,6 +82,12 @@ def rehab():
 def upgrade():
     update_upgrade(upgrade_data)
     return redirect(url_for('main.home'))
+
+@projects.route('/road_cond')
+def road_cond():
+    update_rd_cond(rd_cond_data)
+    return redirect(url_for('main.home'))
+
 
 @projects.route('/completed/periodic/rehabilitation', methods=['GET', 'POST'])
 def rehabilitation():
@@ -254,8 +261,9 @@ def regravelling():
 
 @projects.route('/reports')
 def reports():
+    rd_cond = Roadcondition.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/reports.html', title='Report',  posts=posts)
+    return render_template('projects/reports.html', title='Report',  posts=posts, rd_cond=rd_cond)
 
 
 #View Contract list from the database

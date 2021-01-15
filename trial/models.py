@@ -467,3 +467,22 @@ class Contract(db.Model):
 
     def __repr__(self):
         return f"Contract('{self.id}','{self.video_title}','{self.video_link}')" 
+    
+class Roadcondition(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reg = db.Column(db.String(50), nullable=True)
+    road_no = db.Column(db.String(50), nullable=True)
+    road_name = db.Column(db.String(50), nullable=True, default='N/A')
+    link_ref = db.Column(db.String(50), nullable=True, default='N/A')
+    sect_ref = db.Column(db.String(50), nullable=True, default='N/A') 
+    fr_om = db.Column(db.String(50), nullable=True, default='N/A')
+    t_o = db.Column(db.String(50), nullable=True, default='N/A')
+    start = db.Column(db.String(50), nullable=True, default='N/A')
+    end = db.Column(db.String(50), nullable=True, default='N/A')
+    length = db.Column(db.String(50), nullable=True, default='N/A')
+    width = db.Column(db.String(50), nullable=True, default='N/A')
+    surf_type = db.Column(db.String(50), nullable=True, default='N/A')
+    cond_score = db.Column(db.String(50), nullable=True, default='N/A')
+    iri = db.Column(db.String(50), nullable=True, default='N/A')
+    cond = db.Column(db.String(50), nullable=True, default='N/A')
+
