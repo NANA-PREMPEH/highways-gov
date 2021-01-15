@@ -190,8 +190,6 @@ def contracsst():
 
 #Route for logout
 @admin.route('/admin_logout')
-@login_required
-@admin_required
 def admin_logout():
     logout_user()
     return redirect(url_for('users.login'))
