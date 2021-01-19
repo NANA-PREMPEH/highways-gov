@@ -2524,7 +2524,7 @@ fieldset legend {
 @media (max-width: 992px) {
   div.main_menu_area{
       height: inherit;
-  }
+  } 
 }*/
 /* Styling for multi-level drop down*/
 
@@ -2793,6 +2793,26 @@ span.psw {
 
 /*Styling for leadership.html file*/
 
+div.leadership{
+  display: inline-flex; 
+  margin-bottom: 30px; 
+  margin-left: auto;
+}
+@media screen and (max-width: 992px) {
+  div.leadership {
+  display: block;
+  float: none;
+  }
+  div.img_disp {
+  float: none;
+  width: 50%;
+  margin-bottom: 5px;
+  }
+  #table_h3 {
+      margin-top: 10%;
+  }
+}
+
 /* Container needed to position the overlay. Adjust the width as needed */
 .img_disp {
   float: left;
@@ -2801,12 +2821,6 @@ span.psw {
   position: relative;
   width: 50%;
   max-width: 300px;
-}
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 500px) {
-  .img_disp {
-  width: 100%;
-  }
 }
 
 /* Make the image to responsive */
@@ -2840,6 +2854,8 @@ span.psw {
   clear: both;
   display: table;
 }
+
+/* End of styling for leadership template */
 
 /*Photo Gallery modal window(Lightbox)*/
 .thumbnails {
