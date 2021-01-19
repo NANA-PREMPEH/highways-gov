@@ -1,0 +1,246 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
+        <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;">
+            <h3 id="table_h3">REPORT ON 2018 ROAD CONDITION</h3>
+            <div>
+                <h3 style="text-align: center;"><i class="fa fa-table"></i>
+                    Table I; Composition of the Trunk Road Network by Surface Category (2018)
+                </h3>
+                    <table class="table table-bordered" style="margin-left: 28px; text-align: center; margin-top: 20px;">
+                        <thead style="font-weight: bolder; line-height: 45px; font-size: medium;">
+                            <tr>
+                                <td>Surface Category</td>
+                                <td>Length (km)</td>
+                                <td>Percentage (%)</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 15px;">
+                            <tr>
+                                <td>Cement Concrete</td>
+                                <td>38.6</td>
+                                <td>0.3</td>
+                            </tr>
+                            <tr>
+                                <td>Asphaltic Concrete</td>
+                                <td>2,567.80</td>
+                                <td>16.7</td>
+                            </tr>
+                            <tr>
+                                <td>Surface Dressed</td>
+                                <td>6,011.00</td>
+                                <td>39.1</td>
+                            </tr>
+                            <tr>
+                                <td>Gravel</td>
+                                <td>5,249.90</td>
+                                <td>34.2</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+            </div></br>
+            <div>
+                <h3 style="text-align: center;"><i class="fa fa-pie-chart"></i>
+                    Composition of the Trunk Road Network by Surface Category
+                </h3>
+                
+                    <img src="{{ url_for('static', filename='img/reports/pie_chart.png') }}" alt="2018_pie_chart">
+                    <span style="text-align: center; font-style: italic; margin-left: 65px;">
+                        Figure 1:  Composition of the Trunk Road Network by Surface Category
+                    </span>
+                
+                <p style="margin-left: 45px; margin-top: 5px;">
+                    For both Paved and Gravel roads surveyed, condition scores computed 
+                    for homogeneous sections have been reported. The overall condition mix 
+                    for 2018 stands as shown in Table II.
+                </p>
+            </div>
+            <div>
+                <h3 style="text-align: center;"><i class="fa fa-table"></i>
+                    Table II; 2018 Road Surface Condition Mix (National)
+                </h3>
+                    <table class="table table-bordered" style="margin-left: 28px; text-align: center; margin-top: 20px;">
+                        <thead style="font-weight: bolder; line-height: 45px; font-size: medium;">
+                            <tr>
+                                <td>Good Description</td>
+                                <td>Length (km)</td>
+                                <td>Percentage (%)</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 15px;">
+                            <tr>
+                                <td>GOOD</td>
+                                <td>6,248.50</td>
+                                <td>45</td>
+                            </tr>
+                            <tr>
+                                <td>FAIR</td>
+                                <td>5,558.20</td>
+                                <td>40</td>
+                            </tr>
+                            <tr>
+                                <td>POOR</td>
+                                <td>2,060.60</td>
+                                <td>15</td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td>TOTAL</td>
+                                <td>13,867.30</td>
+                                <td>100</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+            </div>
+            <div>
+                <h3 style="text-align: center;"><i class="fa fa-table"></i>
+                   Table III; 2018 Road Surface Condition Mix (Regional)
+                </h3>
+                    <table class="table table-bordered" style="margin-left: 28px; text-align: center; margin-top: 20px;">
+                        <thead style="font-weight: bolder; line-height: 45px; font-size: medium;">
+                            <tr>
+                                <td rowspan="2">Region</td>
+                                <td colspan="2">Good</td>
+                                <td colspan="2">Fair</td>
+                                <td colspan="2">Poor</td>
+                                <td rowspan="2">Total</td>
+                            </tr>
+                            <tr>
+                                <td>km</td>
+                                <td>%</td>
+                                <td>km</td>
+                                <td>%</td>
+                                <td>km</td>
+                                <td>%</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 15px;">
+                            <tr>
+                                <td>Ashanti</td>
+                                <td>532.0</td>
+                                <td>32%</td>
+                                <td>706.8</td>
+                                <td>43%</td>
+                                <td>421.2</td>
+                                <td>25%</td>
+                                <td>1,660.0</td>
+                            </tr>
+                            <tr>
+                                <td>Brong Ahafo</td>
+                                <td>667.4</td>
+                                <td>41%</td>
+                                <td>704.6</td>
+                                <td>42%</td>
+                                <td>287.1</td>
+                                <td>17%</td>
+                                <td>1,669.1</td>
+                            </tr>
+                            <tr>
+                                <td>Central</td>
+                                <td>535.6</td>
+                                <td>46%</td>
+                                <td>591.9</td>
+                                <td>51%</td>
+                                <td>28.0</td>
+                                <td>2%</td>
+                                <td>1,155.5</td>
+                            </tr>
+                            <tr>
+                                <td>Eastern</td>
+                                <td>759.4</td>
+                                <td>52%</td>
+                                <td>495.6</td>
+                                <td>34%</td>
+                                <td>201.7</td>
+                                <td>14%</td>
+                                <td>1,456.7</td>
+                            </tr>
+                            <tr>
+                                <td>Greater Accra</td>
+                                <td>164.6</td>
+                                <td>36%</td>
+                                <td>257.1</td>
+                                <td>56%</td>
+                                <td>38.6</td>
+                                <td>8%</td>
+                                <td>460.4</td>
+                            </tr>
+                            <tr>
+                                <td>Northern</td>
+                                <td>1,610.7</td>
+                                <td>55%</td>
+                                <td>851.1</td>
+                                <td>29%</td>
+                                <td>454.8</td>
+                                <td>16%</td>
+                                <td>2,916.6</td>
+                            </tr>
+                            <tr>
+                                <td>Upper East</td>
+                                <td>142.7</td>
+                                <td>26%</td>
+                                <td>354.8</td>
+                                <td>66%</td>
+                                <td>41.2</td>
+                                <td>8%</td>
+                                <td>538.7</td>
+                            </tr>
+                            <tr>
+                                <td>Upper West</td>
+                                <td>495.6</td>
+                                <td>50%</td>
+                                <td>375.4</td>
+                                <td>38%</td>
+                                <td>123.9</td>
+                                <td>12%</td>
+                                <td>994.9</td>
+                            </tr>
+                            <tr>
+                                <td>Volta</td>
+                                <td>625.5</td>
+                                <td>44%</td>
+                                <td>554.3</td>
+                                <td>39%</td>
+                                <td>245.8</td>
+                                <td>17%</td>
+                                <td>1,425.5</td>
+                            </tr>
+                            <tr>
+                                <td>Western</td>
+                                <td>705.0</td>
+                                <td>44%</td>
+                                <td>666.6</td>
+                                <td>42%</td>
+                                <td>218.3</td>
+                                <td>14%</td>
+                                <td>1,589.9</td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td>Total</td>
+                                <td>6,248.5</td>
+                                <td>45%</td>
+                                <td>5,558.2</td>
+                                <td>40%</td>
+                                <td>2,060.6</td>
+                                <td>15%</td>
+                                <td>13,867.3</td>
+                            </tr>
+                        </tbody>
+                    </table></br>
+                    <p style="margin-left: 38px;">
+                        The <span style="font-weight: 800; font-style: italic;">2018 Road Condition Mix of 45% 
+                        Good, 40% Fair and 15% Poor</span> suggests the road condition has deteriorated significantly
+                        compared to the last two (2) year’s figures and lags far behind the projected target 
+                        of 70% Good, 20% Fair and 10% Poor to be achieved by 2037, as contained in 
+                        the GHA’s 20-Year Strategic Plan (2017 – 2037)
+                    </p></br>
+                    <p>
+                        For supplementary information please refer to this 
+                        <a style="font-weight: bold;" href="{{ url_for('projects.reports') }}">table</a> 
+                    </p>
+            </div>
+        </div>
+        {% include 'includes/sidebar.html' %} 
+    </div>
+</div> 
+{% endblock content %} 

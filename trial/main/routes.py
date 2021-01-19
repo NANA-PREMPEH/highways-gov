@@ -25,6 +25,11 @@ def division():
 def basic():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/basic_temp.html', title='Basic', posts=posts)
+#Create a route for basic layout
+@main.route('/yearly_report/2018')
+def report_2018():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/report_2018.html', title='Basic', posts=posts)
 
 @main.route('/institution_profile')
 def inst_prof():
