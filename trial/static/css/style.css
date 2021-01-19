@@ -2808,9 +2808,9 @@ div.leadership{
   width: 50%;
   margin-bottom: 5px;
   }
-  #table_h3 {
-    margin-top: 25%;
-  }
+  .table_h3 {
+  margin-top: 9%;
+}
 }
 
 /* Container needed to position the overlay. Adjust the width as needed */
