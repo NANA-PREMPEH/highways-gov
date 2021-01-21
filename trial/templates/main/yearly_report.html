@@ -1,0 +1,48 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<style>
+    #periodic {
+        margin-top: 10%; 
+        font-size: 22px; 
+        font-weight: 18px;
+        line-height: 12px; 
+        font-family: 'Open Sans', sans-serif;
+    }
+</style>
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;"> 
+        <h3 class="table_h3" id="table_h3">YEARLY REPORT</h3>
+        <div class="col-md-8" id="periodic">
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a href="{{ url_for('main.report_2018') }}">2018 Report</a></td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a href="{{ url_for('main.no_info') }}">2019 report</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a href="{{ url_for('main.no_info') }}">2020 Report</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+        </div>
+        {% include 'includes/sidebar.html' %} 
+    </div>
+</div>
+
+{% endblock content %} 

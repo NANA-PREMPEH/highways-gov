@@ -4,7 +4,6 @@ from wtforms.validators import DataRequired, Length, Email
 
 #Create Leave Form
 class LeaveForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired(), Length(min=2, max=50)])
     rank = StringField('Rank', validators=[DataRequired(), Length(min=2, max=50)])
     section = StringField('Section', validators=[DataRequired(), Length(min=2, max=50)])
     date_app = StringField('Date', validators=[DataRequired()])

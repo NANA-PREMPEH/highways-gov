@@ -8,7 +8,7 @@ from trial.admin.forms import RegistrationForm, BlogPostForm, ContractDetailsFor
 from trial.admin.utils import save_photo
 import re
 import requests
-from trial import db, bcrypt, photos
+from trial import db, bcrypt, photos 
 from trial.users.utils import admin_required, permission_required
 
 
@@ -30,7 +30,7 @@ def register():
         #Hash Password
         hashed_pswd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         #Create Instance of the user
-        user = User(username=form.username.data, email=form.email.data, password=hashed_pswd)
+        user = User(first_name=form.first_name.data, last_name=form.last_name.data, username=form.username.data, email=form.email.data, password=hashed_pswd)
         #Add user to the database
         db.session.add(user)
         db.session.commit()

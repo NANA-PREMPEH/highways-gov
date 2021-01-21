@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash, send_file, make_response, Blueprint
+from flask import render_template, redirect, url_for, flash, send_file, make_response, Blueprint, request
 from flask_login import current_user
 import flask_login
 from flask_login.utils import login_required
@@ -27,7 +27,8 @@ def defect():
 def leave():
     form = LeaveForm()
     if form.validate_on_submit():
-        le_ave = Leave(name=form.name.data, rank=form.rank.data, section=form.section.data, date_app=form.date_app.data,
+        name=request.form.get('name')
+        le_ave = Leave(name=name, rank=form.rank.data, section=form.section.data, date_app=form.date_app.data,
                     tele_no=form.tele_no.data, leave_cat=form.leave_cat.data, no_of_days=form.no_of_days.data, 
                     start_date=form.start_date.data, end_date=form.end_date.data, supp_info=form.supp_info.data,
                     address=form.address.data, mobile_no=form.mobile_no.data, email=form.email.data, 
@@ -57,7 +58,7 @@ def view_form(post_id):
     post = Leave.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
     
-    return render_template('view_lv_form.html', title='Leave', post=post, posts=posts) 
+    return render_template('generalforms/view_lv_form.html', title='Leave', post=post, posts=posts) 
 
 #Generate pdf from the Leave Form
 @generalforms.route('/get_pdf/<int:post_id>', methods=['GET','POST'])

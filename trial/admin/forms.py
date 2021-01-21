@@ -6,6 +6,8 @@ from trial.models import User
 
 #Create Registration Form
 class RegistrationForm(FlaskForm):
+    first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=20)])
+    last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=20)])
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('Password', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -16,7 +18,7 @@ class RegistrationForm(FlaskForm):
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
-            raise ValidationError('Username already exists. Please choose a different one.') 
+            raise ValidationError('Username already exists. Please choose a different one.')  
 
 
     #Check to see if email already exists
