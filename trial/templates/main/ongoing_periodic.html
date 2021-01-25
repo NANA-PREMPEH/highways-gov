@@ -1,5 +1,24 @@
 {% extends "includes/layout.html" %}
 {% block content %}
+<style>
+    .view_btn1 {
+        display: inline-block;
+        background-color: rgb(245, 212, 27);
+        text-align: center;
+        padding: 0px 20px;
+        padding-top: 6px;
+        border-radius: 5px;
+        line-height: 28px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        width: 230px;
+        height: 45px;
+        
+    }
+    .view_btn1:hover {
+        color: rgb(245, 244, 244);
+    }
+</style>
 <div class="container"> 
     <div class="row blog_details_inner" style="margin-left: 2%;">
         <h3 class="table_h3" id="table_h3">ONGOING PERIODIC PROJECTS</h3> 
@@ -8,28 +27,13 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><a href="">Rehabilitation</a></td>
+                            <td><a class="view_btn1" href="">Rehabilitation</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Resealing</a></td>
+                            <td><a class="view_btn1" href="">Resealing</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Upgrading</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-sm-4">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><a href="">Regravelling</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="">Pre-Construction</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="">Alsphaltic Overlay</a></td>
+                            <td><a class="view_btn1" href="">Upgrading</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -38,13 +42,28 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><a href="">Construction</a></td>
+                            <td><a class="view_btn1" href="">Regravelling</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Resurfacing</a></td>
+                            <td><a class="view_btn1" href="">Pre-Construction</a></td>
                         </tr>
                         <tr>
-                            <td><a href="">Repairs &#38; Alsphaltic</a></td>
+                            <td><a class="view_btn1" href="">Alsphaltic Overlay</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a class="view_btn1" href="">Construction</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="">Resurfacing</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="">Repairs &#38; Alsphaltic</a></td>
                         </tr>
                     </tbody>
                 </table>
