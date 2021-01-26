@@ -76,7 +76,7 @@ class User(db.Model, UserMixin):
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
         if self.role is None:
-            if self.email == current_app.config['GHA_ADMIN']:
+            if self.email == current_app.config['ADMIN_HIGHWAYS']:
                 self.role = Role.query.filter_by(name='Administrator').first()
             if self.role is None:
                 self.role = Role.query.filter_by(default=True).first()
@@ -208,7 +208,7 @@ class Comment(db.Model):
     name = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     message = db.Column(db.Text, nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False) 
     post = db.relationship('Post', backref=db.backref('post', lazy=True))
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     status = db.Column(db.Boolean, default=False)
