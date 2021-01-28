@@ -15,7 +15,7 @@ rehab_data = {
         },
         {
             "name_of_contract": "KODIE - ADUMAN",
-            "length": 9,
+            "length": 9, 
             "lot": None,
             "contract_sum": 39090694.69,
             "contractor": "KNAPO CONSTRUCTION LTD",
