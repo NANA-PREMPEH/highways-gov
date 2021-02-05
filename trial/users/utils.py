@@ -14,10 +14,10 @@ def save_picture(form_picture):
     #Randomize the name of the picture(to prevent collision with other image with the same name)
     random_hex = secrets.token_hex(8)
     #Grab the file extension
-    _, f_ext = os.path.splitext(form_picture.filename)      #Use of underscore to discard the filename
+    _, f_ext = os.path.splitext(form_picture.filename)      #Use of underscore to discard the filename 
     #Combine the random_hex eith the file extension to get the new filename of image
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_fn)
+    picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_fn) 
 
     #Resize the Image submitted
     output_size = (125, 125)

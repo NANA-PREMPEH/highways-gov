@@ -9,7 +9,7 @@ from trial.admin.utils import save_photo
 import re
 import requests
 from trial import db, bcrypt, photos 
-from trial.users.utils import admin_required, permission_required
+from trial.users.utils import admin_required
 
 
 admin = Blueprint('admin', __name__)

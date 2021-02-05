@@ -54,7 +54,7 @@ db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
 
 
 #Function to reload user from user id stored in session
-#Decorate the function so that the extension can easily know 
+#Decorate the function so that the extension can easily know  
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -269,7 +269,7 @@ class Upgrading(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Upgrading('{self.id}','{self.video_title}','{self.video_link}')"
 
 
 #Create Regravelling Table
@@ -289,10 +289,10 @@ class Regravelling(db.Model):
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
     # this is the column with which we are creating the relation with user table
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Regravelling('{self.id}','{self.video_title}','{self.video_link}')"
 
 #Create Construction Table
 class Construction(db.Model):
@@ -314,7 +314,7 @@ class Construction(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Construction('{self.id}','{self.video_title}','{self.video_link}')"
 
 
 #Create Rehabilitation Table
@@ -327,9 +327,9 @@ class Rehabilitation(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -337,7 +337,7 @@ class Rehabilitation(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Rehabilitation('{self.id}','{self.video_title}','{self.video_link}')"
 
 #Create Resealing Table
 class Resealing(db.Model):
@@ -359,7 +359,7 @@ class Resealing(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Resealing('{self.id}','{self.video_title}','{self.video_link}')"
 
 #Create Preconstruction Table
 class Preconstruction(db.Model):
@@ -381,7 +381,7 @@ class Preconstruction(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Preconstruction('{self.id}','{self.video_title}','{self.video_link}')"
 
 #Create Resurfacing Table
 class Resurfacing(db.Model):
@@ -403,7 +403,7 @@ class Resurfacing(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Resurfacing('{self.id}','{self.video_title}','{self.video_link}')"
 
 #Create Repairs Table
 class Repairs(db.Model):
@@ -425,7 +425,8 @@ class Repairs(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Repairs('{self.id}','{self.video_title}','{self.video_link}')"
+
 #Create Asphalticoverlay Table
 class Asphalticoverlay(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -446,7 +447,7 @@ class Asphalticoverlay(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Contract('{self.id}','{self.video_title}','{self.video_link}')"
+        return f"Asphalticoverlay('{self.id}','{self.video_title}','{self.video_link}')"
 
 
 class Contract(db.Model):
@@ -487,4 +488,28 @@ class Roadcondition(db.Model):
     cond_score = db.Column(db.String(50), nullable=True, default='N/A')
     iri = db.Column(db.String(50), nullable=True, default='N/A')
     cond = db.Column(db.String(50), nullable=True, default='N/A')
+
+    def __repr__(self):
+        return f"Roadcondition('{self.id}','{self.reg}','{self.road_no}')" 
+
+
+class Roadcondition2K19(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reg = db.Column(db.String(50), nullable=True)
+    road_no = db.Column(db.String(50), nullable=True)
+    road_name = db.Column(db.String(50), nullable=True, default='N/A')
+    link_ref = db.Column(db.String(50), nullable=True, default='N/A')
+    sect_ref = db.Column(db.String(50), nullable=True, default='N/A') 
+    fr_om = db.Column(db.String(50), nullable=True, default='N/A')
+    t_o = db.Column(db.String(50), nullable=True, default='N/A')
+    start = db.Column(db.String(50), nullable=True, default='N/A')
+    length = db.Column(db.String(50), nullable=True, default='N/A')
+    width = db.Column(db.String(50), nullable=True, default='N/A')
+    surf_type = db.Column(db.String(50), nullable=True, default='N/A')
+    cond_score = db.Column(db.String(50), nullable=True, default='N/A')
+    iri = db.Column(db.String(50), nullable=True, default='N/A')
+    cond = db.Column(db.String(50), nullable=True, default='N/A')
+
+    def __repr__(self):
+        return f"Roadcondition2K19('{self.id}','{self.reg}','{self.road_no}')"  
 

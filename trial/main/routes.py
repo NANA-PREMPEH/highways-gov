@@ -23,24 +23,32 @@ def division():
 @main.route('/no_info')
 def no_info():
     posts = Post.query.order_by(Post.id.desc()).all() 
-    return render_template('main/no_info.html', title='No Info', posts=posts)
+    return render_template('main/no_info.html', title='No Info', posts=posts) 
 
 #Create a route for basic layout
 @main.route('/basic')
 def basic():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/basic_temp.html', title='Basic', posts=posts)
-#Create a route for basic layout 
+
+
+#Create a route for Yearly Report 
 @main.route('/report/yearly_report/')
 def yearly_report():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/yearly_report.html', title='Yearly Report', posts=posts)
 
-#Create a route for basic layout 
+#Create a route for 2018 report 
 @main.route('/yearly_report/2018')
 def report_2018():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/report_2018.html', title='2018 Report', posts=posts)
+
+#Create a route for 2018 report 
+@main.route('/yearly_report/2019')
+def report_2019():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/report_2019.html', title='2019 Report', posts=posts)
 
 @main.route('/institution_profile')
 def inst_prof():

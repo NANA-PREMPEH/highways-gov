@@ -2886,6 +2886,12 @@ div.leadership{
 }
 /*End photo Gallery Modal*/
 
+/* When no videos are obtained from the projects table*/
+.no_vid {
+  width: 680px; 
+  height: 370px;
+}
+
 /* The overlay effect - lays on top of the container and over the image */
 .overlay {
   position: absolute;    
@@ -2907,7 +2913,7 @@ div.leadership{
   margin-bottom: 30px;
 }
 
-/* When you mouse over the container, fade in the overlay title */
+
 .img_disp:hover .overlay { 
   opacity: 1;
 }
@@ -2923,7 +2929,7 @@ div.leadership{
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
   width: 230px;
-  height: 45px;
+  height: 41px;
   
 }
 .view_btn1:hover {

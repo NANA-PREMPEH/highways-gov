@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, Blueprint, jsonify
 from flask.globals import request
 from trial import db
 from trial.models import (Post, Contract, Rehabilitation, Regravelling, Roadcondition, Upgrading, Construction,
-                            Preconstruction, Resealing, Resurfacing, Repairs, Asphalticoverlay)
+                            Preconstruction, Resealing, Resurfacing, Repairs, Asphalticoverlay, Roadcondition2K19)
 from trial.projects.regrav import update_regrav, regrav_data
 from trial.projects.rehab import update_rehab, rehab_data
 from trial.projects.construc import update_construc, construc_data
@@ -13,7 +13,10 @@ from trial.projects.precons import update_precons, precons_data
 from trial.projects.repairs import update_repairs, repairs_data
 from trial.projects.resurface import update_resurface, resurface_data
 from trial.road_conditions import rd_cond_data, update_rd_cond
+from trial.road_cond_2k19 import road_data_2K19, update_rd_cond2K19
 from trial.projects.forms import DateForm
+from flask_login import login_required
+from trial.users.utils import admin_required
 import re
 from datetime import datetime
 
@@ -74,6 +77,8 @@ def overlay():
     return redirect(url_for('main.home'))
 
 @projects.route('/rehab')
+@login_required
+@admin_required
 def rehab():
     update_rehab(rehab_data)
     return redirect(url_for('main.home'))
@@ -86,6 +91,11 @@ def upgrade():
 @projects.route('/road_cond')
 def road_cond():
     update_rd_cond(rd_cond_data)
+    return redirect(url_for('main.home'))
+
+@projects.route('/road_cond_2K19')
+def road_cond_2K19():
+    update_rd_cond2K19(road_data_2K19)
     return redirect(url_for('main.home'))
 
 
@@ -108,7 +118,7 @@ def rehabilitation():
 
     return render_template('projects/rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list, posts=posts, form=form)
 
-@projects.route('/completed/periodic/resealing', methods=['GET', 'POST'])
+@projects.route('/completed/periodic/resealing', methods=['GET', 'POST']) 
 def resealing():
     form = DateForm()
     reseal_list = Resealing.query.all()
@@ -131,7 +141,7 @@ def resealing():
 def resurfacing():
     form = DateForm()
     resurface_list = Resurfacing.query.all()
-    posts = Post.query.order_by(Post.id.desc()).all()
+    posts = Post.query.order_by(Post.id.desc()).all() 
     
     if request.method == "POST":
         start_date = request.form['start_date']
@@ -259,11 +269,17 @@ def regravelling():
 
     return render_template('projects/regravelling.html', title='Regravelling', regrav_list=regrav_list, posts=posts, form=form)
 
-@projects.route('/reports')
-def reports():
+@projects.route('/reports_2018')
+def reports_2018():
     rd_cond = Roadcondition.query.all()
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('projects/reports.html', title='Report',  posts=posts, rd_cond=rd_cond)
+    return render_template('projects/reports_2018.html', title='2018 Report',  posts=posts, rd_cond=rd_cond)
+
+@projects.route('/reports_2019')
+def reports_2019():
+    rd_cond = Roadcondition2K19.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/reports_2019.html', title='2019 Report',  posts=posts, rd_cond=rd_cond)
 
 
 #View Contract list from the database
@@ -294,7 +310,8 @@ def rehab_contract(contract_id):
     rehab = Rehabilitation.query.get_or_404(contract_id)
 
     match = re.search(r"youtube\.com/.*v=([^&]*)", rehab.video_link)
-    contract_id = match.group(1)
+    if match:
+        contract_id = match.group(1)
 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/rehab_details.html', rehab=rehab, contract_id=contract_id, posts=posts)

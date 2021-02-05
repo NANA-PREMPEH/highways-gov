@@ -1,6 +1,14 @@
 {% extends "includes/layout.html" %}
-
 {% block content %}
+<style>
+    #glyp {
+        color: #ffcd00;
+        font-size: 41px;
+    }
+    .service_item:hover #glyp{
+        color: #fff;
+    }
+</style>
     <!--================Main Slider Area =================-->
     <section class="main_slider_area"> 
         <div id="main_slider" class="rev_slider" data-version="5.3.1.6">
@@ -154,7 +162,7 @@
                             <img src="{{ url_for('static', filename='img/icon/s-icon-2.png') }}" alt="">
                             <img src="{{ url_for('static', filename='img/icon/s-icon-hover-2.png') }}" alt="">
                         </div>
-                        <h4>NEW-CONSTRUCTION</h4>
+                        <h4>CONSTRUCTION PROJECTS</h4>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan-tium doloremque laudantium</p>
                         <a class="view_btn" href="{{ url_for('main.planning_periodic') }}">Read Details</a>
                     </div>
@@ -162,10 +170,9 @@
                 <div class="service_item">
                     <div class="service_item_inner">
                         <div class="service_icon">
-                            <img src="{{ url_for('static', filename='img/icon/s-icon-3.png') }}" alt="">
-                            <img src="{{ url_for('static', filename='img/icon/s-icon-hover-3.png') }}" alt="">
+                            <i id="glyp" class="glyphicon glyphicon-picture"></i>
                         </div>
-                        <h4>REMODEL & REIMAGE</h4>
+                        <h4>PHOTO GALLERY</h4>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan-tium doloremque laudantium</p>
                         <a class="view_btn" href="{{ url_for('main.photo_gallery') }}">Read Details</a>
                     </div>
@@ -209,11 +216,14 @@
             <div class="right_service_text">
                 <div class="main_b_title">
                     <h2>our <br class="title_br" /> service</h2>
-                    <h6>The Best Construction <br class="sub_br" /> Company</h6>
+                    <h6>GHANA HIGHWAY <br class="sub_br"/>AUTHORITY</h6>
                 </div>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.</p>
-                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam quis.</p>
-                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.</p>
+                <p>
+                    The Mission of GHA is to provide a safe and reliable 
+                    trunk road network at optimal cost taking advantage of 
+                    modern technology in road building and new income-generating methods 
+                    to facilitate socio-economic development in the country
+                </p>
                 <div class="border_bar"></div>
             </div>
         </div>

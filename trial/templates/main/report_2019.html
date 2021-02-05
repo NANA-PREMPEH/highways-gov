@@ -1,0 +1,476 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
+        <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;">
+            <h3 id="table_h3">A SUMMARIZE REPORT ON 2019 ROAD CONDITION</h3>
+            <div>
+                <h3 style="text-align: center;"><i class="fa fa-table"></i>
+                    Table I; Composition of the Trunk Road Network by Surface Category (2019)
+                </h3>
+                    <table class="table table-bordered" style="margin-left: 28px; text-align: center; margin-top: 20px;">
+                        <thead style="font-weight: bolder; line-height: 45px; font-size: medium;">
+                            <tr>
+                                <td>Surface Category</td>
+                                <td>Length (km)</td>
+                                <td>Percentage (%)</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 15px;">
+                            <tr>
+                                <td>Cement Concrete</td>
+                                <td>38.6</td>
+                                <td>0.3</td>
+                            </tr>
+                            <tr>
+                                <td>Asphaltic Concrete</td>
+                                <td>2,656.92</td>
+                                <td>17.3</td>
+                            </tr>
+                            <tr>
+                                <td>Surface Dressed</td>
+                                <td>5,929.90</td>
+                                <td>38.6</td>
+                            </tr>
+                            <tr>
+                                <td>Gravel</td>
+                                <td>5,524.80</td>
+                                <td>36.0</td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td>Sub Total (Surveyed)</td>
+                                <td>14,150.22</td>
+                                <td>92.1</td>
+                            </tr>
+                            <tr>
+                                <td>Under Construction</td>
+                                <td>722.78</td>
+                                <td>4.7</td>
+                            </tr>
+                            <tr>
+                                <td>Missing Link</td>
+                                <td>487.00</td>
+                                <td>3.2</td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td>Grand Total</td>
+                                <td>15,360.00</td>
+                                <td>100.0</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+            </div></br>
+            <div>
+                <h3 style="text-align: center;"><i class="fa fa-pie-chart"></i>
+                    Composition of the Trunk Road Network by Surface Category
+                </h3>
+                
+                    <img src="{{ url_for('static', filename='img/reports/pie_chart_2019.jpg') }}" alt="pie_chart.jpg">
+                    <span style="text-align: center; font-style: italic; margin-left: 65px;">
+                        Figure 1:  Composition of the Trunk Road Network by Surface Category
+                    </span>
+                
+                <p style="margin-left: 45px; margin-top: 5px;">
+                    For both Paved and Gravel roads surveyed, the overall 2019 
+                    Road Condition Score computed for homogeneous sections stands 
+                    at 32% Good, 49% Fair and 19% Poor; as shown in Table II below: 
+                </p>
+            </div>
+            <div>
+                <h3 style="text-align: center;"><i class="fa fa-table"></i>
+                    Table II; 2019 Road Surface Condition Mix (National)
+                </h3>
+                    <table class="table table-bordered" style="margin-left: 28px; text-align: center; margin-top: 20px;">
+                        <thead style="font-weight: bolder; line-height: 45px; font-size: medium;">
+                            <tr>
+                                <td>Condition Description</td>
+                                <td>Length (km)</td>
+                                <td>Percentage (%)</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 15px;">
+                            <tr>
+                                <td>GOOD</td>
+                                <td>4,548.20</td>
+                                <td>32</td>
+                            </tr>
+                            <tr>
+                                <td>FAIR</td>
+                                <td>6,954.50</td>
+                                <td>49</td>
+                            </tr>
+                            <tr>
+                                <td>POOR</td>
+                                <td>2,647.50</td>
+                                <td>19</td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td>TOTAL</td>
+                                <td>14,150.20</td>
+                                <td>100</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+            </div>
+            <div>
+                <h3 style="text-align: center;"><i class="fa fa-table"></i>
+                   Table III; 2019 Road Surface Condition Mix (Regional)
+                </h3>
+                    <table class="table table-bordered" style="margin-left: 28px; text-align: center; margin-top: 20px;">
+                        <thead style="font-weight: bolder; line-height: 45px; font-size: medium;">
+                            <tr>
+                                <td rowspan="2">Region</td>
+                                <td colspan="2">Good</td>
+                                <td colspan="2">Fair</td>
+                                <td colspan="2">Poor</td>
+                                <td rowspan="2">Total</td>
+                            </tr>
+                            <tr>
+                                <td>km</td>
+                                <td>%</td>
+                                <td>km</td>
+                                <td>%</td>
+                                <td>km</td>
+                                <td>%</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 15px;">
+                            <tr>
+                                <td>Ashanti</td>
+                                <td>369.7</td>
+                                <td>22%</td>
+                                <td>783.1</td>
+                                <td>48%</td>
+                                <td>492.4</td>
+                                <td>30%</td>
+                                <td>1,645.2</td>
+                            </tr>
+                            <tr>
+                                <td>Brong Ahafo</td>
+                                <td>720.8</td>
+                                <td>36%</td>
+                                <td>968.2</td>
+                                <td>48%</td>
+                                <td>316.4</td>
+                                <td>16%</td>
+                                <td>2,005.4</td>
+                            </tr>
+                            <tr>
+                                <td>Central</td>
+                                <td>255.3</td>
+                                <td>22%</td>
+                                <td>701.5</td>
+                                <td>60%</td>
+                                <td>205.4</td>
+                                <td>18%</td>
+                                <td>1,162.2</td>
+                            </tr>
+                            <tr>
+                                <td>Eastern</td>
+                                <td>671.9</td>
+                                <td>45%</td>
+                                <td>638.9</td>
+                                <td>43%</td>
+                                <td>179.6</td>
+                                <td>12%</td>
+                                <td>1,490.4</td>
+                            </tr>
+                            <tr>
+                                <td>Greater Accra</td>
+                                <td>95.3</td>
+                                <td>23%</td>
+                                <td>271.0</td>
+                                <td>64%</td>
+                                <td>54.2</td>
+                                <td>13%</td>
+                                <td>420.5</td>
+                            </tr>
+                            <tr>
+                                <td>Northern</td>
+                                <td>917.4</td>
+                                <td>32%</td>
+                                <td>1,509.9</td>
+                                <td>53%</td>
+                                <td>433.1</td>
+                                <td>15%</td>
+                                <td>2,860.4</td>
+                            </tr>
+                            <tr>
+                                <td>Upper East</td>
+                                <td>143.1</td>
+                                <td>24%</td>
+                                <td>382.8</td>
+                                <td>65%</td>
+                                <td>64.2</td>
+                                <td>11%</td>
+                                <td>590.1</td>
+                            </tr>
+                            <tr>
+                                <td>Upper West</td>
+                                <td>302.0</td>
+                                <td>29%</td>
+                                <td>578.0</td>
+                                <td>55%</td>
+                                <td>179.5</td>
+                                <td>17%</td>
+                                <td>1,059.5</td>
+                            </tr>
+                            <tr>
+                                <td>Volta</td>
+                                <td>352.0</td>
+                                <td>28%</td>
+                                <td>589.3</td>
+                                <td>47%</td>
+                                <td>314.5</td>
+                                <td>25%</td>
+                                <td>1,255.8</td>
+                            </tr>
+                            <tr>
+                                <td>Western</td>
+                                <td>720.7</td>
+                                <td>43%</td>
+                                <td>531.8</td>
+                                <td>32%</td>
+                                <td>408.2</td>
+                                <td>25%</td>
+                                <td>1,660.7</td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td>Total</td>
+                                <td>4,548.2</td>
+                                <td>32%</td>
+                                <td>6,954.5</td>
+                                <td>49%</td>
+                                <td>2,647.5</td>
+                                <td>19%</td>
+                                <td>14,150.2</td>
+                            </tr>
+                        </tbody>
+                    </table></br>
+                    <p style="margin-left: 38px;">
+                        The <span style="font-weight: 800; font-style: italic;">2019 Road Condition Mix of 32% Good, 
+                        49% Fair and 19% Poor</span> suggests the road condition has deteriorated 
+                        significantly compared to the last four (4) years. The current condition 
+                        mix lags far behind the projected target of 70% Good, 20% Fair and 10% Poor 
+                        to be achieved by 2037, as contained in the GHA’s 20-Year Strategic Plan (2017 – 2037). 
+                        This may be attributed to inadequate budget funding, late procurement and commencement 
+                        of road maintenance projects, misplaced maintenance intervention selection and prioritization, 
+                        suspension of projects due to delayed or non-payment of contractors among others as 
+                        the possible factors.
+                    </p>
+            </div>
+            <div>
+                <p>
+                    <strong>Present Statistics of The Trunk Road Network</strong></br> 
+                    The PMMP software was used to provide information on the statistics of the trunk road 
+                    network surveyed in the 2019 survey year.  The lengths of roads by surface type in 
+                    the various regions were obtained (Table IV).    
+                </p></br>
+                <h3 style="text-align: center;"><i class="fa fa-table"></i>
+                   Table IV; 2019 Surveyed Trunk Road Network Statistics (Regional)
+                </h3>
+                    <table class="table table-bordered" style="margin-left: 28px; text-align: center; margin-top: 20px;">
+                        <thead style="font-weight: bolder; line-height: 45px; font-size: medium;">
+                            <tr>
+                                <td rowspan="3" style="padding-top: 48px;">Region</td>
+                                <td colspan="4">Roads Surveyed in 2019</td>
+                                <td rowspan="2" style="padding-top: 30px;">Total Length</td>
+                            </tr>
+                            <tr>
+                                <td>Asphalt</td>
+                                <td>Surface Treated</td>
+                                <td>Rigid</td>
+                                <td>Gravel</td>
+                            </tr>
+                            <tr>
+                                <td>km</td>
+                                <td>km</td>
+                                <td>km</td>
+                                <td>km</td>
+                                <td>km</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 15px;">
+                            <tr>
+                                <td>Ashanti</td>
+                                <td>525.1</td>
+                                <td>756.2</td>
+                                <td></td>
+                                <td>363.9</td>
+                                <td>1,645.2</td>
+                            </tr>
+                            <tr>
+                                <td>Brong Ahafo</td>
+                                <td>349.7</td>
+                                <td>1,010.0</td>
+                                <td></td>
+                                <td>645.7</td>
+                                <td>2,005.4</td>
+                            </tr>
+                            <tr>
+                                <td>Central</td>
+                                <td>307.0</td>
+                                <td>537.0</td>
+                                <td></td>
+                                <td>318.2</td>
+                                <td>1,162.2</td>
+                            </tr>
+                            <tr>
+                                <td>Eastern</td>
+                                <td>191.4</td>
+                                <td>831.7</td>
+                                <td></td>
+                                <td>467.3</td>
+                                <td>1,490.4</td>
+                            </tr>
+                            <tr>
+                                <td>Greater Accra</td>
+                                <td>253.3</td>
+                                <td>119.5</td>
+                                <td>38.6</td>
+                                <td>9.1</td>
+                                <td>420.5</td>
+                            </tr>
+                            <tr>
+                                <td>Northern</td>
+                                <td>300.9</td>
+                                <td>838.2</td>
+                                <td></td>
+                                <td>1,721.3</td>
+                                <td>2,860.4</td>
+                            </tr>
+                            <tr>
+                                <td>Upper East</td>
+                                <td>70.2</td>
+                                <td>156.8</td>
+                                <td></td>
+                                <td>363.1</td>
+                                <td>590.1</td>
+                            </tr>
+                            <tr>
+                                <td>Upper West</td>
+                                <td>53.4</td>
+                                <td>223.2</td>
+                                <td></td>
+                                <td>782.9</td>
+                                <td>1,059.5</td>
+                            </tr>
+                            <tr>
+                                <td>Volta</td>
+                                <td>147.1</td>
+                                <td>972.2</td>
+                                <td></td>
+                                <td>136.5</td>
+                                <td>1,255.8</td>
+                            </tr>
+                            <tr>
+                                <td>Western</td>
+                                <td>458.8</td>
+                                <td>485.1</td>
+                                <td></td>
+                                <td>716.8</td>
+                                <td>1,660.7</td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td>Total</td>
+                                <td>2,656.9</td>
+                                <td>5,929.9</td>
+                                <td>38.6</td>
+                                <td>5,524.8</td>
+                                <td>14,150.2</td>
+                            </tr>
+                        </tbody>
+                    </table></br>
+            </div>
+            <div>
+                <p>
+                    <strong>Road Surface Condition Mix for the Surveyed Network</strong></br>     
+                </p></br>
+                <h3 style="text-align: center;"><i class="fa fa-table"></i>
+                   Table V; 2019 Road Surface Condition Mix for different surface types surveyed.
+                </h3>
+                    <table class="table table-bordered" style="margin-left: 28px; text-align: center; margin-top: 20px;">
+                        <thead style="font-weight: bolder; line-height: 45px; font-size: medium;">
+                            <tr>
+                                <td rowspan="3" style="padding-top: 48px;">Surface Type</td>
+                                <td colspan="6">Condition Description</td>
+                                <td rowspan="2" style="padding-top: 30px;">Total Length</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Good</td>
+                                <td colspan="2">Fair</td>
+                                <td colspan="2">Poor</td>
+                            </tr>
+                            <tr>
+                                <td>km</td>
+                                <td>%</td>
+                                <td>km</td>
+                                <td>%</td>
+                                <td>km</td>
+                                <td>%</td>
+                                <td>km</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 15px;">
+                            <tr>
+                                <td>Rigid</td>
+                                <td>0.0</td>
+                                <td>0.0</td>
+                                <td>0.0</td>
+                                <td>0.0</td>
+                                <td>38.6</td>
+                                <td>100</td>
+                                <td style="font-weight: bold;">38.6</td>
+                            </tr>
+                            <tr>
+                                <td>Asphalt</td>
+                                <td>1,047.4</td>
+                                <td>39</td>
+                                <td>1,472.3</td>
+                                <td>55</td>
+                                <td>137.2</td>
+                                <td>5</td>
+                                <td style="font-weight: bold;">2,656.9</td>
+                            </tr>
+                            <tr>
+                                <td>Surface Treated</td>
+                                <td>2,404.9</td>
+                                <td>41</td>
+                                <td>2,803.8</td>
+                                <td>47</td>
+                                <td>721.2</td>
+                                <td>12</td>
+                                <td style="font-weight: bold;">5,929.9</td>
+                            </tr>
+                            <tr>
+                                <td>Gravel</td>
+                                <td>1,095.9</td>
+                                <td>20</td>
+                                <td>2,659.1</td>
+                                <td>48</td>
+                                <td>1,769.8</td>
+                                <td>32</td>
+                                <td style="font-weight: bold;">5,524.8</td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td>Total</td>
+                                <td>4,548.2</td>
+                                <td>32</td>
+                                <td>6,935.2</td>
+                                <td>49</td>
+                                <td>2,666.8</td>
+                                <td>19</td>
+                                <td>14,150.2</td>
+                            </tr>
+                        </tbody>
+                    </table></br>
+                    <p>
+                        For supplementary information please refer to this 
+                        <a style="font-weight: bold;" href="{{ url_for('projects.reports_2019') }}">table</a>  
+                    </p>
+            </div> 
+        </div>
+        {% include 'includes/sidebar.html' %} 
+    </div>
+</div> 
+{% endblock content %} 

@@ -8,7 +8,8 @@
                         <h4 class="">Personal Details</h4>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input class="form-control" type="text" name="name" id="name" value="{{ current_user.first_name }}" readonly> 
+                            <input class="form-control" type="text" name="name" id="name" 
+                                    value="{{ current_user.first_name }} {{ current_user.last_name }}" readonly> 
                         </div>
                         <div class="form-group">
                             {{ form.rank.label }}
