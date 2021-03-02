@@ -13,7 +13,7 @@ from trial.projects.precons import update_precons, precons_data
 from trial.projects.repairs import update_repairs, repairs_data
 from trial.projects.resurface import update_resurface, resurface_data
 from trial.road_conditions import rd_cond_data, update_rd_cond
-from trial.road_cond_2k19 import road_data_2K19, update_rd_cond2K19
+from trial.road_cond_2k19 import road_data_2K19, update_rd_cond2K19 
 from trial.projects.forms import DateForm
 from flask_login import login_required
 from trial.users.utils import admin_required
@@ -281,6 +281,13 @@ def reports_2019():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/reports_2019.html', title='2019 Report',  posts=posts, rd_cond=rd_cond)
 
+@projects.route('/projects/critical_roads')
+def critical_roads():
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    return render_template('projects/critical_roads.html', posts=posts)
+
+
 
 #View Contract list from the database
 @projects.route('/contract/view/<int:contract_id>/details') 
@@ -294,7 +301,7 @@ def view_contract(contract_id):
     return render_template('projects/video.html', contract=contract, contract_id=contract_id, posts=posts)
 
 #View Regravelling Projects details from the database
-@projects.route('/regrav/view/<int:contract_id>/details') 
+@projects.route('/regrav/view/<int:contract_id>/details')  
 def regrav_contract(contract_id):
     regrav = Regravelling.query.get_or_404(contract_id)
 
@@ -308,7 +315,6 @@ def regrav_contract(contract_id):
 @projects.route('/rehab/view/<int:contract_id>/details') 
 def rehab_contract(contract_id):
     rehab = Rehabilitation.query.get_or_404(contract_id)
-
     match = re.search(r"youtube\.com/.*v=([^&]*)", rehab.video_link)
     if match:
         contract_id = match.group(1)

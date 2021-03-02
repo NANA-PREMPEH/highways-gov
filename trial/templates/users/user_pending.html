@@ -1,0 +1,152 @@
+{% extends "users/users_dash_layout.html" %}
+{% block content %}
+    <main>
+        <div class="container-fluid">
+        </br>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">{{ title }}</li>
+            </ol>
+            {% include "users/user_dash_menus.html" %}
+            
+            <!--<div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area mr-1"></i>
+                            Area Chart Example
+                        </div>
+                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Leave Requests on Pending
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Section</th>
+                                    <th>Reason</th>
+                                    <th>Leave From/To</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for requests in pending %}
+                                {% if requests.leave_status == "Pending" %}
+                                <tr>
+                                    <td>{{ requests.name }}</td>
+                                    <td>{{ requests.email }}</td>
+                                    <td>{{ requests.section }}</td>
+                                    <td>{{ requests.supp_info }}</td>
+                                    <td>{{ requests.start_date }} to {{ requests.end_date }}</td>
+                                    <td>
+                                        <span class="btn btn-warning btn-sm">{{ requests.leave_status }}</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a href="#user-{{loop.index}}-details"><i class="fa fa-info-circle" data-toggle="modal" data-target="#modal_{{ requests.id }}"></i></a>
+                                        <div class="modal fade" id="modal_{{ requests.id }}" tabindex="-1" role="dialog" aria-labelledby="label_modal_{{ requests.id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header text-center">
+                                                  <h5 class="modal-title" id="label_modal_{{ requests.id }}">
+                                                    {{ requests.name }}'s leave request
+                                                  </h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <div class="modal_approval_choice modal-body pb-0">
+                                                  <div class="row"><div class="col"><strong>Reasons</strong></div></div>
+                                                  <div class="row">
+                                                    <div class="col pt-3 border-top border-right">
+                                                        {{ requests.supp_info }}
+                                                    </div>
+                                                    <div class="col-xl-6 col-sm-6 col-xs-6">
+                                                      <div class="row">
+                                                        <!--
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 pt-3 mb-3 pb-3 border-top border-bottom text-center">
+                                                          <p class="text-success">Already Approved!</p>
+                                                        </div>
+                                                        
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 pt-3 mb-3 pb-3 border-top border-bottom text-center">
+                                                          <p>This Leave Request has been <em class="text-danger">rejected.</em></p>
+                                                          <p>see comments</p>
+                                                        </div>
+                                                        
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 pt-3 mb-3 pb-3 border-top border-bottom text-center">
+                                                          <p>This Leave Request has been <em class="text-warning">cancelled..</em></p>
+                                                        </div>-->
+                                                          <div class="col-xl-12 col-sm-12 col-xs-12 pt-2 mb-2 pb-2 border-top border-bottom">
+                                                              <button type="button" class="delete btn btn-secondary" value="deleted">Cancel</button>
+                                                          </div>
+                                                        
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Approve Request Form -->
+                                                <form class="approval_modal_form" action="{{ url_for('leavemgt.decide_on_leave_req', leave_id=requests.id) }}" method="POST">
+                                                    {{ form.csrf_token }}
+                                                  <div class="confirmation modal-body pb-0">
+                                                    <p>Please confirm your selection</p>
+                                                    <input name="user_id" class="d-none" type="text" value="{{request._id}}">
+                                                      {{ form.approve(value="Approved")}}   
+                                                  </div>
+                                                  <div class="confirmation modal-footer justify-content-center">
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
+                                                      {{ form.confirm( class="btn btn-primary") }}  
+                                                  </div> 
+                                                </form>
+                                                <!--Cancel Request Form-->
+                                                <form class="approval_modal_form" action="{{ url_for('leavemgt.decide_on_leave_req', leave_id=requests.id) }}" method="POST">
+                                                    {{ form.csrf_token }}
+                                                  <div class="cancel_confirmation modal-body pb-0">
+                                                    <p>Please confirm your selection</p>
+                                                    <input name="user_id" class="d-none" type="text" value="{{request._id}}">
+                                                      {{ form.cancel(value="Cancelled")}}   
+                                                  </div>
+                                                  <div class="cancel_confirmation modal-footer justify-content-center">
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
+                                                      {{ form.confirm( class="btn btn-primary") }}  
+                                                  </div> 
+                                                </form>
+
+                                                <!--Reject Request Form-->
+                                                <form class="approval_modal_form" action="{{ url_for('leavemgt.decide_on_leave_req', leave_id=requests.id) }}" method="POST">
+                                                    {{ form.csrf_token }}
+                                                  <div class="reject_confirmation modal-body pb-0">
+                                                    <p>Please confirm your selection</p>
+                                                    <input name="user_id" class="d-none" type="text" value="{{request._id}}">
+                                                      {{ form.reject(value="Rejected")}}   
+                                                  </div>
+                                                  <div class="reject_confirmation modal-footer justify-content-center">
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
+                                                      {{ form.confirm( class="btn btn-primary") }}  
+                                                  </div> 
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

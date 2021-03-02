@@ -1,0 +1,239 @@
+{% extends "leavemgt/leavedash_layout.html" %}
+{% block content %}
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Dashboard</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-body">Approved Requests
+                            <span class="badge badge-pill badge-light ml-3">
+                                {{ app_no }}
+                            </span>
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <a class="small text-white stretched-link" href="{{ url_for('leavemgt.approved_req') }}">
+                                View Details
+                            </a>
+                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-warning text-white mb-4">
+                        <div class="card-body">New Requests
+                            <span class="badge badge-pill badge-light ml-3">
+                                {{ pending_no }}
+                            </span>
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <a class="small text-white stretched-link" href="{{ url_for('leavemgt.pending_req') }}">
+                                View Details
+                            </a>
+                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-primary text-white mb-4">
+                        <div class="card-body">All Requests
+                            <span class="badge badge-pill badge-light ml-3">
+                                {{ tot_req }}
+                            </span>
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <a class="small text-white stretched-link" href="{{ url_for('leavemgt.leave_dash') }}">
+                                View Details
+                            </a>
+                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-danger text-white mb-4">
+                        <div class="card-body">Rejected Requests
+                            <span class="badge badge-pill badge-light ml-3">
+                                {{ rej_no }}
+                            </span>
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <a class="small text-white stretched-link" href="{{ url_for('leavemgt.rejected_req') }}">
+                                View Details
+                            </a>
+                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                {% if not current_user.role_id == 3 %}
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-secondary text-white mb-4">
+                        <div class="card-body">Cancelled Requests
+                            <span class="badge badge-pill badge-light ml-3">
+                                {{ cancel_no }}
+                            </span>
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <a class="small text-white stretched-link" href="{{ url_for('leavemgt.cancelled_req') }}">
+                                View Details
+                            </a>
+                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!--<div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area mr-1"></i>
+                            Area Chart Example
+                        </div>
+                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Leave Requests
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead> 
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Section</th>
+                                    <th>Reason</th>
+                                    <th>Leave From/To</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for requests in all_req %}
+                                {% if not requests.leave_status == "Cancelled" %}
+                                <tr>
+                                    <td>{{ requests.name }}</td>
+                                    <td>{{ requests.email }}</td>
+                                    <td>{{ requests.section }}</td>
+                                    <td>{{ requests.supp_info }}</td>
+                                    <td>{{ requests.start_date }} to {{ requests.end_date }}</td>
+                                    <td>
+                                        {% if requests.leave_status == "Approved" %}
+                                        <span class="btn btn-success btn-sm">{{ requests.leave_status }}</span>
+                                        {% elif requests.leave_status == "Pending" %}
+                                        <span class="btn btn-warning btn-sm">{{ requests.leave_status }}</span>
+                                        {% elif requests.leave_status == "Rejected" %}
+                                        <span class="btn btn-danger btn-sm">{{ requests.leave_status }}</span> 
+                                        {% endif %}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a href="#user-{{loop.index}}-details"><i class="fa fa-info-circle" data-toggle="modal" data-target="#modal_{{ requests.id }}"></i></a>
+                                        <div class="modal fade" id="modal_{{ requests.id }}" tabindex="-1" role="dialog" aria-labelledby="label_modal_{{ requests.id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header text-center">
+                                                  <h5 class="modal-title" id="label_modal_{{ requests.id }}">
+                                                    {{ requests.name }}'s leave request
+                                                  </h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <div class="modal_approval_choice modal-body pb-0"> 
+                                                  <div class="row"><div class="col"><strong>Reasons</strong></div></div>
+                                                  <div class="row">
+                                                    <div class="col pt-3 border-top border-right">
+                                                        {{ requests.supp_info }}
+                                                    </div>
+                                                    <div class="col-xl-6 col-sm-6 col-xs-6"> 
+                                                      <div class="row">
+                                                        {% if requests.leave_status=="Approved" %}
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 pt-3 mb-3 pb-3 border-top border-bottom text-center">
+                                                          <p class="text-success">Already Approved!</p>
+                                                        </div>
+                                                        {% elif requests.leave_status=="Rejected" %}
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 pt-3 mb-3 pb-3 border-top border-bottom text-center">
+                                                          <p>This Leave Request has been <em class="text-danger">rejected.</em></p>
+                                                        </div>
+                                                        {% elif requests.leave_status=="Cancelled" %}
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 pt-3 mb-3 pb-3 border-top border-bottom text-center">
+                                                          <p>This Leave Request has been <em class="text-warning">cancelled..</em></p>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 pt-2 mb-2 pb-2 border-top border-bottom">
+                                                        <button type="button" class="approve btn btn-success" value="approved">Approve</button>
+                                                        </div>
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 mb-2 pb-2 border-bottom">
+                                                            <button type="button" class="reject btn btn-danger" value="rejected">Reject</button> 
+                                                        </div>
+                                                        {% endif %}
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Approve Request Form -->
+                                                <form class="approval_modal_form" action="{{ url_for('leavemgt.decide_on_leave_req', leave_id=requests.id) }}" method="POST">
+                                                    {{ form.csrf_token }}
+                                                  <div class="confirmation modal-body pb-0">
+                                                    <p>Please confirm your selection</p>
+                                                    <input name="user_id" class="d-none" type="text" value="{{request._id}}">
+                                                      {{ form.approve(value="Approved")}}   
+                                                  </div>
+                                                  <div class="confirmation modal-footer justify-content-center">
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
+                                                      {{ form.confirm( class="btn btn-primary") }}  
+                                                  </div> 
+                                                </form>
+                                                <!--Cancel Request Form-->
+                                                <form class="approval_modal_form" action="{{ url_for('leavemgt.decide_on_leave_req', leave_id=requests.id) }}" method="POST">
+                                                    {{ form.csrf_token }}
+                                                  <div class="cancel_confirmation modal-body pb-0">
+                                                    <p>Please confirm your selection</p>
+                                                    <input name="user_id" class="d-none" type="text" value="{{request._id}}">
+                                                      {{ form.cancel(value="Cancelled")}}   
+                                                  </div>
+                                                  <div class="cancel_confirmation modal-footer justify-content-center">
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
+                                                      {{ form.confirm( class="btn btn-primary") }}  
+                                                  </div> 
+                                                </form>
+
+                                                <!--Reject Request Form-->
+                                                <form class="approval_modal_form" action="{{ url_for('leavemgt.decide_on_leave_req', leave_id=requests.id) }}" method="POST">
+                                                    {{ form.csrf_token }}
+                                                  <div class="reject_confirmation modal-body pb-0">
+                                                    <p>Please confirm your selection</p>
+                                                    <input name="user_id" class="d-none" type="text" value="{{request._id}}">
+                                                      {{ form.reject(value="Rejected")}}   
+                                                  </div>
+                                                  <div class="reject_confirmation modal-footer justify-content-center">
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
+                                                      {{ form.confirm( class="btn btn-primary") }}  
+                                                  </div> 
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>  
+{% endblock content %}

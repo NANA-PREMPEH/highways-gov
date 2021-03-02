@@ -6,7 +6,9 @@ from flask_migrate import Migrate
 from elasticsearch import Elasticsearch
 from flask_mail import Mail
 from trial.config import Config
-from flask_uploads import IMAGES, UploadSet, configure_uploads, patch_request_class
+from flask_s3 import FlaskS3
+
+
 
 
 
@@ -17,14 +19,11 @@ from flask_uploads import IMAGES, UploadSet, configure_uploads, patch_request_cl
 mail = Mail()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
-migrate = Migrate()
+migrate = Migrate() 
 login_manager = LoginManager() 
-
 login_manager.login_view = 'users.login' 
 login_manager.login_message_category = 'info' 
-
-photos = UploadSet('photos', IMAGES)
-
+s3 = FlaskS3()
 
 
 
@@ -41,9 +40,7 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
-    photos = UploadSet('photos', IMAGES)
-    configure_uploads(app, photos)
-    patch_request_class(app, None)
+    s3.init_app(app)
     
 
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
@@ -57,6 +54,7 @@ def create_app(config_class=Config):
     from trial.main.routes import main
     from trial.errors.handlers import errors
     from trial.admin.routes import admin
+    from trial.leavemgt.routes import leavemgt
 
     #Register the blueprint
     app.register_blueprint(users)
@@ -66,6 +64,7 @@ def create_app(config_class=Config):
     app.register_blueprint(main)
     app.register_blueprint(errors)
     app.register_blueprint(admin)
+    app.register_blueprint(leavemgt)
 
 
     return app

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
         
         <link rel="icon" href="{{ url_for('static', filename='img/Coat_of_arms_of_Ghana.png') }}" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -141,6 +141,7 @@
                                                 <li ><a href="{{ url_for('main.planning_routine') }}" >Routine</a></li>   
                                             </ul>
                                         </li>
+                                        <li><a href="{{ url_for('projects.critical_roads') }}">Critical Roads</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown submenu">
@@ -158,8 +159,8 @@
                                             </a>
                                             <ul>
                                                 <li ><a href="{{ url_for('generalforms.defect') }}" >Defect Report</a></li>
-                                                <li ><a href="{{ url_for('generalforms.leave', post_id=current_user.id) }}">Leave</a></li>
-                                                <li ><a href="{{ url_for('generalforms.others') }}">Others</a></li>
+                                                <li ><a href="{{ url_for('generalforms.leave') }}">Leave</a></li>
+                                                <li ><a href="{{ url_for('generalforms.others') }}">Others</a></li> 
                                             </ul>
                                         </li>
                                     </ul>
@@ -188,7 +189,7 @@
                                     {% endif %}
                                     </a>
                                 </li>    
-                            </ul>
+                            </ul> 
                         </div><!-- /.navbar-collapse -->
                     </nav>
                 </div> 
@@ -362,8 +363,10 @@
                             <aside class="f_widget give_us_widget">
                                 <h5>Give Us A Call</h5>
                                 <h4>03220-23331/23332</h4>
-                                <h5>or</h5>
-                                <a class="get_bg_btn" href="#">GET A QUOTE</a>
+                                </br></br>
+                                <a class="get_bg_btn" href="{{ url_for('users.login') }}">
+                                    E-PORTAL
+                                </a>
                             </aside>
                         </div>
                     </div>
@@ -423,7 +426,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{{ url_for('static', filename='js/gmaps.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
         <!-- DataTables -->
-        <script src="{{ url_for('static', filename='DataTables/js/jquery.dataTables.min.js') }}"></script> 
+        <script src="{{ url_for('static', filename='DataTables/js/jquery.dataTables.min.js') }}"></script>
+        <script src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
+        <script>
+            $(document).ready(function(){
+            var table = $('#critical_roads').DataTable({
+                'ajax': 'https://santa-gha.s3.amazonaws.com/static/json/arrays.json',
+                'rowsGroup': [0]
+            });
+            });
+        </script>
         <!-- page script -->    
         <script>
             $(function () {

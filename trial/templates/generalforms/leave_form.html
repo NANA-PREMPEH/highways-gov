@@ -1,19 +1,19 @@
 {% extends "includes/layout.html" %}
-{% block content %}
+{% block content %} 
     <div class="container">
         <div class="row blog_details_inner" id="leave" style="margin-left: 2%;">  
             <form action="" method="post">
                 <fieldset class="form-group">
                     <div class="col-md-6" id="content_1" style="padding-bottom: 53px;">
                         <h4 class="">Personal Details</h4>
-                        <div class="form-group">
+                        <div class="form-group"> 
                             <label for="name">Name</label>
                             <input class="form-control" type="text" name="name" id="name" 
                                     value="{{ current_user.first_name }} {{ current_user.last_name }}" readonly> 
                         </div>
                         <div class="form-group">
                             {{ form.rank.label }}
-    
+     
                             <!--If form had errors-->
                             {% if form.rank.errors %}
                                 {{ form.rank(class="form-control", style="border-color: #a94442;") }}

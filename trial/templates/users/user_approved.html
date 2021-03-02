@@ -1,0 +1,93 @@
+{% extends "users/users_dash_layout.html" %}
+{% block content %}
+    <main>
+        <div class="container-fluid">
+        </br>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">{{ title }}</li>
+            </ol>
+            {% include "users/user_dash_menus.html" %}
+            
+            <!--<div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area mr-1"></i>
+                            Area Chart Example
+                        </div>
+                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="card mb-4">
+                <div class="card-header"> 
+                    <i class="fas fa-table mr-1"></i>
+                    Approved Leave Requests
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Section</th>
+                                    <th>Reason</th>
+                                    <th>Leave From/To</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for requests in approved %}
+                                {% if requests.leave_status == "Approved" %}
+                                <tr>
+                                    <td>{{ requests.name }}</td>
+                                    <td>{{ requests.email }}</td>
+                                    <td>{{ requests.section }}</td>
+                                    <td>{{ requests.supp_info }}</td>
+                                    <td>{{ requests.start_date }} to {{ requests.end_date }}</td>
+                                    <td>
+                                        <span class="btn btn-success btn-sm">{{ requests.leave_status }}</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a href="#user-{{loop.index}}-details"><i class="fa fa-info-circle" data-toggle="modal" data-target="#modal_{{ requests.id }}"></i></a>
+                                        <div class="modal fade" id="modal_{{ requests.id }}" tabindex="-1" role="dialog" aria-labelledby="label_modal_{{ requests.id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header text-center">
+                                                  <h5 class="modal-title" id="label_modal_{{ requests.id }}">
+                                                    {{ requests.name }}'s leave request
+                                                  </h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <div class="modal_approval_choice modal-body pb-0">
+                                                  <div class="row"><div class="col"><strong>Reasons</strong></div></div>
+                                                  <div class="row">
+                                                    <div class="col pt-3 border-top border-right">No comments</div>
+                                                    <div class="col-xl-6 col-sm-6 col-xs-6">
+                                                      <div class="row">
+                                                        <div class="col-xl-12 col-sm-12 col-xs-12 pt-3 mb-3 pb-3 border-top border-bottom text-center">
+                                                          <p class="text-success">Already Approved!</p>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

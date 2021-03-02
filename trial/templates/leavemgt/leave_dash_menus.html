@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body">Approved Requests
+                <span class="badge badge-pill badge-light ml-3">
+                    {{ app_no }}
+                </span>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="{{ url_for('leavemgt.approved_req') }}">
+                    View Details
+                </a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-body">New Requests
+                <span class="badge badge-pill badge-light ml-3">
+                    {{ pending_no }}
+                </span>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="{{ url_for('leavemgt.pending_req') }}">
+                    View Details
+                </a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">All Requests
+                <span class="badge badge-pill badge-light ml-3"> 
+                    {{ tot_req }}
+                </span>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="{{ url_for('leavemgt.leave_dash') }}">
+                    View Details
+                </a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-danger text-white mb-4">
+            <div class="card-body">Rejected Requests
+                <span class="badge badge-pill badge-light ml-3">
+                    {{ rej_no}}
+                </span>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="{{ url_for('leavemgt.rejected_req') }}">
+                    View Details
+                </a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    {% if not current_user.role_id == 3 %}
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-secondary text-white mb-4">
+            <div class="card-body">Cancelled Requests
+                <span class="badge badge-pill badge-light ml-3"> 
+                    {{ cancel_no }}
+                </span>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="{{ url_for('leavemgt.cancelled_req') }}">
+                    View Details
+                </a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>

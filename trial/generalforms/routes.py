@@ -4,12 +4,12 @@ import flask_login
 from flask_login.utils import login_required
 from trial import db
 from trial.generalforms.forms import DefectReportForm, LeaveForm
-from trial.models import Leave, Post
+from trial.models import Leave, Post 
 import pdfkit
 
 
 generalforms = Blueprint('generalforms', __name__) 
-
+ 
 
 #Create a route for defect form
 @generalforms.route('/defect', methods=['GET', 'POST'])
@@ -22,7 +22,7 @@ def defect():
     return render_template('generalforms/defect_rep.html', title='Road Defects Report', form=form, posts=posts)
 
 #Create a route for leave Form    
-@generalforms.route('/leave', methods=['GET', 'POST'])
+@generalforms.route('/leave', methods=['GET', 'POST']) 
 @login_required
 def leave():
     form = LeaveForm()
@@ -33,7 +33,7 @@ def leave():
                     start_date=form.start_date.data, end_date=form.end_date.data, supp_info=form.supp_info.data,
                     address=form.address.data, mobile_no=form.mobile_no.data, email=form.email.data, 
                     days_proceed=form.days_proceed.data, effec_date=form.effec_date.data, resump_date=form.resump_date.data,
-                    outs_days=form.outs_days.data, author=current_user)
+                    outs_days=form.outs_days.data, leave_status=form.leavestatus.data, author=current_user)
         db.session.add(le_ave)
         db.session.commit()
         flash(f"Leave form submitted successfully", 'success')
@@ -44,7 +44,7 @@ def leave():
 
 
 #Route to view the Leave form
-@generalforms.route('/post/<int:post_id>')
+@generalforms.route('/post/<int:post_id>') 
 @login_required
 def post(post_id):
     post = Leave.query.get_or_404(post_id)
@@ -52,7 +52,7 @@ def post(post_id):
     return render_template('generalforms/render_form.html', post=post, posts=posts)
 
 #Route for View form 
-@generalforms.route('/view_form/<int:post_id>', methods=['GET', 'POST'])
+@generalforms.route('/view_form/<int:post_id>', methods=['GET', 'POST']) 
 @login_required
 def view_form(post_id):
     post = Leave.query.get_or_404(post_id)

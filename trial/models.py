@@ -12,7 +12,7 @@ class SearchableMixin(object):
     @classmethod
     def search(cls, expression, page, per_page):
         ids, total = query_index(cls.__tablename__, expression, page, per_page)
-        if total == 0:
+        if total == 0: 
             return cls.query.filter_by(id=0), 0
         when = []
         for i in range(len(ids)):
@@ -69,8 +69,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(60), nullable=False)
-    image_file = db.Column(db.String(30), nullable=False, default='default.jpg')
-    posts = db.relationship('Leave', backref='author', lazy=True)
+    image_file = db.Column(db.String(30), nullable=False, default='default.jpg') 
+    posts = db.relationship('Leave', backref='author', lazy=True) 
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __init__(self, **kwargs):
@@ -190,7 +190,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     author = db.relationship('User', backref=db.backref('author', lazy=True))
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
+ 
     def __repr__(self):
         return f"Post('{self.title}', '{self.body}', '{self.image}')"
 
@@ -239,6 +239,7 @@ class Leave(db.Model):
     effec_date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     resump_date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     outs_days = db.Column(db.Integer, nullable=False)
+    leave_status = db.Column(db.String(20), index = True, unique = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):

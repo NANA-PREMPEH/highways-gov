@@ -1,8 +1,9 @@
 from flask import render_template, Blueprint, g, current_app, redirect, url_for, request, jsonify
 from trial import db
+from flask_login import current_user
 from trial.main.forms import SearchForm
 from trial.projects.forms import DateForm
-from trial.models import Post, Upgrading
+from trial.models import Post, Upgrading, User, Leave
 
 
 main = Blueprint('main', __name__)
@@ -44,11 +45,17 @@ def report_2018():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/report_2018.html', title='2018 Report', posts=posts)
 
-#Create a route for 2018 report 
+#Create a route for 2019 report 
 @main.route('/yearly_report/2019')
 def report_2019():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/report_2019.html', title='2019 Report', posts=posts)
+
+#Create a route for 2020 report 
+@main.route('/report/proj_funding')
+def proj_funding():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/proj_funding.html', title='2020 Report', posts=posts)
 
 @main.route('/institution_profile')
 def inst_prof():

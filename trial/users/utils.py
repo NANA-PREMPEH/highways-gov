@@ -7,6 +7,7 @@ from trial import mail
 from flask_mail import Message
 from flask_login import current_user
 from trial.models import Permission
+import boto3
 
 #define a save picture function
 #Takes picture data as an argument
@@ -26,8 +27,12 @@ def save_picture(form_picture):
     i.thumbnail(output_size)
     i.save(picture_path)
 
-    return picture_fn
 
+    s3 = boto3.resource('s3', region_name='us-east-1')
+    s3.Bucket('santa-gha').upload_file(picture_path, 'static/profile_pics/'+picture_fn, ExtraArgs={'ACL':'public-read'})
+
+    return picture_fn
+ 
 #Function to send reset email
 def send_reset_email(user):
     token = user.get_reset_token()

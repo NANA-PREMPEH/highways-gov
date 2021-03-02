@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, IntegerField, TextAreaField, SubmitField, RadioField
+from wtforms import StringField, SelectField, IntegerField, TextAreaField, SubmitField, RadioField, HiddenField
 from wtforms.validators import DataRequired, Length, Email
 
 #Create Leave Form
@@ -24,6 +24,7 @@ class LeaveForm(FlaskForm):
     effec_date = StringField('Effective Date of Leave', validators=[DataRequired()])
     resump_date = StringField('Date of Resumption', validators=[DataRequired()])
     outs_days = IntegerField('Outstanding Leave Day(s)', validators=[DataRequired(message="Please enter a valid number")])
+    leavestatus = HiddenField('Leave Status', default = 'Pending')
     submit = SubmitField('Submit & Preview') 
 
 
