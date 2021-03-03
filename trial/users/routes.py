@@ -14,7 +14,10 @@ users = Blueprint('users', __name__)
 @users.route('/login', methods=['GET', 'POST']) 
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        if current_user.role_id==1:
+            return redirect(url_for('users.user_dashboard',user_name=current_user.first_name +' ' +current_user.last_name))
+        elif current_user.role_id==3:
+            return redirect(url_for('leavemgt.leave_dash'))
     form = LoginForm()
     if form.validate_on_submit():
         #Get User from Database
