@@ -13,7 +13,7 @@ class LeaveForm(FlaskForm):
                             ('Maternity Leave', 'Maternity Leave'),('Sick Leave', 'Sick Leave'),
                             ('Compassionate Leave', 'Compassionate Leave'),('Study Leave', 'Study Leave'),
                             ('Examination Leave', 'Examination Leave'),('Resettlement Leave', 'Resettlement Leave')])
-    no_of_days = IntegerField('No. of Days/Months ', validators=[DataRequired(message="Please enter a valid number")])
+    no_of_days = IntegerField('No. of Days/Months ', validators=[DataRequired(message="Please enter a valid number")]) 
     start_date = StringField('From:', validators=[DataRequired()])
     end_date = StringField('To:', validators=[DataRequired()])
     supp_info = TextAreaField('Supplementary Information', validators=[DataRequired(), Length(min=2)])

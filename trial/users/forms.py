@@ -7,16 +7,17 @@ from flask_wtf.file import FileField, FileAllowed
 
 #Create Login Form
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()]) 
+    acc_gen = StringField('Staff No. / Email', validators=[DataRequired()])  
     password = StringField('Password', validators=[DataRequired()]) 
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
 
 #Create UpdateAccount Form
 class UpdateAccountForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)]) 
+    acc_gen = StringField('Acct-Gen Staff No.', validators=[DataRequired()]) 
+    dob = StringField('Date Of Birth', validators=[DataRequired()]) 
     email = StringField('Email', validators=[DataRequired(), Email()])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])]) 
     submit = SubmitField('Update')
 
     #Check to see if username already exists

@@ -67,7 +67,7 @@ def get_pdf(post_id):
 
     post = Leave.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
-    rendered= render_template('generalforms/render_form.html', title=current_user.username, post=post, posts=posts)
+    rendered= render_template('generalforms/render_form.html', title=current_user.name, post=post, posts=posts)
     css = ['trial/static/css/bootstrap.min.css', 'trial/static/css/style.css']
 
     options = {'enable-local-file-access': None}
@@ -84,7 +84,7 @@ def get_pdf(post_id):
 def render(post_id):
     post = Leave.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('generalforms/render_form.html', post=post, title=current_user.username, posts=posts)
+    return render_template('generalforms/render_form.html', post=post, title=current_user.name, posts=posts)
 
 
 #Route to view other forms   

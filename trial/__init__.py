@@ -49,7 +49,7 @@ def create_app(config_class=Config):
     #Import the blueprint objects and register with our routes
     from trial.users.routes import users
     from trial.blogs.routes import blogs
-    from trial.generalforms.routes import generalforms
+    from trial.generalforms.routes import generalforms 
     from trial.projects.routes import projects
     from trial.main.routes import main
     from trial.errors.handlers import errors

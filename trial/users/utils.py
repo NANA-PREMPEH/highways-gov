@@ -41,7 +41,7 @@ def send_reset_email(user):
     msg.body = f''' To reset your password, visit the following link:
 {url_for('users.reset_token', token=token, _external=True)}
 
-If you did not make this request then simply ignore this email and no changes will be made
+If you did not make this request then simply ignore this email and no changes will be made 
 '''
 
     #Send message
@@ -58,4 +58,4 @@ def permission_required(permission):
     return decorator
 
 def admin_required(f):
-    return permission_required(Permission.ADMIN)(f)
+    return permission_required(Permission.ADMIN)(f) 

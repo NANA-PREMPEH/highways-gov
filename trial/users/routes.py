@@ -5,6 +5,7 @@ from trial import db, bcrypt
 from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm
 from trial.users.utils import send_reset_email, save_picture
 from trial.models import User, Post, Leave
+from trial.staff_list import update_staff, staff
 from trial.leavemgt.forms import LeaveAction
 
 users = Blueprint('users', __name__) 
@@ -15,13 +16,13 @@ users = Blueprint('users', __name__)
 def login():
     if current_user.is_authenticated:
         if current_user.role_id==1:
-            return redirect(url_for('users.user_dashboard',user_name=current_user.first_name +' ' +current_user.last_name))
+            return redirect(url_for('users.user_dashboard',user_name=current_user.name)) 
         elif current_user.role_id==3:
             return redirect(url_for('leavemgt.leave_dash'))
     form = LoginForm()
     if form.validate_on_submit():
         #Get User from Database
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(acc_gen_no=form.acc_gen.data).first() or User.query.filter_by(email=form.acc_gen.data).first()
 
         if user and bcrypt.check_password_hash(user.password, form.password.data): 
             login_user(user, remember=form.remember.data)
@@ -30,7 +31,7 @@ def login():
             next_page = request.args.get('next')
             if not next_page or url_parse(next_page).netloc != '':
                 if current_user.role_id==1:
-                    next_page = url_for('users.user_dashboard',user_name=current_user.first_name +' ' +current_user.last_name)
+                    next_page = url_for('users.user_dashboard',user_name=current_user.name)
                 elif current_user.role_id==3:
                     next_page = url_for('leavemgt.leave_dash')
             return redirect(next_page)
@@ -43,7 +44,7 @@ def login():
 #route for account template
 @users.route('/account', methods=['GET', 'POST']) 
 @login_required
-def account():
+def account(): 
     form = UpdateAccountForm()
     if form.validate_on_submit(): 
         #Check if there is a picture data
@@ -52,15 +53,16 @@ def account():
             picture_file = save_picture(form.picture.data)  
             current_user.image_file = picture_file
         #Set Updated details in the database
-        current_user.username = form.username.data
+        current_user.acc_gen_no = form.acc_gen.data
         current_user.email = form.email.data
         db.session.commit() 
         flash('Your account has been updated!', 'success')
         return redirect(url_for('users.account'))
     #Populate fields with data from the database
     elif request.method == 'GET':
-        form.username.data = current_user.username
+        form.acc_gen.data = current_user.acc_gen_no
         form.email.data = current_user.email
+        form.dob.data = current_user.dob
 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('users/account.html', title='Account', form=form, posts=posts)
@@ -71,6 +73,11 @@ def account():
 def logout():
     logout_user() 
     return redirect(url_for('users.login'))
+
+@users.route('/add_staff_list')
+def add_staff_list():
+    update_staff(staff)
+    return redirect(url_for('admin.dashboard'))
 
 #Route to request reset Password(Where Email is entered to reset password) 
 @users.route('/reset_password', methods=['GET', 'POST'])
@@ -94,7 +101,7 @@ def reset_token(token):
     user = User.verify_reset_token(token) 
     if user is None:
         flash('Token is invalid or expired', 'warning')
-        return redirect(url_for('users.reset_request'))
+        return redirect(url_for('users.reset_request')) 
     form = ResetPasswordForm()
     if form.validate_on_submit():
         #Hash Password
@@ -133,7 +140,7 @@ def act_on_leave_req(leave_id):
         if form.cancel.data:
             req.leave_status = form.cancel.data
         db.session.commit()
-    return redirect(url_for('users.user_dashboard',user_name=current_user.first_name +' ' +current_user.last_name))
+    return redirect(url_for('users.user_dashboard',user_name=current_user.name))
 
 #Route to view user's pending requests
 @users.route('/user_leave_request/<string:username>/pending_requests', methods=['GET', 'POST'])

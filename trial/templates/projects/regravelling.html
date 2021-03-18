@@ -7,26 +7,28 @@
         <table id="mytable" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>NAME OF CONTRACT</th>
+                    <th>REGION</th>
+                    <th>PROJECT</th>
                     <th>LENGTH (Km)</th>
-                    <th>LOT</th>
-                    <th>CONTRACT SUM (GHS)</th>
-                    <th>CONTRACTOR</th> 
+                    <th>CONTRACTOR</th>
                     <th>DATE OF COMMENCE</th>
                     <th>DATE OF COMPLETION</th>
-                    <th>VIEW DETAILS</th>
-                </tr>
+                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th>
+                    <th>VIEW DETAILS</th> 
+                </tr> 
             </thead>
             <tbody>
                 {% for regravelling in regrav_list %} 
                     <tr>  
-                        <td>{{ regravelling.name_of_contract }}</td> 
+                        <td>{{ regravelling.region }}</td>
+                        <td>{{ regravelling.project }}</td>
                         <td>{{ regravelling.length }}</td>
-                        <td>{{ regravelling.lot }}</td>
-                        <td>{{ regravelling.contract_sum }}</td>
                         <td>{{ regravelling.contractor }}</td>
                         <td>{{ regravelling.date_commenced }}</td>
                         <td>{{ regravelling.date_completed }}</td>
+                        <td>{{ regravelling.contract_sum }}</td> 
+                        <td>{{ regravelling.amt_to_date }}</td>
                         <td style="text-align: center;"><a href="{{ url_for('projects.regrav_contract', contract_id=regravelling.id)}}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}

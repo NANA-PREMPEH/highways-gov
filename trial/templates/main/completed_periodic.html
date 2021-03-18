@@ -3,7 +3,7 @@
 <div class="container"> 
     <div class="row blog_details_inner" style="margin-left: 2%;">
         <h3 class="table_h3" id="table_h3">PERIODIC PROJECTS COMPLETED</h3>
-        <div class="col-md-8" id="periodic">
+        <div class="col-md-8" id="periodic" style="margin-top: 3em;">
             <div class="col-sm-4">
                 <table>
                     <tbody>
@@ -15,6 +15,9 @@
                         </tr>
                         <tr>
                             <td><a class="view_btn1" href="{{ url_for('projects.upgrading') }}">Upgrading</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('projects.part_reconst') }}">Partial Reconstruct.</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -31,6 +34,9 @@
                         <tr>
                             <td><a class="view_btn1" href="{{ url_for('projects.asphalticoverlay') }}">Alsphaltic Overlay</a></td>
                         </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('projects.decongestion') }}">Decongestion</a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -46,10 +52,13 @@
                         <tr>
                             <td><a class="view_btn1" href="{{ url_for('projects.repairs_asphaltic') }}">Repairs &#38; Alsphaltic</a></td> 
                         </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('projects.supply') }}">Supply &#38; Inst. of Mat.</a></td> 
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            <div style="margin-top: 8em;">
+            <div style="margin-top: 10em;">
                 <form action="" method="post">
                     <div class="col-md-6" >
                         <label for="start_date" style="font-size: 15px;">From :</label>

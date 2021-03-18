@@ -20,13 +20,14 @@
             <tbody>
                 {% for precons in precons_list %} 
                     <tr>  
-                        <td>{{ precons.name_of_contract }}</td>
+                        <td>{{ precons.region }}</td>
+                        <td>{{ precons.project }}</td>
                         <td>{{ precons.length }}</td>
-                        <td>{{ precons.lot }}</td>
-                        <td>{{ precons.contract_sum }}</td>
                         <td>{{ precons.contractor }}</td>
                         <td>{{ precons.date_commenced }}</td>
                         <td>{{ precons.date_completed }}</td>
+                        <td>{{ precons.contract_sum }}</td> 
+                        <td>{{ precons.amt_to_date }}</td>
                         <td style="text-align: center;"><a href="{{ url_for('projects.precons_contract', contract_id=precons.id)}}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}

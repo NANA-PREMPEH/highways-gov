@@ -7,28 +7,30 @@
         <table id="mytable" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>NAME OF CONTRACT</th>
+                    <th>REGION</th>
+                    <th>PROJECT</th>
                     <th>LENGTH (Km)</th>
-                    <th>LOT</th>
-                    <th>CONTRACT SUM (GHS)</th>
                     <th>CONTRACTOR</th>
                     <th>DATE OF COMMENCE</th>
                     <th>DATE OF COMPLETION</th>
-                    <th>VIEW DETAILS</th>
+                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th>
+                    <th>VIEW DETAILS</th> 
                 </tr>
             </thead>
             <tbody>
                 {% for upgrading in upgrade_list %} 
-                    <tr>  
-                        <td>{{ upgrading.name_of_contract }}</td>
-                        <td>{{ upgrading.length }}</td>
-                        <td>{{ upgrading.lot }}</td>
-                        <td>{{ upgrading.contract_sum }}</td>
-                        <td>{{ upgrading.contractor }}</td>
-                        <td>{{ upgrading.date_commenced }}</td>
-                        <td>{{ upgrading.date_completed }}</td>
-                        <td style="text-align: center;"><a href="{{ url_for('projects.upgrade_contract', contract_id=upgrading.id)}}"><i class="fa fa-eye"></i></a></td>
-                    </tr>
+                <tr>  
+                    <td>{{ upgrading.region }}</td>
+                    <td>{{ upgrading.project }}</td>
+                    <td>{{ upgrading.length }}</td>
+                    <td>{{ upgrading.contractor }}</td>
+                    <td>{{ upgrading.date_commenced }}</td>
+                    <td>{{ upgrading.date_completed }}</td>
+                    <td>{{ upgrading.contract_sum }}</td> 
+                    <td>{{ upgrading.amt_to_date }}</td>
+                    <td style="text-align: center;"><a href="{{ url_for('projects.upgrade_contract', contract_id=upgrading.id)}}"><i class="fa fa-eye"></i></a></td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table></br>

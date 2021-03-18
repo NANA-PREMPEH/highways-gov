@@ -22712,7 +22712,7 @@ rd_cond_data = {
             "Wdth (m)": 5,
             "Surf. Type": "GR",
             "Cond\nScore": "39",
-            "IRI": 7.4,
+            "IRI": 7.4, 
             "Cond.": "Poor"
             }
 

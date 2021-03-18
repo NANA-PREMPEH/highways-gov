@@ -2,13 +2,13 @@
     <div class="col-xl-3 col-md-6">
         <div class="card bg-success text-white mb-4">
             <div class="card-body">Approved Requests
-                <span class="badge badge-pill badge-light ml-3"> 
+                <span class="badge badge-pill badge-light ml-3">  
                     {{ app_no }}
                 </span>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" 
-                    href="{{ url_for('users.user_approved_req', username=current_user.first_name +' ' +current_user.last_name) }}">
+                    href="{{ url_for('users.user_approved_req', username=current_user.name) }}">
                     View Details
                 </a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -24,7 +24,7 @@
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" 
-                    href="{{ url_for('users.user_pending_req', username=current_user.first_name+ ' '+current_user.last_name) }}">
+                    href="{{ url_for('users.user_pending_req', username=current_user.name) }}">
                     View Details
                 </a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -40,7 +40,7 @@
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" 
-                    href="{{ url_for('users.user_dashboard', user_name=current_user.first_name +' ' +current_user.last_name) }}">
+                    href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">
                     View Details
                 </a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -56,7 +56,7 @@
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" 
-                    href="{{ url_for('users.user_rejected_req', username=current_user.first_name+ ' '+current_user.last_name) }}">
+                    href="{{ url_for('users.user_rejected_req', username=current_user.name) }}">
                     View Details
                 </a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -72,7 +72,7 @@
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" 
-                    href="{{ url_for('users.user_cancelled_req', username=current_user.first_name+ ' '+current_user.last_name) }}">
+                    href="{{ url_for('users.user_cancelled_req', username=current_user.name) }}">
                     View Details
                 </a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>

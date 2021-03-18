@@ -7,26 +7,28 @@
         <table id="mytable" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>NAME OF CONTRACT</th>
+                    <th>REGION</th>
+                    <th>PROJECT</th>
                     <th>LENGTH (Km)</th>
-                    <th>LOT</th>
-                    <th>CONTRACT SUM (GHS)</th>
                     <th>CONTRACTOR</th>
                     <th>DATE OF COMMENCE</th>
                     <th>DATE OF COMPLETION</th>
-                    <th>VIEW DETAILS</th>
+                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th>
+                    <th>VIEW DETAILS</th> 
                 </tr> 
             </thead>
             <tbody>
                 {% for rehabilitation in rehab_list %} 
                     <tr>  
-                        <td>{{ rehabilitation.name_of_contract }}</td>
+                        <td>{{ rehabilitation.region }}</td>
+                        <td>{{ rehabilitation.project }}</td>
                         <td>{{ rehabilitation.length }}</td>
-                        <td>{{ rehabilitation.lot }}</td>
-                        <td>{{ rehabilitation.contract_sum }}</td>
                         <td>{{ rehabilitation.contractor }}</td>
                         <td>{{ rehabilitation.date_commenced }}</td>
                         <td>{{ rehabilitation.date_completed }}</td>
+                        <td>{{ rehabilitation.contract_sum }}</td> 
+                        <td>{{ rehabilitation.amt_to_date }}</td>
                         <td style="text-align: center;"><a href="{{ url_for('projects.rehab_contract', contract_id=rehabilitation.id)}}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}

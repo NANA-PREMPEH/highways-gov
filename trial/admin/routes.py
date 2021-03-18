@@ -2,7 +2,7 @@ import os
 import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, logout_user, login_required
-from trial.models import (Post, User, Contract, Rehabilitation, Regravelling, Construction, 
+from trial.models import (Decongestion, Partialreconstruction, Post, Supply, User, Contract, Rehabilitation, Regravelling, Construction, 
                             Resealing, Preconstruction, Resurfacing, Upgrading, Asphalticoverlay, Repairs)
 from trial.admin.forms import RegistrationForm, BlogPostForm, ContractDetailsForm
 from trial.admin.utils import save_photo
@@ -31,7 +31,9 @@ def register():
         #Hash Password
         hashed_pswd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         #Create Instance of the user
-        user = User(first_name=form.first_name.data, last_name=form.last_name.data, username=form.username.data, email=form.email.data, password=hashed_pswd)
+        user = User(ref_no=form.ref_no.data, acc_gen_no=form.acc_gen.data, ssf_no=form.ssf.data, name=form.name.data, dob=form.dob.data,
+                    sex=form.sex.data, job_pos=form.job_pos.data, date_engaged=form.date_engaged.data,
+                    pres_appt=form.pres_appt.data, station=form.division.data, email=form.email.data, password=hashed_pswd)
         #Add user to the database
         db.session.add(user)
         db.session.commit()
@@ -55,7 +57,7 @@ def create_blog():
         db.session.add(post)
         db.session.commit()
         flash('Your Post has been submitted', 'success')
-        return redirect(url_for('blogs.blog'))
+        return redirect(url_for('blogs.blog')) 
     return render_template('admin/create_news.html', title='New Post', form=form)
 
 #Add new Contract details to the database
@@ -67,81 +69,115 @@ def add_contract():
     form = ContractDetailsForm()
 
     if form.validate_on_submit():
-    
-        match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
-        video_id_youtube = match.group(1)
 
-        image_url = "https://img.youtube.com/vi/" + \
-            video_id_youtube + "/mqdefault.jpg" 
-        img_data = requests.get(image_url).content
-        random_hex = secrets.token_hex(16)
-        thumb_filename = random_hex + ".jpg"
+        if form.video_link.data:
+            match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
+            video_id_youtube = match.group(1)
+
+            image_url = "https://img.youtube.com/vi/" + \
+                video_id_youtube + "/mqdefault.jpg" 
+            img_data = requests.get(image_url).content
+            random_hex = secrets.token_hex(16)
+            thumb_filename = random_hex + ".jpg"
 
         with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
-            handler.write(img_data)
+                handler.write(img_data)
 
         if request.form.get('ongoing_periodic')=='Rehabilitation':
-            uploaded_details = Rehabilitation(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Rehabilitation(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         elif request.form.get('ongoing_periodic')=='Regravelling':
-            uploaded_details = Regravelling(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Regravelling(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         elif request.form.get('ongoing_periodic')=='Construction':
-            uploaded_details = Construction(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Construction(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         elif request.form.get('ongoing_periodic')=='Resealing':
-            uploaded_details = Resealing(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Resealing(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
+                                            video_thumb=thumb_filename, user_id=current_user.id)
+        elif request.form.get('ongoing_periodic')=='Partial Reconstruction':
+            uploaded_details = Partialreconstruction(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
+                                            video_thumb=thumb_filename, user_id=current_user.id)
+        elif request.form.get('ongoing_periodic')=='Decongestion':
+            uploaded_details = Decongestion(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
+                                            video_thumb=thumb_filename, user_id=current_user.id)
+        elif request.form.get('ongoing_periodic')=='Supply & Installation of Materials':
+            uploaded_details = Supply(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         elif request.form.get('ongoing_periodic')=='Pre-Contruction':
-            uploaded_details = Preconstruction(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Preconstruction(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         elif request.form.get('ongoing_periodic')=='Resurfacing':
-            uploaded_details = Resurfacing(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Resurfacing(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         elif request.form.get('ongoing_periodic')=='Upgrading':
-            uploaded_details = Upgrading(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Upgrading(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         elif request.form.get('ongoing_periodic')=='Asphaltic Overlay':
-            uploaded_details = Asphalticoverlay(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Asphalticoverlay(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         else:
-            uploaded_details = Repairs(name_of_contract=form.name_of_contract.data, length=form.length.data, 
-                                            lot=form.lot.data, contract_sum=form.contract_sum.data, 
-                                            contractor=form.contractor.data, date_commenced=form.date_commenced.data, 
-                                            date_completed=form.date_completed.data, video_title=form.video_title.data, 
-                                            video_link=form.video_link.data, video_description=form.video_description.data,
+            uploaded_details = Repairs(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data, contractor=form.contractor.data, 
+                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
+                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
+                                            video_title=form.video_title.data, video_link=form.video_link.data,
+                                            video_description=form.video_description.data,
                                             video_thumb=thumb_filename, user_id=current_user.id)
         
         # saving to database
@@ -262,4 +298,6 @@ def contract_view_dash():
     contract = Contract.query.order_by(Contract.id.desc()).all()
 
     return render_template('admin/contract-details-dash.html', title='Dashboard', contract=contract)
+
+
 

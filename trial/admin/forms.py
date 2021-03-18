@@ -1,17 +1,26 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FloatField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FloatField, SelectField
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
 from trial.models import User
 
 #Create Registration Form
 class RegistrationForm(FlaskForm):
-    first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=20)])
-    last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=20)])
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
-    password = PasswordField('Password', validators=[DataRequired()])
+    ref_no = StringField('Ref. No', validators=[DataRequired()])
+    acc_gen = StringField('Acc-Gen Staff No.', validators=[DataRequired()])
+    ssf = StringField('Ssf No.', validators=[DataRequired()])
+    name = StringField('Full Name', validators=[DataRequired()])
+    dob = StringField('Birth Date', validators=[DataRequired()])
+    
+    sex = SelectField('Sex', validators=[DataRequired(message="Please Choose a Category")],
+                                    choices=[('', 'Choose'), ('M', 'M'), ('F', 'F')])
+    job_pos = StringField('Job Position', validators=[DataRequired()])
+    date_engaged = StringField('Date Engaged', validators=[DataRequired()])
+    pres_appt = StringField('Pres. Appt', validators=[DataRequired()])
+    division = StringField('Division/Station', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')]) 
     submit = SubmitField('Register')
 
     #Check to see if username already exists
@@ -36,14 +45,15 @@ class BlogPostForm(FlaskForm):
     submit = SubmitField('Post')
 
 class ContractDetailsForm(FlaskForm):
-    name_of_contract = StringField('Name of Contract', validators=[DataRequired()])
-    length = FloatField('Length (Km)', validators=[DataRequired()])
-    lot = StringField('Lot', validators=[DataRequired()])
-    contract_sum = StringField('Contract Sum', validators=[DataRequired()])
+    region = StringField('Region', validators=[DataRequired()])
+    project = StringField('Project', validators=[DataRequired()])
+    length = StringField('Length (Km)')
     contractor = StringField('Contractor', validators=[DataRequired()])
     date_commenced = StringField('Date of Commence', validators=[DataRequired()])
     date_completed = StringField('Date of Completion', validators=[DataRequired()])
-    video_title = StringField('Video Title', validators=[DataRequired()])
-    video_link = StringField('Video Link', validators=[DataRequired()], render_kw={'placeholder':"https://www.youtube.com/watch?v="})
+    contract_sum = StringField('Original Contract Sum', validators=[DataRequired()])
+    amt_to_date = StringField('Total Amount Cert. To Date', validators=[DataRequired()])
+    video_title = StringField('Video Title')
+    video_link = StringField('Video Link', render_kw={'placeholder':"https://www.youtube.com/watch?v="}) 
     video_description = TextAreaField('Video Description')
     submit = SubmitField('Submit')

@@ -64,13 +64,20 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     active = db.Column('is_active', db.Boolean(), nullable=False, server_default='1')
-    first_name = db.Column(db.String(40), nullable=False)
-    last_name = db.Column(db.String(40), nullable=False)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(100), nullable=False, unique=True)
+    ref_no = db.Column(db.String(120), nullable=False)
+    acc_gen_no = db.Column(db.String(120), nullable=False)
+    ssf_no = db.Column(db.String(120), nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    dob = db.Column(db.Date, nullable=False)
+    sex = db.Column(db.String(120), nullable=False)
+    job_pos = db.Column(db.String(120), nullable=False)
+    date_engaged = db.Column(db.Date, nullable=False)
+    pres_appt = db.Column(db.Date, nullable=False)
+    station = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(100), nullable=False, default='staff@gmail.com')
     password = db.Column(db.String(60), nullable=False)
-    image_file = db.Column(db.String(30), nullable=False, default='default.jpg') 
-    posts = db.relationship('Leave', backref='author', lazy=True) 
+    image_file = db.Column(db.String(30), nullable=False, default='default.jpg')
+    posts = db.relationship('Leave', backref='author', lazy=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __init__(self, **kwargs):
@@ -178,6 +185,28 @@ class Permission:
  
 
 
+#Create User Model
+class Staff(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    active = db.Column('is_active', db.Boolean(), nullable=False, server_default='1')
+    ref_no = db.Column(db.String(120), nullable=False)
+    acc_gen_no = db.Column(db.String(120), nullable=False)
+    ssf_no = db.Column(db.String(120), nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    dob = db.Column(db.Date, nullable=False)
+    sex = db.Column(db.String(120), nullable=False)
+    job_pos = db.Column(db.String(120), nullable=False)
+    date_engaged = db.Column(db.Date, nullable=False)
+    pres_appt = db.Column(db.Date, nullable=False)
+    station = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(100), nullable=False, default='staff@gmail.com')
+    password = db.Column(db.String(60), nullable=False)
+    image_file = db.Column(db.String(30), nullable=False, default='default.jpg')
+
+    def __repr__(self):
+        return f"User('{self.name}', '{self.email}', '{self.image_file}')"
+
+
 #Create a Blog Post Model
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -253,16 +282,17 @@ class Leave(db.Model):
 #Create Upgrading Table
 class Upgrading(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -276,16 +306,17 @@ class Upgrading(db.Model):
 #Create Regravelling Table
 class Regravelling(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -298,16 +329,17 @@ class Regravelling(db.Model):
 #Create Construction Table
 class Construction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.Text, nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -321,13 +353,14 @@ class Construction(db.Model):
 #Create Rehabilitation Table
 class Rehabilitation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
     video_title = db.Column(db.String(300), nullable=True, default='N/A')
     video_link = db.Column(db.String(250), nullable=True, default='N/A')
     video_description = db.Column(db.Text, nullable=True, default='N/A')
@@ -340,19 +373,89 @@ class Rehabilitation(db.Model):
     def __repr__(self):
         return f"Rehabilitation('{self.id}','{self.video_title}','{self.video_link}')"
 
-#Create Resealing Table
-class Resealing(db.Model):
+#Create Partialreconstruction Table
+class Partialreconstruction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='n/a') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Partialreconstruction('{self.id}','{self.video_title}','{self.video_link}')"
+
+#Create Supply Table
+class Supply(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Supply('{self.id}','{self.video_title}','{self.video_link}')"
+
+#Create Decongestion Table
+class Decongestion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Decongestion('{self.id}','{self.video_title}','{self.video_link}')"
+
+#Create Resealing Table
+class Resealing(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -365,16 +468,17 @@ class Resealing(db.Model):
 #Create Preconstruction Table
 class Preconstruction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -387,19 +491,19 @@ class Preconstruction(db.Model):
 #Create Resurfacing Table
 class Resurfacing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
-
     # this is the column with which we are creating the relation with user table
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -409,16 +513,17 @@ class Resurfacing(db.Model):
 #Create Repairs Table
 class Repairs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -431,16 +536,17 @@ class Repairs(db.Model):
 #Create Asphalticoverlay Table
 class Asphalticoverlay(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -453,16 +559,17 @@ class Asphalticoverlay(db.Model):
 
 class Contract(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name_of_contract = db.Column(db.String(120), nullable=True)
-    length = db.Column(db.String(50), nullable=True, default='N/A')
-    lot = db.Column(db.String(50), nullable=True, default='N/A')
-    contract_sum = db.Column(db.String(50), nullable=True, default='N/A') 
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
     date_completed = db.Column(db.Date, nullable=True, default=None)
-    video_title = db.Column(db.String(300))
-    video_link = db.Column(db.String(250))
-    video_description = db.Column(db.Text)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
 

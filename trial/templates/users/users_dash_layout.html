@@ -14,7 +14,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" 
-                href="{{ url_for('users.user_dashboard', user_name=current_user.first_name +' ' +current_user.last_name) }}">G H A - K S I</a>
+                href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">G H A - K S I</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -43,13 +43,14 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">
-                                <img src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" alt="profile_pic.jpg" style="height: 90px; width: 90px;  border-radius: 50%;">
+                                <img src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" alt="profile_pic.jpg" 
+                                    style="height: 90px; width: 90px;  border-radius: 50%; margin-left: 6px;">
                             </div>
                             <div class="sb-nav-link-icon" style="margin-left: 32px;">
                                 {{ current_user.username }}
                             </div></br>
                             <a class="nav-link" 
-                                href="{{ url_for('users.user_dashboard', user_name=current_user.first_name +' ' +current_user.last_name) }}">
+                                href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a></br>
@@ -62,35 +63,35 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{ url_for('generalforms.leave') }}">Add a Request</a>
                                     <a class="nav-link" 
-                                        href="{{ url_for('users.user_approved_req', username=current_user.first_name+ ' '+current_user.last_name) }}">
+                                        href="{{ url_for('users.user_approved_req', username=current_user.name) }}">
                                         Approved Requests
                                     </a>
                                     <a class="nav-link" 
-                                        href="{{ url_for('users.user_pending_req', username=current_user.first_name+ ' '+current_user.last_name) }}">
+                                        href="{{ url_for('users.user_pending_req', username=current_user.name) }}">
                                         Requests Pending
                                     </a>
                                     <a class="nav-link" 
-                                        href="{{ url_for('users.user_rejected_req', username=current_user.first_name+ ' '+current_user.last_name) }}">
+                                        href="{{ url_for('users.user_rejected_req', username=current_user.name) }}">
                                         Rejected Requests
                                     </a> 
                                     <a class="nav-link" 
-                                        href="{{ url_for('users.user_cancelled_req', username=current_user.first_name+ ' '+current_user.last_name) }}">
+                                        href="{{ url_for('users.user_cancelled_req', username=current_user.name) }}">
                                         Cancelled Requests
                                     </a> 
                                 </nav>
                             </div>
                             
-                            <a class="nav-link" 
-                            href="{{ url_for('users.user_dashboard', user_name=current_user.first_name +' ' +current_user.last_name) }}">
+                            <!--<a class="nav-link" 
+                            href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">
                                 <div class="sb-nav-link-icon"><i class="fa fa-icon-certificate"></i></div>
                                 User Dashboard
-                            </a></br>
+                            </a></br> -->
                             
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        <strong style="color: rgb(34, 224, 129);">{{ current_user.username }}</strong>
+                        <strong style="color: rgb(34, 224, 129); font-size: 15px;">{{ current_user.name }}</strong>
                     </div>
                 </nav>
             </div>

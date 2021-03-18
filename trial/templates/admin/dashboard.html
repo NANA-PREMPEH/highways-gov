@@ -21,13 +21,13 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                   <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+                    <a class="navbar-brand" href="{{ url_for('leavemgt.leave_dash') }}">Dashboard</a>
                   </div>
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ url_for('main.home') }}">Home</a></li>
-                    <li><a href="{{ url_for('admin.create_blog') }}">Add Post</a></li>
-                    <li><a href="{{ url_for('admin.add_contract') }}">Add contract</a></li>
-                    <li><a href="{{ url_for('admin.contract_view_dash') }}">View Contract Details Dashboard</a></li>
+                    <li><a href="{{ url_for('admin.create_blog') }}">Add Blog Post</a></li>
+                    <li><a href="{{ url_for('admin.add_contract') }}">Add Contract</a></li>
+                    <!--<li><a href="{{ url_for('admin.contract_view_dash') }}">View Contract Details Dashboard</a></li>-->
                     <li><a href="{{ url_for('leavemgt.leave_dash') }}">Leave Management</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">

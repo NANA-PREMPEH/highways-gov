@@ -19,5 +19,5 @@ def save_photo(photo):
     s3 = boto3.resource('s3', region_name='us-east-1')
     s3.Bucket('santa-gha').upload_file(photo_path, 'static/blog_images/'+photo_name, ExtraArgs={'ACL':'public-read'})
 
-    return photo_name
+    return photo_name 
 

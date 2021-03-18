@@ -3,32 +3,49 @@
 <div class="container">
     <div class="row blog_details_inner" style="margin-left: 4%;">
         <div class="col-md-8"  style="margin-top: 2px;">
-            <div class="modal_th" style="height: 570px;">
+            <div class="modal_th" style="height: 630px;">
                 <div class="media" style="margin-left: 20%; font-family: 'Montserrat', sans-serif;">
                     <img class="rounded-circle" style="border-radius: 50%; width: 150px; float: left; height: 150px;" 
                         src="{{  url_for('static', filename='profile_pics/' + current_user.image_file) }}">
-                    <div style="margin-top: 5%; margin-left: 30%;">
-                        <h2 class="account-heading">{{ current_user.username }}</h2> 
-                        <p class="text-secondary">{{ current_user.email }}</p> 
-                    </div>
+                        <div style="margin-top: 5%; margin-left: 30%;">
+                            <h2 class="" style="font-size: 21px; font-weight: 550; margin-left: -4px;">{{ current_user.name }}</h2> 
+                            <h2 class="" style="font-size: 16px; font-weight: 300; margin-left: -4px; margin-top: 6px;">{{ current_user.job_pos }}</h2> 
+                            <p style="margin-top: 5px; font-weight: bold;">{{ current_user.email }}</p>
+                        </div>
                 </div>
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div class="loginwrap" style="margin-top: 4%;">
                             <legend>Account Info</legend>
                         <div class="form-group">
-                            {{ form.username.label }}
+                            {{ form.acc_gen.label }}
 
                             <!--If form had errors-->
-                            {% if form.username.errors %}
-                                {{ form.username(class="form-control", style="border-color: #a94442;") }}
+                            {% if form.acc_gen.errors %}
+                                {{ form.acc_gen(class="form-control", style="border-color: #a94442;", readonly=true) }}
                                 <div class="form-group has-error">
-                                    {% for error in form.username.errors %}
+                                    {% for error in form.acc_gen.errors %}
                                         <span class="help-block">{{ error }}</span>
                                     {% endfor %}
                                 </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.username(class="form-control", placeholder="Enter Username")}}
+                                {{ form.acc_gen(class="form-control", readonly=true)}}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.dob.label }}
+
+                            <!--If form had errors-->
+                            {% if form.dob.errors %}
+                                {{ form.dob(class="form-control", style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.dob.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %}
+                                {{ form.dob(class="form-control", readonly=true)}}
                             {% endif %}
                         </div>
                         <div class="form-group">
@@ -44,7 +61,7 @@
                                 </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.email(class="form-control", placeholder="Enter Email")}}
+                                {{ form.email(class="form-control")}}
                             {% endif %}
                             
                         </div>

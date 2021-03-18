@@ -65,8 +65,13 @@
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             {% if current_user.is_authenticated %}
-                                <li><a href="{{ url_for('users.account') }}">ACCOUNT</a></li>
+                                {% if current_user.role_id == 3 %}
+                                <li><a href="{{ url_for('leavemgt.leave_dash') }}">PORTAL</a></li>
                                 <li><a href="{{ url_for('users.logout') }}"><i class="fa fa-sign-out mr-20"></i>&nbsp;LOGOUT</a></li>
+                                {% else %}
+                                <li><a href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">PORTAL</a></li>
+                                <li><a href="{{ url_for('users.logout') }}"><i class="fa fa-sign-out mr-20"></i>&nbsp;LOGOUT</a></li>
+                                {% endif %}
                             {% else %}
                                 <li><a href="{{ url_for('users.login') }}"><i class="fa fa-sign-in mr-20"></i>&nbsp;LOG IN</a></li>
                             {% endif %}
@@ -358,14 +363,14 @@
                                     
                                 </div>
                             </aside>
-                        </div>
+                        </div> 
                         <div class="col-md-3 col-sm-6">
                             <aside class="f_widget give_us_widget">
                                 <h5>Give Us A Call</h5>
                                 <h4>03220-23331/23332</h4>
                                 </br></br>
                                 <a class="get_bg_btn" href="{{ url_for('users.login') }}">
-                                    E-PORTAL
+                                    PORTAL
                                 </a>
                             </aside>
                         </div>

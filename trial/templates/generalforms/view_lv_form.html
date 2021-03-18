@@ -91,7 +91,7 @@
                             class="btn btn-info" target="_blank">
                             GET PDF
                         </button>
-                        <a type="submit" href="{{ url_for('users.user_dashboard', user_name=current_user.first_name +' ' +current_user.last_name) }}" 
+                        <a type="submit" href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}" 
                             style="margin-top: -30%; margin-left: 30px;" class="btn btn-info">
                             View Leave Dashboard
                         </a>

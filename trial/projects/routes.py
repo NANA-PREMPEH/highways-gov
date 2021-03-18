@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, Blueprint, jsonify
 from flask.globals import request
 from trial import db
-from trial.models import (Post, Contract, Rehabilitation, Regravelling, Roadcondition, Upgrading, Construction,
+from trial.models import (Decongestion, Partialreconstruction, Post, Contract, Rehabilitation, Regravelling, Roadcondition, Supply, Upgrading, Construction,
                             Preconstruction, Resealing, Resurfacing, Repairs, Asphalticoverlay, Roadcondition2K19)
 from trial.projects.regrav import update_regrav, regrav_data
 from trial.projects.rehab import update_rehab, rehab_data
@@ -89,7 +89,7 @@ def upgrade():
     return redirect(url_for('main.home'))
 
 @projects.route('/road_cond')
-def road_cond():
+def road_cond(): 
     update_rd_cond(rd_cond_data)
     return redirect(url_for('main.home'))
 
@@ -231,6 +231,61 @@ def upgrading():
         return jsonify({'data': render_template('projects/upgrade_json.html', q=q, form=form)})
     return render_template('projects/upgrading.html', title='Upgrading', upgrade_list=upgrade_list, posts=posts, form=form)
 
+@projects.route('/completed/periodic/decongestion', methods=['GET', 'POST'])
+def decongestion(): 
+    form = DateForm()
+    deconges_list = Decongestion.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM decongestion \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/decongestion_json.html', q=q, form=form)})
+    return render_template('projects/decongestion.html', title='Decongestion', deconges_list=deconges_list, posts=posts, form=form)
+
+
+@projects.route('/completed/periodic/supply_inst', methods=['GET', 'POST'])
+def supply(): 
+    form = DateForm()
+    supply_list = Supply.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM supply \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/supply_json.html', q=q, form=form)})
+    return render_template('projects/supply.html', title='Supply', supply_list=supply_list, posts=posts, form=form)
+
+@projects.route('/completed/periodic/partial_reconst', methods=['GET', 'POST'])
+def part_reconst(): 
+    form = DateForm()
+    part_reconst_list = Partialreconstruction.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM partialreconstruction \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/partial_reconst_json.html', q=q, form=form)})
+    return render_template('projects/partial_reconst.html', title='partial_reconst', part_reconst_list=part_reconst_list, posts=posts, form=form)
+
 @projects.route('/completed/periodic/construction', methods=['GET', 'POST'])
 def construction():
     form = DateForm()
@@ -285,7 +340,7 @@ def reports_2019():
 def critical_roads():
     posts = Post.query.order_by(Post.id.desc()).all()
 
-    return render_template('projects/critical_roads.html', posts=posts)
+    return render_template('projects/critical_roads.html', posts=posts) 
 
 
 
@@ -311,7 +366,7 @@ def regrav_contract(contract_id):
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/regrav_details.html', regrav=regrav, contract_id=contract_id, posts=posts)
 
-#View Reghabilitation Projects details from the database
+#View Rehabilitation Projects details from the database
 @projects.route('/rehab/view/<int:contract_id>/details') 
 def rehab_contract(contract_id):
     rehab = Rehabilitation.query.get_or_404(contract_id)
@@ -321,6 +376,40 @@ def rehab_contract(contract_id):
 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/rehab_details.html', rehab=rehab, contract_id=contract_id, posts=posts)
+
+#View Supply and Installation Projects details from the database
+@projects.route('/supply_inst/view/<int:contract_id>/details') 
+def supply_contract(contract_id):
+    supply = Supply.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", supply.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/supply_details.html', supply=supply, contract_id=contract_id, posts=posts)
+
+#View Partial Reconstruction Projects details from the database
+@projects.route('/partial_reconst/view/<int:contract_id>/details') 
+def partial_reconst(contract_id):
+    part_reconst = Partialreconstruction.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", part_reconst.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/part_reconst_details.html', part_reconst=part_reconst, contract_id=contract_id, posts=posts)
+
+
+#View Decongestion Projects details from the database
+@projects.route('/decongestion/view/<int:contract_id>/details') 
+def deconges_view(contract_id):
+    decongest = Decongestion.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", decongest.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/decongestion_details.html', decongest=decongest, contract_id=contract_id, posts=posts)
 
 #View Asphaltic Overlay Projects details from the database
 @projects.route('/asphaltic/view/<int:contract_id>/details') 
@@ -347,7 +436,7 @@ def const_contract(contract_id):
 #View Pre-Construction Projects details from the database
 @projects.route('/precons/view/<int:contract_id>/details') 
 def precons_contract(contract_id):
-    precons = Preconstruction.query.get_or_404(contract_id)
+    precons = Preconstruction.query.get_or_404(contract_id) 
 
     match = re.search(r"youtube\.com/.*v=([^&]*)", precons.video_link)
     contract_id = match.group(1)
