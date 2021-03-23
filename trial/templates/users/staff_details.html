@@ -27,48 +27,30 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>REF NO.</th>
-                                    <th>ACCT-GEN. STAFF NO.</th>
+                                    <th>PICTURE</th>
                                     <th>SSF_NO</th>
                                     <th>NAME</th>
-                                    <th>AGE</th>
                                     <th>JOB POSITION</th>
                                     <th>SEX</th>
-                                    <th>DIVISION/STATION</th>
-                                    <th>RETIREMENT NOTICE</th>
-                                    <th>DATE ENGAGED</th>
-                                    <th>PRES APPT</th>
+                                    <th>ACTION</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for staff_list in staff_pers %}
                                 {% if not staff_list.role_id == 3 %}
                                 <tr>
-                                    <td>{{ staff_list.ref_no }}</td>
-                                    <td>{{ staff_list.acc_gen_no }}</td> 
+                                    <td>
+                                        <img src="{{ url_for('static', filename='profile_pics/' + staff_list.image_file) }}" 
+                                            alt="user_image.png" style="border-radius: 50%; height: 100px; width: 100px;">
+                                    </td>
                                     <td>{{ staff_list.ssf_no }}</td>
                                     <td>{{ staff_list.name }}</td>
-                                    <td>
-                                        {% if staff_list.dob %}
-                                            {% set age = today.year - staff_list.dob.year - ((today.month, today.day) < (staff_list.dob.month, staff_list.dob.day)) %}
-                                            {{age}}
-                                        {% endif %}
-                                    </td>
                                     <td>{{ staff_list.job_pos }}</td>
                                     <td>{{ staff_list.sex }}</td>
-                                    <td>{{ staff_list.station }}</td>
                                     <td>
-                                        {% set age = today.year - staff_list.dob.year - ((today.month, today.day) < (staff_list.dob.month, staff_list.dob.day)) %}
-                                        {% if age >= 58 and age < 59 %}
-                                            <span class="btn btn-warning btn-sm">Pension Due</span>
-                                        {% elif age >= 59 and age < 60 %}
-                                            <span class="btn btn-danger btn-sm">Pension Due</span>
-                                        {% else %}
-                                            <span class="btn btn-success btn-sm">In Service</span>
-                                        {% endif %}
+                                        <a class="btn btn-success" href="{{ url_for('admin.edit_staff', staff_id=staff_list.id) }}">EDIT</a>
                                     </td>
-                                    <td>{{ staff_list.date_engaged }}</td>
-                                    <td>{{ staff_list.pres_appt }}</td>
                                 </tr>
                                 {% endif %}
                                 {% endfor %}

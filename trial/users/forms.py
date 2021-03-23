@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from trial.models import User
+from trial.models import Staff, User
 from wtforms import StringField, BooleanField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
 from flask_wtf.file import FileField, FileAllowed
@@ -21,19 +21,20 @@ class UpdateAccountForm(FlaskForm):
     submit = SubmitField('Update')
 
     #Check to see if username already exists
-    def validate_username(self, username):
-        if username.data != current_user.username:
-            user = User.query.filter_by(username=username.data).first()
+    def validate_username(self, name):
+        if name.data != current_user.name:
+            user = User.query.filter_by(name=name.data).first()
             if user:
-                raise ValidationError('Username already exists. Please choose a different one.')
+                raise ValidationError('Name already exists. Please choose a different one.')
 
 
     #Check to see if email already exists
     def validate_email(self, email):
+        
         if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user:
-                raise ValidationError('Email already exists. Please choose a different one.')
+                raise ValidationError('Email already exists. Please choose a different one.') 
 
 
 class RequestResetForm(FlaskForm):

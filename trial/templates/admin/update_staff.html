@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dashboard</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    </head>
+    <body>
+        <div class="jumbotron text-center">
+            <h2>REGISTER</h2>
+        </div>
+        <div class="container">
+            {% include "admin/header.html" %}
+            {% include "admin/messages.html" %} 
+                <div class="col-md-12">
+                    <div>
+                        <form action="" method="POST">
+                            <fieldset class="form-group">
+                                <div class="col-md-6">
+                                    <div style="margin-top: 3%;"> 
+                                        <div class="form-group">
+                                            {{ form.name.label }}
+                                            <!--If form had errors-->
+                                            {% if form.name.errors %}
+                                                {{ form.name(class="form-control", style="border-color: #a94442;") }}
+                                                <div class="form-group has-error">
+                                                    {% for error in form.name.errors %}
+                                                        <span class="help-block">{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            <!--if there are no errors-->
+                                            {% else %}
+                                                {{ form.name(class="form-control")}}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.ref_no.label }}
+        
+                                            <!--If form had errors-->
+                                            {% if form.ref_no.errors %}
+                                                {{ form.ref_no(class="form-control", style="border-color: #a94442;") }}
+                                                <div class="form-group has-error">
+                                                    {% for error in form.ref_no.errors %}
+                                                        <span class="help-block">{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            <!--if there are no errors-->
+                                            {% else %}
+                                                {{ form.ref_no(class="form-control")}}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.acc_gen.label }}
+        
+                                            <!--If form had errors-->
+                                            {% if form.acc_gen.errors %}
+                                                {{ form.acc_gen(class="form-control", style="border-color: #a94442;") }}
+                                                <div class="form-group has-error">
+                                                    {% for error in form.acc_gen.errors %}
+                                                        <span class="help-block">{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            <!--if there are no errors-->
+                                            {% else %}
+                                                {{ form.acc_gen(class="form-control", placeholder="Enter Acc-Gen Staff No")}}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.ssf.label }}
+                
+                                            <!--If form had errors-->
+                                            {% if form.ssf.errors %}
+                                                {{ form.ssf(class="form-control", style="border-color: #a94442;") }}
+                                                <div class="form-group has-error">
+                                                    {% for error in form.ssf.errors %}
+                                                        <span class="help-block">{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            <!--if there are no errors-->
+                                            {% else %}
+                                                {{ form.ssf(class="form-control", placeholder="Type Ssf No")}}
+                                            {% endif %}
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.email.label}}
+                
+                                            <!--If form had errors-->
+                                            {% if form.email.errors %}
+                                                {{ form.email(class="form-control", style="border-color: #a94442;") }}
+                                                <div class="form-group has-error">
+                                                    {% for error in form.email.errors %}
+                                                        <span class="help-block">{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            <!--if there are no errors-->
+                                            {% else %}
+                                                {{ form.email(class="form-control", placeholder="Enter email")}}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.dob.label}}
+    
+                                            <div class="input-group datepicker">
+                                                {{ form.dob(class="form-control", placeholder="Date of Birth")}}
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span> 
+                                                </span>
+                                            </div>
+                                        </div>       
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div style="margin-top: 3%;">
+                                        <div class="form-group">
+                                            {{ form.date_engaged.label}}
+                                            <div class="input-group datepicker">
+                                                {{ form.date_engaged(class="form-control", placeholder="Date engaged")}}
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span> 
+                                                </span>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group">
+                                            {{ form.pres_appt.label }}
+        
+                                            <div class="input-group datepicker">
+                                                {{ form.pres_appt(class="form-control", placeholder="Pres Appt")}}
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span> 
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            {{ form.sex.label }}
+        
+                                            <!--If form had errors-->
+                                            {% if form.sex.errors %}
+                                                {{ form.sex(class="form-control", style="border-color: #a94442;") }}
+                                                <div class="form-group has-error">
+                                                    {% for error in form.sex.errors %}
+                                                        <span class="help-block">{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            <!--if there are no errors-->
+                                            {% else %}
+                                                {{ form.sex(class="form-control", placeholder="Please Select")}}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.job_pos.label }}
+        
+                                            <!--If form had errors-->
+                                            {% if form.job_pos.errors %}
+                                                {{ form.job_pos(class="form-control", style="border-color: #a94442;") }}
+                                                <div class="form-group has-error">
+                                                    {% for error in form.job_pos.errors %}
+                                                        <span class="help-block">{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            <!--if there are no errors-->
+                                            {% else %}
+                                                {{ form.job_pos(class="form-control", placeholder="Enter Job Position")}}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.division.label }}
+                
+                                            <!--If form had errors-->
+                                            {% if form.division.errors %}
+                                                {{ form.division(class="form-control", style="border-color: #a94442;") }}
+                                                <div class="form-group has-error">
+                                                    {% for error in form.division.errors %}
+                                                        <span class="help-block">{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            <!--if there are no errors-->
+                                            {% else %}
+                                                {{ form.division(class="form-control", placeholder="Division")}}
+                                            {% endif %}
+                                        </div>    
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="form-group" style="text-align: center;">
+                                {{ form.submit(class="btn btn-primary") }}
+                            </div>
+                            {{ form.csrf_token }} 
+                        </form>
+                    </div> 
+                </div>
+            
+        </div> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".datepicker").datetimepicker({
+                    format: 'YYYY-MM-DD',                         
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+

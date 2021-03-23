@@ -122,7 +122,7 @@ def user_dashboard(user_name):
 
     all_req = Leave.query.filter_by(name=user_name)
     total_req = Leave.query.filter_by(name=user_name).count()
-    rej_no = Leave.query.filter_by(name=user_name, leave_status="Rejected").count()
+    rej_no = Leave.query.filter_by(name=user_name, leave_status="Rejected").count()     
     app_no = Leave.query.filter_by(name=user_name, leave_status="Approved").count()
     cancel_no = Leave.query.filter_by(name=user_name, leave_status="Cancelled").count()
     pending_no = Leave.query.filter_by(name=user_name, leave_status="Pending").count()

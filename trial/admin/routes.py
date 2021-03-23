@@ -2,9 +2,9 @@ import os
 import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, logout_user, login_required
-from trial.models import (Decongestion, Partialreconstruction, Post, Supply, User, Contract, Rehabilitation, Regravelling, Construction, 
+from trial.models import (Decongestion, Partialreconstruction, Post, Staff, Supply, User, Contract, Rehabilitation, Regravelling, Construction, 
                             Resealing, Preconstruction, Resurfacing, Upgrading, Asphalticoverlay, Repairs)
-from trial.admin.forms import RegistrationForm, BlogPostForm, ContractDetailsForm
+from trial.admin.forms import RegistrationForm, BlogPostForm, ContractDetailsForm, UpdateStaffForm
 from trial.admin.utils import save_photo
 import re
 import requests
@@ -299,5 +299,44 @@ def contract_view_dash():
 
     return render_template('admin/contract-details-dash.html', title='Dashboard', contract=contract)
 
+
+@admin.route('/staff_details/<int:staff_id>/view_staff', methods=['GET', 'POST'])
+def edit_staff(staff_id):
+
+    staff = User.query.get_or_404(staff_id)
+
+    form = UpdateStaffForm(obj=staff)
+
+    if form.validate_on_submit():
+        staff.ref_no = form.ref_no.data
+        staff.acc_gen_no = form.acc_gen.data
+        staff.ssf_no = form.ssf.data
+        staff.name = form.name.data
+        staff.dob = form.dob.data
+        staff.sex = form.sex.data
+        staff.job_pos = form.job_pos.data
+        staff.date_engaged = form.date_engaged.data
+        staff.pres_appt = form.pres_appt.data
+        staff.station = form.division.data
+        staff.email = form.email.data
+        
+        db.session.commit()
+        flash('Account has been updated!', 'success')
+        return redirect(url_for('admin.edit_staff', staff_id=staff.id))
+
+    elif request.method == 'GET':
+        form.ref_no.data = staff.ref_no
+        form.acc_gen.data = staff.acc_gen_no
+        form.ssf.data = staff.ssf_no
+        form.name.data = staff.name
+        form.dob.data = staff.dob
+        form.sex.data = staff.sex
+        form.job_pos.data = staff.job_pos
+        form.date_engaged.data = staff.date_engaged
+        form.pres_appt.data = staff.pres_appt
+        form.division.data = staff.station
+        form.email.data = staff.email
+        
+    return render_template('admin/update_staff.html', form=form, staff=staff)
 
 

@@ -3,6 +3,9 @@ from wtforms import StringField, PasswordField, SubmitField, TextAreaField, Floa
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
 from trial.models import User
+from flask_login import current_user
+
+
 
 #Create Registration Form
 class RegistrationForm(FlaskForm):
@@ -10,7 +13,7 @@ class RegistrationForm(FlaskForm):
     acc_gen = StringField('Acc-Gen Staff No.', validators=[DataRequired()])
     ssf = StringField('Ssf No.', validators=[DataRequired()])
     name = StringField('Full Name', validators=[DataRequired()])
-    dob = StringField('Birth Date', validators=[DataRequired()])
+    dob = StringField('Birth Date', validators=[DataRequired()]) 
     
     sex = SelectField('Sex', validators=[DataRequired(message="Please Choose a Category")],
                                     choices=[('', 'Choose'), ('M', 'M'), ('F', 'F')])
@@ -35,6 +38,42 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('Email already exists. Please choose a different one.')
+
+#Create Registration Form
+class UpdateStaffForm(FlaskForm):
+    ref_no = StringField('Ref. No', validators=[DataRequired()])
+    acc_gen = StringField('Acc-Gen Staff No.', validators=[DataRequired()])
+    ssf = StringField('Ssf No.', validators=[DataRequired()])
+    name = StringField('Full Name', validators=[DataRequired()])
+    dob = StringField('Birth Date', validators=[DataRequired()]) 
+    
+    sex = SelectField('Sex', validators=[DataRequired(message="Please Choose a Category")],
+                                    choices=[('', 'Choose'), ('M', 'M'), ('F', 'F')])
+    job_pos = StringField('Job Position', validators=[DataRequired()])
+    date_engaged = StringField('Date Engaged', validators=[DataRequired()])
+    pres_appt = StringField('Pres. Appt', validators=[DataRequired()])
+    division = StringField('Division/Station', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()]) 
+    submit = SubmitField('Update Details')
+
+    #Check to see if username already exists
+    def validate_username(self, name):
+        user = User.query.filter_by(name=name.data).first()
+        if user:
+            raise ValidationError('Name already exists. Please choose a different one.')
+
+
+    #Check to see if email already exists
+    #def validate_email(self, email):
+        #all_email = []
+        #staff = User.query.all()
+        #for prs in staff:
+          #  s_email = prs.email
+           # all_email.append(s_email)
+        #if email.data != staff.email:
+         #   user = User.query.filter_by(email=email.data).first()
+           # if user:
+                #raise ValidationError('Email already exists. Please choose a different one.')
 
 
 #Create Blog Post Form

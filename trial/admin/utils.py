@@ -4,7 +4,6 @@ import secrets
 import boto3
 
 
-
 #Takes picture data as an argument
 def save_photo(photo):
     #Randomize the name of the picture(to prevent collision with other image with the same name)

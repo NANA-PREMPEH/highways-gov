@@ -17,7 +17,7 @@ def leave_dash():
     all_req = Leave.query.all()
     rej_no = Leave.query.filter_by(leave_status="Rejected").count()
     app_no = Leave.query.filter_by(leave_status="Approved").count()
-    cancel_no = Leave.query.filter_by(leave_status="Cancelled").count()
+    cancel_no = Leave.query.filter_by(leave_status="Cancelled").count() 
     pending_no = Leave.query.filter_by(leave_status="Pending").count()
     
     tot_req = rej_no + app_no + pending_no
@@ -115,6 +115,24 @@ def view_staff():
     tot_req = rej_no + app_no + pending_no
     return render_template('users/staff_list.html', form=form, pending=pending,rej_no=rej_no, cancel_no=cancel_no, 
                             app_no=app_no, pending_no=pending_no, tot_req=tot_req, staff_pers=staff_pers, today=today) 
+#View Pending Requests
+@leavemgt.route("/update_staff_list", methods=['GET', 'POST']) 
+@login_required
+def staff_list_update():
+    form = LeaveAction()
+    pending = Leave.query.all()
+    rej_no = Leave.query.filter_by(leave_status="Rejected").count()
+    app_no = Leave.query.filter_by(leave_status="Approved").count()
+    cancel_no = Leave.query.filter_by(leave_status="Cancelled").count()
+    pending_no = Leave.query.filter_by(leave_status="Pending").count()
+    staff_pers = User.query.all()
+   
+    
+    tot_req = rej_no + app_no + pending_no
+    return render_template('users/staff_details.html', form=form, pending=pending,rej_no=rej_no, cancel_no=cancel_no, 
+                            app_no=app_no, pending_no=pending_no, tot_req=tot_req, staff_pers=staff_pers) 
+
+    
 
     
     
