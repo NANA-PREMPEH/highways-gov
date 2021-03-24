@@ -25,8 +25,8 @@
                         <td>{{ overlay.lot }}</td>
                         <td>{{ overlay.contract_sum }}</td>
                         <td>{{ overlay.contractor }}</td>
-                        <td>{{ overlay.date_commenced }}</td>
-                        <td>{{ overlay.date_completed }}</td>
+                        <td>{{ "{:,.2f}".format(overlay.date_commenced|float) }}</td>
+                        <td>{{ "{:,.2f}".format(overlay.date_completed|float) }}</td>
                         <td style="text-align: center;"><a href="{{ url_for('projects.asphaltic_contract', contract_id=overlay.id)}}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}
@@ -55,7 +55,7 @@
                 
                 <div class="col-md-6" id="asphaltic_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}">
+                    <input class="form-control" type="text" name="" id="" value="{{ sum }}" readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>

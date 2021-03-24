@@ -26,8 +26,8 @@
                         <td>{{ precons.contractor }}</td>
                         <td>{{ precons.date_commenced }}</td>
                         <td>{{ precons.date_completed }}</td>
-                        <td>{{ precons.contract_sum }}</td> 
-                        <td>{{ precons.amt_to_date }}</td>
+                        <td>{{ "{:,.2f}".format(precons.contract_sum|float) }}</td> 
+                        <td>{{ "{:,.2f}".format(precons.amt_to_date|float) }}</td>
                         <td style="text-align: center;"><a href="{{ url_for('projects.precons_contract', contract_id=precons.id)}}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}
@@ -56,7 +56,7 @@
                 
                 <div class="col-md-6" id="precons_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}">
+                    <input class="form-control" type="text" name="" id="" value="{{ sum }}"readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>

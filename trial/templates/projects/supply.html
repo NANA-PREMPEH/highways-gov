@@ -27,8 +27,8 @@
                         <td>{{ supply.contractor }}</td>
                         <td>{{ supply.date_commenced }}</td>
                         <td>{{ supply.date_completed }}</td>
-                        <td>{{ supply.contract_sum }}</td> 
-                        <td>{{ supply.amt_to_date }}</td>
+                        <td>{{ "{:,.2f}".format(supply.contract_sum|float) }}</td> 
+                        <td>{{ "{:,.2f}".format(supply.amt_to_date|float) }}</td>
                         <td style="text-align: center;"><a href="{{ url_for('projects.supply_contract', contract_id=supply.id)}}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}
@@ -57,7 +57,7 @@
                 
                 <div class="col-md-6" id="supply_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}">
+                    <input class="form-control" type="text" name="" id="" value="{{ sum }}"readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>

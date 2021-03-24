@@ -110,7 +110,7 @@ def rehabilitation():
         end_date = datetime.strptime(request.form['end_date'], "%Y-%m-%d").strftime("%Y-%m-%d")  
 
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM rehabilitation \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM rehabilitation \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -129,7 +129,7 @@ def resealing():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM resealing \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM resealing \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -148,7 +148,7 @@ def resurfacing():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM resurfacing \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM resurfacing \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -167,7 +167,7 @@ def repairs_asphaltic():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM repairs \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM repairs \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -186,7 +186,7 @@ def preconstruct():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM preconstruction \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM preconstruction \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -205,7 +205,7 @@ def asphalticoverlay():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM asphalticoverlay \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM asphalticoverlay \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -224,7 +224,7 @@ def upgrading():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM upgrading \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM upgrading \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -242,7 +242,7 @@ def decongestion():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM decongestion \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM decongestion \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -261,7 +261,7 @@ def supply():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM supply \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM supply \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -279,7 +279,7 @@ def part_reconst():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM partialreconstruction \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM partialreconstruction \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -297,7 +297,7 @@ def construction():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM construction \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM construction \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1", \
                                     (start_date, end_date)).first()
 
@@ -316,7 +316,7 @@ def regravelling():
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM regravelling \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM regravelling \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1",\
                                     (start_date, end_date)).first()
 

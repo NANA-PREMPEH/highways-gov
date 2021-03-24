@@ -37,7 +37,7 @@
                     </tr>
                     <tr> 
                         <th>Contract Sum (GHS)</th>
-                        <td>{{ part_reconst.amt_to_date}}</td> 
+                        <td>{{ "{:,.2f}".format(part_reconst.amt_to_date|float) }}</td> 
                     </tr>
                     <tr>
                         <th>Date of Commence</th>

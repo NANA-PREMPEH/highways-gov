@@ -26,7 +26,7 @@
                     </tr>
                     <tr> 
                         <th>Contract Sum (GHS)</th>
-                        <td>{{ repairs.amt_to_date}}</td>
+                        <td>{{ "{:,.2f}".format(repairs.amt_to_date|float) }}</td>
                     </tr>
                     <tr>
                         <th>Date of Commence</th>

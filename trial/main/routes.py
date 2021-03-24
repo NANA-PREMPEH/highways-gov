@@ -54,7 +54,7 @@ def report_2019():
 #Create a route for 2020 report 
 @main.route('/report/proj_funding')
 def proj_funding():
-    posts = Post.query.order_by(Post.id.desc()).all()
+    posts = Post.query.order_by(Post.id.desc()).all() 
     return render_template('main/proj_funding.html', title='2020 Report', posts=posts)
 
 @main.route('/institution_profile')
@@ -113,28 +113,35 @@ def completed_periodic():
         end_date = request.form['end_date']
         results = db.engine.execute("SELECT FORMAT((t1.col_total + t2.col_total + t3.col_total + \
                                     t4.col_total + t5.col_total + t6.col_total + t7.col_total + \
-                                    t8.col_total + t9.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM rehabilitation \
+                                    t8.col_total + t9.col_total + t10.col_total + t11.col_total + t12.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM rehabilitation \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t1 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM regravelling \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM regravelling \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t2 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM repairs \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM repairs \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t3 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM resealing \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM resealing \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t4 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM resurfacing \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM resurfacing \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t5 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM upgrading \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM upgrading \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t6 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM asphalticoverlay \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM asphalticoverlay \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t7 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM preconstruction \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM decongestion \
                                     WHERE date_commenced >= %s  and date_completed<= %s) t8 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(contract_sum),0) As col_total FROM construction \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t9", \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM partialreconstruction \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t9 \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM supply \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t10 \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM preconstruction \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t11 \
+                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM construction \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t12", \
                                     (start_date, end_date, start_date, end_date, start_date, end_date,\
                                     start_date, end_date, start_date, end_date, start_date, end_date, \
-                                    start_date, end_date, start_date, end_date, start_date, end_date)).first()
+                                    start_date, end_date, start_date, end_date, start_date, end_date,
+                                    start_date, end_date, start_date, end_date,start_date, end_date)).first()
         
         return jsonify({'data': render_template('main/periodic_json.html', results=results, form=form)}) 
         

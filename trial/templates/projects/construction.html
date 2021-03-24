@@ -26,9 +26,9 @@
                     <td>{{ construction.length }}</td>
                     <td>{{ construction.contractor }}</td>
                     <td>{{ construction.date_commenced }}</td>
-                    <td>{{ construction.date_completed }}</td>
-                    <td>{{ construction.contract_sum }}</td> 
-                    <td>{{ construction.amt_to_date }}</td>
+                    <td>{{ construction.date_completed }}</td> 
+                    <td>{{ "{:,.2f}".format(construction.contract_sum|float) }}</td> 
+                    <td>{{ "{:,.2f}".format(construction.amt_to_date|float) }}</td>
                     <td style="text-align: center;"><a href="{{ url_for('projects.const_contract', contract_id=construction.id)}}"><i class="fa fa-eye"></i></a></td>
                 </tr>
                 {% endfor %}
@@ -57,7 +57,7 @@
                 
                 <div class="col-md-6" id="const_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}">
+                    <input class="form-control" type="text" name="" id="" value="{{ sum }}" readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>

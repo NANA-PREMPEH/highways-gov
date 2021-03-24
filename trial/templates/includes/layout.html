@@ -494,6 +494,75 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 });
             });
         </script>
+        <!--Ajax script for decongestion project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#decongest_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.decongestion') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#decongest_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for Partial Reconstruction project's sum-->
+        <script>
+            $(document).ready(function(){
+                $('#part_reconst_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.part_reconst') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#part_reconst_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for Supply and Installation of Materials projects' sum-->
+        <script>
+            $(document).ready(function(){
+                $('#supply_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.supply') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#supply_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
         <!--Ajax script for rehabilitation project's sum-->
         <script>
             $(document).ready(function(){

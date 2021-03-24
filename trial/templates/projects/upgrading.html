@@ -27,8 +27,8 @@
                     <td>{{ upgrading.contractor }}</td>
                     <td>{{ upgrading.date_commenced }}</td>
                     <td>{{ upgrading.date_completed }}</td>
-                    <td>{{ upgrading.contract_sum }}</td> 
-                    <td>{{ upgrading.amt_to_date }}</td>
+                    <td>{{ "{:,.2f}".format(upgrading.contract_sum|float) }}</td> 
+                    <td>{{ "{:,.2f}".format(upgrading.amt_to_date|float) }}</td>
                     <td style="text-align: center;"><a href="{{ url_for('projects.upgrade_contract', contract_id=upgrading.id)}}"><i class="fa fa-eye"></i></a></td>
                 </tr>
                 {% endfor %}
@@ -57,7 +57,7 @@
                 
                 <div class="col-md-6" id="upgrade_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}">
+                    <input class="form-control" type="text" name="" id="" value="{{ sum }}"readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>

@@ -27,8 +27,8 @@
                         <td>{{ part_reconst.contractor }}</td>
                         <td>{{ part_reconst.date_commenced }}</td>
                         <td>{{ part_reconst.date_completed }}</td>
-                        <td>{{ part_reconst.contract_sum }}</td> 
-                        <td>{{ part_reconst.amt_to_date }}</td>
+                        <td>{{ "{:,.2f}".format(part_reconst.contract_sum|float) }}</td> 
+                        <td>{{ "{:,.2f}".format(part_reconst.amt_to_date|float) }}</td>
                         <td style="text-align: center;"><a href="{{ url_for('projects.partial_reconst', contract_id=part_reconst.id)}}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}
@@ -48,7 +48,7 @@
                 <div class="col-md-6">
                     <label for="end_date">To :</label>
                     <div class="input-group date" id="datetimepicker7">
-                        <input type="text" class="form-control" name="end_date" id="end_date">
+                        <input type="text" class="form-control" name="end_date" id="end_date"> 
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span> 
@@ -57,7 +57,7 @@
                 
                 <div class="col-md-6" id="part_reconst_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}">
+                    <input class="form-control" type="text" name="" id="" value="{{ sum }}"readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>

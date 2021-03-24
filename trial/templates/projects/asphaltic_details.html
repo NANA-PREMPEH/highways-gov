@@ -19,14 +19,14 @@
                     <tr>
                         <th>Project Title</th>
                         <td>{{ asphaltic.project }}</td>
-                    </tr>
+                    </tr> 
                     <tr>
                         <th>Region</th>
                         <td>{{ asphaltic.region }}</td>
                     </tr>
                     <tr> 
                         <th>Contract Sum (GHS)</th>
-                        <td>{{ asphaltic.amt_to_date}}</td>
+                        <td>{{ "{:,.2f}".format(asphaltic.amt_to_date|float) }}</td>
                     </tr>
                     <tr>
                         <th>Date of Commence</th>

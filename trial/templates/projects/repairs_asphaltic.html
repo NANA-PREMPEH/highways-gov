@@ -25,8 +25,8 @@
                         <td>{{ repairs.lot }}</td>
                         <td>{{ repairs.contract_sum }}</td>
                         <td>{{ repairs.contractor }}</td>
-                        <td>{{ repairs.date_commenced }}</td>
-                        <td>{{ repairs.date_completed }}</td>
+                        <td>{{ "{:,.2f}".format(repairs.date_commenced|float) }}</td>
+                        <td>{{ "{:,.2f}".format(repairs.date_completed|float) }}</td>
                         <td style="text-align: center;"><a href="{{ url_for('projects.repairs_contract', contract_id=repairs.id)}}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}
@@ -55,7 +55,7 @@
                 
                 <div class="col-md-6" id="repairs_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}">
+                    <input class="form-control" type="text" name="" id="" value="{{ sum }}"readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>
