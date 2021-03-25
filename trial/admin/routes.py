@@ -5,7 +5,7 @@ from flask_login import current_user, logout_user, login_required
 from trial.models import (Decongestion, Partialreconstruction, Post, Staff, Supply, User, Contract, Rehabilitation, Regravelling, Construction, 
                             Resealing, Preconstruction, Resurfacing, Upgrading, Asphalticoverlay, Repairs)
 from trial.admin.forms import RegistrationForm, BlogPostForm, ContractDetailsForm, UpdateStaffForm
-from trial.admin.utils import save_photo
+from trial.admin.utils import save_photo, save_picture
 import re
 import requests
 from trial import db, bcrypt 
@@ -308,6 +308,9 @@ def edit_staff(staff_id):
     form = UpdateStaffForm(obj=staff)
 
     if form.validate_on_submit():
+        if form.picture.data:
+            staff_pic = save_picture(form.picture.data)
+            staff.image_file = staff_pic
         staff.ref_no = form.ref_no.data
         staff.acc_gen_no = form.acc_gen.data
         staff.ssf_no = form.ssf.data
@@ -319,7 +322,7 @@ def edit_staff(staff_id):
         staff.pres_appt = form.pres_appt.data
         staff.station = form.division.data
         staff.email = form.email.data
-        
+
         db.session.commit()
         flash('Account has been updated!', 'success')
         return redirect(url_for('admin.edit_staff', staff_id=staff.id))
@@ -336,7 +339,9 @@ def edit_staff(staff_id):
         form.pres_appt.data = staff.pres_appt
         form.division.data = staff.station
         form.email.data = staff.email
+        form.picture.data=staff.image_file
+        user_file = form.picture.data
         
-    return render_template('admin/update_staff.html', form=form, staff=staff)
+    return render_template('admin/update_staff.html', form=form, staff=staff, user_file=user_file)
 
 

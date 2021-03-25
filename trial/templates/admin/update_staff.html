@@ -7,7 +7,34 @@
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+        <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
+        <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
+        <!-- the font awesome icon library if using with `fas` theme (or Bootstrap 4.x). Note that default icons used in the plugin are glyphicons that are bundled only with Bootstrap 3.x. -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
     </head>
+    <!-- some CSS styling changes and overrides -->
+    <style>
+        .kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
+            margin: 0;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+            text-align: center;
+        }
+        .kv-avatar {
+            display: inline-block;
+        }
+        .kv-avatar .file-input {
+            display: table-cell;
+            width: 213px;
+        }
+        .kv-reqd {
+            color: red;
+            font-family: monospace;
+            font-weight: normal;
+        }
+        </style>
     <body>
         <div class="jumbotron text-center">
             <h2>UPDATE DETAILS</h2>
@@ -17,7 +44,7 @@
             {% include "admin/messages.html" %} 
                 <div class="col-md-12">
                     <div>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset class="form-group">
                                 <div class="col-md-6">
                                     <div style="margin-top: 3%;"> 
@@ -110,11 +137,7 @@
                                                     <span class="glyphicon glyphicon-calendar"></span> 
                                                 </span>
                                             </div>
-                                        </div>       
-                                    </div>
-                                </div> 
-                                <div class="col-md-6">
-                                    <div style="margin-top: 3%;">
+                                        </div>
                                         <div class="form-group">
                                             {{ form.date_engaged.label}}
                                             <div class="input-group datepicker">
@@ -123,7 +146,7 @@
                                                     <span class="glyphicon glyphicon-calendar"></span> 
                                                 </span>
                                             </div>
-                                        </div>  
+                                        </div> 
                                         <div class="form-group">
                                             {{ form.pres_appt.label }}
         
@@ -133,9 +156,28 @@
                                                     <span class="glyphicon glyphicon-calendar"></span> 
                                                 </span>
                                             </div>
-                                        </div>
-                                        
+                                        </div>     
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div style="margin-top: 3%;">
                                         <div class="form-group">
+                                            <div class="kv-avatar text-center" style="margin-top: 4%;">
+                                                <div class="file-loading">
+                                                    {{ form.picture}}
+                                                    {% if form.picture.errors %}
+                                                        {% for error in form.picture.errors %}
+                                                            <span class="text-danger">{{ error }}</span>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div></br>
+                                                <div class="kv-avatar-hint">
+                                                    <small>Select file < 3074 KB</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          
+                                        <div class="form-group" style="margin-top: 3.2%;">
                                             {{ form.sex.label }}
         
                                             <!--If form had errors-->
@@ -191,6 +233,7 @@
                             </div>
                             {{ form.csrf_token }} 
                         </form>
+                        <div id="kv-avatar-errors-1" class="center-block" style="width:800px;display:none"></div>
                     </div> 
                 </div>
             
@@ -206,6 +249,39 @@
                 });
             });
         </script>
+        <!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you
+            wish to resize images before upload. This must be loaded before fileinput.min.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/piexif.min.js" type="text/javascript"></script>
+        <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
+            This must be loaded before fileinput.min.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/sortable.min.js" type="text/javascript"></script>
+        <!-- popper.min.js below is needed if you use bootstrap 4.x (for popover and tooltips). You can also use the bootstrap js 
+        3.3.x versions without popper.min.js. -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <!-- the main fileinput plugin file -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+        <!-- following theme script is needed to use the Font Awesome 5.x theme (`fas`) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fas/theme.min.js"></script>
+        <!-- optionally if you need translation for your language then include the locale file as mentioned below (replace LANG.js with your language locale) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/LANG.js"></script>
+        <script>
+            $("#picture").fileinput({
+                overwriteInitial: true,
+                maxFileSize: 3074,
+                showClose: false,
+                showCaption: false,
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+                removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+                removeTitle: 'Cancel or reset changes',
+                elErrorContainer: '#kv-avatar-errors-1',
+                msgErrorClass: 'alert alert-block alert-danger',
+                defaultPreviewContent: '<img src="{{  url_for("static", filename="profile_pics/" + user_file) }}" alt="Avatar">',
+                layoutTemplates: {main2: '{preview} ' + ' {remove} {browse}'},
+                allowedFileExtensions: ["jpg", "png", "gif"] 
+            });
+            </script>
     </body>
 </html>
 

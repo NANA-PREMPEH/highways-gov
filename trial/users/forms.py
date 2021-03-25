@@ -17,7 +17,7 @@ class UpdateAccountForm(FlaskForm):
     acc_gen = StringField('Acct-Gen Staff No.', validators=[DataRequired()]) 
     dob = StringField('Date Of Birth', validators=[DataRequired()]) 
     email = StringField('Email', validators=[DataRequired(), Email()])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])]) 
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])  
     submit = SubmitField('Update')
 
     #Check to see if username already exists

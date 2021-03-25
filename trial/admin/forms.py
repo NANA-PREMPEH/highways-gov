@@ -46,7 +46,7 @@ class UpdateStaffForm(FlaskForm):
     ssf = StringField('Ssf No.', validators=[DataRequired()])
     name = StringField('Full Name', validators=[DataRequired()])
     dob = StringField('Birth Date', validators=[DataRequired()]) 
-    
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     sex = SelectField('Sex', validators=[DataRequired(message="Please Choose a Category")],
                                     choices=[('', 'Choose'), ('M', 'M'), ('F', 'F')])
     job_pos = StringField('Job Position', validators=[DataRequired()])

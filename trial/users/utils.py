@@ -4,7 +4,7 @@ import secrets
 from functools import wraps
 from PIL import Image
 from trial import mail
-from flask_mail import Message
+from flask_mail import Message 
 from flask_login import current_user
 from trial.models import Permission
 import boto3

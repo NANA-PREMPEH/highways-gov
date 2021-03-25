@@ -52,7 +52,7 @@ def account():
             #Set the user profile picture 
             picture_file = save_picture(form.picture.data)  
             current_user.image_file = picture_file
-        #Set Updated details in the database
+        #Set Updated details in the database 
         current_user.acc_gen_no = form.acc_gen.data
         current_user.email = form.email.data
         db.session.commit() 
