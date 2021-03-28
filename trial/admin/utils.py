@@ -32,12 +32,7 @@ def save_picture(form_picture):
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_fn) 
 
-    #Resize the Image submitted
-    output_size = (200, 200)
-    i = Image.open(form_picture)
-    #Resize the Image
-    i.thumbnail(output_size)
-    i.save(picture_path)
+    form_picture.save(picture_path)
 
 
     s3 = boto3.resource('s3', region_name='us-east-1')
