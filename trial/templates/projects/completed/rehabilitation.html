@@ -1,0 +1,77 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">
+            REHABILITATION PROJECTS
+            <spans style="font-size: medium;">(COMPLETED)</span>
+        </h3>
+        
+        <table id="mytable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>REGION</th>
+                    <th>PROJECT</th>
+                    <th>LENGTH (Km)</th>
+                    <th>CONTRACTOR</th>
+                    <th>DATE OF COMMENCE</th>
+                    <th>DATE OF COMPLETION</th>
+                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
+                    <th>VIEW DETAILS</th> 
+                </tr> 
+            </thead>
+            <tbody>
+                {% for rehabilitation in rehab_list %} 
+                    <tr>  
+                        <td>{{ rehabilitation.region }}</td>
+                        <td>{{ rehabilitation.project }}</td>
+                        <td>{{ rehabilitation.length }}</td>
+                        <td>{{ rehabilitation.contractor }}</td>
+                        <td>{{ rehabilitation.date_commenced }}</td>
+                        <td>{{ rehabilitation.date_completed }}</td>
+                        <td>{{ "{:,.2f}".format(rehabilitation.contract_sum|float) }}</td> 
+                        <td>{{ "{:,.2f}".format(rehabilitation.amt_to_date|float) }}</td>
+                        <td style="text-align: center;"><a href="{{ url_for('projects.rehab_contract', contract_id=rehabilitation.id)}}"><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table></br>
+        <div>
+            <form action="" method="post">
+                <div class="col-md-6">
+                    <label for="start_date">From :</label>
+                    <div class="input-group date" id="datetimepicker6">
+                        <input type="text" class="form-control" name="start_date" id="start_date">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="end_date">To :</label>
+                    <div class="input-group date" id="datetimepicker7">
+                        <input type="text" class="form-control" name="end_date" id="end_date">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span> 
+                    </div>
+                </div></br></br></br>
+                
+                <div class="col-md-6" id="rehab_sum">
+                    <label for="">Contract Sum</label>
+                    <input class="form-control" type="text" name="" id="" value="{{ sum }}"readonly>
+                </div></br></br></br>
+                <!--<div class="col-md-6">
+                    <label for="">Contract Sum</label>
+                    <input class="form-control" type="text" name="" id="" value="0.00">
+                </div></br></br></br>-->
+                <div class="form-group col-md-6">
+                    <input type="submit" class="btn btn-info" id="rehab_sub" name="submit" value="Submit">
+                </div>
+                {{ form.csrf_token }} 
+            </form>        
+        </div>
+    </div>
+</div>
+{% endblock content %}

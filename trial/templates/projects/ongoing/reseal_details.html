@@ -1,0 +1,45 @@
+{% extends "includes/layout.html" %} 
+{% block content %}
+
+<style>
+    
+</style>
+
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
+        <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
+            <h3 id="table_h3" style="text-transform: uppercase;">{{ reseal.project }}</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
+            </div>
+            <div></div>
+            <div><b>&nbsp;</b></div> 
+            <table class="table table-striped table-borderless ">
+                <tbody style="border-collapse: collapse;">
+                    <tr>
+                        <th>Project Title</th>
+                        <td>{{ reseal.project }}</td>
+                    </tr>
+                    <tr>
+                        <th>Region</th>
+                        <td>{{ reseal.region }}</td>
+                    </tr>
+                    <tr> 
+                        <th>Contract Sum (GHS)</th>
+                        <td>{{ "{:,.2f}".format(reseal.amt_to_date|float) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Commence</th>
+                        <td>{{ reseal.date_commenced.strftime('%d %B, %Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Completed</th>
+                        <td>{{ reseal.date_completed.strftime('%d %B, %Y') }}</td>
+                    </tr>
+                </tbody>
+            </table>           
+        </div>
+        {% include 'includes/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %} 

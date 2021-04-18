@@ -79,20 +79,36 @@ class UpdateStaffForm(FlaskForm):
 #Create Blog Post Form
 class BlogPostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    blog_content = TextAreaField('Content', validators=[DataRequired()])
+    blog_content = TextAreaField('Content', validators=[DataRequired()]) 
     picture = FileField('Upload Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Post')
 
-class ContractDetailsForm(FlaskForm):
+#Create Completed Projects Form
+class CompletedProjectsForm(FlaskForm):
     region = StringField('Region', validators=[DataRequired()])
     project = StringField('Project', validators=[DataRequired()])
     length = StringField('Length (Km)')
     contractor = StringField('Contractor', validators=[DataRequired()])
     date_commenced = StringField('Date of Commence', validators=[DataRequired()])
     date_completed = StringField('Date of Completion', validators=[DataRequired()])
-    contract_sum = StringField('Original Contract Sum', validators=[DataRequired()])
-    amt_to_date = StringField('Total Amount Cert. To Date', validators=[DataRequired()])
+    contract_sum = StringField('Original Contract Sum')
+    amt_to_date = StringField('Total Amount Cert. To Date')
     video_title = StringField('Video Title')
-    video_link = StringField('Video Link', render_kw={'placeholder':"https://www.youtube.com/watch?v="}) 
+    video_link = StringField('Video Link', render_kw={'placeholder':"https://www.youtube.com/watch?v="})  
+    video_description = TextAreaField('Video Description')
+    submit = SubmitField('Submit')
+
+#Create Completed Projects Form
+class OngoingProjectsForm(FlaskForm):
+    region = StringField('Region', validators=[DataRequired()])
+    project = StringField('Project', validators=[DataRequired()])
+    length = StringField('Length (Km)')
+    contractor = StringField('Contractor', validators=[DataRequired()])
+    date_commenced = StringField('Date of Commence', validators=[DataRequired()])
+    date_completed = StringField('Date of Completion', validators=[DataRequired()])
+    contract_sum = StringField('Original Contract Sum')
+    amt_to_date = StringField('Total Amount Cert. To Date')
+    video_title = StringField('Video Title')
+    video_link = StringField('Video Link', render_kw={'placeholder':"https://www.youtube.com/watch?v="})  
     video_description = TextAreaField('Video Description')
     submit = SubmitField('Submit')

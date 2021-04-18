@@ -166,7 +166,7 @@ class Role(db.Model):
         for r in roles:
             role = Role.query.filter_by(name=r).first()
             if role is None:
-                role = Role(name=r)
+                role = Role(name=r) 
             role.reset_permissions()
             for perm in roles[r]:
                 role.add_permission(perm)
@@ -208,7 +208,8 @@ class Staff(db.Model, UserMixin):
 
 
 #Create a Blog Post Model
-class Post(db.Model):
+class Post(SearchableMixin, db.Model): 
+    __searchable__ = ['body']
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(180), nullable=False)
     slug = db.Column(db.String(180), nullable=False)
@@ -219,7 +220,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     author = db.relationship('User', backref=db.backref('author', lazy=True))
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
- 
+
     def __repr__(self):
         return f"Post('{self.title}', '{self.body}', '{self.image}')"
 
@@ -325,6 +326,77 @@ class Regravelling(db.Model):
 
     def __repr__(self):
         return f"Regravelling('{self.id}','{self.video_title}','{self.video_link}')"
+
+#Create CompletedProj Table
+class CompletedProj(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    category = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+
+    def __repr__(self):
+        return f"CompletedProj('{self.id}','{self.video_title}','{self.video_link}')"
+
+#Create OngoingProj Table
+class OngoingProj(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    category = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+
+    def __repr__(self):
+        return f"OngoingProj('{self.id}','{self.video_title}','{self.video_link}')"
+
+#Create Grading Table
+class Grading(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+
+    def __repr__(self):
+        return f"Grading('{self.id}','{self.video_title}','{self.video_link}')"
 
 #Create Construction Table
 class Construction(db.Model):

@@ -118,10 +118,15 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ url_for('admin.create_blog') }}">Add Blog Post</a>
-                                    <a class="nav-link" href="{{ url_for('admin.add_contract') }}">Add New Contract</a>
+                                    <a class="nav-link" href="{{ url_for('admin.add_contract') }}">Completed Projects</a>
+                                    <a class="nav-link" href="{{ url_for('admin.add_ongoing_contract') }}">Ongoing Projects</a>
+                                    <a class="nav-link" href="#">Under Planning</a>
                                 </nav>
                             </div>
+                            <a class="nav-link" href="{{ url_for('admin.create_blog') }}">
+                                <div class="sb-nav-link-icon"><i class="fa fa-newspaper"></i></div>
+                                Add Blog Post
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

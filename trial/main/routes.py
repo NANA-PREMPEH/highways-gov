@@ -182,7 +182,7 @@ def before_request():
 
 @main.route('/search')
 def search():
-    if not g.search_form.validate():
+    if not g.search_form.validate(): 
         return redirect(url_for('main.home'))
     page = request.args.get('page', 1, type=int)
     search_posts, total = Upgrading.search(g.search_form.q.data, page,

@@ -1,20 +1,29 @@
 {% extends "includes/layout.html" %}
 {% block content %}
 <div class="container"> 
-    <div class="row blog_details_inner" style="margin-left: 2%;">
+    <div class="row blog_details_inner" style="margin-left: 2%;"> 
         <h3 class="table_h3" id="table_h3">ONGOING PERIODIC PROJECTS</h3> 
-        <div class="col-md-8" id="periodic">
+        <div class="col-md-8" id="periodic" style="margin-top: 2%;">
             <div class="col-sm-4">
-                <table>
+                <table> 
                     <tbody>
                         <tr>
-                            <td><a class="view_btn1" href="">Rehabilitation</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.rehabilitation') }}">Rehabilitation</a></td>
                         </tr>
                         <tr>
-                            <td><a class="view_btn1" href="">Resealing</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.resealing') }}">Resealing</a></td>
                         </tr>
                         <tr>
-                            <td><a class="view_btn1" href="">Upgrading</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.upgrading') }}">Upgrading</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.part_reconst') }}">Partial Reconstruct.</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.grading') }}">Grading</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.surface_dressing') }}">Surface Dressing</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -23,13 +32,22 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><a class="view_btn1" href="">Regravelling</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.regravelling') }}">Regravelling</a></td>
                         </tr>
                         <tr>
-                            <td><a class="view_btn1" href="">Pre-Construction</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.preconstruct') }}">Pre-Construction</a></td>
                         </tr>
                         <tr>
-                            <td><a class="view_btn1" href="">Alsphaltic Overlay</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.asphalticoverlay') }}">Alsphaltic Overlay</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.decongestion') }}">Decongestion</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.bituminous') }}">Bituminous Surf.</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.other_proj') }}">Others</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -38,17 +56,23 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><a class="view_btn1" href="">Construction</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.construction') }}">Construction</a></td>
                         </tr>
                         <tr>
-                            <td><a class="view_btn1" href="">Resurfacing</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.resurfacing') }}">Resurfacing</a></td>
                         </tr>
                         <tr>
-                            <td><a class="view_btn1" href="">Repairs &#38; Alsphaltic</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.repairs_asphaltic') }}">Repairs &#38; Alsphaltic</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.supply') }}">Supply &#38; Inst. of Mat.</a></td> 
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.drainage_struct') }}">Drainage Structures</a></td> 
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div></br></br></br>
             <div style="margin-top: 8em;">
                 <form action="" method="post">
                     <div class="col-md-6" >
