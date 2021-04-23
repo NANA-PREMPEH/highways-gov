@@ -1,7 +1,7 @@
 {% extends "includes/layout.html" %}
 {% block content %}
 <div class="container"> 
-    <div class="row blog_details_inner" style="margin-left: 1%; width: fit-content;">
+    <div class="row blog_details_inner" style="margin-left: -3%; width: fit-content;">
         <h3 class="table_h3" id="table_h3">
             CONSTRUCTION PROJECTS 
             <spans style="font-size: medium;">(ONGOING)</span>
@@ -32,11 +32,29 @@
                         <td>{{ construction.contractor }}</td>
                         <td>{{ construction.date_commenced }}</td>
                         <td>{{ construction.date_completed }}</td>
-                        <td>{{ construction.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(construction.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(construction.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(construction.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ construction.revised_date }}</td>
+                        
+                        {% if construction.contract_sum == "N/A" %}
+                            <td>{{ construction.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(construction.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if construction.revised_sum == "N/A" %} 
+                            <td>{{ construction.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(construction.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if construction.amt_to_date == "N/A" %}
+                            <td>{{ construction.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(construction.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.construction_contract', contract_id=construction.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody> 

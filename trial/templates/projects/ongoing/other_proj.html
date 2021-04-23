@@ -32,11 +32,29 @@
                         <td>{{ others.contractor }}</td>
                         <td>{{ others.date_commenced }}</td>
                         <td>{{ others.date_completed }}</td>
-                        <td>{{ others.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(others.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(others.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(others.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ others.revised_date }}</td>
+                        
+                        {% if others.contract_sum == "N/A" %}
+                            <td>{{ others.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(others.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if others.revised_sum == "N/A" %} 
+                            <td>{{ others.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(others.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if others.amt_to_date == "N/A" %}
+                            <td>{{ others.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(others.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.others_contract', contract_id=others.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -32,11 +32,29 @@
                         <td>{{ repairs.contractor }}</td>
                         <td>{{ repairs.date_commenced }}</td>
                         <td>{{ repairs.date_completed }}</td>
-                        <td>{{ repairs.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(repairs.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(repairs.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(repairs.amt_to_date|float) }}</td> 
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ repairs.revised_date }}</td>
+                        
+                        {% if repairs.contract_sum == "N/A" %}
+                            <td>{{ repairs.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(repairs.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if repairs.revised_sum == "N/A" %} 
+                            <td>{{ repairs.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(repairs.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if repairs.amt_to_date == "N/A" %}
+                            <td>{{ repairs.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(repairs.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="#"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

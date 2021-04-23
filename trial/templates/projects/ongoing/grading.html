@@ -32,11 +32,29 @@
                         <td>{{ grading.contractor }}</td>
                         <td>{{ grading.date_commenced }}</td>
                         <td>{{ grading.date_completed }}</td>
-                        <td>{{ grading.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(grading.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(grading.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(grading.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ grading.revised_date }}</td>
+                        
+                        {% if grading.contract_sum == "N/A" %}
+                            <td>{{ grading.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(grading.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if grading.revised_sum == "N/A" %} 
+                            <td>{{ grading.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(grading.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if grading.amt_to_date == "N/A" %}
+                            <td>{{ grading.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(grading.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="#"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -32,11 +32,29 @@
                         <td>{{ resealing.contractor }}</td>
                         <td>{{ resealing.date_commenced }}</td>
                         <td>{{ resealing.date_completed }}</td>
-                        <td>{{ resealing.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(resealing.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(resealing.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(resealing.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ resealing.revised_date }}</td>
+                        
+                        {% if resealing.contract_sum == "N/A" %}
+                            <td>{{ resealing.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(resealing.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if resealing.revised_sum == "N/A" %} 
+                            <td>{{ resealing.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(resealing.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if resealing.amt_to_date == "N/A" %}
+                            <td>{{ resealing.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(resealing.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.resealing_contract', contract_id=resealing.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

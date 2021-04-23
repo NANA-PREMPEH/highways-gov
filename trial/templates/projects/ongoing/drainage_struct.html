@@ -32,11 +32,29 @@
                         <td>{{ drainage.contractor }}</td>
                         <td>{{ drainage.date_commenced }}</td>
                         <td>{{ drainage.date_completed }}</td>
-                        <td>{{ drainage.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(drainage.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(drainage.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(drainage.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ drainage.revised_date }}</td>
+                        
+                        {% if drainage.contract_sum == "N/A" %}
+                            <td>{{ drainage.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(drainage.contract_sum|float) }}</td>
+                        {% endif %} 
+
+                        {% if drainage.revised_sum == "N/A" %} 
+                            <td>{{ drainage.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(drainage.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if drainage.amt_to_date == "N/A" %}
+                            <td>{{ drainage.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(drainage.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.drainage_contract', contract_id=drainage.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

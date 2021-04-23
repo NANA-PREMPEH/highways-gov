@@ -32,11 +32,29 @@
                         <td>{{ regravelling.contractor }}</td>
                         <td>{{ regravelling.date_commenced }}</td>
                         <td>{{ regravelling.date_completed }}</td>
-                        <td>{{ regravelling.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(regravelling.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(regravelling.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(regravelling.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ regravelling.revised_date }}</td>
+                        
+                        {% if regravelling.contract_sum == "N/A" %}
+                            <td>{{ regravelling.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(regravelling.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if regravelling.revised_sum == "N/A" %} 
+                            <td>{{ regravelling.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(regravelling.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if regravelling.amt_to_date == "N/A" %}
+                            <td>{{ regravelling.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(regravelling.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.regrav_contract', contract_id=regravelling.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

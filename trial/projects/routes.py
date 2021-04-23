@@ -377,7 +377,7 @@ def regrav_contract(contract_id):
 @projects.route('/grading/view/<int:contract_id>/details')  
 def grading_contract(contract_id):
     grading = Grading.query.get_or_404(contract_id)
-
+ 
     match = re.search(r"youtube\.com/.*v=([^&]*)", grading.video_link)
     contract_id = match.group(1)
 

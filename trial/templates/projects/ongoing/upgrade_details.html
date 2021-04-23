@@ -8,33 +8,64 @@
 <div class="container"> 
     <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
         <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
-            <h3 id="table_h3" style="text-transform: uppercase;">{{ upgrade.project }}</h3>
+            <h3 id="table_h3" style="text-transform: uppercase;">{{ upgrading.project }}</h3>
+            {% if upgrading.video_link != "N/A" %}
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
             </div>
             <div></div>
-            <div><b>&nbsp;</b></div> 
-            <table class="table table-striped table-borderless ">
+            <div><b>&nbsp;</b></div>
+            {% else %}
+            <div>
+                <div>
+                    <img class="no_vid" src="{{ url_for('static', filename='img/project/project-7.jpg') }}" alt="project_image.jpg">
+                </div>
+                <div>
+                    <img class="no_vid" src="{{ url_for('static', filename='img/project/project-7.jpg') }}" alt="project_image.jpg">
+                </div>
+            </div>
+            {% endif %} 
+            <table class="table table-striped table-borderless "> 
                 <tbody style="border-collapse: collapse;">
                     <tr>
                         <th>Project Title</th>
-                        <td>{{ upgrade.project }}</td>
+                        <td>{{ upgrading.project }}</td>
                     </tr>
                     <tr>
                         <th>Region</th>
-                        <td>{{ upgrade.region }}</td>
+                        <td>{{ upgrading.region }}</td>
                     </tr>
                     <tr> 
-                        <th>Contract Sum (GHS)</th>
-                        <td>{{ "{:,.2f}".format(upgrade.amt_to_date|float) }}</td>
+                        <th>Amount Cert. to Date (GHS)</th>
+                        {% if upgrading.amt_to_date == "N/A" %}
+                            <td>{{ upgrading.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(upgrading.amt_to_date|float) }}</td> 
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Date of Commence</th>
-                        <td>{{ upgrade.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% if upgrading.date_commenced is none %}
+                            <td>{{ upgrading.date_commenced }}</td>
+                        {% else %}
+                            <td>{{ upgrading.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <th>Date Completed</th>
-                        <td>{{ upgrade.date_completed.strftime('%d %B, %Y') }}</td>
+                        <th>Completion Date</th>
+                        {% if upgrading.date_completed is none %}
+                            <td>{{ upgrading.date_completed }}</td>
+                        {% else %}
+                            <td>{{ upgrading.date_completed.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>Revised Completion Date</th>
+                        {% if upgrading.revised_date is none %}
+                            <td>{{ upgrading.revised_date }}</td>
+                        {% else %}
+                            <td>{{ upgrading.revised_date.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                 </tbody>
             </table>           

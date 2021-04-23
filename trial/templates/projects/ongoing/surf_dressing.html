@@ -32,11 +32,29 @@
                         <td>{{ surf_dress.contractor }}</td>
                         <td>{{ surf_dress.date_commenced }}</td>
                         <td>{{ surf_dress.date_completed }}</td>
-                        <td>{{ surf_dress.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(surf_dress.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(surf_dress.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(surf_dress.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ surf_dress.revised_date }}</td>
+                        
+                        {% if surf_dress.contract_sum == "N/A" %}
+                            <td>{{ surf_dress.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(surf_dress.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if surf_dress.revised_sum == "N/A" %} 
+                            <td>{{ surf_dress.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(surf_dress.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if surf_dress.amt_to_date == "N/A" %}
+                            <td>{{ surf_dress.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(surf_dress.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.surf_dressing_contract', contract_id=surf_dress.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

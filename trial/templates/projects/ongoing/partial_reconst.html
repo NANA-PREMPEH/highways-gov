@@ -32,11 +32,29 @@
                         <td>{{ part_reconst.contractor }}</td>
                         <td>{{ part_reconst.date_commenced }}</td>
                         <td>{{ part_reconst.date_completed }}</td>
-                        <td>{{ part_reconst.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(part_reconst.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(part_reconst.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(part_reconst.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ part_reconst.revised_date }}</td>
+                        
+                        {% if part_reconst.contract_sum == "N/A" %}
+                            <td>{{ part_reconst.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(part_reconst.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if part_reconst.revised_sum == "N/A" %} 
+                            <td>{{ part_reconst.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(part_reconst.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if part_reconst.amt_to_date == "N/A" %}
+                            <td>{{ part_reconst.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(part_reconst.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.partial_recons_contract', contract_id=part_reconst.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

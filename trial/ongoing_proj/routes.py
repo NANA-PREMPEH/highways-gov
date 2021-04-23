@@ -3,6 +3,7 @@ from trial import db
 from datetime import datetime
 from trial.models import Post, OngoingProj
 from trial.projects.forms import DateForm
+import re
 
 
 ongoing_proj = Blueprint('ongoing_proj', __name__)
@@ -44,6 +45,24 @@ def resealing():
         return jsonify({'data': render_template('projects/ongoing/reseal_json.html', q=q)})
 
     return render_template('projects/ongoing/resealing.html', title='Resealing', reseal_list=reseal_list, posts=posts)
+@ongoing_proj.route('/ongoing/periodic/reconstruction', methods=['GET', 'POST']) 
+def reconstruction():
+    
+    reconstruct_list = OngoingProj.query.filter_by(category="Reconstruction")
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM ongoing_proj \
+                                    WHERE category = 'Reconstruction'  and date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/ongoing/reconstruct_json.html', q=q)})
+
+    return render_template('projects/ongoing/reconstruction.html', title='Reconstruction', reconstruct_list=reconstruct_list, posts=posts)
 
 @ongoing_proj.route('/ongoing/periodic/resurfacing', methods=['GET', 'POST']) 
 def resurfacing():
@@ -329,3 +348,156 @@ def other_proj():
         return jsonify({'data': render_template('projects/ongoing/other_proj_json.html', q=q)})
 
     return render_template('projects/ongoing/other_proj.html', title='Other Projects', others_list=others_list, posts=posts)
+
+#View Rehabilitation Projects details from the database
+@ongoing_proj.route('/ongoing/rehab_proj/view/<int:contract_id>/details') 
+def rehab_contract(contract_id):
+    rehab = OngoingProj.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", rehab.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/rehab_details.html', rehab=rehab, contract_id=contract_id, posts=posts)
+
+#View Regravelling Projects details from the database
+@ongoing_proj.route('/ongoing/regrav_proj/view/<int:contract_id>/details') 
+def regrav_contract(contract_id):
+    regrav = OngoingProj.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", regrav.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/regrav_details.html', regrav=regrav, contract_id=contract_id, posts=posts)
+
+#View Asphaltic Overlay Projects details from the database
+@ongoing_proj.route('/ongoing/overlay_proj/view/<int:contract_id>/details') 
+def overlay_contract(contract_id):
+    overlay = OngoingProj.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", overlay.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/asphaltic_details.html', overlay=overlay, contract_id=contract_id, posts=posts)
+
+#View Bituminous Projects details from the database
+@ongoing_proj.route('/ongoing/bituminous_proj/view/<int:contract_id>/details') 
+def bituminous_contract(contract_id):
+    bituminous = OngoingProj.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", bituminous.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/bituminous_details.html', bituminous=bituminous, contract_id=contract_id, posts=posts)
+
+#View Construction Projects details from the database
+@ongoing_proj.route('/ongoing/construction_proj/view/<int:contract_id>/details') 
+def construction_contract(contract_id):
+    construction = OngoingProj.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", construction.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/const_details.html', construction=construction, contract_id=contract_id, posts=posts)
+
+#View Decongestion Projects details from the database
+@ongoing_proj.route('/ongoing/decongestion_proj/view/<int:contract_id>/details') 
+def decongestion_contract(contract_id):
+    decongestion = OngoingProj.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", decongestion.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/decongestion_details.html', decongestion=decongestion, contract_id=contract_id, posts=posts)
+#View Drainage Projects details from the database
+@ongoing_proj.route('/ongoing/drainage_proj/view/<int:contract_id>/details') 
+def drainage_contract(contract_id):
+    drainage = OngoingProj.query.get_or_404(contract_id)
+    match = re.search(r"youtube\.com/.*v=([^&]*)", drainage.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/drainage_details.html', drainage=drainage, contract_id=contract_id, posts=posts)
+
+#View Others Projects details from the database
+@ongoing_proj.route('/ongoing/others_proj/view/<int:contract_id>/details') 
+def others_contract(contract_id):
+    others = OngoingProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", others.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/others_details.html', others=others, contract_id=contract_id, posts=posts)
+
+#View Partial Reconstruction Projects details from the database
+@ongoing_proj.route('/ongoing/partial_recons_proj/view/<int:contract_id>/details') 
+def partial_recons_contract(contract_id):
+    partial_recons = OngoingProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", partial_recons.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/part_reconst_details.html', partial_recons=partial_recons, contract_id=contract_id, posts=posts)
+
+#View Reconstruction Projects details from the database
+@ongoing_proj.route('/ongoing/reconstruction_proj/view/<int:contract_id>/details') 
+def reconstruction_contract(contract_id):
+    reconstruction = OngoingProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", reconstruction.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/reconstruct_details.html', reconstruction=reconstruction, contract_id=contract_id, posts=posts)
+
+#View Resealing Projects details from the database
+@ongoing_proj.route('/ongoing/resealing_proj/view/<int:contract_id>/details') 
+def resealing_contract(contract_id):
+    resealing = OngoingProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", resealing.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/reseal_details.html', resealing=resealing, contract_id=contract_id, posts=posts)
+
+#View Supply and Installation of Materials details from the database
+@ongoing_proj.route('/ongoing/supply_proj/view/<int:contract_id>/details') 
+def supply_contract(contract_id):
+    supply = OngoingProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", supply.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/supply_details.html', supply=supply, contract_id=contract_id, posts=posts)
+
+#View Surface Dressing details from the database
+@ongoing_proj.route('/ongoing/surf_dressing_proj/view/<int:contract_id>/details') 
+def surf_dressing_contract(contract_id):
+    surf_dressing = OngoingProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", surf_dressing.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/surf_dressing_details.html', surf_dressing=surf_dressing, contract_id=contract_id, posts=posts)
+
+#View Upgrading details from the database
+@ongoing_proj.route('/ongoing/upgrading_proj/view/<int:contract_id>/details') 
+def upgrading_contract(contract_id):
+    upgrading = OngoingProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", upgrading.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/ongoing/upgrade_details.html', upgrading=upgrading, contract_id=contract_id, posts=posts)

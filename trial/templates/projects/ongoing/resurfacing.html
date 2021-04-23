@@ -32,11 +32,29 @@
                         <td>{{ resurfacing.contractor }}</td>
                         <td>{{ resurfacing.date_commenced }}</td>
                         <td>{{ resurfacing.date_completed }}</td>
-                        <td>{{ resurfacing.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(resurfacing.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(resurfacing.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(resurfacing.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ resurfacing.revised_date }}</td>
+                        
+                        {% if resurfacing.contract_sum == "N/A" %}
+                            <td>{{ resurfacing.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(resurfacing.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if resurfacing.revised_sum == "N/A" %} 
+                            <td>{{ resurfacing.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(resurfacing.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if resurfacing.amt_to_date == "N/A" %}
+                            <td>{{ resurfacing.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(resurfacing.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="#"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

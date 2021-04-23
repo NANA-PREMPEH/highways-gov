@@ -32,11 +32,28 @@
                         <td>{{ supply.contractor }}</td>
                         <td>{{ supply.date_commenced }}</td>
                         <td>{{ supply.date_completed }}</td>
-                        <td>{{ supply.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(supply.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(supply.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(supply.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ supply.revised_date }}</td>
+                        
+                        {% if supply.contract_sum == "N/A" %}
+                            <td>{{ supply.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(supply.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if supply.revised_sum == "N/A" %} 
+                            <td>{{ supply.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(supply.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if supply.amt_to_date == "N/A" %}
+                            <td>{{ supply.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(supply.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;"><a href="{{ url_for('ongoing_proj.supply_contract', contract_id=supply.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

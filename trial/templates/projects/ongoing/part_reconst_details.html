@@ -8,8 +8,8 @@
 <div class="container"> 
     <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
         <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
-            <h3 id="table_h3" style="text-transform: uppercase;">{{ part_reconst.project }}</h3>
-            {% if part_reconst.video_link %}
+            <h3 id="table_h3" style="text-transform: uppercase;">{{ partial_recons.project }}</h3>
+            {% if partial_recons.video_link != "N/A" %}
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
             </div>
@@ -29,23 +29,43 @@
                 <tbody style="border-collapse: collapse;">
                     <tr>
                         <th>Project Title</th>
-                        <td>{{ part_reconst.project }}</td>
+                        <td>{{ partial_recons.project }}</td>
                     </tr>
                     <tr>
                         <th>Region</th>
-                        <td>{{ part_reconst.region }}</td>
+                        <td>{{ partial_recons.region }}</td>
                     </tr>
                     <tr> 
-                        <th>Contract Sum (GHS)</th>
-                        <td>{{ "{:,.2f}".format(part_reconst.amt_to_date|float) }}</td> 
+                        <th>Amount Cert. to Date (GHS)</th>
+                        {% if partial_recons.amt_to_date == "N/A" %}
+                            <td>{{ partial_recons.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(partial_recons.amt_to_date|float) }}</td> 
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Date of Commence</th>
-                        <td>{{ part_reconst.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% if partial_recons.date_commenced is none %}
+                            <td>{{ partial_recons.date_commenced }}</td>
+                        {% else %}
+                            <td>{{ partial_recons.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <th>Date Completed</th>
-                        <td>{{ part_reconst.date_completed.strftime('%d %B, %Y') }}</td>
+                        <th>Completion Date</th>
+                        {% if partial_recons.date_completed is none %}
+                            <td>{{ partial_recons.date_completed }}</td>
+                        {% else %}
+                            <td>{{ partial_recons.date_completed.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>Revised Completion Date</th>
+                        {% if partial_recons.revised_date is none %}
+                            <td>{{ partial_recons.revised_date }}</td>
+                        {% else %}
+                            <td>{{ partial_recons.revised_date.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                 </tbody>
             </table>           

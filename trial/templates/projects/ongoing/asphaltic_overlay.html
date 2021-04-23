@@ -32,11 +32,29 @@
                         <td>{{ overlay.contractor }}</td>
                         <td>{{ overlay.date_commenced }}</td>
                         <td>{{ overlay.date_completed }}</td>
-                        <td>{{ overlay.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(overlay.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(overlay.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(overlay.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href="{{ url_for('projects.rehab_contract', contract_id=overlay.id)}}"><i class="fa fa-eye"></i></a></td>
+                        <td>{{ overlay.revised_date }}</td>
+                        
+                        {% if overlay.contract_sum == "N/A" %}
+                            <td>{{ overlay.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(overlay.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if overlay.revised_sum == "N/A" %} 
+                            <td>{{ overlay.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(overlay.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if overlay.amt_to_date == "N/A" %}
+                            <td>{{ overlay.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(overlay.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.overlay_contract', contract_id=overlay.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

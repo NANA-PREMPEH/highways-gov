@@ -32,11 +32,29 @@
                         <td>{{ upgrading.contractor }}</td>
                         <td>{{ upgrading.date_commenced }}</td>
                         <td>{{ upgrading.date_completed }}</td>
-                        <td>{{ upgrading.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(upgrading.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(upgrading.amt_to_date|float) }}</td>
-                        <td>{{ "{:,.2f}".format(upgrading.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href=""><i class="fa fa-eye"></i></a></td>
+                        <td>{{ upgrading.revised_date }}</td>
+                        
+                        {% if upgrading.contract_sum == "N/A" %}
+                            <td>{{ upgrading.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(upgrading.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if upgrading.revised_sum == "N/A" %} 
+                            <td>{{ upgrading.revised_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(upgrading.revised_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if upgrading.amt_to_date == "N/A" %}
+                            <td>{{ upgrading.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(upgrading.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href="{{ url_for('ongoing_proj.upgrading_contract', contract_id=upgrading.id) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
