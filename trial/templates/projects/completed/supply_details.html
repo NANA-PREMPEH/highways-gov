@@ -9,7 +9,7 @@
     <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
         <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
             <h3 id="table_h3" style="text-transform: uppercase;">{{ supply.project }}</h3>
-            {% if supply.video_link %}
+            {% if supply.video_link != "N/A" %}
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
             </div>
@@ -36,17 +36,30 @@
                         <td>{{ supply.region }}</td>
                     </tr>
                     <tr> 
-                        <th>Contract Sum (GHS)</th>
-                        <td>{{ "{:,.2f}".format(supply.amt_to_date|float) }}</td> 
+                        <th>Amount Cert. to Date (GHS)</th>
+                        {% if supply.amt_to_date == "N/A" %}
+                            <td>{{ supply.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(supply.amt_to_date|float) }}</td> 
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Date of Commence</th>
-                        <td>{{ supply.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% if supply.date_commenced is none %}
+                            <td>{{ supply.date_commenced }}</td>
+                        {% else %}
+                            <td>{{ supply.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <th>Date Completed</th>
-                        <td>{{ supply.date_completed.strftime('%d %B, %Y') }}</td>
+                        <th>Completion Date</th>
+                        {% if supply.date_completed is none %}
+                            <td>{{ supply.date_completed }}</td>
+                        {% else %}
+                            <td>{{ supply.date_completed.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
+                    
                 </tbody>
             </table>           
         </div>

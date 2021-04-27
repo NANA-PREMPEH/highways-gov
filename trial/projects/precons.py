@@ -1,5 +1,5 @@
 from datetime import datetime
-from trial.models import Preconstruction
+
 from trial import db
 
 precons_data = {

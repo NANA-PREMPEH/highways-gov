@@ -1,5 +1,4 @@
 from datetime import datetime
-from trial.models import Resurfacing
 from trial import db
 
 resurface_data = {

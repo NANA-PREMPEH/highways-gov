@@ -1,5 +1,5 @@
 from datetime import datetime
-from trial.models import Asphalticoverlay
+
 from trial import db
 
 overlay_data = {

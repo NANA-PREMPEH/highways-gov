@@ -9,7 +9,7 @@
     <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
         <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
             <h3 id="table_h3" style="text-transform: uppercase;">{{ rehab.project }}</h3>
-            {% if rehab.video_link %}
+            {% if rehab.video_link != "N/A" %}
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
             </div>
@@ -37,16 +37,29 @@
                     </tr>
                     <tr> 
                         <th>Contract Sum (GHS)</th>
-                        <td>{{ "{:,.2f}".format(rehab.amt_to_date|float) }}</td> 
+                        {% if rehab.amt_to_date == "N/A" %}
+                            <td>{{ rehab.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(rehab.amt_to_date|float) }}</td> 
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Date of Commence</th>
-                        <td>{{ rehab.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% if rehab.date_commenced is none %}
+                            <td>{{ rehab.date_commenced }}</td>
+                        {% else %}
+                            <td>{{ rehab.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <th>Date Completed</th>
-                        <td>{{ rehab.date_completed.strftime('%d %B, %Y') }}</td>
+                        <th>Completion Date</th>
+                        {% if rehab.date_completed is none %}
+                            <td>{{ rehab.date_completed }}</td>
+                        {% else %}
+                            <td>{{ rehab.date_completed.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
+                    
                 </tbody>
             </table>           
         </div>

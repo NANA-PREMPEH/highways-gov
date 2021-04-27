@@ -1,5 +1,4 @@
 from datetime import datetime
-from trial.models import Resealing
 from trial import db
 
 reseal_data = {

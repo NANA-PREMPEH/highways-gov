@@ -1,9 +1,9 @@
 {% extends "includes/layout.html" %}
 {% block content %}
 <div class="container"> 
-    <div class="row blog_details_inner" style="margin-left: 2%;">
+    <div class="row blog_details_inner" style="margin-left: 1%; width: fit-content;">
         <h3 class="table_h3" id="table_h3">
-            UPGRADING PROJECTS
+            UPGRADING PROJECTS 
             <spans style="font-size: medium;">(COMPLETED)</span>
         </h3>
         
@@ -17,23 +17,36 @@
                     <th>DATE OF COMMENCE</th>
                     <th>DATE OF COMPLETION</th>
                     <th>ORIGINAL CONTRACT SUM(GH¢)</th>
-                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th>
+                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
                     <th>VIEW DETAILS</th> 
-                </tr>
+                </tr> 
             </thead>
             <tbody>
                 {% for upgrading in upgrade_list %} 
-                <tr>  
-                    <td>{{ upgrading.region }}</td>
-                    <td>{{ upgrading.project }}</td>
-                    <td>{{ upgrading.length }}</td>
-                    <td>{{ upgrading.contractor }}</td>
-                    <td>{{ upgrading.date_commenced }}</td>
-                    <td>{{ upgrading.date_completed }}</td>
-                    <td>{{ "{:,.2f}".format(upgrading.contract_sum|float) }}</td> 
-                    <td>{{ "{:,.2f}".format(upgrading.amt_to_date|float) }}</td>
-                    <td style="text-align: center;"><a href="{{ url_for('projects.upgrade_contract', contract_id=upgrading.id)}}"><i class="fa fa-eye"></i></a></td>
-                </tr>
+                    <tr>  
+                        <td>{{ upgrading.region }}</td>
+                        <td>{{ upgrading.project }}</td>
+                        <td>{{ upgrading.length }}</td>
+                        <td>{{ upgrading.contractor }}</td>
+                        <td>{{ upgrading.date_commenced }}</td>
+                        <td>{{ upgrading.date_completed }}</td>
+                        
+                        {% if upgrading.contract_sum == "N/A" %}
+                            <td>{{ upgrading.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(upgrading.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if upgrading.amt_to_date == "N/A" %}
+                            <td>{{ upgrading.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(upgrading.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href=""><i class="fa fa-eye"></i></a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table></br>
@@ -58,18 +71,17 @@
                     </div>
                 </div></br></br></br>
                 
-                <div class="col-md-6" id="upgrade_sum">
+                <div class="col-md-6" id="completed_upgrade_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}"readonly>
+                    <input class="form-control" type="text" name=""  value="{{ sum }}"readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>
                     <input class="form-control" type="text" name="" id="" value="0.00">
                 </div></br></br></br>-->
                 <div class="form-group col-md-6">
-                    <input type="submit" class="btn btn-info" id="upgrade_sub" name="submit" value="Submit">
-                </div>
-                {{ form.csrf_token }} 
+                    <input type="submit" class="btn btn-info" id="completed_upgrade_sub" name="submit" value="Submit"> 
+                </div> 
             </form>        
         </div>
     </div>

@@ -8,8 +8,8 @@
 <div class="container"> 
     <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
         <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
-            <h3 id="table_h3" style="text-transform: uppercase;">{{ decongest.project }}</h3>
-            {% if decongest.video_link %}
+            <h3 id="table_h3" style="text-transform: uppercase;">{{ decongestion.project }}</h3>
+            {% if decongestion.video_link != "N/A" %}
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
             </div>
@@ -29,24 +29,37 @@
                 <tbody style="border-collapse: collapse;">
                     <tr>
                         <th>Project Title</th>
-                        <td>{{ decongest.project }}</td> 
+                        <td>{{ decongestion.project }}</td>
                     </tr>
                     <tr>
                         <th>Region</th>
-                        <td>{{ decongest.region }}</td>
+                        <td>{{ decongestion.region }}</td>
                     </tr>
                     <tr> 
-                        <th>Contract Sum (GHS)</th>
-                        <td>{{ "{:,.2f}".format(decongest.amt_to_date|float) }}</td> 
+                        <th>Amount Cert. to Date (GHS)</th>
+                        {% if decongestion.amt_to_date == "N/A" %}
+                            <td>{{ decongestion.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(decongestion.amt_to_date|float) }}</td> 
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Date of Commence</th>
-                        <td>{{ decongest.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% if decongestion.date_commenced is none %}
+                            <td>{{ decongestion.date_commenced }}</td>
+                        {% else %}
+                            <td>{{ decongestion.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <th>Date Completed</th>
-                        <td>{{ decongest.date_completed.strftime('%d %B, %Y') }}</td>
+                        <th>Completion Date</th>
+                        {% if decongestion.date_completed is none %}
+                            <td>{{ decongestion.date_completed }}</td>
+                        {% else %}
+                            <td>{{ decongestion.date_completed.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
+                   
                 </tbody>
             </table>           
         </div>

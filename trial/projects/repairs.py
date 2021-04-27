@@ -1,5 +1,4 @@
 from datetime import datetime
-from trial.models import Repairs
 from trial import db 
 
 repairs_data = {

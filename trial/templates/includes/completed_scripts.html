@@ -1,0 +1,414 @@
+<!--Ajax script for Completed Rehabilitation project's sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_rehab_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.rehabilitation') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_rehab_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Asphaltic Overlay project's sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_asphaltic_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.asphalticoverlay') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_asphaltic_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Bituminous Surfacing sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_bitum_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.bituminous') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_bitum_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Construction Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_const_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.construction') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_const_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Construction Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_decongest_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.decongestion') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_decongest_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Drainage Structure Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_drainage_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.drainage_struct') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_drainage_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Grading Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_grading_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.grading') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_grading_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Other Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_otherproj_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.other_proj') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_otherproj_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Partial Reconstruction Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_part_reconst_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.part_reconst') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_part_reconst_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed  Pre-Construction Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_precons_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.preconstruct') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_precons_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed  Regravelling Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_regrav_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.regravelling') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_regrav_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed  Repairs & Asphaltic Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_repairs_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.repairs_asphaltic') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_repairs_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed  Resealing Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_reseal_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.resealing') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_reseal_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed  Resurface Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_resurface_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.resurfacing') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_resurface_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed  Supply Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_supply_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.supply') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_supply_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed  Surface Dressing Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_surf_dress_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.surface_dressing') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_surf_dress_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Upgrading Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_upgrade_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.upgrading') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_upgrade_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+<!--Ajax script for Completed Reconstruction Projects' sum-->
+<script>
+    $(document).ready(function(){
+        $('#completed_reconstruct_sub').on('click', function(event){
+
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url_for('completed_proj.reconstruction') }}",
+                dataType: "json",
+                data : {
+                    start_date: start_date, end_date : end_date
+                },
+                success: function(data){
+                    $('#completed_reconstruct_sum').replaceWith(data.data) 
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>

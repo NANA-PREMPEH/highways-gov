@@ -1,5 +1,4 @@
 from datetime import datetime
-from trial.models import Rehabilitation
 from flask_login import current_user
 from trial import db 
 

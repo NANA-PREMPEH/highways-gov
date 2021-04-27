@@ -1,24 +1,25 @@
 {% extends "includes/layout.html" %}
 {% block content %}
 <div class="container"> 
-    <div class="row blog_details_inner" style="margin-left: 2%;">
+    <div class="row blog_details_inner" style="margin-left: 1%; width: fit-content;">
         <h3 class="table_h3" id="table_h3">
-            PRE-CONSTRUCTION PROJECTS
+            PRE-CONSTRUCTION PROJECTS 
             <spans style="font-size: medium;">(COMPLETED)</span>
         </h3>
         
         <table id="mytable" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>NAME OF CONTRACT</th>
+                    <th>REGION</th>
+                    <th>PROJECT</th>
                     <th>LENGTH (Km)</th>
-                    <th>LOT</th>
-                    <th>CONTRACT SUM (GHS)</th>
                     <th>CONTRACTOR</th>
                     <th>DATE OF COMMENCE</th>
                     <th>DATE OF COMPLETION</th>
-                    <th>VIEW DETAILS</th>
-                </tr>
+                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
+                    <th>VIEW DETAILS</th> 
+                </tr> 
             </thead>
             <tbody>
                 {% for precons in precons_list %} 
@@ -29,9 +30,22 @@
                         <td>{{ precons.contractor }}</td>
                         <td>{{ precons.date_commenced }}</td>
                         <td>{{ precons.date_completed }}</td>
-                        <td>{{ "{:,.2f}".format(precons.contract_sum|float) }}</td> 
-                        <td>{{ "{:,.2f}".format(precons.amt_to_date|float) }}</td>
-                        <td style="text-align: center;"><a href="{{ url_for('projects.precons_contract', contract_id=precons.id)}}"><i class="fa fa-eye"></i></a></td>
+                        
+                        {% if precons.contract_sum == "N/A" %}
+                            <td>{{ precons.contract_sum }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(precons.contract_sum|float) }}</td>
+                        {% endif %}
+
+                        {% if precons.amt_to_date == "N/A" %}
+                            <td>{{ precons.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(precons.amt_to_date|float) }}</td>
+                        {% endif %}
+
+                        <td style="text-align: center;">
+                            <a href=""><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -57,18 +71,17 @@
                     </div>
                 </div></br></br></br>
                 
-                <div class="col-md-6" id="precons_sum">
+                <div class="col-md-6" id="completed_precons_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name="" id="" value="{{ sum }}"readonly>
+                    <input class="form-control" type="text" name=""  value="{{ sum }}"readonly>
                 </div></br></br></br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>
                     <input class="form-control" type="text" name="" id="" value="0.00">
                 </div></br></br></br>-->
                 <div class="form-group col-md-6">
-                    <input type="submit" class="btn btn-info" id="precons_sub" name="submit" value="Submit">
-                </div>
-                {{ form.csrf_token }} 
+                    <input type="submit" class="btn btn-info" id="completed_precons_sub" name="submit" value="Submit">
+                </div> 
             </form>        
         </div>
     </div>

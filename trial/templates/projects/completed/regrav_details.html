@@ -9,12 +9,12 @@
     <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
         <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
             <h3 id="table_h3" style="text-transform: uppercase;">{{ regrav.project }}</h3>
-            {% if regrav.video_link %}
+            {% if regrav.video_link != "N/A" %}
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
             </div>
             <div></div>
-            <div><b> &nbsp;</b></div>
+            <div><b>&nbsp;</b></div>
             {% else %}
             <div>
                 <div>
@@ -37,16 +37,29 @@
                     </tr>
                     <tr> 
                         <th>Contract Sum (GHS)</th>
-                        <td>{{ "{:,.2f}".format(regrav.amt_to_date|float) }}</td> 
+                        {% if regrav.amt_to_date == "N/A" %}
+                            <td>{{ regrav.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(regrav.amt_to_date|float) }}</td> 
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Date of Commence</th>
-                        <td>{{ regrav.date_commenced.strftime('%d %B, %Y') }}</td> 
+                        {% if regrav.date_commenced is none %}
+                            <td>{{ regrav.date_commenced }}</td>
+                        {% else %}
+                            <td>{{ regrav.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <th>Date Completed</th>
-                        <td>{{ regrav.date_completed.strftime('%d %B, %Y') }}</td>
+                        <th>Completion Date</th>
+                        {% if regrav.date_completed is none %}
+                            <td>{{ regrav.date_completed }}</td>
+                        {% else %}
+                            <td>{{ regrav.date_completed.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
+                    
                 </tbody>
             </table>           
         </div>

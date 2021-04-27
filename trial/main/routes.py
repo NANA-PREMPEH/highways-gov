@@ -3,7 +3,7 @@ from trial import db
 from flask_login import current_user
 from trial.main.forms import SearchForm
 from trial.projects.forms import DateForm
-from trial.models import Post, Upgrading, User, Leave
+from trial.models import CompletedProj, Post
 
 
 main = Blueprint('main', __name__)
@@ -106,59 +106,42 @@ def organogram():
 def completed_periodic():
     
     form = DateForm()
-    posts = Post.query.order_by(Post.id.desc()).all()
+    posts = Post.query.order_by(Post.id.desc()).all() 
 
     if request.method == "POST":
         start_date = request.form['start_date']
         end_date = request.form['end_date']
-        results = db.engine.execute("SELECT FORMAT((t1.col_total + t2.col_total + t3.col_total + \
-                                    t4.col_total + t5.col_total + t6.col_total + t7.col_total + \
-                                    t8.col_total + t9.col_total + t10.col_total + t11.col_total + t12.col_total), 2)   As col_total \
-                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM rehabilitation \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t1 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM regravelling \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t2 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM repairs \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t3 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM resealing \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t4 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM resurfacing \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t5 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM upgrading \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t6 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM asphalticoverlay \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t7 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM decongestion \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t8 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM partialreconstruction \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t9 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM supply \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t10 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM preconstruction \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t11 \
-                                    CROSS JOIN (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM construction \
-                                    WHERE date_commenced >= %s  and date_completed<= %s) t12", \
-                                    (start_date, end_date, start_date, end_date, start_date, end_date,\
-                                    start_date, end_date, start_date, end_date, start_date, end_date, \
-                                    start_date, end_date, start_date, end_date, start_date, end_date,
-                                    start_date, end_date, start_date, end_date,start_date, end_date)).first()
+        results = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM completed_proj \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
         
-        return jsonify({'data': render_template('main/periodic_json.html', results=results, form=form)}) 
+        return jsonify({'data': render_template('main/completed_periodic_json.html', results=results, form=form)}) 
         
     return render_template('main/completed_periodic.html', title='Completed Periodic Projects', posts=posts, form=form)
+
+@main.route('/ongoing/periodic', methods=['GET', 'POST'])
+def ongoing_periodic():
+    
+    form = DateForm()
+    posts = Post.query.order_by(Post.id.desc()).all() 
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']
+        results = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM ongoing_proj \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+        
+        return jsonify({'data': render_template('main/ongoing_periodic_json.html', results=results, form=form)}) 
+        
+    return render_template('main/ongoing_periodic.html', title='Ongoing Periodic Projects', posts=posts, form=form)
 
 @main.route('/completed/routine', methods=['GET', 'POST'])
 def completed_routine():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/completed_routine.html', title='Completed Routine Projects', posts=posts)
-
-
-@main.route('/ongoing/periodic', methods=['GET', 'POST'])  
-def ongoing_periodic():
-
-    form=DateForm()
-    posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('main/ongoing_periodic.html', title='Ongoing Periodic Projects', posts=posts, form=form)
 
 @main.route('/ongoing/routine', methods=['GET', 'POST'])
 def ongoing_routine():
@@ -185,7 +168,7 @@ def search():
     if not g.search_form.validate(): 
         return redirect(url_for('main.home'))
     page = request.args.get('page', 1, type=int)
-    search_posts, total = Upgrading.search(g.search_form.q.data, page,
+    search_posts, total = CompletedProj.search(g.search_form.q.data, page,
                                current_app.config['POSTS_PER_PAGE'])
     next_url = url_for('main.search', q=g.search_form.q.data, page=page + 1) \
         if total > page * current_app.config['POSTS_PER_PAGE'] else None

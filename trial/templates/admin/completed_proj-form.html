@@ -81,7 +81,7 @@
                                         </div>
                                     <!--if there are no errors-->
                                     {% else %}
-                                        {{ form.contractor(class="form-control")}}
+                                        {{ form.contractor(class="form-control")}} 
                                     {% endif %}   
                                 </div>
                                 <div class="form-group">
@@ -102,10 +102,27 @@
                                         </div>
                                     </div> 
                                 </div>
-                                
+                                <div class="form-group">
+                                    {{ form.pic_one.label() }}
+                                    {{ form.pic_one}}
+                                    {% if form.pic_one.errors %}
+                                        {% for error in form.pic_one.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="sidebar_area" >
+                                    <div class="form-group">
+                                        {{ form.pic_two.label() }}
+                                        {{ form.pic_two}}
+                                        {% if form.pic_two.errors %}
+                                            {% for error in form.pic_two.errors %}
+                                                <span class="text-danger">{{ error }}</span>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
                                     <div class="form-group">
                                         <label for="completed_periodic">Project Category</label>
                                         <select class="form-control" name="completed_periodic" id="completed_periodic">

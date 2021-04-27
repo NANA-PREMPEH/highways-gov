@@ -56,6 +56,7 @@ def create_app(config_class=Config):
     from trial.admin.routes import admin
     from trial.leavemgt.routes import leavemgt
     from trial.ongoing_proj.routes import ongoing_proj
+    from trial.completed_proj.routes import completed_proj
 
     #Register the blueprint
     app.register_blueprint(users)
@@ -67,5 +68,6 @@ def create_app(config_class=Config):
     app.register_blueprint(admin)
     app.register_blueprint(leavemgt)
     app.register_blueprint(ongoing_proj)
+    app.register_blueprint(completed_proj)
 
     return app

@@ -1,5 +1,4 @@
 from datetime import datetime
-from trial.models import Construction
 from trial import db
 
 construc_data = {

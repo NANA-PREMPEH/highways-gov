@@ -1,5 +1,4 @@
 from datetime import datetime
-from trial.models import Upgrading
 from trial import db
 upgrade_data = {
     "all contract": [

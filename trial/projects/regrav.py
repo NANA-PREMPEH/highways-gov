@@ -1,5 +1,5 @@
 from datetime import datetime
-from trial.models import Regravelling
+
 from trial import db
 
 regrav_data = {

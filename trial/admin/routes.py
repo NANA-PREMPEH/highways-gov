@@ -1,9 +1,9 @@
 import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, logout_user, login_required
-from trial.models import (CompletedProj, Post, OngoingProj, User, Contract)
+from trial.models import CompletedProj, Post, OngoingProj, User
 from trial.admin.forms import RegistrationForm, BlogPostForm, CompletedProjectsForm, UpdateStaffForm, OngoingProjectsForm
-from trial.admin.utils import save_photo, save_picture
+from trial.admin.utils import save_photo, save_picture, save_proj_image
 import re
 import requests
 from trial import db, bcrypt 
@@ -65,29 +65,49 @@ def create_blog():
 def add_contract():
 
     form = CompletedProjectsForm()
-    if form.validate_on_submit():
 
+    if form.validate_on_submit():
+    
         if form.video_link.data:
             match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
             video_id_youtube = match.group(1)
-
             image_url = "https://img.youtube.com/vi/" + \
                 video_id_youtube + "/mqdefault.jpg" 
             img_data = requests.get(image_url).content
             random_hex = secrets.token_hex(16)
             thumb_filename = random_hex + ".jpg"
+            video_link = form.video_link.data
+            video_thumb = thumb_filename
+            with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
+                handler.write(img_data)      
+        else:
+            video_link = None
+            video_thumb = "N/A"
+        #Check for Picture Input
+        if form.pic_one.data:
+            pic_one = save_proj_image(form.pic_one.data)
+        else:
+            pic_one = "N/A"
+        if form.pic_two.data:
+            pic_two = save_proj_image(form.pic_two.data)
+        else:
+            pic_two = "N/A"
+        
+        category = request.form.get('completed_periodic') or 'N/A' 
+        length = form.length.data or 'N/A'
+        date_completed = form.date_completed.data or None
+        date_commenced = form.date_commenced.data or None
+        contract_sum = form.contract_sum.data or None
+        amt_to_date = form.amt_to_date.data or None
+        video_description = form.video_description.data or "N/A"
+        video_title = form.video_title.data or "N/A"
 
-        with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
-                handler.write(img_data)
-
-        category = request.form.get('completed_periodic')
-        uploaded_details = CompletedProj(region=form.region.data, project=form.project.data, 
-                                            length=form.length.data, contractor=form.contractor.data, category=category,
-                                            date_commenced=form.date_commenced.data, date_completed=form.date_completed.data, 
-                                            contract_sum=form.contract_sum.data, amt_to_date=form.amt_to_date.data,
-                                            video_title=form.video_title.data, video_link=form.video_link.data,
-                                            video_description=form.video_description.data,
-                                            video_thumb=thumb_filename, user_id=current_user.id)
+        uploaded_details = CompletedProj(region=form.region.data, project=form.project.data, length=length, 
+                                            contractor=form.contractor.data, category=category, date_commenced=date_commenced, 
+                                            date_completed=date_completed, contract_sum=contract_sum,
+                                            amt_to_date=amt_to_date,video_title=video_title,
+                                            video_link=video_link,video_description=video_description,
+                                            video_thumb=video_thumb, image_one=pic_one, image_two=pic_two, user_id=current_user.id)
         # saving to database
         db.session.add(uploaded_details)
         db.session.commit()
