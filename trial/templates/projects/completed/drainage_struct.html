@@ -44,7 +44,7 @@
                         {% endif %}
 
                         <td style="text-align: center;">
-                            <a href=""><i class="fa fa-eye"></i></a>
+                            <a href="{{ url_for('completed_proj.drainage_contract', contract_id=drainage.id) }}"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                 {% endfor %}

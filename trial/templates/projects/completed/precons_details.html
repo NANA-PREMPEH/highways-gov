@@ -9,33 +9,66 @@
     <div class="row blog_details_inner" style="margin-left: 2%; margin-top: 50px;"> 
         <div class="col-md-8" id="tbl_h4" style="margin-top: -2%;" >
             <h3 id="table_h3" style="text-transform: uppercase;">{{ precons.project }}</h3>
+            {% if precons.video_link != "N/A" %}
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ contract_id }}?controls=1" allowfullscreen></iframe>
             </div>
             <div></div>
-            <div><b>&nbsp;</b></div> 
-            <table class="table table-striped table-borderless ">
+            <div><b>&nbsp;</b></div>
+            {% elif precons.image_one !="N/A" or precons.image_two != "N/A" %}
+            <div>
+                <div>
+                    <img class="no_vid" src="{{ url_for('static', filename='completed_proj/' +precons.image_one) }}" alt="project_image.jpg">
+                </div>
+                <div>
+                    <img class="no_vid" src="{{ url_for('static', filename='completed_proj/' +precons.image_two) }}" alt="project_image.jpg">
+                </div>
+            </div>
+            {% else %}
+            <div>
+                <div style="font-style: italic; font-size: 17px; margin-left: 12px; font-weight: 400;">
+                    No Image/Video can be found
+                </div>
+            </div></br>
+            {% endif %} 
+            <table class="table table-striped table-borderless"> 
                 <tbody style="border-collapse: collapse;">
                     <tr>
                         <th>Project Title</th>
-                        <td>{{ precons.project }}</td>
+                        <td>{{ precons.project }}</td> 
                     </tr>
                     <tr>
                         <th>Region</th>
                         <td>{{ precons.region }}</td>
                     </tr>
                     <tr> 
-                        <th>Contract Sum (GHS)</th>
-                        <td>{{ "{:,.2f}".format(precons.amt_to_date|float) }}</td>
+                        <th>Amount Cert. to Date (GHS)</th>
+                        {% if precons.amt_to_date == "N/A" %}
+                            <td>{{ precons.amt_to_date }}</td>
+                        {% else %}
+                            <td>{{ "{:,.2f}".format(precons.amt_to_date|float) }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Date of Commence</th>
-                        <td>{{ precons.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% if precons.date_commenced is none %}
+                            <td>{{ precons.date_commenced }}</td>
+                        {% else %}
+                            <td>{{ precons.date_commenced.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <th>Date Completed</th>
-                        <td>{{ precons.date_completed.strftime('%d %B, %Y') }}</td>
+                        <th>Completion Date</th>
+                        {% if precons.date_completed is none %}
+                            <td>{{ precons.date_completed }}</td>
+                        {% else %}
+                            <td>{{ precons.date_completed.strftime('%d %B, %Y') }}</td>
+                        {% endif %}
                     </tr>
+                    <tr>
+                        <th>Contractor</th>
+                        <td>{{ precons.contractor }}</td>
+                    </tr>  
                 </tbody>
             </table>           
         </div>

@@ -4,7 +4,7 @@ import os
 class Config:
     
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('JAWSDB_URL') 
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:santa@dd4217@localhost/ghadb"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587

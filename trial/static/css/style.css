@@ -2530,11 +2530,11 @@ fieldset legend {
 
 
 #hello li ul{
-  position: absolute;
+  position: absolute; 
   width: 232px;
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
-  margin-top: -19.45%;
+  margin-top: -18.0%;
   margin-left: 232px;
   display: inline-block;
   opacity: 0;
@@ -2544,6 +2544,7 @@ fieldset legend {
   transition: all 400ms linear;
   transition: .3s;
 }
+
 #hello li:hover > ul{   
   opacity: 1;  
   visibility: visible;

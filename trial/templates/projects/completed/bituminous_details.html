@@ -15,21 +15,27 @@
             </div>
             <div></div>
             <div><b>&nbsp;</b></div>
-            {% else %}
+            {% elif bituminous.image_one !="N/A" or bituminous.image_two != "N/A" %}
             <div>
                 <div>
-                    <img class="no_vid" src="{{ url_for('static', filename='img/project/project-7.jpg') }}" alt="project_image.jpg">
+                    <img class="no_vid" src="{{ url_for('static', filename='completed_proj/' +bituminous.image_one) }}" alt="project_image.jpg">
                 </div>
                 <div>
-                    <img class="no_vid" src="{{ url_for('static', filename='img/project/project-7.jpg') }}" alt="project_image.jpg">
+                    <img class="no_vid" src="{{ url_for('static', filename='completed_proj/' +bituminous.image_two) }}" alt="project_image.jpg">
                 </div>
             </div>
+            {% else %}
+            <div>
+                <div style="font-style: italic; font-size: 17px; margin-left: 12px; font-weight: 400;">
+                    No Image/Video can be found
+                </div>
+            </div></br>
             {% endif %} 
-            <table class="table table-striped table-borderless "> 
+            <table class="table table-striped table-borderless"> 
                 <tbody style="border-collapse: collapse;">
                     <tr>
                         <th>Project Title</th>
-                        <td>{{ bituminous.project }}</td>
+                        <td>{{ bituminous.project }}</td> 
                     </tr>
                     <tr>
                         <th>Region</th>
@@ -40,7 +46,7 @@
                         {% if bituminous.amt_to_date == "N/A" %}
                             <td>{{ bituminous.amt_to_date }}</td>
                         {% else %}
-                            <td>{{ "{:,.2f}".format(bituminous.amt_to_date|float) }}</td> 
+                            <td>{{ "{:,.2f}".format(bituminous.amt_to_date|float) }}</td>
                         {% endif %}
                     </tr>
                     <tr>
@@ -59,7 +65,10 @@
                             <td>{{ bituminous.date_completed.strftime('%d %B, %Y') }}</td>
                         {% endif %}
                     </tr>
-                    
+                    <tr>
+                        <th>Contractor</th>
+                        <td>{{ bituminous.contractor }}</td>
+                    </tr>  
                 </tbody>
             </table>           
         </div>

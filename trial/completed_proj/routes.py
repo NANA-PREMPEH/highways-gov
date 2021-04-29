@@ -457,7 +457,7 @@ def reconstruction_contract(contract_id):
     return render_template('projects/completed/reconstruct_details.html', reconstruction=reconstruction, contract_id=contract_id, posts=posts)
 
 #View Resealing Projects details from the database
-@completed_proj.route('/completed/resealing_proj/view/<int:contract_id>/details') 
+@completed_proj.route('/completed/resealing_proj/view/<int:contract_id>/details')  
 def resealing_contract(contract_id):
     resealing = CompletedProj.query.get_or_404(contract_id) 
     match = re.search(r"youtube\.com/.*v=([^&]*)", resealing.video_link)
@@ -499,6 +499,7 @@ def upgrading_contract(contract_id):
 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/completed/upgrade_details.html', upgrading=upgrading, contract_id=contract_id, posts=posts)
+
 #View Grading details from the database
 @completed_proj.route('/completed/grading_proj/view/<int:contract_id>/details') 
 def grading_contract(contract_id):
@@ -509,4 +510,37 @@ def grading_contract(contract_id):
 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/completed/grading_details.html', grading=grading, contract_id=contract_id, posts=posts)
+
+#View Pre-Construction details from the database
+@completed_proj.route('/completed/precons_proj/view/<int:contract_id>/details') 
+def precons_contract(contract_id):
+    precons = CompletedProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", precons.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/completed/precons_details.html', precons=precons, contract_id=contract_id, posts=posts)
+
+#View Repairs details from the database
+@completed_proj.route('/completed/repairs_proj/view/<int:contract_id>/details') 
+def repairs_contract(contract_id):
+    repairs = CompletedProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", repairs.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/completed/repairs_details.html', repairs=repairs, contract_id=contract_id, posts=posts)
+
+#View Resurfacing details from the database
+@completed_proj.route('/completed/resurfacing_proj/view/<int:contract_id>/details') 
+def resurfacing_contract(contract_id):
+    resurface = CompletedProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", resurface.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/completed/resurface_details.html', resurface=resurface, contract_id=contract_id, posts=posts)
 

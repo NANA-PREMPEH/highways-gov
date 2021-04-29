@@ -44,11 +44,11 @@
                         {% endif %}
 
                         <td style="text-align: center;">
-                            <a href=""><i class="fa fa-eye"></i></a>
+                            <a href="{{ url_for('completed_proj.supply_contract', contract_id=supply.id) }}"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                 {% endfor %}
-            </tbody>
+            </tbody> 
         </table></br>
         <div>
             <form action="" method="post">
