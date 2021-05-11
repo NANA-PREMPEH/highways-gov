@@ -55,7 +55,7 @@ def create_app(config_class=Config):
     from trial.errors.handlers import errors
     from trial.admin.routes import admin
     from trial.leavemgt.routes import leavemgt
-    from trial.ongoing_proj.routes import ongoing_proj
+    from trial.ongoing_proj.routes import ongoing_proj 
     from trial.completed_proj.routes import completed_proj
 
     #Register the blueprint

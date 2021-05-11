@@ -316,7 +316,7 @@ class CompletedProj(db.Model):
     amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
     video_title = db.Column(db.String(300), nullable=True, default='N/A')
     video_link = db.Column(db.String(250), nullable=True, default='N/A')
-    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A') 
     video_thumb = db.Column(db.String(50), default='default.png')
     image_one = db.Column(db.String(120), default='project-7.jpg')
     image_two = db.Column(db.String(120), default='project-7.jpg')
@@ -327,6 +327,88 @@ class CompletedProj(db.Model):
 
     def __repr__(self):
         return f"CompletedProj('{self.id}','{self.video_title}','{self.video_link}')"
+
+#Create TerminatedProj Table
+class TerminatedProj(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    category = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    revised_date = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    revised_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+
+    def __repr__(self):
+        return f"TerminatedProj('{self.id}','{self.video_title}','{self.video_link}')"
+
+
+#Create AwardedProj Table
+class AwardedProj(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    category = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    revised_date = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    revised_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    cost_to_complete = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+
+    def __repr__(self):
+        return f"AwardedProj('{self.id}','{self.video_title}','{self.video_link}')"
+
+
+
+#Create PlannedProj Table
+class PlannedProj(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(120), nullable=True)
+    project = db.Column(db.String(120), nullable=True)
+    length = db.Column(db.String(50), nullable=True, default='N/A') 
+    contractor = db.Column(db.String(120), nullable=True, default='N/A')
+    category = db.Column(db.String(120), nullable=True, default='N/A')
+    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None)
+    revised_date = db.Column(db.Date, nullable=True, default=None)
+    contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    revised_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
+    video_title = db.Column(db.String(300), nullable=True, default='N/A')
+    video_link = db.Column(db.String(250), nullable=True, default='N/A')
+    video_description = db.Column(db.Text, nullable=True, default='N/A')
+    video_thumb = db.Column(db.String(50), default='default.png')
+    uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    # this is the column with which we are creating the relation with user table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+
+    def __repr__(self):
+        return f"PlannedProj('{self.id}','{self.video_title}','{self.video_link}')"
     
 class Roadcondition(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -138,15 +138,10 @@
                                                 <li ><a href="{{ url_for('main.ongoing_routine') }}" >Routine</a></li>   
                                             </ul>
                                         </li>
-                                        <li><a href="#" class="test">Projects Under Planning&nbsp;
-                                                <span class="fa fa-plus"></span>
-                                            </a>
-                                            <ul>
-                                                <li ><a href="{{ url_for('main.planning_periodic') }}">Periodic</a></li>
-                                                <li ><a href="{{ url_for('main.planning_routine') }}" >Routine</a></li>   
-                                            </ul>
-                                        </li>
+                                        <li><a href="{{ url_for('projects.planned_proj') }}">Projects Under Planning</a></li>
                                         <li><a href="{{ url_for('projects.critical_roads') }}">Critical Roads</a></li>
+                                        <li><a href="{{ url_for('projects.terminated_proj') }}">Terimnated Projects</a></li>
+                                        <li><a href="{{ url_for('projects.awarded_proj') }}">Awarded Projects</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown submenu">
@@ -488,6 +483,52 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         },
                         success: function(data){
                             $('#ongoing_proj_sum').replaceWith(data.data)
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for Awarded Projects' sum-->
+        <script>
+            $(document).ready(function(){
+                $('#awarded_proj_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.awarded_proj') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#awarded_proj_sum').replaceWith(data.data) 
+                        }
+                    });
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <!--Ajax script for Terminated Projects' sum-->
+        <script>
+            $(document).ready(function(){
+                $('#terminated_proj_sub').on('click', function(event){
+
+                    var start_date = $('#start_date').val();
+                    var end_date = $('#end_date').val();
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url_for('projects.terminated_proj') }}",
+                        dataType: "json",
+                        data : {
+                            start_date: start_date, end_date : end_date
+                        },
+                        success: function(data){
+                            $('#terminated_proj_sum').replaceWith(data.data) 
                         }
                     });
                     event.preventDefault();

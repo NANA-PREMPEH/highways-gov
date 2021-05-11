@@ -120,7 +120,9 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{ url_for('admin.add_contract') }}">Completed Projects</a>
                                     <a class="nav-link" href="{{ url_for('admin.add_ongoing_contract') }}">Ongoing Projects</a>
-                                    <a class="nav-link" href="#">Under Planning</a>
+                                    <a class="nav-link" href="{{ url_for('admin.add_planned_contract') }}">Under Planning</a>
+                                    <a class="nav-link" href="{{ url_for('admin.add_terminated_contract') }}">Terminated Projects</a>
+                                    <a class="nav-link" href="{{ url_for('admin.add_awarded_contract') }}">Awarded Projects</a>
                                 </nav>
                             </div>
                             <a class="nav-link" href="{{ url_for('admin.create_blog') }}">

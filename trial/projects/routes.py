@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, Blueprint, jsonify
 from flask.globals import request
 from trial import db
-from trial.models import Post, Roadcondition, Roadcondition2K19
+from trial.models import Post, Roadcondition, Roadcondition2K19, TerminatedProj, AwardedProj, PlannedProj
 from trial.projects.regrav import update_regrav, regrav_data
 from trial.projects.rehab import update_rehab, rehab_data
 from trial.projects.construc import update_construc, construc_data
@@ -61,7 +61,7 @@ def overlay():
 @login_required
 @admin_required
 def rehab():
-    update_rehab(rehab_data)
+    update_rehab(rehab_data) 
     return redirect(url_for('main.home'))
 
 @projects.route('/upgrade')
@@ -98,6 +98,63 @@ def critical_roads():
     posts = Post.query.order_by(Post.id.desc()).all()
 
     return render_template('projects/critical_roads.html', posts=posts) 
+
+@projects.route('/terminated/projects', methods=['GET', 'POST']) 
+def terminated_proj():
+    
+    terminated_list = TerminatedProj.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM terminated_proj \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/terminated_json.html', q=q)})
+
+    return render_template('projects/terminated_proj.html', title='Terminated Projects', terminated_list=terminated_list, posts=posts)
+
+@projects.route('/awarded/projects', methods=['GET', 'POST']) 
+def awarded_proj():
+    
+    awarded_list = AwardedProj.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM awarded_proj \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/awarded_json.html', q=q)})
+
+    return render_template('projects/awarded_proj.html', title='Awarded Projects', awarded_list=awarded_list, posts=posts)
+
+@projects.route('/planned/projects', methods=['GET', 'POST']) 
+def planned_proj():
+    
+    planned_list = PlannedProj.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM planned_proj \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/planned_json.html', q=q)})
+
+    return render_template('projects/planned_proj.html', title='Planned Projects', planned_list=planned_list, posts=posts)
 
 
 

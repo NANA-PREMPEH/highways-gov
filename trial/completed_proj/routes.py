@@ -276,7 +276,7 @@ def surface_dressing():
     
     surf_dress_list = CompletedProj.query.filter_by(category="Surface Dressing")
     posts = Post.query.order_by(Post.id.desc()).all()
-
+ 
     if request.method == "POST":
         start_date = request.form['start_date']
         end_date = request.form['end_date']  

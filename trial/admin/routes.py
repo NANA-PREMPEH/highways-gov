@@ -1,8 +1,9 @@
 import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, logout_user, login_required
-from trial.models import CompletedProj, Post, OngoingProj, User
-from trial.admin.forms import RegistrationForm, BlogPostForm, CompletedProjectsForm, UpdateStaffForm, OngoingProjectsForm
+from trial.models import CompletedProj, Post, OngoingProj, User, TerminatedProj, AwardedProj, PlannedProj
+from trial.admin.forms import (RegistrationForm, BlogPostForm, CompletedProjectsForm, UpdateStaffForm, OngoingProjectsForm, 
+                                PlannedProjectsForm,TerminatedProjectsForm, AwardedProjectsForm)
 from trial.admin.utils import save_photo, save_picture, save_proj_image
 import re
 import requests
@@ -115,6 +116,163 @@ def add_contract():
         return redirect(url_for('admin.add_contract'))
 
     return render_template('admin/completed_proj-form.html', form=form)
+
+
+#Add new Contract details to the database(Terminated)
+@admin.route('/terminated_proj/add_contract', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def add_terminated_contract():
+
+    form = TerminatedProjectsForm()
+
+    if form.validate_on_submit():
+
+        if form.video_link.data:
+            match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
+            video_id_youtube = match.group(1)
+            image_url = "https://img.youtube.com/vi/" + \
+                video_id_youtube + "/mqdefault.jpg" 
+            img_data = requests.get(image_url).content
+            random_hex = secrets.token_hex(16)
+            thumb_filename = random_hex + ".jpg"
+            video_link = form.video_link.data
+            video_thumb = thumb_filename
+            with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
+                handler.write(img_data)      
+        else:
+            video_link = None
+            video_thumb = "N/A"
+        
+        category = request.form.get('terminated_proj') or 'N/A'
+        revised_date = form.revised_date.data or None
+        length = form.length.data or 'N/A'
+        date_completed = form.date_completed.data or None
+        date_commenced = form.date_commenced.data or None
+        revised_sum = form.revised_sum.data or None
+        contract_sum = form.contract_sum.data or None
+        amt_to_date = form.amt_to_date.data or None
+        video_description = form.video_description.data or "N/A"
+        video_title = form.video_title.data or "N/A"
+        
+        uploaded_details = TerminatedProj(region=form.region.data, project=form.project.data, length=length, 
+                                            contractor=form.contractor.data, category=category, date_commenced=date_commenced, 
+                                            date_completed=date_completed, revised_date=revised_date, contract_sum=contract_sum,
+                                            revised_sum=revised_sum,amt_to_date=amt_to_date,video_title=video_title,
+                                            video_link=video_link,video_description=video_description,
+                                            video_thumb=video_thumb, user_id=current_user.id)        
+        # saving to database
+        db.session.add(uploaded_details)
+        db.session.commit()
+        flash('Data added successfully', 'success')
+        return redirect(url_for('admin.add_terminated_contract'))
+
+    return render_template('admin/terminated_proj-form.html', form=form)
+
+
+#Add new Contract details to the database(Terminated)
+@admin.route('/awarded_proj/add_contract', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def add_awarded_contract():
+
+    form = AwardedProjectsForm()
+
+    if form.validate_on_submit():
+
+        if form.video_link.data:
+            match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
+            video_id_youtube = match.group(1)
+            image_url = "https://img.youtube.com/vi/" + \
+                video_id_youtube + "/mqdefault.jpg" 
+            img_data = requests.get(image_url).content
+            random_hex = secrets.token_hex(16)
+            thumb_filename = random_hex + ".jpg"
+            video_link = form.video_link.data
+            video_thumb = thumb_filename
+            with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
+                handler.write(img_data)      
+        else:
+            video_link = None
+            video_thumb = "N/A"
+        
+        category = request.form.get('awarded_proj') or 'N/A'
+        revised_date = form.revised_date.data or None
+        length = form.length.data or 'N/A'
+        date_completed = form.date_completed.data or None
+        date_commenced = form.date_commenced.data or None
+        revised_sum = form.revised_sum.data or None
+        contract_sum = form.contract_sum.data or None
+        amt_to_date = form.amt_to_date.data or None
+        cost_to_complete = form.cost_to_complete.data or None
+        video_description = form.video_description.data or "N/A"
+        video_title = form.video_title.data or "N/A"
+        
+        uploaded_details = AwardedProj(region=form.region.data, project=form.project.data, length=length, 
+                                            contractor=form.contractor.data, category=category, date_commenced=date_commenced, 
+                                            date_completed=date_completed, revised_date=revised_date, contract_sum=contract_sum,
+                                            revised_sum=revised_sum,amt_to_date=amt_to_date,cost_to_complete=cost_to_complete,
+                                            video_title=video_title,video_link=video_link,video_description=video_description,
+                                            video_thumb=video_thumb, user_id=current_user.id)        
+        # saving to database
+        db.session.add(uploaded_details)
+        db.session.commit()
+        flash('Data added successfully', 'success')
+        return redirect(url_for('admin.add_awarded_contract'))
+
+    return render_template('admin/awarded_proj-form.html', form=form)
+
+#Add new Contract details to the database(Planned)
+@admin.route('/planned_proj/add_contract', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def add_planned_contract():
+
+    form = PlannedProjectsForm()
+
+    if form.validate_on_submit():
+
+        if form.video_link.data:
+            match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
+            video_id_youtube = match.group(1)
+            image_url = "https://img.youtube.com/vi/" + \
+                video_id_youtube + "/mqdefault.jpg" 
+            img_data = requests.get(image_url).content
+            random_hex = secrets.token_hex(16)
+            thumb_filename = random_hex + ".jpg"
+            video_link = form.video_link.data
+            video_thumb = thumb_filename
+            with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
+                handler.write(img_data)      
+        else:
+            video_link = None
+            video_thumb = "N/A"
+        
+        category = request.form.get('planned_proj') or 'N/A'
+        revised_date = form.revised_date.data or None
+        length = form.length.data or 'N/A'
+        date_completed = form.date_completed.data or None
+        date_commenced = form.date_commenced.data or None
+        revised_sum = form.revised_sum.data or None
+        contract_sum = form.contract_sum.data or None
+        amt_to_date = form.amt_to_date.data or None
+        
+        video_description = form.video_description.data or "N/A"
+        video_title = form.video_title.data or "N/A"
+        
+        uploaded_details = PlannedProj(region=form.region.data, project=form.project.data, length=length, 
+                                            contractor=form.contractor.data, category=category, date_commenced=date_commenced, 
+                                            date_completed=date_completed, revised_date=revised_date, contract_sum=contract_sum,
+                                            revised_sum=revised_sum,amt_to_date=amt_to_date,video_title=video_title,
+                                            video_link=video_link,video_description=video_description,
+                                            video_thumb=video_thumb, user_id=current_user.id)        
+        # saving to database
+        db.session.add(uploaded_details)
+        db.session.commit()
+        flash('Data added successfully', 'success')
+        return redirect(url_for('admin.add_planned_contract'))
+
+    return render_template('admin/planned_proj-form.html', form=form)
 
 
 #Add new Contract details to the database(Ongoing)
