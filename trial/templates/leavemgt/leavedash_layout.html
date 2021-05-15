@@ -111,20 +111,40 @@
                                 </nav>
                             </div>
 
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Projects Management
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#projmgtPages" aria-expanded="false" aria-controls="projmgtPages">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                Project Management
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ url_for('admin.add_contract') }}">Completed Projects</a>
-                                    <a class="nav-link" href="{{ url_for('admin.add_ongoing_contract') }}">Ongoing Projects</a>
-                                    <a class="nav-link" href="{{ url_for('admin.add_planned_contract') }}">Under Planning</a>
-                                    <a class="nav-link" href="{{ url_for('admin.add_terminated_contract') }}">Terminated Projects</a>
-                                    <a class="nav-link" href="{{ url_for('admin.add_awarded_contract') }}">Awarded Projects</a>
+                            <div class="collapse" id="projmgtPages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPagesproj">
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addprojpagesCollapseAuth" aria-expanded="false" aria-controls="addprojpagesCollapseAuth">
+                                        Add Projects
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="addprojpagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPagesproj">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{{ url_for('admin.add_contract') }}">Completed</a>
+                                            <a class="nav-link" href="{{ url_for('admin.add_ongoing_contract') }}">Ongoing</a>
+                                            <a class="nav-link" href="{{ url_for('admin.add_planned_contract') }}">Under Planning</a>
+                                            <a class="nav-link" href="{{ url_for('admin.add_terminated_contract') }}">Terminated</a>
+                                            <a class="nav-link" href="{{ url_for('admin.add_awarded_contract') }}">Awarded</a>
+                                        </nav>
+                                    </div>
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#updatepagesCollapseError" aria-expanded="false" aria-controls="updatepagesCollapseError">
+                                        Update Projects
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="updatepagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPagesproj">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{{ url_for('admin.completed_proj_list') }}">Completed</a>
+                                            <a class="nav-link" href="{{ url_for('admin.ongoing_proj_list') }}">Ongoing</a>
+                                            <a class="nav-link" href="{{ url_for('admin.planned_proj_list') }}">Under Planning</a>
+                                        </nav>
+                                    </div>
                                 </nav>
                             </div>
+
                             <a class="nav-link" href="{{ url_for('admin.create_blog') }}">
                                 <div class="sb-nav-link-icon"><i class="fa fa-newspaper"></i></div>
                                 Add Blog Post

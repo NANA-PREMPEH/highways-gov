@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dashboard</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+        <!--DataTables-->  
+        <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/css/jquery.dataTables.min.css') }}"> 
+
+    </head>
+
+    <body>
+        <div class="jumbotron text-center">
+            <h2>UPDATE CONTRACT DETAILS</h2>
+            <h4>(COMPLETED PROJECTS)</h4>
+        </div>
+        
+        <div class="container">
+            {% include "admin/header.html" %}
+            {% include "admin/messages.html" %}
+                <div class="col-md-12"> 
+                    <table id="mytable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>REGION</th>
+                                <th>PROJECT</th>
+                                <th>LENGTH (Km)</th>
+                                <th>CONTRACTOR</th>
+                                <th>DATE OF COMMENCE</th>
+                                <th>DATE OF COMPLETION</th>
+                                <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                                <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
+                                <th>VIEW DETAILS</th> 
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            {% for completed in completed_list %} 
+                                <tr>  
+                                    <td>{{ completed.region }}</td>
+                                    <td>{{ completed.project }}</td>
+                                    <td>{{ completed.length }}</td>
+                                    <td>{{ completed.contractor }}</td>
+                                    <td>{{ completed.date_commenced }}</td>
+                                    <td>{{ completed.date_completed }}</td>
+                                    
+                                    {% if completed.contract_sum == "N/A" %}
+                                        <td>{{ completed.contract_sum }}</td>
+                                    {% else %}
+                                        <td>{{ "{:,.2f}".format(completed.contract_sum|float) }}</td>
+                                    {% endif %}
+
+                                    {% if completed.amt_to_date == "N/A" %}
+                                        <td>{{ completed.amt_to_date }}</td>
+                                    {% else %}
+                                        <td>{{ "{:,.2f}".format(completed.amt_to_date|float) }}</td>
+                                    {% endif %}
+
+                                    <td style="text-align: center;">
+                                        <a class="btn btn-success" href="{{ url_for('admin.edit_completed_contract', contract_id=completed.id) }}">EDIT</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table></br>  
+                </div>
+        </div> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <!-- DataTables -->
+        <script src="{{ url_for('static', filename='DataTables/js/jquery.dataTables.min.js') }}"></script>
+        <!-- page script -->    
+        <script>
+            $(function () {
+                $("#mytable").DataTable();
+            });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $(".datepicker").datetimepicker({
+                    format: 'YYYY-MM-DD',                         
+                });
+            });
+        </script>
+    </body>
+</html>

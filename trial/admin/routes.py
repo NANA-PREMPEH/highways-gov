@@ -333,79 +333,242 @@ def admin_logout():
     logout_user()
     return redirect(url_for('users.login'))
 
-@admin.route('/video/edit/<int:contract_id>', methods=['GET', 'POST'])
+
+#Add new Contract details to the database(Ongoing)
+@admin.route('/contract/ongoing/edit/<int:contract_id>/', methods=['GET', 'POST'])
 @login_required
 @admin_required
-def edit_video(contract_id):
+def edit_ongoing_contract(contract_id):
 
-    contract = Contract.query.get_or_404(contract_id)
+    form = OngoingProjectsForm()
 
-    #if not contract.user_id == current_user.id:
-     #   flash('You are not allowed to view this page!', 'danger')
-      #  return redirect(url_for('admin.dashboard'))
-
-    form = CompletedProjectsForm()
+    contract = OngoingProj.query.get_or_404(contract_id)
 
     if form.validate_on_submit():
-        match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data)
-        video_id_youtube = match.group(1)
 
-        image_url = "https://img.youtube.com/vi/" + \
-            video_id_youtube + "/mqdefault.jpg"
-        img_data = requests.get(image_url).content
-        random_hex = secrets.token_hex(16)
-        thumb_filename = random_hex + ".jpg"
+        if form.video_link.data and form.video_link.data != "N/A":
+            match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
+            video_id_youtube = match.group(1)
+            image_url = "https://img.youtube.com/vi/" + \
+                video_id_youtube + "/mqdefault.jpg" 
+            img_data = requests.get(image_url).content
+            random_hex = secrets.token_hex(16)
+            thumb_filename = random_hex + ".jpg"
+            video_link = form.video_link.data
+            video_thumb = thumb_filename
+            with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
+                handler.write(img_data)      
+        else:
+            video_link = "N/A"
+            video_thumb = "N/A"
 
-        with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
-            handler.write(img_data)
-
-        contract.name_of_contract = form.name_of_contract.data
-        contract.length = form.length.data
-        contract.lot = form.lot.data
-        contract.contract_sum = form.contract_sum.data
-        contract.contractor = form.contractor.data
-        contract.date_commenced = form.date_commenced.data
-        contract.date_completed = form.date_completed.data 
-        contract.video_title = form.video_title.data
-        contract.video_link = form.video_link.data
-        contract.video_description = form.video_description.data
-        contract.video_thumb = thumb_filename
-
+        contract.region = form.region.data or "N/A"
+        contract.project = form.project.data or "N/A"
+        contract.contractor = form.contractor.data or "N/A"
+        contract.category = form.category.data or 'N/A'
+        contract.revised_date = form.revised_date.data or None
+        contract.length = form.length.data or 'N/A'
+        contract.date_completed = form.date_completed.data or None
+        contract.date_commenced = form.date_commenced.data or None
+        contract.revised_sum = form.revised_sum.data or None
+        contract.contract_sum = form.contract_sum.data or None
+        contract.amt_to_date = form.amt_to_date.data or None
+        contract.video_description = form.video_description.data or "N/A"
+        contract.video_title = form.video_title.data or "N/A"
+        contract.video_link = video_link
+        contract.video_thumb = video_thumb
+        
+               
         # saving to database
         db.session.commit()
-        flash('Data updated successfully', 'success')
-        return redirect(url_for('admin.contract_view_dash'))
-    
-    elif request.method == 'GET':
-        form.name_of_contract.data = contract.name_of_contract
-        form.length.data = contract.length
-        form.lot.data = contract.lot
-        form.contract_sum.data = contract.contract_sum
+        flash('Project Updated successfully', 'success')
+        return redirect(url_for('admin.ongoing_proj_list'))
+
+    elif request.method == "GET":
+        
+        form.region.data = contract.region
+        form.project.data = contract.project
         form.contractor.data = contract.contractor
-        form.date_commenced.data = contract.date_commenced
+        form.category.data = contract.category
+        form.revised_date.data = contract.revised_date
+        form.length.data = contract.length
         form.date_completed.data = contract.date_completed
+        form.date_commenced.data = contract.date_commenced
+        form.revised_sum.data = contract.revised_sum
+        form.contract_sum.data = contract.contract_sum
+        form.amt_to_date.data = contract.amt_to_date
+        form.video_description.data =  contract.video_description
         form.video_title.data = contract.video_title
         form.video_link.data = contract.video_link
-        form.video_description.data = contract.video_description
 
-    return render_template('admin/contract_details-edit.html', title=contract.video_title, form=form, contract=contract, contract_id=contract_id)
 
-@admin.route("/contract_details/dashboard", methods=['GET', 'POST'])
+    return render_template('admin/ongoing_proj-edit.html', form=form, contract=contract, contract_id=contract_id)
+
+
+#Add new Contract details to the database(Completed)
+@admin.route('/contract/completed/edit/<int:contract_id>/', methods=['GET', 'POST'])
 @login_required
 @admin_required
-def contract_view_dash():
-    contract = Contract.query.order_by(Contract.id.desc()).all()
+def edit_completed_contract(contract_id):
 
-    return render_template('admin/contract-details-dash.html', title='Dashboard', contract=contract)
+    form = CompletedProjectsForm()
+    contract = CompletedProj.query.get_or_404(contract_id)
+    if form.validate_on_submit():
+
+        if form.video_link.data and form.video_link.data != "N/A":
+            match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
+            video_id_youtube = match.group(1)
+            image_url = "https://img.youtube.com/vi/" + \
+                video_id_youtube + "/mqdefault.jpg" 
+            img_data = requests.get(image_url).content
+            random_hex = secrets.token_hex(16)
+            thumb_filename = random_hex + ".jpg"
+            video_link = form.video_link.data
+            video_thumb = thumb_filename
+            with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
+                handler.write(img_data)      
+        else:
+            video_link = "N/A"
+            video_thumb = "N/A"
+
+        contract.region = form.region.data or "N/A"
+        contract.project = form.project.data or "N/A"
+        contract.contractor = form.contractor.data or "N/A"
+        contract.category = form.category.data or 'N/A'
+        contract.length = form.length.data or 'N/A'
+        contract.date_completed = form.date_completed.data or None
+        contract.date_commenced = form.date_commenced.data or None
+        contract.contract_sum = form.contract_sum.data or None
+        contract.amt_to_date = form.amt_to_date.data or None
+        contract.video_description = form.video_description.data or "N/A"
+        contract.video_title = form.video_title.data or "N/A"
+        contract.video_link = video_link
+        contract.video_thumb = video_thumb
+        
+               
+        # saving to database
+        db.session.commit()
+        flash('Project Updated successfully', 'success')
+        return redirect(url_for('admin.completed_proj_list'))
+
+    elif request.method == "GET":
+        
+        form.region.data = contract.region
+        form.project.data = contract.project
+        form.contractor.data = contract.contractor
+        form.category.data = contract.category
+        form.length.data = contract.length
+        form.date_completed.data = contract.date_completed
+        form.date_commenced.data = contract.date_commenced
+        form.contract_sum.data = contract.contract_sum
+        form.amt_to_date.data = contract.amt_to_date
+        form.video_description.data =  contract.video_description
+        form.video_title.data = contract.video_title
+        form.video_link.data = contract.video_link
+
+
+    return render_template('admin/completed_proj-edit.html', form=form, contract=contract, contract_id=contract_id)
+
+
+#Add new Contract details to the database(Planned)
+@admin.route('/contract/planned/edit/<int:contract_id>/', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def edit_planned_contract(contract_id):
+
+    form = PlannedProjectsForm()
+    contract = PlannedProj.query.get_or_404(contract_id)
+    if form.validate_on_submit():
+
+        if form.video_link.data and form.video_link.data != "N/A":
+            match = re.search(r"youtube\.com/.*v=([^&]*)", form.video_link.data) 
+            video_id_youtube = match.group(1)
+            image_url = "https://img.youtube.com/vi/" + \
+                video_id_youtube + "/mqdefault.jpg" 
+            img_data = requests.get(image_url).content
+            random_hex = secrets.token_hex(16)
+            thumb_filename = random_hex + ".jpg"
+            video_link = form.video_link.data
+            video_thumb = thumb_filename
+            with open(current_app.root_path + '/static/thumbs/' + thumb_filename, 'wb') as handler:
+                handler.write(img_data)      
+        else:
+            video_link = "N/A"
+            video_thumb = "N/A"
+
+        contract.region = form.region.data or "N/A"
+        contract.project = form.project.data or "N/A"
+        contract.contractor = form.contractor.data or "N/A"
+        contract.category = form.category.data or 'N/A'
+        contract.revised_date = form.revised_date.data or None
+        contract.length = form.length.data or 'N/A'
+        contract.date_completed = form.date_completed.data or None
+        contract.date_commenced = form.date_commenced.data or None
+        contract.revised_sum = form.revised_sum.data or None
+        contract.contract_sum = form.contract_sum.data or None
+        contract.amt_to_date = form.amt_to_date.data or None
+        contract.video_description = form.video_description.data or "N/A"
+        contract.video_title = form.video_title.data or "N/A"
+        contract.video_link = video_link
+        contract.video_thumb = video_thumb
+        
+               
+        # saving to database
+        db.session.commit()
+        flash('Project Updated successfully', 'success')
+        return redirect(url_for('admin.planned_proj_list'))
+
+    elif request.method == "GET":
+        
+        form.region.data = contract.region
+        form.project.data = contract.project
+        form.contractor.data = contract.contractor
+        form.category.data = contract.category
+        form.revised_date.data = contract.revised_date
+        form.length.data = contract.length
+        form.date_completed.data = contract.date_completed
+        form.date_commenced.data = contract.date_commenced
+        form.revised_sum.data = contract.revised_sum
+        form.contract_sum.data = contract.contract_sum
+        form.amt_to_date.data = contract.amt_to_date
+        form.video_description.data =  contract.video_description
+        form.video_title.data = contract.video_title
+        form.video_link.data = contract.video_link
+
+
+    return render_template('admin/planned_proj-edit.html', form=form, contract=contract, contract_id=contract_id)
+
+@admin.route('/ongoing/project_list')
+@login_required
+@admin_required
+def ongoing_proj_list():
+    ongoing_list = OngoingProj.query.all()
+
+    return render_template('admin/ongoing_proj_list.html', ongoing_list=ongoing_list)
+
+
+@admin.route('/completed/project_list')
+@login_required
+@admin_required
+def completed_proj_list():
+    completed_list = CompletedProj.query.all()
+
+    return render_template('admin/completed_proj_list.html', completed_list=completed_list)
+
+@admin.route('/planned/project_list')
+@login_required
+@admin_required
+def planned_proj_list():
+    planned_list = PlannedProj.query.all()
+
+    return render_template('admin/planned_proj_list.html', planned_list=planned_list)
 
 
 @admin.route('/staff_details/<int:staff_id>/view_staff', methods=['GET', 'POST'])
 def edit_staff(staff_id):
 
     staff = User.query.get_or_404(staff_id)
-
     form = UpdateStaffForm(obj=staff)
-
     if form.validate_on_submit():
         if form.picture.data:
             staff_pic = save_picture(form.picture.data)

@@ -89,6 +89,7 @@ class CompletedProjectsForm(FlaskForm):
     project = StringField('Project', validators=[DataRequired()])
     length = StringField('Length (Km)')
     contractor = StringField('Contractor', validators=[DataRequired()])
+    category = StringField('Category')
     date_commenced = StringField('Date of Commence')
     date_completed = StringField('Date of Completion')
     pic_one = FileField('Upload Image 1', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
@@ -100,12 +101,13 @@ class CompletedProjectsForm(FlaskForm):
     video_description = TextAreaField('Video Description')
     submit = SubmitField('Submit')
 
-#Create Completed Projects Form
+#Create Ongoing Projects Form
 class OngoingProjectsForm(FlaskForm):
     region = StringField('Region', validators=[DataRequired()])
     project = StringField('Project', validators=[DataRequired()])
     length = StringField('Length (Km)')
     contractor = StringField('Contractor', validators=[DataRequired()])
+    category = StringField('Category')
     date_commenced = StringField('Date of Commence')
     date_completed = StringField('Date of Completion')
     revised_date = StringField('Revised Completion Date')
@@ -158,6 +160,7 @@ class PlannedProjectsForm(FlaskForm):
     project = StringField('Project', validators=[DataRequired()])
     length = StringField('Length (Km)')
     contractor = StringField('Contractor')
+    category = StringField('Category')
     date_commenced = StringField('Date of Commence')
     date_completed = StringField('Date of Completion')
     revised_date = StringField('Revised Completion Date')
