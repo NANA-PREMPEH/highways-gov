@@ -3,7 +3,7 @@ from trial import db
 from flask_login import current_user
 from trial.main.forms import SearchForm
 from trial.projects.forms import DateForm
-from trial.models import CompletedProj, Post
+from trial.models import CompletedProj, Post, Gallery
 
 
 main = Blueprint('main', __name__)
@@ -20,17 +20,18 @@ def home():
 def division():
     posts = Post.query.order_by(Post.id.desc()).all() 
     return render_template('main/divisions.html', title='Division', posts=posts)
+
 #Create a route for divisions
 @main.route('/no_info')
 def no_info():
     posts = Post.query.order_by(Post.id.desc()).all() 
     return render_template('main/no_info.html', title='No Info', posts=posts) 
 
-#Create a route for basic layout
-@main.route('/basic')
-def basic():
-    posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('main/basic_temp.html', title='Basic', posts=posts)
+#Create a route for Landing Page
+@main.route('/main/landing_page')
+def landing_page():
+    
+    return render_template('landing/landing_page.html')
 
 
 #Create a route for Yearly Report 
@@ -75,7 +76,8 @@ def road_net():
 @main.route('/photo_gallery')
 def photo_gallery():
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('main/photo-gallery.html', title='Gallery', posts=posts)
+    pics = Gallery.query.all()
+    return render_template('main/photo-gallery.html', title='Gallery', posts=posts, pics=pics)
 
 @main.route('/mission')
 def mission():

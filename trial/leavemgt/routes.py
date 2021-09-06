@@ -32,8 +32,13 @@ def decide_on_leave_req(leave_id):
     if form.validate_on_submit():
         if form.approve.data:
             req.leave_status = form.approve.data
+            req.reasons = request.form.get('newvals')
+            print(request.form.get('newvals'))
         elif form.reject.data:
             req.leave_status = form.reject.data
+            req.reasons = request.form.get('rejval')
+            print(request.form.get('rejval'))
+            
         db.session.commit()
     return redirect(url_for('leavemgt.leave_dash')) 
 

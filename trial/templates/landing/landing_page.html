@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>GHA's Web Apps: Landing Page</title>
+	
+	<!-- Favicons (created with http://realfavicongenerator.net/)-->
+	
+	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/cardio/favicons/coa.png') }}" sizes="32x32">
+	<!-- Normalize -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cardio/normalize.css') }}">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cardio/bootstrap.css') }}">
+	<!-- Owl -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cardio/owl.css') }}">
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cardio/animate.css') }}">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/cardio/font-awesome-4.1.0/css/font-awesome.min.css') }}">
+	<!-- Elegant Icons -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/cardio/eleganticons/et-icons.css') }}">
+	<!-- Main style -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cardio/cardio.css') }}">
+</head>
+<style>
+	.cover {
+		background:url("{{ url_for('static', filename='img/cardio/team/team-cover1.jpg') }}"); background-size:cover;
+		background:url("{{ url_for('static', filename='img/cardio/team/team-cover3.jpg') }}"); background-size:cover;
+	}
+	
+</style>
+<body>
+	<div class="preloader"> 
+		<img src="{{ url_for('static', filename='img/cardio/loader.gif') }}" alt="Preloader image">
+	</div>
+	<nav class="navbar">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='img/cardio/gha-logo.png') }}" 
+						data-active-url="{{ url_for('static', filename='img/cardio/gha-logo-active.png') }}" alt=""></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="#admin">Admin</a></li>
+					<li><a href="#">Development</a></li>
+					<li><a href="#">Maintenance</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<header id="home">
+		<div class="container">
+			<div class="table">
+				<div class="header-text">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h1 class="light white" style="color: rgb(237, 252, 107);">Ghana Highway Authority</h1>
+							<h2 class="white typed">Providing safer Roads Infrastructure.</h2>
+							<span class="typed-cursor">|</span>
+						</div>
+					</div>
+					<div class="row">
+						<ul class="list-inline"> 
+							<li style="margin-bottom: 12px; padding: 0%; margin-right: 50px; background-color: rgb(216, 171, 22);">
+								<a href="#admin" class="btn btn-blue btn-lg" style="width: 250px;"> 
+									<i style="font-size: 150px;" class="fa fa-user"></i><br><br>
+									<span style="text-transform: uppercase; letter-spacing: 2px; font-weight: 200px;">administration</span>
+								</a>
+							</li>
+							<li style="margin-bottom: 12px; padding: 0%; margin-right: 50px; background-color: rgb(226, 158, 11);">
+								<a href="#" class="btn btn-warning btn-lg" style="width: 250px;">  
+									<i style="font-size: 150px;" class="fa fa-tasks"></i><br><br>
+									<span style="text-transform: uppercase; letter-spacing: 2px; font-weight: 200px;">development</span>
+								</a>
+							</li>
+							<li style="margin-bottom: 12px; padding: 0%; margin-right: 50px; background-color: rgb(71, 128, 64);">
+								<a href="#" class="btn btn-success btn-lg" style="width: 250px;">
+									<i style="font-size: 150px;" class="fa fa-cogs"></i><br><br>
+									<span style="text-transform: uppercase; letter-spacing: 2px; font-weight: 200px;">maintenance</span>
+								</a>
+							</li>	
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<section id="admin" class="section section-padded">
+		<div class="container">
+			<div class="row text-center title">
+				<h2>Administration (HRMS)</h2>
+				<h4 class="light muted">
+					Conduct HR functions in a faster, secure and structured manner
+				</h4>
+				<h5 class="light muted" style="font-weight: 500;">
+					A better way to collect, organize, and use employee information.
+				</h5>
+			</div>
+			<div class="row services">
+				<div class="col-md-4">
+					<div class="service">
+						<div class="icon-holder">
+							<img src="{{ url_for('static', filename='img/cardio/icons/users.png') }}" alt="" style="height: 65px; width: 55px;" class="icon">
+						</div>
+						<h4 class="heading">Personnel</h4>
+						<p class="description">
+							Employee Self Service (leave requests, hospital forms etc.)</br></br> 
+							<span>
+								<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Click Here</a>
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="service">
+						<div class="icon-holder">
+							<img src="{{ url_for('static', filename='img/cardio/icons/user-add.png') }}" alt=""  style="height: 65px; width: 55px;" class="icon">
+						</div>
+						<h4 class="heading">Enrollment</h4>
+						<p class="description">
+							Enlistment of Staff Personnel <strong>(Executive use Only!)</strong></br></br>
+							<span>
+								<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Click Here</a>
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="service">
+						<div class="icon-holder">
+							<img src="{{ url_for('static', filename='img/cardio/icons/stores.png') }}" alt="" style="height: 65px; width: 55px;" class="icon">
+						</div>
+						<h4 class="heading">Stores</h4>
+						<p class="description">
+							Supply and Inventory Management <strong>(Executive use Only!)</strong></br></br>
+							<span>
+								<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Click Here</a>
+							</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cut cut-bottom"></div>
+	</section>
+	<section id="" class="section gray-bg">
+		
+	</section>
+	
+	
+	<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content modal-popup">
+				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+				<h3 class="white">Sign In</h3>
+				<form action="" class="popup-form">
+					<input type="text" class="form-control form-white" placeholder="Staff No. or Email">
+					<input type="text" class="form-control form-white" placeholder="Password">
+					<button type="submit" class="btn btn-submit">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Ghana Highway Authority</h3>
+					
+					<a href="{{ url_for('main.home') }}" class="btn btn-blue ripple trial-button">Homepage</a>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Opening Hours <span class="open-blink"></span></h3>
+					<div class="row opening-hours">
+						<div class="col-sm-6 text-center-mobile">
+							<h5 class="light-white light">Mon - Fri</h5>
+							<h3 class="regular white">8:00 - 17:00</h3>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-8">
+					<p>&copy; 2015 All Rights Reserved. Powered by <a href="">PHIr</a> exclusively for <a href="">Codrops</a></p>
+				</div>
+				<div class="col-sm-4 text-right text-center-mobile">
+					<ul class="social-footer">
+						<li><a href=""><i class="fa fa-facebook"></i></a></li>
+						<li><a href=""><i class="fa fa-twitter"></i></a></li>
+						<li><a href=""><i class="fa fa-google-plus"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+		<ul>
+		</ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="{{ url_for('static', filename='js/cardio/jquery-1.11.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/cardio/owl.carousel.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/cardio/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/cardio/wow.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/cardio/typewriter.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/cardio/jquery.onepagenav.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/cardio/main.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+	<script>
+		var scroll = new SmoothScroll('a[href*="#"]', {
+			speed: 1000
+		});
+	</script>
+</body>
+
+</html>

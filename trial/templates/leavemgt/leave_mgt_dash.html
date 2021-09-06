@@ -1,6 +1,40 @@
 {% extends "leavemgt/leavedash_layout.html" %}
 {% block content %}
+
+<script>
+
+$(document).ready(function () {
+  // handling modal hide/show effect instead of having 2 modals
+  $('.confirmation').hide();
+
+  $('.modal').on('shown.bs.modal', function () {
+    const modal_id = '#' + $(this).attr('id');
+    $(modal_id + ' button.approve').off().on('click', function (event) {
+      event.preventDefault();
+      let value = "";
+      value = $(this).val();
+      $('input.input_approval').attr('value', value);
+
+      $('.modal-body.modal_approval_choice').hide();
+      $('.confirmation').show(); 
+      $('button.approval_submit').off().on('submit', function (event) { 
+        event.preventDefault();
+      });
+    });
+  });
+
+  $('button.modal_back_to_choice').click(function () {
+    $('.confirmation').hide();
+    $('.modal-body.modal_approval_choice').show(); 
+  });
+
+});
+
+
+</script>
+
     <main>
+        
         <div class="container-fluid">
             <h1 class="mt-4">Dashboard</h1>
             <ol class="breadcrumb mb-4">
@@ -135,8 +169,9 @@
                                         {% endif %}
                                     </td>
                                     <td style="text-align: center;">
-                                        <a href="#user-{{loop.index}}-details"><i class="fa fa-info-circle" data-toggle="modal" data-target="#modal_{{ requests.id }}"></i></a>
-                                        <div class="modal fade" id="modal_{{ requests.id }}" tabindex="-1" role="dialog" aria-labelledby="label_modal_{{ requests.id }}" aria-hidden="true">
+                                        <a href="#user-{{loop.index}}-details" id="joi" member_id="{{ requests.id }}"><i class="fa fa-info-circle" data-toggle="modal" id="pol"
+                                            data-target="#modal_{{ requests.id }}"></i></a>
+                                        <div class="modal fade" id="modal_{{ requests.id }}"  tabindex="-1" role="dialog" aria-labelledby="label_modal_{{ requests.id }}" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header text-center">
@@ -151,9 +186,11 @@
                                                   <div class="row"><div class="col"><strong>Reasons</strong></div></div>
                                                   <div class="row">
                                                     <div class="col pt-3 border-top border-right">
-                                                        {{ requests.supp_info }}
+                                                        
+                                                        <textarea name="reasons" id="reasons_mybtnapprove_{{ requests.id }}" cols="27" rows="4">{{ requests.id }}</textarea>
+                                                        
                                                     </div>
-                                                    <div class="col-xl-6 col-sm-6 col-xs-6"> 
+                                                    <div class="col-xl-6 col-sm-6 col-xs-6">  
                                                       <div class="row">
                                                         {% if requests.leave_status=="Approved" %}
                                                         <div class="col-xl-12 col-sm-12 col-xs-12 pt-3 mb-3 pb-3 border-top border-bottom text-center">
@@ -169,10 +206,11 @@
                                                         </div>
                                                         {% else %}
                                                         <div class="col-xl-12 col-sm-12 col-xs-12 pt-2 mb-2 pb-2 border-top border-bottom">
-                                                        <button type="button" class="approve btn btn-success" value="approved">Approve</button>
+                                                        <button class="approve btn btn-success Updatebtn" id="mybtnapprove_{{ requests.id }}" member_id="{{ requests.id }}"
+                                                            value="approved" onclick="myfunc();">Approve</button>
                                                         </div>
                                                         <div class="col-xl-12 col-sm-12 col-xs-12 mb-2 pb-2 border-bottom">
-                                                            <button type="button" class="reject btn btn-danger" value="rejected">Reject</button> 
+                                                            <button type="button" class="reject btn btn-danger" value="rejected" onclick="rejfunc()">Reject</button> 
                                                         </div>
                                                         {% endif %}
                                                       </div>
@@ -184,12 +222,15 @@
                                                     {{ form.csrf_token }}
                                                   <div class="confirmation modal-body pb-0">
                                                     <p>Please confirm your selection</p>
-                                                    <input name="user_id" class="d-none" type="text" value="{{request._id}}">
+                                                    <input name="user_id" class="d-none" type="text">
+                                                    <input type="text" id="newval_mybtnapprove_{{ requests.id }}" style="">
+                                                    <input type="text" id="newval_mybtnapprove_{{ requests.id }}" style="" value="{{requests.id}}">
+                                                    
                                                       {{ form.approve(value="Approved")}}   
                                                   </div>
                                                   <div class="confirmation modal-footer justify-content-center">
-                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
-                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal" onclick="clearfunc()">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary" onclick="clearfunc()">Back</button>
                                                       {{ form.confirm( class="btn btn-primary") }}  
                                                   </div> 
                                                 </form>
@@ -202,23 +243,23 @@
                                                       {{ form.cancel(value="Cancelled")}}   
                                                   </div>
                                                   <div class="cancel_confirmation modal-footer justify-content-center">
-                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
-                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
-                                                      {{ form.confirm( class="btn btn-primary") }}  
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal" onclick="clearfunc()">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary" onclick="clearfunc()">Back</button>
+                                                      {{ form.confirm( class="btn btn-primary") }}
                                                   </div> 
                                                 </form>
-
                                                 <!--Reject Request Form-->
                                                 <form class="approval_modal_form" action="{{ url_for('leavemgt.decide_on_leave_req', leave_id=requests.id) }}" method="POST">
                                                     {{ form.csrf_token }}
                                                   <div class="reject_confirmation modal-body pb-0">
                                                     <p>Please confirm your selection</p>
                                                     <input name="user_id" class="d-none" type="text" value="{{request._id}}">
+                                                    <input type="text" id="rejval" name="rejval">
                                                       {{ form.reject(value="Rejected")}}   
                                                   </div>
                                                   <div class="reject_confirmation modal-footer justify-content-center">
-                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
-                                                      <button type="button" class="modal_back_to_choice btn btn-secondary">Back</button>
+                                                      <button type="button" class="btn btn-secondary"  data-dismiss="modal" onclick="clearfunc()">Close</button>
+                                                      <button type="button" class="modal_back_to_choice btn btn-secondary" onclick="clearfunc()">Back</button>
                                                       {{ form.confirm( class="btn btn-primary") }}  
                                                   </div> 
                                                 </form>
@@ -228,6 +269,7 @@
                                     </td>
                                 </tr>
                                 {% endif %}
+                                    
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -235,5 +277,15 @@
                 </div>
             </div>
         </div>
-    </main>  
+    </main> 
+    <script>
+        function myfunc() {
+            $(document).ready( function () {
+                var member_id = $('.Updatebtn').attr('id');
+                alert(member_id);
+                $('#newval_'+member_id).val($('#reasons_'+member_id).val())
+                
+            })
+        }
+    </script> 
 {% endblock content %}

@@ -179,7 +179,7 @@ def decongestion():
     return render_template('projects/ongoing/decongestion.html', title='Decongestion', deconges_list=deconges_list, posts=posts)
 
 @ongoing_proj.route('/ongoing/periodic/supply_inst', methods=['GET', 'POST']) 
-def supply():
+def supply(): 
     
     supply_list = OngoingProj.query.filter_by(category="Supply & Installation of Materials")
     posts = Post.query.order_by(Post.id.desc()).all()
@@ -414,6 +414,7 @@ def decongestion_contract(contract_id):
 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/ongoing/decongestion_details.html', decongestion=decongestion, contract_id=contract_id, posts=posts)
+
 #View Drainage Projects details from the database
 @ongoing_proj.route('/ongoing/drainage_proj/view/<int:contract_id>/details') 
 def drainage_contract(contract_id):

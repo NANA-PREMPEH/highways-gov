@@ -83,6 +83,11 @@ class BlogPostForm(FlaskForm):
     picture = FileField('Upload Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Post')
 
+#Create Blog Post Form
+class GalleryForm(FlaskForm):
+    picture = FileField('Upload Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    submit = SubmitField('Submit')
+
 #Create Completed Projects Form
 class CompletedProjectsForm(FlaskForm):
     region = StringField('Region', validators=[DataRequired()])

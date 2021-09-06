@@ -49,7 +49,7 @@ def leave():
 def post(post_id):
     post = Leave.query.get_or_404(post_id)
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('generalforms/render_form.html', post=post, posts=posts)
+    return render_template('generalforms/render_form.html', post=post, posts=posts) 
 
 #Route for View form 
 @generalforms.route('/view_form/<int:post_id>', methods=['GET', 'POST']) 

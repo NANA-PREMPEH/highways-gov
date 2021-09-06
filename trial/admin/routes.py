@@ -1,10 +1,10 @@
 import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, logout_user, login_required
-from trial.models import CompletedProj, Post, OngoingProj, User, TerminatedProj, AwardedProj, PlannedProj
+from trial.models import CompletedProj, Post, OngoingProj, User, TerminatedProj, AwardedProj, PlannedProj, Gallery
 from trial.admin.forms import (RegistrationForm, BlogPostForm, CompletedProjectsForm, UpdateStaffForm, OngoingProjectsForm, 
-                                PlannedProjectsForm,TerminatedProjectsForm, AwardedProjectsForm)
-from trial.admin.utils import save_photo, save_picture, save_proj_image
+                                PlannedProjectsForm,TerminatedProjectsForm, AwardedProjectsForm, GalleryForm)
+from trial.admin.utils import save_photo, save_picture, save_proj_image, save_gallery_image
 import re
 import requests
 from trial import db, bcrypt 
@@ -21,9 +21,18 @@ admin = Blueprint('admin', __name__)
 def dashboard():
     return render_template('admin/dashboard.html')
 
+@admin.route('/update_gallery', methods=['GET', 'POST'])
+def update_gallery():
+    form = GalleryForm()
+    if form.validate_on_submit():
+        picture = save_gallery_image(form.picture.data)
+        pic = Gallery(image_file=picture)
+        db.session.add(pic)
+        db.session.commit()
+        flash(f"Image added successfully", 'success')
+    return render_template('/admin/gallery_pics.html', form=form)
 
 @admin.route('/register', methods=['GET', 'POST'])
-
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():

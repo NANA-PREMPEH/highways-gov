@@ -16,6 +16,6 @@ def error_403(error):
     return render_template('errors/403.html', posts=posts), 403
 
 @errors.app_errorhandler(500)
-def error_500(error):
+def error_500(error): 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('errors/500.html', posts=posts), 500

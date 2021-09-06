@@ -106,7 +106,7 @@ def terminated_proj():
     posts = Post.query.order_by(Post.id.desc()).all()
 
     if request.method == "POST":
-        start_date = request.form['start_date']
+        start_date = request.form['start_date'] 
         end_date = request.form['end_date']  
         
         q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \

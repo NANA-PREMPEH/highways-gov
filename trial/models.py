@@ -120,7 +120,7 @@ class AnonymousUser(AnonymousUserMixin):
 
     def can(self, permissions):
         return False
-
+ 
     def is_administrator(self):
         return False
 
@@ -253,7 +253,7 @@ class Leave(db.Model):
     name = db.Column(db.String(40), nullable=False)
     rank = db.Column(db.String(40), nullable=False)
     section = db.Column(db.String(40), nullable=False) 
-    date_app = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    date_app = db.Column(db.Date, nullable=False, default=datetime.utcnow) 
     tele_no = db.Column(db.Integer, nullable=False)
     leave_cat = db.Column(db.String(30), nullable=False)
     no_of_days = db.Column(db.Integer, nullable=False)
@@ -268,6 +268,7 @@ class Leave(db.Model):
     resump_date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     outs_days = db.Column(db.Integer, nullable=False)
     leave_status = db.Column(db.String(20), index = True, unique = False)
+    reasons = db.Column(db.String(120))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
@@ -311,7 +312,7 @@ class CompletedProj(db.Model):
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     category = db.Column(db.String(120), nullable=True, default='N/A')
     date_commenced = db.Column(db.Date, nullable=True, default=None)
-    date_completed = db.Column(db.Date, nullable=True, default=None)
+    date_completed = db.Column(db.Date, nullable=True, default=None) 
     contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
     amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
     video_title = db.Column(db.String(300), nullable=True, default='N/A')
@@ -451,4 +452,11 @@ class Roadcondition2K19(db.Model):
 
     def __repr__(self):
         return f"Roadcondition2K19('{self.id}','{self.reg}','{self.road_no}')"  
+
+class Gallery(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    image_file = db.Column(db.String(50))
+
+    def __repr__(self) :
+        return f"BlogImages('{self.image_file}')"
 

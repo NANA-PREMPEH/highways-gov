@@ -1,18 +1,21 @@
+
+
+
 $(document).ready(function () {
   // handling modal hide/show effect instead of having 2 modals
   $('.confirmation').hide();
 
   $('.modal').on('shown.bs.modal', function () {
     const modal_id = '#' + $(this).attr('id');
-    $(modal_id + ' button.approve').off().on('click', function (event) {
+    $(modal_id + ' button.updateButton').off().on('click', function (event) {
       event.preventDefault();
-      let value = "";
-      value = $(this).val();
+     
+      var value = $(this).val() = ""
       $('input.input_approval').attr('value', value);
 
       $('.modal-body.modal_approval_choice').hide();
       $('.confirmation').show(); 
-      $('button.approval_submit').off().on('submit', function (event) {
+      $('button.approval_submit').off().on('submit', function (event) { 
         event.preventDefault();
       });
     });
@@ -34,6 +37,7 @@ $(document).ready(function () {
   $('.modal').on('shown.bs.modal', function () {
     const modal_id = '#' + $(this).attr('id');
     $(modal_id + ' button.delete').off().on('click', function (event) {
+      
       event.preventDefault();
       let value = "";
       value = $(this).val();

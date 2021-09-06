@@ -5,7 +5,7 @@ from trial import db, bcrypt
 from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm
 from trial.users.utils import send_reset_email, save_picture
 from trial.models import User, Post, Leave
-from trial.staff_list import update_staff, staff
+from trial.staff_list import update_staff, staff 
 from trial.leavemgt.forms import LeaveAction
 
 users = Blueprint('users', __name__) 

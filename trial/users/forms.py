@@ -4,7 +4,7 @@ from trial.models import Staff, User
 from wtforms import StringField, BooleanField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
 from flask_wtf.file import FileField, FileAllowed
-
+ 
 #Create Login Form
 class LoginForm(FlaskForm):
     acc_gen = StringField('Staff No. / Email', validators=[DataRequired()])  
@@ -14,7 +14,7 @@ class LoginForm(FlaskForm):
 
 #Create UpdateAccount Form
 class UpdateAccountForm(FlaskForm):
-    acc_gen = StringField('Acct-Gen Staff No.', validators=[DataRequired()]) 
+    acc_gen = StringField('Acct-Gen Staff No.', validators=[DataRequired()])  
     dob = StringField('Date Of Birth', validators=[DataRequired()]) 
     email = StringField('Email', validators=[DataRequired(), Email()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])  
