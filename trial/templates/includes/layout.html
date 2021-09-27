@@ -61,9 +61,15 @@
                     </div>
                     <div class="pull-right">
                         <ul class="header_social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li>
+                                <a href="https://twitter.com/GhanaHighway" target="_blank"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/company/ghanahighway" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/ghanahighway/" target="_bank"><i class="fa fa-instagram"></i></a>
+                            </li>
                             {% if current_user.is_authenticated %}
                                 {% if current_user.role_id == 3 %}
                                 <li><a href="{{ url_for('leavemgt.leave_dash') }}">PORTAL</a></li>
@@ -165,6 +171,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li><a href="{{ url_for('main.rti_page') }}">RTI</a></li>
                                 <li class="dropdown submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media/News</a>
                                     <ul class="dropdown-menu">
@@ -274,10 +281,16 @@
                                     totalling 13,367 km and related facilities in Ghana.
                                 </p>
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    <li>
+                                        <a href="https://twitter.com/GhanaHighway" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/company/ghanahighway" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com/ghanahighway/" target="_bank"><i class="fa fa-instagram"></i></a>
+                                    </li>
+                                    
                                 </ul>
                             </aside>
                         </div>

@@ -32,7 +32,7 @@ def save_picture(form_picture):
     s3.Bucket('santa-gha').upload_file(picture_path, 'static/profile_pics/'+picture_fn, ExtraArgs={'ACL':'public-read'})
 
     return picture_fn
- 
+  
 #Function to send reset email
 def send_reset_email(user):
     token = user.get_reset_token()

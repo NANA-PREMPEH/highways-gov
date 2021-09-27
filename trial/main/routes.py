@@ -161,6 +161,13 @@ def planning_routine():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/planning_routine.html', title='Routine Projects Under Planning', posts=posts)
 
+
+@main.route('/rti_page')
+def rti_page():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/rti_page.html', title='RTI Page', posts=posts)
+
+
 @main.before_app_request 
 def before_request():
     g.search_form = SearchForm()
