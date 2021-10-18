@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, SubmitField, TextAreaField, Floa
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
 from trial.models import User
-from flask_login import current_user
+from flask_login import current_user 
 
 
 
@@ -11,7 +11,7 @@ from flask_login import current_user
 class RegistrationForm(FlaskForm):
     ref_no = StringField('Ref. No', validators=[DataRequired()])
     acc_gen = StringField('Acc-Gen Staff No.', validators=[DataRequired()])
-    ssf = StringField('Ssf No.', validators=[DataRequired()])
+    ssf = StringField('Ssf No.', validators=[DataRequired()]) 
     name = StringField('Full Name', validators=[DataRequired()])
     dob = StringField('Birth Date', validators=[DataRequired()]) 
     
