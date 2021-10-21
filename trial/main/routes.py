@@ -1,9 +1,11 @@
-from flask import render_template, Blueprint, g, current_app, redirect, url_for, request, jsonify
-from trial import db
-from flask_login import current_user
+from flask import render_template, Blueprint, g, current_app, redirect, url_for, request, jsonify, flash
+from trial import db, bcrypt
+from werkzeug.urls import url_parse
+from flask_login import current_user, login_user
 from trial.main.forms import SearchForm
 from trial.projects.forms import DateForm
-from trial.models import CompletedProj, Post, Gallery
+from trial.models import CompletedProj, Post, Gallery, User
+from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm
 
 
 main = Blueprint('main', __name__)
@@ -32,6 +34,7 @@ def no_info():
 def landing_page():
     
     return render_template('landing/landing_page.html')
+
 
 
 #Create a route for Yearly Report 

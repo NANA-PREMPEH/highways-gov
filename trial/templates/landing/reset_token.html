@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Portal-Reset Password Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='landing_page/css/style.css') }}">
+
+</head>
+
+<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">RESET PASSWORD</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+
+				<div class="col-md-7 col-lg-5">
+					<!--Display the flashed messages at the top of the content-->
+					{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+					{% for category, message in messages %}
+					<!--Display the flashed message according to the category-->
+					<div class="alert alert-{{ category }}">
+						{{ message }}
+					</div>
+					{% endfor %}
+					{% endif %}
+					{% endwith %}
+					{% block content %}{% endblock %}
+					<div class="login-wrap p-4 p-md-5">
+
+						<form action="" class="login-form" method="POST">
+							{{ form.hidden_tag() }}
+							<div class="form-group">
+								{% if form.password.errors %}
+								{{ form.password(class="form-control is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.password.errors %}
+									<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+								{% else %}
+								{{ form.password(class="form-control rounded-left", placeholder="Enter Password") }}
+								{% endif %}
+							</div>
+
+
+							<div class="form-group">
+								{% if form.confirm_password.errors %}
+								{{ form.confirm_password(class="form-control is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.confirm_password.errors %}
+									<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+								{% else %}
+								{{ form.confirm_password(class="form-control rounded-left", placeholder="Confirm
+								Password") }}
+								{% endif %}
+							</div>
+							<div class="form-group">
+								{{ form.submit(class="form-control btn btn-primary rounded submit px-3") }}
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{{ url_for('static', filename='landing_page/js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='landing_page/js/popper.js') }}"></script>
+	<script src="{{ url_for('static', filename='landing_page/js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='landing_page/js/main.js') }}"></script>
+
+</body>
+
+</html>

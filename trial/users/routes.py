@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, flash, request, Blueprint
 from werkzeug.urls import url_parse
 from flask_login import current_user, logout_user, login_required, login_user
 from trial import db, bcrypt 
-from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm
+from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm 
 from trial.users.utils import send_reset_email, save_picture
 from trial.models import User, Post, Leave
 from trial.staff_list import update_staff, staff 
@@ -39,7 +39,7 @@ def login():
         else:
             flash('Unsuccessful Login. Please check email and password again', 'danger') 
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('users/login.html', title='Login', form=form, posts=posts) 
+    return render_template('landing/user_login.html', title='Login', form=form) 
 
 #route for account template
 @users.route('/account', methods=['GET', 'POST']) 
@@ -64,15 +64,14 @@ def account():
         form.email.data = current_user.email
         form.dob.data = current_user.dob
 
-    posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('users/account.html', title='Account', form=form, posts=posts)
+    return render_template('users/account.html', title='Account', form=form)
 
 
 #Route for logout
 @users.route('/logout')
 def logout():
     logout_user() 
-    return redirect(url_for('users.login'))
+    return redirect(url_for('main.home'))
 
 @users.route('/add_staff_list')
 def add_staff_list():
@@ -90,8 +89,8 @@ def reset_request():
         send_reset_email(user)
         flash('An email has been sent with instructions to reset your password', 'info')
         return redirect(url_for('users.login'))
-    posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('users/reset_request.html', title='Reset Password', form=form, posts=posts)
+    
+    return render_template('landing/reset_request.html', form=form)
 
 #Route for Reset Password
 @users.route('/reset_password/<token>', methods=['GET', 'POST'])
@@ -111,8 +110,8 @@ def reset_token(token):
         db.session.commit()
         flash('Password has been updated successfully!. You can now log in', 'success')
         return redirect(url_for('users.login'))
-    posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('users/reset_token.html', title='Reset Password', form=form, posts=posts)  
+    
+    return render_template('landing/reset_token.html', title='Reset Password', form=form)  
 
 #Route to view user dashboard
 @users.route('/user_dashboard/<string:user_name>', methods=['GET', 'POST'])
