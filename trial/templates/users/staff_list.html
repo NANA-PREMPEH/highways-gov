@@ -63,6 +63,8 @@
                                             <span class="btn btn-warning btn-sm">Pension Due</span>
                                         {% elif age >= 59 and age < 60 %}
                                             <span class="btn btn-danger btn-sm">Pension Due</span>
+                                        {% elif age > 59 %}
+                                            <span class="btn btn-danger btn-sm">Pension</span>
                                         {% else %}
                                             <span class="btn btn-success btn-sm">In Service</span>
                                         {% endif %}
