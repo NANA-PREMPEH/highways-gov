@@ -1,0 +1,130 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .rti{
+        width: 250px; height: 40px; 
+        display: inline-block;
+        background-color:#ffcd00;
+        color: black;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 28px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+    }
+   
+
+.application_text ul li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+.text_two a{
+    color: #000;
+}
+
+.text_two a:hover {
+    color: #d6d437;
+
+}
+.download {
+    position: relative;
+    width: 350px;
+    height: 100px;
+    background-color: #ffcd00;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.download .download_background {
+    padding: 5px;
+    width: 100%;
+    background-color: white;
+    margin-right: 10px;
+    position: relative;
+}
+
+.download a {
+    color: black;
+    /* text-decoration: none; */
+
+}
+
+.application_text ul li b {
+    padding: 5px;
+}
+
+
+
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">Exempt Information</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div>
+                <a  style="display: block;" class="rti" href="{{ url_for('main.rti_page') }}">Overview</a>
+                <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
+                <a  style="display: block;" class="rti" href="{{ url_for('main.application') }}">Application</a>
+                <a   style="display: block;" class="rti" href="{{ url_for('main.exempt_info') }}">Exempt Information</a>
+                <a class="rti" href="">Disclosure Logs</a>
+            </div>
+            <!-- <table>
+                <tbody >
+                    <tr>
+                        <td><a class="rti" href="">Access to Information</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="rti" href="">Available Information</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="rti" href="">Application</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="rti" href="">Disclosure Logs</a></td>
+                    </tr>
+                </tbody>
+            </table> -->
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+
+               <!-- AVAILABLE INFORMATION START HERE -->
+               <div class="text" style="line-height: 26px; padding-left: 50px; padding-bottom: 20px; ">
+                <h2  style="padding-bottom: 10px">Exempt Information</h2>
+                <div class="application_text">
+                    <p><b>S</b>ome exempt Information of this public institution are;</p>
+                    <ul>
+                        <li><b>(1)</b>Information for the President or the Vice-President</li>
+                        <li><b>(2)</b>Information relating to Cabinet</li>
+                        <li><b>(3)</b>Information relating to law enforcement and public safety</li>
+                        <li><b>(4)</b>Information affecting international relations</li>
+                        <li><b>(5)</b>Information that affects the security of the State</li>
+                        <li><b>(6)</b>Economic and any other interests</li>
+                        <li><b>(7)</b>Economic information of third parties</li>
+                        <li><b>(8)</b>Information relating to tax</li>
+                        <li><b>(9)</b>Internal working information of public institutions</li>
+                        <li><b>(10)</b>Parliamentary privilege, fair trial, contempt of court</li>
+                        <li><b>(11)</b>Privilege information</li>
+                        <li><b>(12)</b>Disclosure of personal matters</li>
+                        <li><b>(13)</b>Disclosure for the pretection of public interest</li>
+
+                    </ul>
+                </div>
+               
+            </div>
+               <!-- AVAILABLE INFORMATION ENDS HERE -->
+            </div>
+        </div>
+        
+        
+        <!-- {% include 'includes/sidebar.html' %} -->
+    </div>
+</div>
+{% endblock content %}
