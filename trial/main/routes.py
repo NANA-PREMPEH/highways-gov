@@ -182,10 +182,17 @@ def application():
     return render_template('/main/application.html', title='Application to Access Information')
 
 
-# RTI application
+# RTI exempt
 @main.route('/exempt_info')
 def exempt_info():
     return render_template('/main/exempt_info.html', title='Exempt Information')
+
+
+# Start of services route
+# Services
+@main.route('/lab_test_services')
+def lab_test_services():
+    return render_template('/main/lab_test_services.html', title='Lab test Services')
 
 
 @main.before_app_request 
