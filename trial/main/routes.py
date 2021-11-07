@@ -164,11 +164,28 @@ def planning_routine():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/planning_routine.html', title='Routine Projects Under Planning', posts=posts)
 
-
+# Start of Right to information Page
 @main.route('/rti_page')
 def rti_page():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/rti_page.html', title='RTI Page', posts=posts)
+
+# RTI available_info 
+@main.route('/available_info')
+def available_info():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/available_info.html', title='Available to Information Page', posts=posts)
+
+# RTI application
+@main.route('/application')
+def application():
+    return render_template('/main/application.html', title='Application to Access Information')
+
+
+# RTI application
+@main.route('/exempt_info')
+def exempt_info():
+    return render_template('/main/exempt_info.html', title='Exempt Information')
 
 
 @main.before_app_request 

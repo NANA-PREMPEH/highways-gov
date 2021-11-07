@@ -109,3 +109,36 @@ def download_accom():
     p = './static/other_forms/GHANA HIGHWAY AUTHORITY (REQUEST FOR ACCOMODATION).pdf'
 
     return send_file(p, as_attachment=True)
+
+#Route to download Right to information pdf
+@generalforms.route('/download_Right_to_Info')
+#@login_required     
+def download_Right_to_Info():
+    p = './static/other_forms/Right to Information Act, 2019.pdf'
+
+    return send_file(p, as_attachment=True)
+
+#Route to download Right to information pdf
+@generalforms.route('/download_RTI_MAN')
+#@login_required     
+def download_RTI_Man():
+    p = './static/other_forms/RTI_Manual-Ghana Highway Authority 2020.pdf'
+
+    return send_file(p, as_attachment=True)
+
+#Route to download Classes and Types pdf
+@generalforms.route('/download_RTI_Classes')
+#@login_required     
+def download_RTI_Classes():
+    p = './static/other_forms/Classes and Types.pdf'
+
+    return send_file(p, as_attachment=True)
+
+
+#Route to download Classes and Types pdf
+@generalforms.route('/download_application_form')
+#@login_required     
+def download_application_form():
+    p = './static/other_forms/Online application Forms.pdf'
+
+    return send_file(p, as_attachment=True)

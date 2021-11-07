@@ -3,9 +3,10 @@
 
 <style>
     .rti{
-        width: 440px; height: 40px; 
+        width: 250px; height: 40px; 
         display: inline-block;
         background-color:#ffcd00;
+        color: black;
         text-align: center;
         padding-top: 16px;
         padding-bottom: 44px;
@@ -15,19 +16,29 @@
         font-family: "Montserrat", sans-serif;
         margin-bottom: 15px;
     }
+
+
 </style>
 
 <div class="container">
     <div class="row blog_details_inner" style="margin-left: 2%;">
         <h3 class="table_h3" id="table_h3">RIGHT TO INFORMATION</h3>
-        <div class="col-md-8" id="periodic" style="margin-top: 2%;">
-            <table>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div  style="display: block;">
+                <a class="rti" href="{{ url_for('main.rti_page') }}">Overview</a>
+                <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
+                <a class="rti" href="{{ url_for('main.application') }}">Application</a>
+                <a class="rti" href="">Exempt Information</a>
+                <a class="rti" href="">Disclosure Logs</a>
+            </div>
+            <!-- <table>
                 <tbody >
                     <tr>
                         <td><a class="rti" href="">Access to Information</a></td>
                     </tr>
                     <tr>
-                        <td><a class="rti" href="">List of Available Information</a></td>
+                        <td><a class="rti" href="">Available Information</a></td>
                     </tr>
                     <tr>
                         <td><a class="rti" href="">Application</a></td>
@@ -36,9 +47,62 @@
                         <td><a class="rti" href="">Disclosure Logs</a></td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+
+               <!-- ACCESS INFORMATION START HERE -->
+               <div style="align-items: center; justify-content: center; padding: 10px; width: 100%;">
+                <div class="image">
+                    <!-- <a width="100%" href="{{ url_for('static', filename='img/right.jpg') }}" alt="RTI image can not be found in the current directory"></a> -->
+                    <!-- <link rel="icon" width="100%" href="{{ url_for('static', filename='img/right.jpg') }}" type="image/x-icon" /> -->
+                    <img src="static/img/right.jpg" height="270" width="860" alt="Right to Information Image not found">
+                    <!-- <img src="{{ url_for('static', filename='/img/right.jpg') }}" height="270" width="860" alt="Right to Information Image not found"> -->
+                </div>
+                <h2 style="text-align: center;">Right To Information ACT, 2019, ACT 989</h2>
+        
+                <div style="text-align: center; padding: 30px;" class="paragrapth">
+                    <span><i>Article 21 (1) (f) of the Constitution of Ghana Provides as follows: </i> </span>
+                    <h3 style="color: #ffcd00;">"All persons shall have the right to information, subject to such qualifications
+                        and laws as are
+                        necessary in a democratic society."</h3>
+        
+                </div>
+                <div style="line-height: 30px; padding-bottom: 20px;">
+                    <p>This means every person in the jurisdiction of Ghana, <b>citizen</b> or <b>non-citizen</b> has the right
+                        to information.</p>
+                    <p>It is in line with this regulation that <b>Ghana Highway Authority</b> has set up the <b>Right to
+                            Information (RTI)</b> Unit, which is being spearheaded by the <b>Public Affairs Division,</b>
+                        assisted by two RTI officers who have been trained to process applications for access to information</p>
+                    <p>The Authority is therefore positioned to receive and process requests as well as make basic information
+                        available to the general public through the Public Affairs Division. </p>
+                    <p>However, access to information would be subject to the exemptions that are relevant with the protection
+                        of the public interest as stipulated in the ACT.</p>
+                    <p>RTI aims at promoting the art of transparency, and accountability. </p>
+        
+                </div>
+                    <div class="procedure"  style="line-height: 30px;">
+                        <h2>Procedure for Access</h2>
+                        <p><i>The following are processes the public/applicant is expected to follow when making an application for
+                                access to information in a public institution. This provision is specified in <a 
+                                onmouseover="this.style.color='#ffcd00'" onmouseout="this.style.color='#f8f409'"  style="color: #d6d437;"
+                                    href="{{ url_for('generalforms.download_Right_to_Info') }}" target="_blank">Section 18
+                                    of the RTI Act 2019, Act 989.</a>
+                            </i></p>
+                            <p>For further enquiries, contact the Public Affairs Division via the following emails:</p>
+                            <p><a style="color: #d6d437;" href="mailto:public.affair@highways.gov.gh"><i>public.affair@highways.gov.gh</i></a></p>
+                            <p><a style="color: #d6d437;" href="mailto:hannah.bimpong@highways.gov.gh"><i>hannah.bimpong@highways.gov.gh,</i></a></p>
+                            <p><a style="color: #d6d437;" href="mailto:akosua.asareankomah@highways.gov.gh"><i>akosua.asareankomah@highways.gov.gh</i></a>
+                            </p>
+                    </div>
+                    
+                </div>
+               <!-- ACCESS INFORMATION ENDS HERE -->
+            </div>
         </div>
-        {% include 'includes/sidebar.html' %}
+        
+        
+        <!-- {% include 'includes/sidebar.html' %} -->
     </div>
 </div>
 {% endblock content %}
