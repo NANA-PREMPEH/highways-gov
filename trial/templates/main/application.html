@@ -1,0 +1,132 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .rti{
+        width: 250px; height: 40px; 
+        display: inline-block;
+        background-color:#ffcd00;
+        color: black;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 28px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+    }
+   
+
+.application_text ul li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+.text_two a{
+    color: #000;
+}
+
+.text_two a:hover {
+    color: #d6d437;
+
+}
+.download {
+    position: relative;
+    width: 350px;
+    height: 100px;
+    background-color: #ffcd00;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.download .download_background {
+    padding: 5px;
+    width: 100%;
+    background-color: white;
+    margin-right: 10px;
+    position: relative;
+}
+
+.download a {
+    color: black;
+    /* text-decoration: none; */
+
+}
+
+
+
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">Application to Access Information</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div style="display: block;">
+                <a class="rti" href="{{ url_for('main.rti_page') }}">Overview</a>
+                <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
+                <a class="rti" href="{{ url_for('main.application') }}">Application</a>
+                <a class="rti" href="{{ url_for('main.exempt_info') }}">Exempt Information</a>
+                <a class="rti" href="">Disclosure Logs</a>
+            </div>
+            <!-- <table>
+                <tbody >
+                    <tr>
+                        <td><a class="rti" href="">Access to Information</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="rti" href="">Available Information</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="rti" href="">Application</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="rti" href="">Disclosure Logs</a></td>
+                    </tr>
+                </tbody>
+            </table> -->
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+
+               <!-- AVAILABLE INFORMATION START HERE -->
+               <div class="text" style="line-height: 26px; padding-left: 20px; padding-bottom: 20px; margin-left: -10%; ">
+                <h2  style="padding-bottom: 10px">Application to access Information</h2>
+                <div class="application_text">
+                    <p><b>A</b>n application to access information held by a public institution shall;</p>
+                    <ul>
+                        <li><b>(a)</b>be made in writing to the public institution,</li>
+                        <li><b>(b)</b>contain sufficient description or particulars to enable the information to be identified,</li>
+                        <li><b>(c)</b>indicate the form and manner of access required,</li>
+                        <li><b>(d)</b>state the capacity of the applicant to satisfaction of the information officer to whom the
+                            application is made,
+                            if the application is made on behalf of another person,</li>
+                        <li><b>(e)</b>state the name of the applicant, an address to which a communication or notice can be sent,</li>
+                        <li><b>(f)</b>provide identification of the applicant; and</li>
+                        <li><b>(g)</b> be signed by the applicant.</li>
+                    </ul>
+                </div>
+                <div class="text_two">
+                    <p>In line with the COVID-19 protocols, Ghana Highway Authority encourages all members of the general public
+                        seeking information under this law to complete this form and forward same to <a style="color:  #d6d437"
+                            href="mailto:ce@highways.gov.gh"><i>ce@highways.gov.gh</i></a>
+        <!-- #d6d437 -->
+                        Applications may also be submitted in person at the front desk of the Ministry.</p>
+                    <div class="download">
+                        <div class="download_background">
+                            <p><a href="{{ url_for ('generalforms.download_application_form') }}">Downlod Application Form</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+               <!-- AVAILABLE INFORMATION ENDS HERE -->
+            </div>
+        </div>
+        
+        
+        <!-- {% include 'includes/sidebar.html' %} -->
+    </div>
+</div>
+{% endblock content %}
