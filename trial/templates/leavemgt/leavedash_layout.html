@@ -68,11 +68,11 @@
                             </div>
                             <div class="sb-nav-link-icon" style="margin-left: 32px;">
                                 {{ current_user.username }}
-                            </div></br>
+                            </div><br>
                             <a class="nav-link" href="{{ url_for('leavemgt.leave_dash') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
-                            </a></br>
+                            </a><br>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                                 User Management
@@ -145,10 +145,22 @@
                                 </nav>
                             </div>
 
-                            <a class="nav-link" href="{{ url_for('admin.create_blog') }}">
+                            
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blogpost" aria-expanded="false" aria-controls="blogpost">
                                 <div class="sb-nav-link-icon"><i class="fa fa-newspaper"></i></div>
-                                Add Blog Post
+                                Blog  Post
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="blogpost" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPagesproj">
+                                    <a class="nav-link" href="{{ url_for('admin.create_blog') }}">   
+                                        Add Blog Post
+                                    </a>
+                                    <a class="nav-link" href="{{ url_for('admin.blog_posts') }}">
+                                        Update Post
+                                    </a>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

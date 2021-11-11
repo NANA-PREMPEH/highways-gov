@@ -1,3 +1,4 @@
+from datetime import datetime
 import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, logout_user, login_required
@@ -30,7 +31,32 @@ def update_gallery():
         db.session.add(pic)
         db.session.commit()
         flash(f"Image added successfully", 'success')
-    return render_template('/admin/gallery_pics.html', form=form)
+    return render_template('admin/gallery_pics.html', form=form)
+
+@admin.route('/blog_post/<int:post_id>/update', methods=['GET', 'POST'])
+def update_blog_post(post_id):
+    form = BlogPostForm()
+    blog_post = Post.query.get_or_404(post_id)
+    if form.validate_on_submit():
+        blog_post.title = form.title.data
+        blog_post.body = form.blog_content.data
+        blog_post.pub_date = datetime.utcnow() 
+        blog_post.user_id = current_user.id
+        if form.picture.data:
+            picture = save_photo(form.picture.data)
+            blog_post.image = picture
+        db.session.commit()
+        flash('Your post has been updated!', 'success')
+        return redirect(request.url) 
+    form.title.data = blog_post.title
+    form.blog_content.data = blog_post.body
+    form.picture.data = blog_post.image
+    return render_template('admin/update_blog_post.html', form=form)
+
+@admin.route('/blog/blog_posts')
+def blog_posts():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('admin/blog_posts.html', posts=posts)
 
 @admin.route('/register', methods=['GET', 'POST'])
 def register():

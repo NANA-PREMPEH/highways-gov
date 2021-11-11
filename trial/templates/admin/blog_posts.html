@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dashboard</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+        <!--DataTables-->  
+        <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/css/jquery.dataTables.min.css') }}"> 
+
+    </head>
+
+    <body>
+        <div class="jumbotron text-center">
+            <h2>UPDATE BLOG POSTS</h2>
+        </div>
+        
+        <div class="container">
+            {% include "admin/header.html" %}
+            {% include "admin/messages.html" %}
+                <div class="col-md-12"> 
+                    <table id="mytable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>N/O</th>
+                                <th>IMAGE</th>
+                                <th>TITLE</th>
+                                <th>DATE PUBLISHED</th>
+                                <th>AUTHOR</th> 
+                                <th>ACTION</th> 
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            {% for post in posts %} 
+                                <tr>  
+                                    <td>{{ loop.index }}</td>
+                                    <td>
+                                        <img src="{{ url_for('static', filename='blog_images/' +post.image) }}" 
+                                            alt="image.jpg" width="60" height="60">
+                                    </td>
+                                    <td>{{ post.title }}</td>
+                                    <td>{{ post.pub_date.strftime('%d %b, %Y') }}</td>
+                                    <td>{{ post.author.name }}</td>
+                                    <td style="text-align: center;">
+                                        <a class="btn btn-success" 
+                                            href="{{ url_for('admin.update_blog_post', post_id=post.id) }}">EDIT</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table><br>  
+                </div>
+        </div> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <!-- DataTables -->
+        <script src="{{ url_for('static', filename='DataTables/js/jquery.dataTables.min.js') }}"></script>
+        <!-- page script -->    
+        <script>
+            $(function () {
+                $("#mytable").DataTable();
+            });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $(".datepicker").datetimepicker({
+                    format: 'YYYY-MM-DD',                         
+                });
+            });
+        </script>
+    </body>
+</html>
