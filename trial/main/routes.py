@@ -188,12 +188,54 @@ def exempt_info():
     return render_template('/main/exempt_info.html', title='Exempt Information')
 
 
+# Navbar video gallery
+@main.route('/video_gallery')
+def video_gallery():
+    return render_template('/main/video_gallery.html', title='Video Gallery')
+
+# Navbar status report
+@main.route('/status_report')
+def status_report():
+    return render_template('/main/status_report.html', title='Status Report')
+
+
+# Navbar regional directors
+@main.route('/regional_directors')
+def regional_directors():
+    return render_template('/main/regional_directors.html', title='Regional Directors')
+
+# Navbar upcoming events
+@main.route('/upcoming_event')
+def upcoming_event():
+    return render_template('/main/upcoming_event.html', title='Upcoming Event')
+
+
 # Start of services route
 # Services
 @main.route('/lab_test_services')
 def lab_test_services():
     return render_template('/main/lab_test_services.html', title='Lab test Services')
 
+# Start of lab_test_services
+# route for foundations
+@main.route('/foundations')
+def foundations():
+    return render_template('/main/foundations.html', title='Foundations')
+
+# route for soil_aggregate_concrete
+@main.route('/soil_agg_con')
+def soil_agg_con():
+    return render_template('/main/soil_agg_con.html', title='Soil, Aggregate and concrete')
+
+# route for Bitumen
+@main.route('/bitumen')
+def bitumen():
+    return render_template('/main/bitumen.html', title='Bitumen & Bituminous Products')
+
+# route for Pavements
+@main.route('/pavements')
+def pavements():
+    return render_template('/main/pavements.html', title='Pavements')
 
 @main.before_app_request 
 def before_request():

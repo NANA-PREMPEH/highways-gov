@@ -1,0 +1,47 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .rti{
+        width: 250px; height: 40px; 
+        display: block;
+        background-color:#ffcd00;
+        color: black;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 28px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+    }
+
+
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">Status Report</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div  style="display: block;">
+                <a class="rti" href="#">Maintenance</a>
+                <a class="rti" href="#">Contract</a>
+                <a class="rti" href="#">Planning</a>
+            </div>
+         
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+              
+               <div style="align-items: center; justify-content: center; padding: 10px; width: 100%;">
+               
+                </div>
+
+            </div>
+        </div>
+        
+        
+        <!-- {% include 'includes/sidebar.html' %} -->
+    </div>
+</div>
+{% endblock content %}

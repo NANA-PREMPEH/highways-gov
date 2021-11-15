@@ -139,6 +139,6 @@ def download_RTI_Classes():
 @generalforms.route('/download_application_form')
 #@login_required     
 def download_application_form():
-    p = './static/other_forms/Online application Forms.pdf'
+    p = './static/other_forms/Online application Forms fillable.pdf'
 
     return send_file(p, as_attachment=True)

@@ -1,0 +1,288 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .lab{
+        width: 250px; height: 40px; 
+        display: block;
+        background-color:#ffcd00;
+        color: black;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 20px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+        margin-right: 20px;
+    }
+
+    .title_head{
+        padding-bottom: 10px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    table{
+        font-family: "Montserrat", sans-serif;
+        width: 100%;
+    }
+
+    td{
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 1px;
+        line-height: 20px;
+    }
+
+    th {
+        border: 1px solid #dddddd;
+        border-collapse: collapse;
+        text-align: left;
+        padding: 8px;
+        line-height: 20px;
+    }
+
+
+
+    tr:nth-child(even){
+        background-color: #dddddd;
+    }
+
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3">Laboratory Tests And Services</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div>
+                <a class="lab" href="{{ url_for('main.foundations')}}">Foundations</a>
+                <a class="lab" href="{{ url_for('main.soil_agg_con')}}">Soil Aggregate and Concrete</a>
+                <a class="lab" href="{{ url_for('main.bitumen') }}">Bitumen and Bituminous Products</a>
+                <a class="lab" href="{{ url_for('main.pavements') }}">Pavements</a>
+            </div>
+            <!-- <table>
+                <tbody >
+                    <tr>
+                        <td><a class="lab" href="">Access to Information</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="lab" href="">Available Information</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="lab" href="">Application</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="lab" href="">Disclosure Logs</a></td>
+                    </tr>
+                </tbody>
+            </table> -->
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+                    <h3 style="padding-bottom: 10px">BITUMEN AND BITUMINOUS PRODUCTS</h3>
+                    <h4>FEES AND CHARGES (AMENDMENT INSTRUMENT, 2014 (L.I. 2216)</h4>
+                    <p>NEW RATES FOR LABORATORY TESTS AND SERVICES</p>
+
+                    <table>
+                        <tr>
+                            <th>CODE NO.</th>
+                            <th>DESCRIPTION</th>
+                            <th>FILE NO.</th>
+                            <th>OLD RATE GHC</th>
+                            <th>NEW RATE GHC</th>
+                        </tr>
+        
+                        <tr>
+                            <td>66</td>
+                            <td>Asphaltic Concrete Mix Design</td>
+                            <td>BP/LT/01</td>
+                            <td>6,000.00</td>
+                            <td>7,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>67</td>
+                            <td>Moisture Susceptibility Test (TSR)</td>
+                            <td>BP/LT/02</td>
+                            <td>300.00</td>
+                            <td>450.00</td>
+                        </tr>
+                        <tr>
+                            <td>68</td>
+                            <td>Saybolt/Universal furol Viscosity</td>
+                            <td>BP/LT/03</td>
+                            <td>45.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>69</td>
+                            <td>Specific Gravity on Bitumen</td>
+                            <td>BP/LT/04</td>
+                            <td>40.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>70</td>
+                            <td>Flash and Fire Point Test</td>
+                            <td>BP/LT/05</td>
+                            <td>50.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>71</td>
+                            <td>Penetration Test</td>
+                            <td>BP/LT/06</td>
+                            <td>45.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>72</td>
+                            <td>Distillation Test</td>
+                            <td>BP/LT/07</td>
+                            <td>90.00</td>
+                            <td>150.00</td>
+                        </tr>
+                        <tr>
+                            <td>73</td>
+                            <td>Extraction Test</td>
+                            <td>BP/LT/08</td>
+                            <td>200.00</td>
+                            <td>350.00</td>
+                        </tr>
+                        <tr>
+                            <td>74</td>
+                            <td>Coring through Asphaltic Concrete</td>
+                            <td>BP/LT/01</td>
+                            <td>180.00</td>
+                            <td>200.00</td>
+                        </tr>
+                        <tr>
+                            <td>75</td>
+                            <td>Marshall Test(5 Point compaction)</td>
+                            <td>BP/LT/09</td>
+                            <td>300.00</td>
+                            <td>450.00</td>
+                        </tr>
+                        <tr>
+                            <td>76</td>
+                            <td>Maximum Specific Gravity (GMM) </td>
+                            <td>BP/LT/10</td>
+                            <td>50.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>77</td>
+                            <td>Softening Point</td>
+                            <td>BP/LT/11</td>
+                            <td>65.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>78</td>
+                            <td>Thin Film Oven Test</td>
+                            <td>BP/LT/12</td>
+                            <td>100.00</td>
+                            <td>200.00</td>
+                        </tr>
+                        <tr>
+                            <td>79</td>
+                            <td>Rolling Thin Film Oven Test</td>
+                            <td>BP/LT/13</td>
+                            <td>200.00</td>
+                            <td>350.00</td>
+                        </tr>
+                        <tr>
+                            <td>80</td>
+                            <td>Kinematic/Dynamic Viscosity</td>
+                            <td>BP/LT/14</td>
+                            <td>100.00</td>
+                            <td>200.00</td>
+                        </tr>
+                        <tr>
+                            <td>81</td>
+                            <td>Absolute Viscosity (60°C, 100°C, 150°C) </td>
+                            <td>BP/LT/15</td>
+                            <td>90.00</td>
+                            <td>180.00</td>
+                        </tr>
+                        <tr>
+                            <td>82</td>
+                            <td>Residue on Sieving </td>
+                            <td>BP/LT/16</td>
+                            <td>40.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>83</td>
+                            <td>Determination of STV - Viscosity</td>
+                            <td>BP/LT/17</td>
+                            <td>40.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>84</td>
+                            <td>Determination of Breaking Index</td>
+                            <td>BP/LT/18</td>
+                            <td>40.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>85</td>
+                            <td>Loss of Stability Test</td>
+                            <td>BP/LT/19</td>
+                            <td>70.00</td>
+                            <td>150.00</td>
+                        </tr>
+                        <tr>
+                            <td>86</td>
+                            <td>Compressive Strength</td>
+                            <td>BP/LT/20</td>
+                            <td>35.00</td>
+                            <td>60.00</td>
+                        </tr>
+                        <tr>
+                            <td>87</td>
+                            <td>Determination of Air Void Content of Asphaltic Concrete Cores</td>
+                            <td>BP/LT/21</td>
+                            <td>80.00</td>
+                            <td>170.00</td>
+                        </tr>
+                        <tr>
+                            <td>88</td>
+                            <td>Determination of Bulk Density of Asphaltic Concrete Cores</td>
+                            <td>BP/LT/22</td>
+                            <td>80.00</td>
+                            <td>170.00</td>
+                        </tr>
+                        <tr>
+                            <td>89</td>
+                            <td>Determination of Marshall Stability and Flow of Asphaltic Concrete Cores</td>
+                            <td>BP/LT/23</td>
+                            <td>100.00</td>
+                            <td>200.00</td>
+                        </tr>
+                        <tr>
+                            <td>90</td>
+                            <td>Stripping Test</td>
+                            <td>BP/LT/24</td>
+                            <td>50.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>91</td>
+                            <td>Super Pave Compaction</td>
+                            <td>BP/LT/25</td>
+                            <td>550.00</td>
+                            <td>800.00</td>
+                        </tr>
+                       
+                    </table>
+            </div>
+        </div>
+        
+        
+        <!-- {% include 'includes/sidebar.html' %} -->
+    </div>
+</div>
+{% endblock content %}

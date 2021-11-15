@@ -1,0 +1,139 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+
+    table{
+        font-family: "Montserrat", sans-serif;
+        width: 100%;
+    }
+
+    td{
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 1px;
+        line-height: 20px;
+    }
+
+    th {
+        border: 1px solid #dddddd;
+        border-collapse: collapse;
+        text-align: left;
+        padding: 8px;
+        line-height: 20px;
+    }
+
+    tr:nth-child(even){
+        background-color: #dddddd;
+    }
+
+    /* table tr td a {
+        color: #ffcd00;
+    } */
+
+</style>
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
+        <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;">
+            <h3 id="table_h3">Regional Directors</h3>
+            
+            <table>
+                <tr>
+                    <th>NO.</th>
+                    <th>NAME</th>
+                    <th>STATION</th>
+                    <th>EMAIL</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>CHARLES ADUBOFOUR </td>
+                    <td>EASTERN</td>
+                    <td><a href="mailto:charles.adubofour@highways.gov.gh">charles.adubofour@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>SETH RICHARD OFORI-KOMENG </td>
+                    <td>WESTERN</td>
+                    <td><a href="mailto:seth.ofori-komeng@highways.gov.gh">seth.ofori-komeng@highways.gov.gh</a> </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>PHILIP SAMWINI ANBAAHIKPIENGU</td>
+                    <td>UPPER EAST</td>
+                    <td><a href="mailto:philip.anbaahikpiengu@highways.gov.gh">philip.anbaahikpiengu@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>SETH ADJEMANG-BAAH</td>
+                    <td>BONO EAST</td>
+                    <td><a href="mailto:seth.adjemang-baah@highways.gov.gh">seth.adjemang-baah@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>SAMUEL AKUAKU KWESI</td>
+                    <td>CENTRAL</td>
+                    <td><a href="mailto:samuel.kwesi@highways.gov.gh">samuel.kwesi@highways.gov.gh</a></t>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>PATRICK OKOTO </td>
+                    <td>WESTERN NORTH</td>
+                    <td><a href="mailto:patrick.okoto@highways.gov.gh">patrick.okoto@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>FREDERICK ADUAGYEI </td>
+                    <td>BONO</td>
+                    <td><a href="mailto:frederick.aduagyei@highways.gov.gh">frederick.aduagyei@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>PAUL YAW DUAH ADANSE-PIPPIM</td>
+                    <td>SAVANNAH</td>
+                    <td><a href="mailto:paul.duah@highways.gov.gh">paul.duah@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>VICTOR TETEY ANNAN </td>
+                    <td>OTI</td>
+                    <td><a href="mailto:victor.annan@highways.gov.gh">victor.annan@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>SALISU MOHAMMED MAHAMAH </td>
+                    <td>AHAFO</td>
+                    <td><a href="mailto:salisu.mahamah@highways.gov.gh">salisu.mahamah@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>EDMUND OBENG </td>
+                    <td>ASHANTI</td>
+                    <td><a href="mailto:edmund.obeng@highways.gov.gh">edmund.obeng@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>JOSEPH ATSU AMEDZAKE </td>
+                    <td>NORTHERN</td>
+                    <td><a href="mailto:joseph.amedzake@highways.gov.gh">joseph.amedzake@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>JOSEPH ATSU AMEDZAKE </td>
+                    <td>NORTH EAST</td>
+                    <td><a href="mailto:joseph.amedzake@highways.gov.gh">joseph.amedzake@highways.gov.gh</a></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>ANDREW YAW OKERE </td>
+                    <td>UPPER WEST</td>
+                    <td><a href="mailto:andrew.okere@highways.gov.gh">andrew.okere@highways.gov.gh</a></td>
+                </tr>
+              
+               
+            </table>
+            
+        </div>
+        {% include 'includes/sidebar.html' %} 
+    </div>
+</div> 
+{% endblock content %} 
