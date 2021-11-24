@@ -187,6 +187,10 @@ def application():
 def exempt_info():
     return render_template('/main/exempt_info.html', title='Exempt Information')
 
+# Disclosure logs page
+@main.route('/disclosure_logs')
+def disclosure_logs():
+    return render_template('/main/disclosure_logs.html', title='Disclosure Logs')
 
 # Navbar video gallery
 @main.route('/video_gallery')

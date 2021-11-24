@@ -5,8 +5,8 @@
     .lab{
         width: 250px; height: 40px; 
         display: block;
-        background-color:#ffcd00;
-        color: black;
+        background-color:#b8c3ff;
+        color: #333;
         text-align: center;
         padding-top: 16px;
         padding-bottom: 44px;
@@ -17,6 +17,12 @@
         margin-bottom: 15px;
         margin-right: 20px;
     }
+
+    .lab:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
 
     .title_head{
         padding-bottom: 10px;
@@ -59,7 +65,7 @@
             <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
             <div>
                 <a class="lab" href="{{ url_for('main.foundations')}}">Foundations</a>
-                <a class="lab" href="{{ url_for('main.soil_agg_con')}}">Soil Aggregate and Concrete</a>
+                <a class="lab" href="{{ url_for('main.soil_agg_con')}}">Soil, Aggregate and Concrete</a>
                 <a class="lab" href="{{ url_for('main.bitumen') }}">Bitumen and Bituminous Products</a>
                 <a class="lab" href="{{ url_for('main.pavements') }}">Pavements</a>
             </div>

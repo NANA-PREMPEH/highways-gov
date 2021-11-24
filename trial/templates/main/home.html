@@ -2,7 +2,7 @@
 {% block content %}
 <style>
     #glyp {
-        color: #ffcd00;
+        color: #b8c3ff;
         font-size: 41px;
     }
     .service_item:hover #glyp{
@@ -37,9 +37,13 @@
     .map_container a {
         padding: 10px;
         margin: 10px;
-        background-color: #ffcd00;
-        color: black;
+        background-color: #01368c;
+        color: rgb(255, 255, 255);
         border-radius: 5px;
+    }
+    .map_container a:hover{
+        background-color: #b8c3ff;
+        color: #000;
     }
 </style>
     <!--================Main Slider Area =================-->
@@ -239,7 +243,7 @@
                 <div class="service_item">
                     <div class="service_item_inner">
                         <div class="service_icon">
-                            <img src="{{ url_for('static', filename='img/icon/s-icon-6.png') }}" alt="">
+                            <img src="{{ url_for('static', filename='img/icon/s-icon-3.png') }}" alt="">
                             <img src="{{ url_for('static', filename='img/icon/s-icon-hover-6.png') }}" alt="">
                         </div>
                         <h4>ENGINEERS</h4>
