@@ -5,8 +5,8 @@
     .rti{
         width: 250px; height: 40px; 
         display: inline-block;
-        background-color:#ffcd00;
-        color: black;
+        background-color:#b8c3ff;
+        color: #333;
         text-align: center;
         padding-top: 16px;
         padding-bottom: 44px;
@@ -16,6 +16,12 @@
         font-family: "Montserrat", sans-serif;
         margin-bottom: 15px;
     }
+
+    .rti:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
 
 
 </style>
@@ -30,7 +36,7 @@
                 <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
                 <a class="rti" href="{{ url_for('main.application') }}">Application</a>
                 <a  style="display: block;" class="rti" href="{{ url_for('main.exempt_info') }}">Exempt Information</a>
-                <a class="rti" href="">Disclosure Logs</a>
+                <a class="rti" href="{{ url_for('main.disclosure_logs') }}">Disclosure Logs</a>
             </div>
             <!-- <table>
                 <tbody >
@@ -53,25 +59,25 @@
 
                <!-- AVAILABLE INFORMATION START HERE -->
                <div class="text" style="line-height: 30px; padding-left: 5px; padding-bottom: 20px; margin-left: -12%; ">
-                <h2  style="padding-bottom: 10px">Exempt Information</h2>
+                <h2  style="padding-bottom: 10px">Access to Information</h2>
                     <p class="p">
                         The following information is available for public inspection at the Reception Counter of our
                         Headquarters or can be downloaded from the following hyperlink : </p>
                         <ul>
 
-                        <li><a onmouseover="this.style.color='#ffcd00'" onmouseout="this.style.color='#f8f409'"  style="color: #d6d437;" href="{{ url_for ('generalforms.download_RTI_Man') }}"
+                        <li><a onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#01368c'"  style="color: #01368c;" href="{{ url_for ('generalforms.download_RTI_Man') }}"
                                 target="_blank"><i>Guidelines
                                     on Interpretation and Application</i></a></li>
-                        <li><a onmouseover="this.style.color='#ffcd00'" onmouseout="this.style.color='#f8f409'"  style="color: #d6d437;" href="{{ url_for ('generalforms.download_RTI_Classes') }}"><i>List of Records by Category</i></a></li>
-                        <li><a onmouseover="this.style.color='#ffcd00'" onmouseout="this.style.color='#f8f409'"  style="color: #d6d437;"href="{{ url_for ('main.yearly_report') }}"><i>List of Information either published or made Available to
+                        <li><a onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#01368c'"  style="color: #01368c;" href="{{ url_for ('generalforms.download_RTI_Classes') }}"><i>List of Records by Category</i></a></li>
+                        <li><a onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#01368c'"  style="color: #01368c;"href="{{ url_for ('main.yearly_report') }}"><i>List of Information either published or made Available to
                                     the
                                     public</i></a></li>
                         </ul>
                         <div class="foot";>
                             <p>For further enquiries, contact the Public Affairs Division via the following emails:</p>
-                            <p><a onmouseover="this.style.color='#ffcd00'" onmouseout="this.style.color='#f8f409'" style="color: #d6d437;" href="mailto:public.affair@highways.gov.gh"><i>public.affair@highways.gov.gh</i></a></p>
-                            <p><a onmouseover="this.style.color='#ffcd00'" onmouseout="this.style.color='#f8f409'" style="color: #d6d437;" href="mailto:hannah.bimpong@highways.gov.gh"><i>hannah.bimpong@highways.gov.gh,</i></a></p>
-                            <p><a onmouseover="this.style.color='#ffcd00'" onmouseout="this.style.color='#f8f409'" style="color: #d6d437;" href="mailto:akosua.asareankomah@highways.gov.gh"><i>akosua.asareankomah@highways.gov.gh</i></a>
+                            <p><a onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#01368c'" style="color: #01368c;" href="mailto:public.affair@highways.gov.gh"><i>public.affair@highways.gov.gh</i></a></p>
+                            <p><a onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#01368c'" style="color: #01368c;" href="mailto:hannah.bimpong@highways.gov.gh"><i>hannah.bimpong@highways.gov.gh,</i></a></p>
+                            <p><a onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#01368c'" style="color: #01368c;" href="mailto:akosua.asareankomah@highways.gov.gh"><i>akosua.asareankomah@highways.gov.gh</i></a>
                             </p>
                     </div>
             </div>

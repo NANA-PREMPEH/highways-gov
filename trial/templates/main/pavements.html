@@ -5,8 +5,8 @@
     .lab{
         width: 250px; height: 40px; 
         display: block;
-        background-color:#ffcd00;
-        color: black;
+        background-color:#b8c3ff;
+        color: #333;
         text-align: center;
         padding-top: 16px;
         padding-bottom: 44px;
@@ -16,6 +16,11 @@
         font-family: "Montserrat", sans-serif;
         margin-bottom: 15px;
         margin-right: 20px;
+    }
+
+    .lab:hover {
+        background-color: #01368c;
+        color: #fff;
     }
 
     .title_head{
@@ -57,26 +62,11 @@
             <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
             <div>
                 <a class="lab" href="{{ url_for('main.foundations')}}">Foundations</a>
-                <a class="lab" href="{{ url_for('main.soil_agg_con')}}">Soil Aggregate and Concrete</a>
+                <a class="lab" href="{{ url_for('main.soil_agg_con')}}">Soil, Aggregate and Concrete</a>
                 <a class="lab" href="{{ url_for('main.bitumen') }}">Bitumen and Bituminous Products</a>
                 <a class="lab" href="{{ url_for('main.pavements') }}">Pavements</a>
             </div>
-            <!-- <table>
-                <tbody >
-                    <tr>
-                        <td><a class="lab" href="">Access to Information</a></td>
-                    </tr>
-                    <tr>
-                        <td><a class="lab" href="">Available Information</a></td>
-                    </tr>
-                    <tr>
-                        <td><a class="lab" href="">Application</a></td>
-                    </tr>
-                    <tr>
-                        <td><a class="lab" href="">Disclosure Logs</a></td>
-                    </tr>
-                </tbody>
-            </table> -->
+           
             <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
                 <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
                     <h3 style="padding-bottom: 10px">PAVEMENTS</h3>
