@@ -1035,7 +1035,7 @@ iframe {
 .slider_btn {
   display: inline-block;
   padding: 0px 36px;
-  border: 2px solid #ffcd00;
+  border: 2px solid #b8c3ff;
   line-height: 50px;
   font-size: 20px;
   font-family: "Open Sans", sans-serif;
@@ -1054,7 +1054,7 @@ iframe {
   content: "";
   position: absolute;
   z-index: -1;
-  background: #ffcd00;
+  background: #b8c3ff;
   height: 250px;
   width: 320px;
   border-radius: 50%;
