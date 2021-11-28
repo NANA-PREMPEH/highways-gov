@@ -33,6 +33,7 @@ def update_gallery():
         flash(f"Image added successfully", 'success')
     return render_template('admin/gallery_pics.html', form=form)
 
+#Update Blog Post
 @admin.route('/blog_post/<int:post_id>/update', methods=['GET', 'POST'])
 def update_blog_post(post_id):
     form = BlogPostForm()
@@ -52,6 +53,17 @@ def update_blog_post(post_id):
     form.blog_content.data = blog_post.body
     form.picture.data = blog_post.image
     return render_template('admin/update_blog_post.html', form=form)
+
+#Delete Blog Post
+@admin.route('/blog_post/<int:id>/delete', methods=['POST'])
+def delete_blog_post(id):
+    blog_post = Post.query.get_or_404(id)
+
+    db.session.delete(blog_post)
+    db.session.commit()
+
+    flash('Post has been deleted successfully!', 'success')
+    return redirect(request.referrer)
 
 @admin.route('/blog/blog_posts')
 def blog_posts():
