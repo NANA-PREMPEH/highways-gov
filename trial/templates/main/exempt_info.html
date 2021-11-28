@@ -5,8 +5,8 @@
     .rti{
         width: 250px; height: 40px; 
         display: inline-block;
-        background-color:#ffcd00;
-        color: black;
+        background-color:#b8c3ff;
+        color: #333;
         text-align: center;
         padding-top: 16px;
         padding-bottom: 44px;
@@ -17,6 +17,11 @@
         margin-bottom: 15px;
     }
    
+    .rti:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
 
 .application_text ul li {
     list-style-type: none;
@@ -66,7 +71,9 @@
 
 <div class="container">
     <div class="row blog_details_inner" style="margin-left: 2%;">
-        <h3 class="table_h3" id="table_h3">Exempt Information</h3>
+        <!-- <h3 class="table_h3" id="table_h3">Exempt Information</h3> -->
+        <!-- <h3 id="table_h3">Exempt Information</h3> -->
+        <h3 id="table_h3">RIGHT TO INFORMATION</h3>
         <div id="periodic" style="margin-top: 2%; display: flex;">
             <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
             <div>
@@ -74,7 +81,7 @@
                 <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
                 <a  style="display: block;" class="rti" href="{{ url_for('main.application') }}">Application</a>
                 <a   style="display: block;" class="rti" href="{{ url_for('main.exempt_info') }}">Exempt Information</a>
-                <a class="rti" href="">Disclosure Logs</a>
+                <a class="rti" href="{{ url_for('main.disclosure_logs') }}">Disclosure Logs</a>
             </div>
             <!-- <table>
                 <tbody >

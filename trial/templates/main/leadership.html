@@ -3,6 +3,10 @@
 
     <style>
 
+        .container {
+            font-family: "Montserrat", sans-serif;
+        }
+
         .team_name {
             text-align: center;
             margin: 0; 
@@ -21,20 +25,73 @@
         #leader {
            flex-wrap: wrap;
         }
-    
+
+        .divider_bg::before {
+            content: "";
+            display: block;
+            border-bottom: 5px solid #b8c3ff;
+            position: absolute;
+            left: 0;
+            top: -1px;
+            width: 83px;
+            height: 1px;
+            opacity: 1;
+            z-index: 100;
+            }
+
+            #hr_divider{
+                opacity: 1;
+                z-index: 1;
+            }
+
+            hr {
+                box-sizing: content-box;
+                height: 0;
+                border-top: 1px solid #eee;
+                border-color: #e5e5e5;
+                background-color: #e5e5e5;
+            }
+
+            .divider_bg {
+                position: relative;
+                overflow: visible;
+            }
+        
     </style> 
 
     <div class="container">  
         <div class="row blog_details_inner" style="margin-left: 2%;">
             <h3 class="table_h3" id="table_h3">LEADERSHIP</h3>
-            <div class="leadership" id="leader">
+              <!-- Divider headen  -->
+              <div>
+                <h5 id="no_news">Board of Directors</h5>
+                <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+             </div>
+
+             <!-- Divider headen  -->
+             <div>
+                <h5 id="no_news">Chief Executive</h5>
+                <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+             </div>
+                <!-- Divider headen  -->
+                <div>
+                    <h5 id="no_news">Deputy Chief Executive</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                 </div>
+                    <!-- Divider headen  -->
+             <div>
+                <h5 id="no_news">Directors</h5>
+                <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+             </div>
+
+             <div class="leadership" id="leader">
                 <div class="img_disp" id="try">
                     <!-- <img src="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" alt="pre-cons-left" class="image_file"> -->
-                    <img src="static/img/leaders/Dr. Frank Mawuyome kwame Gamadey.jpg" alt="pre-cons-left" class="image_file">
+                    <img src="static/img/leaders/DR. FRANK M.K GAMADEY.jpg" alt="pre-cons-left" class="image_file">
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="static/img/leaders/Dr. Frank Mawuyome kwame Gamadey profile.jpg"
+                        <a href="static/img/leaders/Dr. Frank Mawuyome.jpg"
                             data-lightbox="profile" data-title="Pic-1" data-alt="Pic-1.jpg">
                             Profile
                         </a>
@@ -47,11 +104,11 @@
                 </div>
                 <div class="img_disp" id="try" >
                     <!-- <img src="{{ url_for('static', filename='img/leaders/video-1.jpg') }}" alt="pre-cons-right" class="image_file"> -->
-                    <img src="static/img/leaders/Maama Markwei Sawyerr.jpg" alt="pre-cons-right" class="image_file">
+                    <img src="static/img/leaders/_DSC6322.jpg" alt="pre-cons-right" class="image_file">
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/video-1.jpg') }}"  -->
-                        <a href="static/img/leaders/Maama Markwei profile.jpg" 
+                        <a href="static/img/leaders/MAAMA SAWYERR-MARKWEI.jpg" 
                             data-lightbox="profile" data-title="Pic-2" data-alt="Pic-2.jpg">
                             Profile
                         </a>
@@ -64,11 +121,11 @@
                 </div>        
                 <div class="img_disp" id="try" >
                     <!-- <img src="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" alt="pre-cons-left" class="image_file"> -->
-                    <img src="static/img/leaders/Lawrence Lloyd Lankwei.jpg" alt="pre-cons-left" class="image_file">
+                    <img src="static/img/leaders/_DSC6335.jpg" alt="pre-cons-left" class="image_file">
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="static/img/leaders/LAWRENCE LLOYD LANKWEI LAMPTEY profile.jpg"
+                        <a href="static/img/leaders/LAWRENCE LLOYD LANKWEI LAMPTEY.jpg"
                             data-lightbox="profile" data-title="Pic-3" data-alt="Pic-3.jpg">
                             Profile
                         </a>
@@ -78,31 +135,14 @@
                     <h4>LAWRENCE LLOYD LANKWEI LAMPTEY</h4>
                     <span>Ag. Dy. Chief Executive (Mtce)</span>
                 </div>
-                </div>        
+                </div>          
                 <div class="img_disp" id="try" >
                     <!-- <img src="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" alt="pre-cons-left" class="image_file"> -->
-                    <img src="static/img/leaders/Seth Adjemang Baah.jpg" alt="pre-cons-left" class="image_file">
+                    <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file">
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="static/img/leaders/SETH ADJEMANG BAAH profile.jpg"
-                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
-                            Profile
-                        </a>
-                    </div>
-                </div>
-                <div class="team_name">
-                    <h4>SETH ADJEMANG BAAH</h4>
-                    <span>Ag. Rg. Highway Director Bono East Region</span>
-                </div>
-                </div>        
-                <div class="img_disp" id="try" >
-                    <!-- <img src="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" alt="pre-cons-left" class="image_file"> -->
-                    <img src="static/img/leaders/Foster Ekuede.jpg" alt="pre-cons-left" class="image_file">
-                <div class="overlay">
-                    <div id="pro">
-                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="static/img/leaders/Foster Ekuede Lelekele profile.jpg"
+                        <a href="static/img/leaders/Foster Ekuede Lelekele.jpg"
                             data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
                             Profile
                         </a>
@@ -115,11 +155,11 @@
                 </div>        
                 <div class="img_disp" id="try" >
                     <!-- <img src="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" alt="pre-cons-left" class="image_file"> -->
-                    <img src="static/img/leaders/Gordon Amarkwei.jpg" alt="pre-cons-left" class="image_file">
+                    <img src="static/img/leaders/GORDON AMARTEY.jpg" alt="pre-cons-left" class="image_file">
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="static/img/leaders/Gordon Amarkwei Amartey profile.jpg"
+                        <a href="static/img/leaders/Gordon Amarkwei Amartey new.jpg"
                             data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
                             Profile
                         </a>
@@ -131,6 +171,8 @@
                 </div>
                 </div>        
             </div>
+           
+
         </div>
     </div>
 {% endblock content %} 

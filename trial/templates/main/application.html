@@ -5,8 +5,8 @@
     .rti{
         width: 250px; height: 40px; 
         display: inline-block;
-        background-color:#ffcd00;
-        color: black;
+        background-color:#b8c3ff;
+        color: #333;
         text-align: center;
         padding-top: 16px;
         padding-bottom: 44px;
@@ -16,6 +16,12 @@
         font-family: "Montserrat", sans-serif;
         margin-bottom: 15px;
     }
+
+    .rti:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
    
 
 .application_text ul li {
@@ -28,14 +34,14 @@
 }
 
 .text_two a:hover {
-    color: #d6d437;
+    color: #b8c3ff;
 
 }
 .download {
     position: relative;
     width: 350px;
     height: 100px;
-    background-color: #ffcd00;
+    background-color: #01368c;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -62,7 +68,7 @@
 
 <div class="container">
     <div class="row blog_details_inner" style="margin-left: 2%;">
-        <h3 class="table_h3" id="table_h3">Application to Access Information</h3>
+        <h3 class="table_h3" id="table_h3">RIGHT TO INFORMATION</h3>
         <div id="periodic" style="margin-top: 2%; display: flex;">
             <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
             <div style="display: block;">
@@ -70,7 +76,7 @@
                 <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
                 <a class="rti" href="{{ url_for('main.application') }}">Application</a>
                 <a class="rti" href="{{ url_for('main.exempt_info') }}">Exempt Information</a>
-                <a class="rti" href="">Disclosure Logs</a>
+                <a class="rti" href="{{ url_for('main.disclosure_logs') }}">Disclosure Logs</a>
             </div>
             <!-- <table>
                 <tbody >
@@ -110,8 +116,8 @@
                 </div>
                 <div class="text_two">
                     <p>In line with the COVID-19 protocols, Ghana Highway Authority encourages all members of the general public
-                        seeking information under this law to complete this form and forward same to <a style="color:  #d6d437"
-                            href="mailto:ce@highways.gov.gh"><i>ce@highways.gov.gh</i></a>
+                        seeking information under this law to complete this form and forward same to <a style="color:  #b8c3ff"
+                            href="mailto:public.affair@highways.gov.gh"><i>public.affair@highways.gov.gh</i></a>
         <!-- #d6d437 -->
                         Applications may also be submitted in person at the front desk of the Ministry.</p>
                     <div class="download">

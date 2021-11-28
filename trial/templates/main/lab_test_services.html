@@ -1,0 +1,73 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .lab{
+        width: 250px; height: 40px; 
+        display: block;
+        background-color:#b8c3ff;
+        color: #333;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 20px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+        margin-right: 20px;
+    }
+
+    .lab:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
+
+    .title_head{
+        padding-bottom: 10px;
+        color: #000;
+        font-weight: bold;
+    }
+
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3">Laboratory Tests And Services</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div>
+                <a class="lab" href="{{ url_for('main.foundations')}}">Foundations</a>
+                <a class="lab" href="{{ url_for('main.soil_agg_con')}}">Soil Aggregate and Concrete</a>
+                <a class="lab" href="{{ url_for('main.bitumen') }}">Bitumen and Bituminous Products</a>
+                <a class="lab" href="{{ url_for('main.pavements') }}">Pavements</a>
+            </div>
+            <!-- <table>
+                <tbody >
+                    <tr>
+                        <td><a class="lab" href="">Access to Information</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="lab" href="">Available Information</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="lab" href="">Application</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="lab" href="">Disclosure Logs</a></td>
+                    </tr>
+                </tbody>
+            </table> -->
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+                    <h4>FEES AND CHARGES (AMENDMENT INSTRUMENT, 2014 (L.I. 2216)</h4>
+                    <p>NEW RATES FOR LABORATORY TESTS AND SERVICES</p>
+            </div>
+        </div>
+        
+        
+        <!-- {% include 'includes/sidebar.html' %} -->
+    </div>
+</div>
+{% endblock content %}

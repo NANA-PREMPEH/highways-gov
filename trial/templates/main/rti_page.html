@@ -5,8 +5,8 @@
     .rti{
         width: 250px; height: 40px; 
         display: inline-block;
-        background-color:#ffcd00;
-        color: black;
+        background-color:#b8c3ff;
+        color: #333;
         text-align: center;
         padding-top: 16px;
         padding-bottom: 44px;
@@ -15,6 +15,11 @@
         font-size: 18px;
         font-family: "Montserrat", sans-serif;
         margin-bottom: 15px;
+    }
+
+    .rti:hover {
+        background-color: #01368c;
+        color: #fff;
     }
 
 
@@ -29,8 +34,8 @@
                 <a class="rti" href="{{ url_for('main.rti_page') }}">Overview</a>
                 <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
                 <a class="rti" href="{{ url_for('main.application') }}">Application</a>
-                <a class="rti" href="">Exempt Information</a>
-                <a class="rti" href="">Disclosure Logs</a>
+                <a class="rti" href="{{ url_for('main.exempt_info') }}">Exempt Information</a>
+                <a class="rti" href="{{ url_for('main.disclosure_logs') }}">Disclosure Logs</a>
             </div>
             <!-- <table>
                 <tbody >
@@ -63,7 +68,7 @@
         
                 <div style="text-align: center; padding: 30px;" class="paragrapth">
                     <span><i>Article 21 (1) (f) of the Constitution of Ghana Provides as follows: </i> </span>
-                    <h3 style="color: #ffcd00;">"All persons shall have the right to information, subject to such qualifications
+                    <h3 style="color: #01368c;">"All persons shall have the right to information, subject to such qualifications
                         and laws as are
                         necessary in a democratic society."</h3>
         
@@ -85,14 +90,14 @@
                         <h2>Procedure for Access</h2>
                         <p><i>The following are processes the public/applicant is expected to follow when making an application for
                                 access to information in a public institution. This provision is specified in <a 
-                                onmouseover="this.style.color='#ffcd00'" onmouseout="this.style.color='#f8f409'"  style="color: #d6d437;"
+                                onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#b8c3ff'"  style="color: #01368c;"
                                     href="{{ url_for('generalforms.download_Right_to_Info') }}" target="_blank">Section 18
                                     of the RTI Act 2019, Act 989.</a>
                             </i></p>
                             <p>For further enquiries, contact the Public Affairs Division via the following emails:</p>
-                            <p><a style="color: #d6d437;" href="mailto:public.affair@highways.gov.gh"><i>public.affair@highways.gov.gh</i></a></p>
-                            <p><a style="color: #d6d437;" href="mailto:hannah.bimpong@highways.gov.gh"><i>hannah.bimpong@highways.gov.gh,</i></a></p>
-                            <p><a style="color: #d6d437;" href="mailto:akosua.asareankomah@highways.gov.gh"><i>akosua.asareankomah@highways.gov.gh</i></a>
+                            <p><a  href="mailto:public.affair@highways.gov.gh"><i>public.affair@highways.gov.gh</i></a></p>
+                            <p><a  href="mailto:hannah.bimpong@highways.gov.gh"><i>hannah.bimpong@highways.gov.gh,</i></a></p>
+                            <p><a  href="mailto:akosua.asareankomah@highways.gov.gh"><i>akosua.asareankomah@highways.gov.gh</i></a>
                             </p>
                     </div>
                     

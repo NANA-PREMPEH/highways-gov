@@ -2,7 +2,7 @@
 {% block content %}
 <style>
     #glyp {
-        color: #ffcd00;
+        color: #b8c3ff;
         font-size: 41px;
     }
     .service_item:hover #glyp{
@@ -12,6 +12,7 @@
         box-shadow: 1px 1px 1px 2px rgb(242, 242, 242);
         padding-bottom: 30px;
         box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
         width: 100%;
         height: 100%;
         padding: 10px;
@@ -36,9 +37,13 @@
     .map_container a {
         padding: 10px;
         margin: 10px;
-        background-color: #ffcd00;
-        color: black;
+        background-color: #01368c;
+        color: rgb(255, 255, 255);
         border-radius: 5px;
+    }
+    .map_container a:hover{
+        background-color: #b8c3ff;
+        color: #000;
     }
 </style>
     <!--================Main Slider Area =================-->
@@ -47,7 +52,7 @@
             <ul> 
                 <li data-index="rs-2972" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="{{ url_for('static', filename='img/home-slider/slider-1.jpg') }}"  data-rotate="0"  data-saveperformance="off"  data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="{{ url_for('static', filename='img/home-slider/slider.jpg') }}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                    <img src="{{ url_for('static', filename='img/home-slider/slider_3.jpg') }}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
                     <div class="slider_text_box">
                         <div class="tp-caption first_text" 
@@ -238,12 +243,12 @@
                 <div class="service_item">
                     <div class="service_item_inner">
                         <div class="service_icon">
-                            <img src="{{ url_for('static', filename='img/icon/s-icon-6.png') }}" alt="">
+                            <img src="{{ url_for('static', filename='img/icon/s-icon-3.png') }}" alt="">
                             <img src="{{ url_for('static', filename='img/icon/s-icon-hover-6.png') }}" alt="">
                         </div>
                         <h4>ENGINEERS</h4>
                         <p>Let us help you find our Regional Directors and some Engineers.</p>
-                        <a class="view_btn" href="#">Read Details</a>
+                        <a class="view_btn" href="{{ url_for('main.regional_directors') }}">Read Details</a>
                     </div>
                 </div>
             </div>

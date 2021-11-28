@@ -1,0 +1,468 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .lab{
+        width: 250px; height: 40px; 
+        display: block;
+        background-color:#b8c3ff;
+        color: #333;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 20px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+        margin-right: 20px;
+    }
+    .lab:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
+
+    .title_head{
+        padding-bottom: 10px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    table{
+        font-family: "Montserrat", sans-serif;
+        width: 100%;
+    }
+
+    td{
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 1px;
+        line-height: 20px;
+    }
+
+    th {
+        border: 1px solid #dddddd;
+        border-collapse: collapse;
+        text-align: left;
+        padding: 8px;
+        line-height: 20px;
+    }
+
+
+
+    tr:nth-child(even){
+        background-color: #dddddd;
+    }
+
+
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3">Laboratory Tests And Services</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div>
+                <a class="lab" href="{{ url_for('main.foundations')}}">Foundations</a>
+                <a class="lab" href="{{ url_for('main.soil_agg_con')}}">Soil, Aggregate and Concrete</a>
+                <a class="lab" href="{{ url_for('main.bitumen') }}">Bitumen and Bituminous Products</a>
+                <a class="lab" href="{{ url_for('main.pavements') }}">Pavements</a>
+            </div>
+            
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+                    <h3 style="padding-bottom: 10px">SOIL, AGGREGATE AND CONCRETE</h3>
+                    <h4>FEES AND CHARGES (AMENDMENT INSTRUMENT, 2014 (L.I. 2216)</h4>
+                    <p>NEW RATES FOR LABORATORY TESTS AND SERVICES</p>
+
+                    <table>
+                        <tr>
+                            <th>CODE NO.</th>
+                            <th>DESCRIPTION</th>
+                            <th>FILE NO.</th>
+                            <th>OLD RATE GHC</th>
+                            <th>NEW RATE GHC</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5">LABORATORY TESTS</th>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>Determination of Natural Moisture Content</td>
+                            <td>SA/LT/07</td>
+                            <td>35.00</td>
+                            <td>50.00</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>Determination of Bulk Density, including 
+                                Mosture Content Determination</td>
+                            <td>SA/LT/08</td>
+                            <td>25.00</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>Sieve Analysis by Wet Sieving (Grading) </td>
+                            <td>SA/LT/09</td>
+                            <td>50.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>Sieve Analysis by Dry Sieving</td>
+                            <td>SA/LT/10</td>
+                            <td>40.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>Mechanical Analysis by Pipette or Hydrometer method</td>
+                            <td>SA/LT/11</td>
+                            <td>150.00</td>
+                            <td>200.00</td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>Determination of Specific Gravity (Two Determination)</td>
+                            <td>SA/LT/12</td>
+                            <td>45.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>Calibration of Compression Machine</td>
+                            <td>SA/LT/13</td>
+                            <td>1,200.00</td>
+                            <td>1,500.00</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>Calibration of CBR Machine</td>
+                            <td></td>
+                            <td>-</td>
+                            <td>1,200.00</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>Calibration of Shmidth Hammer</td>
+                            <td></td>
+                            <td>-</td>
+                            <td>500.00</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>Electronic Scale</td>
+                            <td></td>
+                            <td>-</td>
+                            <td>300.00</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>Calibration of Sand</td>
+                            <td></td>
+                            <td>-</td>
+                            <td>500.00</td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>Determination of Plastic Limit and Liquid Limit (Atterberg Limits) Cassagrande</td>
+                            <td>SA/LT/14</td>
+                            <td>60.00</td>
+                            <td>120.00</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>Determination of Plastic Limit and Liquid Limit (Atterberg Limits) Cone Penetration</td>
+                            <td>SA/LT/15</td>
+                            <td>60.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>Determination of Shrinkage Limit</td>
+                            <td>SA/LT/16</td>
+                            <td>40.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>Determination Free Swell</td>
+                            <td>FD/LT/01</td>
+                            <td>50.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td>Compaaction Test/Proctor Test/MDD/OMC 
+                                Using 2.5kg
+                                Using 4.5kg
+                            </td>
+                            <td>SA/LT/17</td>
+                            <td>900
+                                150.00
+                            </td>
+                            <td>200.00</td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td>Determination of Soaked CBR (3 point)</td>
+                            <td>SA/LT/18</td>
+                            <td>150.00</td>
+                            <td>250.00</td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td>CBR Swell</td>
+                            <td>SA/LT/19</td>
+                            <td>50.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td>Average Least Dimension (ALD)</td>
+                            <td>SA/LT/20</td>
+                            <td>45.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                            <td>California Bearing Ratio (CBR) Bulk/Loose gravity</td>
+                            <td>SA/LT/21</td>
+                            <td>80.00</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td>Unconfined Compression Test (UCS)</td>
+                            <td></td>
+                            <td>350.00</td>
+                            <td>400.00</td>
+                        </tr>
+                        <tr>
+                            <th colspan="5">TEST OF FINE AGGREGATE</th>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>Sieve Analysis/Particle Size Distribution</td>
+                            <td>GL/LT/01</td>
+                            <td>50.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>39</td>
+                            <td>Determination of Clay, Silt and fine Dust</td>
+                            <td>SA/LT/22</td>
+                            <td>60.00</td>
+                            <td>120.00</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>Determination of Organic Impurities</td>
+                            <td>SA/LT/23</td>
+                            <td>60.00</td>
+                            <td>120.00</td>
+                        </tr>
+                        <tr>
+                            <td>41</td>
+                            <td>Specific Gravity/Apparent Density</td>
+                            <td>SA/LT/24</td>
+                            <td>50.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>Bulk Density/Water Absorption</td>
+                            <td>GL/LT/02</td>
+                            <td>80.00</td>
+                            <td>160.00</td>
+                        </tr>
+                        <tr>
+                            <th colspan="5">TEST COARSE AGGREGATE</th>
+                        </tr>
+                        <tr>
+                            <td>43</td>
+                            <td>Grading</td>
+                            <td>GL/LT/03</td>
+                            <td>50.00</td>
+                            <td>80.00</td>
+                        </tr>
+                        <tr>
+                        <td>44</td>
+                            <td>Particle Shape, Flakiness Index & Elongation</td>
+                            <td>SA/LT/25</td>
+                            <td>80.00</td>
+                            <td>160.00</td>
+                        </tr>
+                        <tr>
+                            <td>45</td>
+                            <td>Determination of Clay, Silt and Fine Dust</td>
+                            <td>SA/LT/26</td>
+                            <td>50.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                        <td>46</td>
+                            <td>Apparent Density, Specific Gravity</td>
+                            <td>SA/LT/27</td>
+                            <td>50.00</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>47</td>
+                            <td>Bulk Density/Specific Gravity, Absorption Ratio</td>
+                            <td></td>
+                            <td>80.00</td>
+                            <td>160.00</td>
+                        </tr>
+
+                            <tr>
+                                <td>48</td>
+                                <td>10% Fine Test</td>
+                                <td>SA/LT/28</td>
+                                <td>150.00</td>
+                                <td>280.00</td>
+                            </tr>
+
+                            <tr>
+                                <td>49</td>
+                                <td>Soundness Tess (SSS) </td>
+                                <td>SA/LT/29</td>
+                                <td>250.00</td>
+                                <td>350.00</td>
+                            </tr>
+
+                            <tr>
+                                <td>50</td>
+                                <td>Percentage Passing Sieve DS 200</td>
+                                <td>SA/LT/30</td>
+                                <td>50.00</td>
+                                <td>100.00</td>
+                            </tr>
+
+                             <tr>
+                                <td>51</td>
+                                <td>Los Angeles Abrasion (LAA) </td>
+                                <td>SA/LT/31</td>
+                                <td>100.00</td>
+                                <td>200.00</td>
+                            </tr>
+                            <tr>
+                                <td>52</td>
+                                <td>Aggregate Crushing Value</td>
+                                <td>SA/LT/32</td>
+                                <td>50.00</td>
+                                <td>100.00</td>
+                            </tr>
+                            <tr>
+                                <td>53</td>
+                                <td>Aggregate Impact Value (A.I.V) </td>
+                                <td>SA/LT/33</td>
+                                <td>45.00</td>
+                                <td>90.00</td>
+                            </tr>
+                            <tr>
+                                <td>54</td>
+                                <td>Aggregate Least Dimension </td>
+                                <td>SA/LT/34</td>
+                                <td>50.00</td>
+                                <td>100.00</td>
+                            </tr>
+                            <tr>
+                                <td>55</td>
+                                <td>Maximum Size of Aggregate</td>
+                                <td>SA/LT/35</td>
+                                <td>50.00</td>
+                                <td>100.00</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="5">TEST ON CONCRETE</th>
+                            </tr>
+
+                            <tr>
+                                <td>56</td>
+                                <td>Concrete Mix Design</td>
+                                <td>SA/LD/01</td>
+                                <td>5,000.00</td>
+                                <td>5,000.00</td>
+                            </tr>
+
+                            <tr>
+                                <td>57</td>
+                                <td>Compressive Strength Test on Cubes or Cylinder (Set of 3 cubes maximum) Concrete cubes Test/Block</td>
+                                <td>SA/LT/36</td>
+                                <td>30.00</td>
+                                <td>80.00</td>
+                            </tr>
+                            <tr>
+                                <td>58</td>
+                                <td>Compressive Strength Test on Sandcrete Blocks</td>
+                                <td>SA/LT/37</td>
+                                <td>30.00</td>
+                                <td>120.00</td>
+                            </tr>
+                            <tr>
+                                <td>59</td>
+                                <td>Analysis of Hardened Concrete of Mortar to determine proportions of different ingredients (Concrete)</td>
+                                <td>SA/LT/38</td>
+                                <td>250.00</td>
+                                <td>250.00</td>
+                            </tr>
+                            <tr>
+                                <td>60</td>
+                                <td>Schmidt Hammer Testing</td>
+                                <td>SA/LT/39</td>
+                                <td>40.00</td>
+                                <td>60.00</td>
+                            </tr>
+                            <tr>
+                                <td>61</td>
+                                <td>Flexural Strength on Concrete</td>
+                                <td>SA/LT/40</td>
+                                <td>350.00</td>
+                                <td>350.00</td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="5">CHEMICAL TESTS</th>
+                            </tr>
+
+                            <tr>
+                                <td>62</td>
+                                <td>pH of Soil or Water</td>
+                                <td>SA/LT/41</td>
+                                <td>60.00</td>
+                                <td>150.00</td>
+                            </tr>
+                            <tr>
+                                <td>63</td>
+                                <td>Determination of Total Acid Soluble Sulphate content of Soil</td>
+                                <td>SA/LT/42</td>
+                                <td>100.00</td>
+                                <td>200.00</td>
+                            </tr>
+                            <tr>
+                                <td>64</td>
+                                <td>Determination of Sulphate in Ground Water</td>
+                                <td>SA/LT/43</td>
+                                <td>100.00</td>
+                                <td>200.00</td>
+                            </tr>
+                            <tr>
+                                <td>65</td>
+                                <td>Chloride content Determination of Soil Water or Rock Sample</td>
+                                <td>SA/LT/44</td>
+                                <td>50.00</td>
+                                <td>150.00</td>
+                            </tr>
+                    </table>
+            </div>
+        </div>
+        
+        
+        <!-- {% include 'includes/sidebar.html' %} -->
+    </div>
+</div>
+{% endblock content %}

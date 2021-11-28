@@ -51,6 +51,8 @@
         
     </style>
     <body>
+
+        
         <!--================Header Area =================-->
         <header class="main_header_area">
             <div class="header_top_area">
@@ -117,15 +119,15 @@
                                                 <span class="fa fa-plus"></span>
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="{{ url_for('main.leaders') }}">Leadership</a></li>
                                                 <li><a href="{{ url_for('main.organogram') }}">Organogram</a></li>
+                                                <li><a href="{{ url_for('main.leaders') }}">Leadership</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ url_for('main.directors_office') }}">Director's Office</a></li>
+                                        <li><a href="{{ url_for('main.directors_office') }}">C.e's Office</a></li>
                                         <li><a href="{{ url_for('main.division') }}">Department</a></li>
                                         <li><a href="{{ url_for('main.inst_prof') }}">Institution Profile</a></li>
-                                        <li><a href="{{ url_for('main.contractors') }}">Eng. Consultancies</a></li>
-                                        <li><a href="#">Regional Directors</a></li>
+                                        <!-- <li><a href="{{ url_for('main.contractors') }}">Eng. Consultancies</a></li> -->
+                                        <li><a href="{{ url_for('main.regional_directors') }}">Regional Directors</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown submenu">
@@ -154,13 +156,31 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+                                    <ul class="dropdown-menu" id="hello">
+                                        <li><a href="{{ url_for('main.foundations')}}">Lab. Test and Services&nbsp; 
+                                            </a>
+                                            
+                                        </li>
+                                        <li><a href="#" class="test">Axle Road&nbsp;
+                                                <span class="fa fa-plus"></span>
+                                            </a>
+                                        
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downloads</a>
                                     <ul class="dropdown-menu" id="hello">
                                         <li><a href="#" class="test">Report&nbsp; 
                                             <span class="fa fa-plus"></span>
                                             </a>
                                             <ul>
-                                                <li><a href="{{ url_for('main.yearly_report') }}">Yearly Report</a></li>
+                                                <li><a href="{{ url_for('main.yearly_report') }}">Annual Report</a></li>
+                                                <li><a href="#">Quarterly Report</a></li>
+                                                <li><a href="{{ url_for('main.status_report') }}">Status Report</a></li>
+                                                <li><a href="#">Road Con. Survey</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#" class="test">Forms&nbsp;
@@ -179,15 +199,16 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media/News</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ url_for('blogs.blog')}}">Latest News</a></li>
+                                        <li><a href="{{ url_for('main.upcoming_event') }}">Upcoming Events</a></li>
                                         <li><a href="{{ url_for('main.photo_gallery') }}">Photo Gallery</a></li>
-                                        
-                                        <!--<li><a href="#">Video Gallery</a></li>-->
+                                        <li><a href="{{ url_for('main.video_gallery') }}">Video Gallery</a></li>
                                         <li><a href="{{ url_for('main.road_net') }}">Road Network</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="{{ url_for('main.contacts_page') }}">Contact Us</a></li>
                                 <li><a href="#">
-                                    {% if g.search_form %}
+                                    <!-- for the search box -->
+                                    <!-- {% if g.search_form %}
                                         <form method="get" action="#">
                                             <div class="form-group">
                                                 {{ g.search_form.q(size=20,style="height: 36px; color: #31353d; 
@@ -195,7 +216,7 @@
                                                                     font-family: 'Montserrat', sans-serif;",  
                                                                     placeholder=g.search_form.q.label.text) }}
                                             </div>
-                                        </form>
+                                        </form> -->
                                     {% endif %}
                                     </a>
                                 </li>    
