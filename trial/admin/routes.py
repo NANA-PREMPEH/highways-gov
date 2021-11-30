@@ -1,8 +1,9 @@
 from datetime import datetime
 import secrets
-from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
+from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app, jsonify
 from flask_login import current_user, logout_user, login_required
-from trial.models import CompletedProj, Post, OngoingProj, User, TerminatedProj, AwardedProj, PlannedProj, Gallery
+from trial.models import (CompletedProj, Post, OngoingProj, User, TerminatedProj, 
+                            AwardedProj, PlannedProj, Gallery, EmployeeDetails)
 from trial.admin.forms import (RegistrationForm, BlogPostForm, CompletedProjectsForm, UpdateStaffForm, OngoingProjectsForm, 
                                 PlannedProjectsForm,TerminatedProjectsForm, AwardedProjectsForm, GalleryForm)
 from trial.admin.utils import save_photo, save_picture, save_proj_image, save_gallery_image
@@ -10,6 +11,7 @@ import re
 import requests
 from trial import db, bcrypt 
 from trial.users.utils import admin_required
+import  json
 
 
 admin = Blueprint('admin', __name__) 
@@ -21,6 +23,90 @@ admin = Blueprint('admin', __name__)
 @admin_required
 def dashboard():
     return render_template('admin/dashboard.html')
+
+
+#Register Employees
+@admin.route('/register_staff', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def register_staff():
+
+    if request.method == 'POST':
+        profile_pic = request.files.get('profile_pic')    
+        new_json_val = request.form.get('json_data')
+        dict_items = json.loads(new_json_val)     
+        profile_url = request.form.get('profile_url')  
+
+        surname = request.form.get('surname')
+        mid_name = request.form.get('mid_name')
+        first_name = request.form.get('first_name')
+        email = request.form.get('email')
+        mobile_no = request.form.get('mobile_no')
+        emp_dob = request.form.get('emp_dob') 
+        birth_place = request.form.get('birth_place')  
+        date_engaged = request.form.get('date_engaged')  
+        mar_status = request.form.get('mar_status')
+        gender = request.form.get('gender')
+        staff_no = request.form.get('staff_no')
+        seniority = request.form.get('seniority')
+        ssnit_no = request.form.get('ssnit_no')
+        hofl_no = request.form.get('hofl_no')
+        emp_status = request.form.get('emp_status')
+        home_add = request.form.get('home_add')
+        category = request.form.get('category')
+        catbydiv = request.form.get('catbydiv')
+        languages = request.form.get('languages')
+        nok_name = request.form.get('nok_name')
+        nok_rel = request.form.get('nok_rel')
+        nok_add = request.form.get('nok_add')
+        dad_name = request.form.get('dad_name')
+        dad_status = request.form.get('dad_status')
+        mum_name = request.form.get('mum_name')
+        mum_status = request.form.get('mum_status')
+
+        if profile_pic is not None: 
+            profile_image = save_picture(profile_pic) 
+        else:
+            profile_image = 'default.jpg'
+
+        postings = {
+            'postings': dict_items['postings']
+        }
+        promotion = {
+            'promotion': dict_items['promotion']
+        }
+        education = {
+            'education': dict_items['education']
+        }
+        dependants = {
+            'dependants': dict_items['dependants']
+        }
+        workexperience = {
+            'workexperience': dict_items['workexperience']
+        }
+        
+        
+        
+        
+        new_val = EmployeeDetails(surname=surname, mid_name=mid_name, first_name=first_name, email=email, 
+                                    mobile_no=mobile_no, emp_dob=emp_dob, birth_place=birth_place, 
+                                    mar_status=mar_status, gender=gender, staff_no=staff_no, ssnit_no=ssnit_no,
+                                    hofl_no=hofl_no, emp_status=emp_status, home_add=home_add,
+                                    languages=languages, nok_name=nok_name, nok_rel=nok_rel, nok_add=nok_add,
+                                    dad_name=dad_name, dad_status=dad_status, mum_name=mum_name, 
+                                    mum_status=mum_status, dependants=dependants, postings=postings,
+                                    workexperience=workexperience, promotion=promotion, education=education,
+                                    profile_image=profile_image, new_json_val=new_json_val, category=category,
+                                    catbydiv=catbydiv, date_engaged=date_engaged, seniority=seniority) 
+        db.session.add(new_val)
+        db.session.commit()
+        msg = 'New record created successfully'
+        flash('Data has been recorded successfully', 'success')
+        return jsonify(msg)
+    
+    return render_template('admin/register_staff.html', title='Register') 
+
+
 
 @admin.route('/update_gallery', methods=['GET', 'POST'])
 def update_gallery():
@@ -652,5 +738,87 @@ def edit_staff(staff_id):
         user_file = form.picture.data
         
     return render_template('admin/update_staff.html', form=form, staff=staff, user_file=user_file)
+
+#Edit Employee Details Form
+@admin.route('/emp_details/<int:emp_id>/edit', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def edit_emp_details(emp_id):
+
+    emp = EmployeeDetails.query.get_or_404(emp_id)
+    image = emp.profile_image
+    value_1 = emp.new_json_val
+    depe = json.loads(emp.new_json_val)
+
+    
+    if request.method == 'POST':
+
+        new_json_val = request.form.get('json_data')
+        dict_items = json.loads(new_json_val)
+
+        profile_pic = request.files.get('profile_pic')    
+        if profile_pic is not None: 
+            emp.profile_image = save_picture(profile_pic)
+        emp.surname = request.form.get('surname')
+        emp.mid_name = request.form.get('mid_name')
+        emp.first_name = request.form.get('first_name')
+        emp.email = request.form.get('email')
+        emp.mobile_no = request.form.get('mobile_no')
+        emp.emp_dob = request.form.get('emp_dob') 
+        emp.birth_place = request.form.get('birth_place')  
+        emp.date_engaged = request.form.get('date_engaged')  
+        emp.mar_status = request.form.get('mar_status')
+        emp.gender = request.form.get('gender')
+        emp.staff_no = request.form.get('staff_no')
+        emp.seniority = request.form.get('seniority')
+        emp.ssnit_no = request.form.get('ssnit_no')
+        emp.hofl_no = request.form.get('hofl_no')
+        emp.emp_status = request.form.get('emp_status')
+        emp.home_add = request.form.get('home_add')
+        emp.category = request.form.get('category')
+        emp.catbydiv = request.form.get('catbydiv')
+        emp.languages = request.form.get('languages')
+        emp.nok_name = request.form.get('nok_name')
+        emp.nok_rel = request.form.get('nok_rel')
+        emp.nok_add = request.form.get('nok_add')
+        emp.dad_name = request.form.get('dad_name')
+        emp.dad_status = request.form.get('dad_status')
+        emp.mum_name = request.form.get('mum_name')
+        emp.mum_status = request.form.get('mum_status')
+        emp.new_json_val = new_json_val
+
+        postings = {
+            'postings': dict_items['postings']
+        }
+        emp.postings = postings
+
+        promotion = {
+            'promotion': dict_items['promotion']
+        }
+        emp.promotion = promotion
+
+        education = {
+            'education': dict_items['education']
+        }
+
+        emp.education = education
+
+        dependants = {
+            'dependants': dict_items['dependants']
+        }
+        emp.dependants = dependants
+
+        workexperience = {
+            'workexperience': dict_items['workexperience']
+        }
+        emp.workexperience = workexperience
+
+        db.session.commit()
+        msg = 'New record created successfully'
+        flash('Staff details updated successfully!', 'success')
+        return jsonify(msg)
+
+    return render_template('admin/update_emp_details.html',  emp=emp, image=image, value_1=value_1, depe=depe)
+
 
 

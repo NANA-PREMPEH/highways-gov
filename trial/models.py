@@ -5,7 +5,7 @@ from flask_login import UserMixin, AnonymousUserMixin
 from trial import db, login_manager
 from trial.search import add_to_index, remove_from_index, query_index
 from slugify import slugify 
-
+import  json
 
 
 class SearchableMixin(object):
@@ -459,4 +459,60 @@ class Gallery(db.Model):
 
     def __repr__(self) :
         return f"BlogImages('{self.image_file}')"
+
+class JsonEncodedDict(db.TypeDecorator):
+    impl = db.Text
+
+    #Method to input dictionary into database
+    def process_bind_param(self, value, dialect):
+        if value is None:
+            return '{}'
+        else:
+            return json.dumps(value)
+    
+    #Method to load dictionary from database
+    def process_result_value(self, value, dialect):
+        if value is None:
+            return {}
+        else:
+            return json.loads(value)
+
+class EmployeeDetails(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    surname = db.Column(db.String(80))
+    mid_name = db.Column(db.String(80))
+    first_name = db.Column(db.String(80))
+    email = db.Column(db.String(80))
+    mobile_no = db.Column(db.String(80))
+    emp_dob = db.Column(db.String(80))
+    birth_place = db.Column(db.String(80))
+    date_engaged = db.Column(db.String(80))
+    mar_status = db.Column(db.String(80))
+    gender = db.Column(db.String(80))
+    staff_no = db.Column(db.String(80))
+    ssnit_no = db.Column(db.String(80))
+    hofl_no = db.Column(db.String(80))
+    emp_status = db.Column(db.String(80))
+    seniority = db.Column(db.String(80))
+    home_add = db.Column(db.String(80))
+    category = db.Column(db.String(80))
+    catbydiv = db.Column(db.String(80))
+    languages = db.Column(db.String(80))
+    nok_name = db.Column(db.String(80))
+    nok_rel = db.Column(db.String(80))
+    nok_add = db.Column(db.String(80))
+    dad_name = db.Column(db.String(80))
+    dad_status = db.Column(db.String(80))
+    mum_name = db.Column(db.String(80))
+    mum_status = db.Column(db.String(80))
+    dependants = db.Column(JsonEncodedDict)
+    education = db.Column(JsonEncodedDict)
+    workexperience = db.Column(JsonEncodedDict)
+    promotion = db.Column(JsonEncodedDict)
+    postings = db.Column(JsonEncodedDict)
+    profile_image = db.Column(db.String(80))
+    new_json_val = db.Column(db.Text)
+
+    def __repr__(self):
+        return f"EmployeeDetails('{self.postings}')"
 

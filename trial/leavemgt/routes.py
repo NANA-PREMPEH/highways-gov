@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from trial import db
 from flask_login import login_required, current_user
-from trial.models import Leave, User, Staff
+from trial.models import Leave, User, Staff, EmployeeDetails
 from trial.users.utils import admin_required
 from trial.leavemgt.forms import LeaveAction
 from datetime import date, datetime
@@ -114,12 +114,14 @@ def view_staff():
     app_no = Leave.query.filter_by(leave_status="Approved").count()
     cancel_no = Leave.query.filter_by(leave_status="Cancelled").count()
     pending_no = Leave.query.filter_by(leave_status="Pending").count()
-    staff_pers = User.query.all()
+    staff_pers = EmployeeDetails.query.all()
     today = date.today()
     
     tot_req = rej_no + app_no + pending_no
-    return render_template('users/staff_list.html', form=form, pending=pending,rej_no=rej_no, cancel_no=cancel_no, 
-                            app_no=app_no, pending_no=pending_no, tot_req=tot_req, staff_pers=staff_pers, today=today) 
+    return render_template('admin/emp_details_list.html', form=form, pending=pending,rej_no=rej_no, cancel_no=cancel_no, 
+                            app_no=app_no, pending_no=pending_no, tot_req=tot_req, staff_pers=staff_pers, 
+                            today=today, datetime=datetime)
+
 #View Pending Requests
 @leavemgt.route("/update_staff_list", methods=['GET', 'POST']) 
 @login_required
@@ -130,11 +132,11 @@ def staff_list_update():
     app_no = Leave.query.filter_by(leave_status="Approved").count()
     cancel_no = Leave.query.filter_by(leave_status="Cancelled").count()
     pending_no = Leave.query.filter_by(leave_status="Pending").count()
-    staff_pers = User.query.all()
+    staff_pers = EmployeeDetails.query.all()
    
     
     tot_req = rej_no + app_no + pending_no
-    return render_template('users/staff_details.html', form=form, pending=pending,rej_no=rej_no, cancel_no=cancel_no, 
+    return render_template('admin/employee_list.html', form=form, pending=pending,rej_no=rej_no, cancel_no=cancel_no, 
                             app_no=app_no, pending_no=pending_no, tot_req=tot_req, staff_pers=staff_pers) 
 
     

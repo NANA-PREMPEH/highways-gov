@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-imageupload-src@1.2.0/dist/css/bootstrap-imageupload.css"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+</head>
+<style>
+    /* Latest compiled and minified CSS included as External Resource*/
+
+    /* Optional theme */
+
+    /*@import url('//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css');*/
+    body {
+        margin-top: 30px;
+    }
+
+    .stepwizard-step p {
+        margin-top: 0px;
+        color: #666;
+    }
+
+    .stepwizard-row {
+        display: table-row;
+    }
+
+    .stepwizard {
+        display: table;
+        width: 100%;
+        position: relative;
+    }
+
+    .stepwizard-step button[disabled] {
+        /*opacity: 1 !important;
+        filter: alpha(opacity=100) !important;*/
+    }
+
+    .stepwizard .btn.disabled,
+    .stepwizard .btn[disabled],
+    .stepwizard fieldset[disabled] .btn {
+        opacity: 1 !important;
+        color: #bbb;
+    }
+
+    .stepwizard-row:before {
+        top: 14px;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+        z-index: 0;
+    }
+
+    .stepwizard-step {
+        display: table-cell;
+        text-align: center;
+        position: relative;
+    }
+
+    .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+    }
+
+    .imageupload {
+        margin: 20px 0;
+    }
+</style>
+
+<body>
+    <div class="jumbotron text-center">
+        <h2>UPDATE STAFF DETAILS</h2>
+    </div>
+    <div class="container">
+        {% include "admin/header.html" %}
+        {% include "admin/messages.html" %}
+        <div class="col-12">
+            <div class="container">
+                <div class="stepwizard">
+                    <div class="stepwizard-row setup-panel">
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+                            <p><small>Personal Details/1</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                            <p><small>Personal Details/2</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                            <p><small>Personal Details/3</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                            <p><small>Dependants</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
+                            <p><small>Education and Qualifications</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
+                            <p><small>Work Experience</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-7" type="button" class="btn btn-default btn-circle" disabled="disabled">7</a>
+                            <p><small>Postings</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-8" type="button" class="btn btn-default btn-circle" disabled="disabled">8</a>
+                            <p><small>Job Promotions</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="form_submit" class="repeater"  method="POST" action="{{ url_for('admin.register_staff') }} " enctype="multipart/form-data">
+
+                    <!--Beginning of Form-->
+                    <div class="panel panel-primary setup-content" id="step-1">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Personal Details --1</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!-- bootstrap-imageupload. -->
+                                        <div class="imageupload panel panel-default">
+                                            <div class="panel-heading clearfix">
+                                                <h3 class="panel-title pull-left">Upload Image</h3>
+                                                <div class="btn-group pull-right">
+                                                    <button type="button" class="btn btn-default active">File</button>
+                                                    <button type="button" class="btn btn-default">URL</button>
+                                                </div>
+                                            </div>
+                                            <div class="file-tab panel-body">
+                                                <label class="btn btn-default btn-file">
+                                                    <span>Browse</span>
+                                                    <!-- The file is stored here. -->
+                                                    <input type="file" name="profile_pic" id="profile_pic">
+                                                </label>
+                                                <button type="button" class="btn btn-default">Remove</button>
+                                            </div>
+                                            <div class="url-tab panel-body">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Image URL">
+                                                    <div class="input-group-btn">
+                                                        <button type="button" class="btn btn-default">Submit</button>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-default">Remove</button>
+                                                <!-- The URL is stored here. -->
+                                                <input type="hidden" name="profile_url" id="profile_url">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="control-label">Surname</label>
+                                                <input type="text" class="form-control" placeholder="Surname"
+                                                     name="surname" id="surname" value="{{emp.surname}}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label">Middle Name</label>
+                                                <input type="text" class="form-control" placeholder="Middle Name" 
+                                                    name="mid_name" id="mid_name" value="{{emp.mid_name}}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label">First Name</label>
+                                                <input type="text" class="form-control" placeholder="First Name" 
+                                                 name="first_name" id="first_name" value="{{emp.first_name}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Email</label>
+                                        <input type="text" placeholder="Email" class="form-control"
+                                            name="email" id="email" value="{{emp.email}}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Mobile No.</label>
+                                        <input type="text" class="form-control" placeholder="Mobile Number"
+                                            name="mobile_no" id="mobile_no" value="{{emp.mobile_no}}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Date of Birth</label>
+                                        <div class='input-group'>
+                                            <input type='text' class="form-control datepicker" placeholder="Date of Birth"
+                                                name="emp_dob" id="emp_dob" value="{{emp.emp_dob}}"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Birth Place</label>
+                                        <input type="text" class="form-control" placeholder="Birth Place"
+                                            name="birth_place" id="birth_place" value="{{emp.birth_place}}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Date Engaged</label>
+                                        <div class='input-group'>
+                                            <input type='text' class="form-control datepicker" placeholder="Date Engaged"
+                                                name="date_engaged" id="date_engaged" value="{{ emp.date_engaged }}"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--2nd Step-->
+                    <div class="panel panel-primary setup-content" id="step-2">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Personal Details --2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Acc-Gen Staff No.</label>
+                                        <input type="text" class="form-control" placeholder="Staff No"
+                                            name="staff_no" value="{{ emp.staff_no }}" id="staff_no"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">SSNIT No.</label>
+                                        <input type="text" class="form-control" placeholder="SSNIT No"
+                                            name="ssnit_no" value="{{ emp.ssnit_no }}" id="ssnit_no"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label">H.O.FL.NO.</label>
+                                        <input type="text" class="form-control" placeholder="H.O.FL.NO."
+                                            name="hofl_no" value="{{ emp.hofl_no }}" id="hofl_no"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Gender</label>
+                                        <select class="form-control" name="gender" id="gender">
+                                            <option value="Male" {% if emp.gender == 'Male'%} selected {% endif %}>Male</option>
+                                            <option value="Female"{% if emp.gender == 'Female'%} selected {% endif %}>Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Seniority</label>
+                                        <select class="form-control" name="seniority" id="seniority">
+                                            <option value="Senior" {% if emp.gender == 'Senior'%} selected {% endif %}>Senior (Snr. Staff)</option>
+                                            <option value="Junior 1"{% if emp.gender == 'Junior 1'%} selected {% endif %}>Junior 1 (Jnr. Staff)</option>
+                                            <option value="Junior 2"{% if emp.gender == 'Junior 2'%} selected {% endif %}>Junior 2 (Jnr. Staff 2)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label">Permanent Home Address</label>
+                                        <textarea name="home_add" id="home_add" rows="3" class="form-control">{{ emp.home_add }}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Category</label>
+                                        <select class="form-control" name="category" id="category">
+                                            {% if emp.category %}
+                                            <option value="{{ emp.category }}">{{ emp.category }}</option>
+                                            {% endif %}
+                                            <option value="Engineers">Engineers</option>
+                                            <option value="Other Professionals">Other Professionals</option>
+                                            <option value="Admin/Managers">Admin/Managers</option>
+                                            <option value="Technician Engineers">Technician Engineers</option>
+                                            <option value="Tech I(Senior Tech-Chief Tech)">Tech I(Senior Tech-Chief Tech)</option>
+                                            <option value="Tech II">Tech II</option>
+                                            <option value="Clerical Staff">Clerical Staff</option>
+                                            <option value="Skilled">Skilled</option>
+                                            <option value="Semi-Skilled">Semi-Skilled</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Category By Division</label>
+                                        <select class="form-control" name="catbydiv" id="catbydiv">
+                                            {% if emp.catbydiv %}
+                                            <option value="{{ emp.catbydiv }}">{{ emp.catbydiv }}</option>
+                                            {% endif %}
+                                            <option value="Auditors (AUD)">Auditors (AUD)</option>
+                                            <option value="Audit Officers (AUD 1)">Audit Officers (AUD 1)</option>
+                                            <option value="ECM(Economist) (AUD 1)">ECM(Economist) (AUD 1)</option>
+                                            <option value="Finance (AUD 1)">Finance (AUD 1)</option>
+                                            <option value="Accounts Officers (AUD 1)">Accounts Officers (AUD 1)</option>
+                                            <option value="Human Resource(Administrators) (HRS)">Human Resource(Administrators) (HRS)</option>
+                                            <option value="Personnel Officer (HRS 1)">Personnel Officer (HRS 1)</option>
+                                            <option value="Private Secretary (HRS 2)">Private Secretary (HRS 2)</option>
+                                            <option value="Investigation Officer (LEG)">Investigation Officer (LEG)</option>
+                                            <option value="Programmer (MIS)">Programmer (MIS)</option>
+                                            <option value="Assistant Programmer (MIS)">Assistant Programmer (MIS)</option>
+                                            <option value="Director of Mgt Info System (MIS)">Director of Mgt Info System (MIS)</option>
+                                            <option value="Ass. Public Relations Officer (PRO)">Ass. Public Relations Officer (PRO)</option>
+                                            <option value="Director of Public Relations (PRO)">Director of Public Relations (PRO)</option>
+                                            <option value="Supply Officer (STR)">Supply Officer (STR)</option>
+                                            <option value="Senior Supply Officer (STR)">Senior Supply Officer (STR)</option>
+                                            <option value="Chief Stores Officer (STR)">Chief Stores Officer (STR)</option>
+                                            <option value="Principal Supply Officer (STR)">Principal Supply Officer (STR)</option>
+                                            <option value="Ass. Chief Supply Officer (STR)">Ass. Chief Supply Officer (STR)</option>
+                                            <option value="Principal Stores Officer (STR 1)">Principal Stores Officer (STR 1)</option>
+                                            <option value="Stores Officer (STR 1)">Stores Officer (STR 1)</option>
+                                            <option value="Chief Training Officer (TRN)">Chief Training Officer (TRN)</option>
+                                            <option value="Director of Training & Development (TRN)">Director of Training & Development (TRN)</option>
+                                            <option value="Training Officer (TRN)">Training Officer (TRN)</option>
+                                            <option value="Principal Catering Officer (TRN 1)">Principal Catering Officer (TRN 1)</option>
+                                            <option value="Audit Clerk Grade II (AUD)">Audit Clerk Grade II (AUD)</option>
+                                            <option value="Toll Superintendent (FIN)">Toll Superintendent (FIN)</option>
+                                            <option value="Accounts Clerk Grade I (FIN)">Accounts Clerk Grade I (FIN)</option>
+                                            <option value="Accounts Clerk Grade II (FIN)">Accounts Clerk Grade II (FIN)</option>
+                                            <option value="Accounts Officer (FIN 1)">Accounts Officer (FIN 1)</option>
+                                            <option value="Clerk Grade I (HRS)">Clerk Grade I (HRS)</option>
+                                            <option value="Senior Clerk (HRS)">Senior Clerk (HRS)</option>
+                                            <option value="Typist Grade II (HRS 1)">Typist Grade II (HRS 1)</option>
+                                            <option value="Principal Typist (HRS 1)">Principal Typist (HRS 1)</option>
+                                            <option value="Typist Grade I (HRS 1)">Typist Grade I (HRS 1)</option>
+                                            <option value="Stenographer (HRS 2)">Stenographer (HRS 2)</option>
+                                            <option value="Stenographer Secretary (HRS 2)">Stenographer Secretary (HRS 2)</option>
+                                            <option value="Senior Data Entry Operator (HRS 3)">Senior Data Entry Operator (HRS 3)</option>
+                                            <option value="Accounts Clerk Grade I (MAT)">Accounts Clerk Grade I (MAT)</option>
+                                            <option value="Senior Receptionist (PRO)">Senior Receptionist (PRO)</option>
+                                            <option value="Senior Telephonist (PRO)">Senior Telephonist (PRO)</option>
+                                            <option value="Store Keeper GD II (STR)">Store Keeper GD II (STR)</option>
+                                            <option value="Store Keeper GD II (STR)">Store Keeper GD II (STR)</option>
+                                            <option value="Engineers (ECL)">Engineers (ECL)</option>
+                                            <option value="Senior Engineer Civil (ECL)">Senior Engineer Civil (ECL)</option>
+                                            <option value="Regional Highway Director(GAR) (ECL)">Regional Highway Director(GAR) (ECL)</option>
+                                            <option value="Principal Engineer(Civil) (ECL)">Principal Engineer(Civil) (ECL)</option>
+                                            <option value="Engineer Civil (ECL)">Engineer Civil (ECL)</option>
+                                            <option value="Chief Engineer(Civil) (ECL)">Chief Engineer(Civil) (ECL)</option>
+                                            <option value="Engineer(Civil) (ECL)">Engineer(Civil) (ECL)</option>
+                                            <option value="Director(Engineer) (ECL)">Director(Engineer) (ECL)</option>
+                                            <option value="Acting Chief Executive (ECL)">Acting Chief Executive (ECL)</option>
+                                            <option value="Acting Deputy Executive(ADMIN) (ECL)">Acting Deputy Executive(ADMIN) (ECL)</option>
+                                            <option value="Assistant Engineer (EGD)">Assistant Engineer (EGD)</option>
+                                            <option value="Assistant Engineer(Geodetic) (EGD)">Assistant Engineer(Geodetic) (EGD)</option>
+                                            <option value="Acting Deputy Chief Executive(DEV) (EGD)">Acting Deputy Chief Executive(DEV) (EGD)</option>
+                                            <option value="Director of Bridges (EGD)">Director of Bridges (EGD)</option>
+                                            <option value="Director of Contract (EGD)">Director of Contract (EGD)</option>
+                                            <option value="Director of Road Safety (EGD)">Director of Road Safety (EGD)</option>
+                                            <option value="Director (Engineer) Materials (EGD)">Director (Engineer) Materials (EGD)</option>
+                                            <option value="Deputy Chief Executive MTCE (EGD)">Deputy Chief Executive MTCE (EGD)</option>
+                                            <option value="Engineer(Geodetic) (EGD)">Engineer(Geodetic) (EGD)</option>
+                                            <option value="Senior Engineer(Geological) (EGD)">Senior Engineer(Geological) (EGD)</option>
+                                            <option value="Director(Engineer) S&D (EGD)">Director(Engineer) S&D (EGD)</option>
+                                            <option value="Senior Engineer(Geodetic) (EGD)">Senior Engineer(Geodetic) (EGD)</option>
+                                            <option value="Principal Engineer(Geological) (EGD)">Principal Engineer(Geological) (EGD)</option>
+                                            <option value="Senior Engineer(MAT) EGM">Senior Engineer(MAT) EGM</option>
+                                            <option value="Engineer(MAT) EGM">Engineer(MAT) EGM</option>
+                                            <option value="Assistant Engineer(MECH) EGM">Assistant Engineer(MECH) EGM</option>
+                                            <option value="Senior Engineer(MECH) EME">Senior Engineer(MECH) EME</option>
+                                            <option value="Engineer(MECH) EME">Engineer(MECH) EME</option>
+                                            <option value="Director of Road Maintenance (EME)">Director of Road Maintenance (EME)</option>
+                                            <option value="Director Of Legal Services (LEG)">Director Of Legal Services (LEG)</option>
+                                            <option value="Quantity Surveyor (QTY)">Quantity Surveyor (QTY)</option>
+                                            <option value="Assistant Quantity Surveyor (QTY)">Assistant Quantity Surveyor (QTY)</option>
+                                            <option value="Senior Quantity Surveyor (QTY)">Senior Quantity Surveyor (QTY)</option>
+                                            <option value="Principal Quantity Surveyor (QTY)">Principal Quantity Surveyor (QTY)</option>
+                                            <option value="Director of Quantity of Surveying (QTY)">Director of Quantity of Surveying (QTY)</option>
+                                            <option value="Chief Quantity Surveyor (QTY)">Chief Quantity Surveyor (QTY)</option>
+                                            <option value="Assistant Valuer (QTY)">Assistant Valuer (QTY)</option>
+                                            <option value="Assistant Valuer (VAL)">Assistant Valuer (VAL)</option>
+                                            <option value="Chief Valuer (VAL)">Chief Valuer (VAL)</option>
+                                            <option value="Senior Valuer (VAL)">Senior Valuer (VAL)</option>
+                                            <option value="Valuer (VAL)">Valuer (VAL)</option>
+                                            <option value="Chief Headman (RDM)">Chief Headman (RDM)</option>
+                                            <option value="Labourer (EST 2)">Labourer (EST 2)</option>
+                                            <option value="Senior Labourer (EST 2)">Senior Labourer (EST 2)</option>
+                                            <option value="Chief Headman (EST 2)">Chief Headman (EST 2)</option>
+                                            <option value="Chief labourer (EST 2)">Chief labourer (EST 2)</option>
+                                            <option value="Chief Headman (EST 2)">Chief Headman (EST 2)</option>
+                                            <option value="Chief Labourer (EST 2)">Chief Labourer (EST 2)</option>
+                                            <option value="Tradesman(Ungraded) (EST 2)">Tradesman(Ungraded) (EST 2)</option>
+                                            <option value="Caretaker Grade III (EST 2)">Caretaker Grade III (EST 2)</option>
+                                            <option value="Security Guard GD III">Security Guard GD III</option>
+                                            <option value="Chief Technical Assistant(ELECT) (LEG 1)">Chief Technical Assistant(ELECT) (LEG 1)</option>
+                                            <option value="Headman (LEG 1)">Headman (LEG 1)</option>
+                                            <option value="Security Guard GD I (LEG 1)">Security Guard GD I (LEG 1)</option>
+                                            <option value="Security Guard GD II (LEG 1)">Security Guard GD II (LEG 1)</option>
+                                            <option value="Watchman Grade I (LEG 1)">Watchman Grade I (LEG 1)</option>
+                                            <option value="Principal Security Guard (LEG 1)">Principal Security Guard (LEG 1)</option>
+                                            <option value="Security Grade III (LEG I)">Security Grade III (LEG I)</option>
+                                            <option value="Gate Checker Grade II (LEG 1)">Gate Checker Grade II (LEG 1)</option>
+                                            <option value="Chief Watchman (LEG 2)">Chief Watchman (LEG 2)</option>
+                                            <option value="Chief Technical Assistant(MAT) MAT">Chief Technical Assistant(MAT) MAT</option>
+                                            <option value="Principal Technical Assistant (MAT)">Principal Technical Assistant (MAT)</option>
+                                            <option value="Chief Technical Assistant (MAT)">Chief Technical Assistant (MAT)</option>
+                                            <option value="Principal Technical Assistant (MAT)">Principal Technical Assistant (MAT)</option>
+                                            <option value="Ferry Attendant (PEQ 3)">Ferry Attendant (PEQ 3)</option>
+                                            <option value="Head Ferry Attendant (PEQ 3)">Head Ferry Attendant (PEQ 3)</option>
+                                            <option value="Driver GD II (RDM 1)">Driver GD II (RDM 1)</option>
+                                            <option value="Chief Headman (RDM 2)">Chief Headman (RDM 2)</option>
+                                            <option value="Senior Labourer (RDM 2)">Senior Labourer (RDM 2)</option>
+                                            <option value="Head Man (RDM 2)">Head Man (RDM 2)</option>
+                                            <option value="Chief Technical Assistant(MAT) (RDM 2)">Chief Technical Assistant(MAT) (RDM 2)</option>
+                                            <option value="Headman Labourer (RDM 2)">Headman Labourer (RDM 2)</option>
+                                            <option value="Chief Headman(GEN) (RDM 2)">Chief Headman(GEN) (RDM 2)</option>
+                                            <option value="Technical Assistant (SUV)">Technical Assistant (SUV)</option>
+                                            <option value="Principal Technical Assistant (SUV)">Principal Technical Assistant (SUV)</option>
+                                            <option value="Chief Technical Assistant(Survey) (SUV)">Chief Technical Assistant(Survey) (SUV)</option>
+                                            <option value="Chief Technical Assistant(Drawing) (SUV)">Chief Technical Assistant(Drawing) (SUV)</option>
+                                            <option value="Chief Technical Assistant (SUV)">Chief Technical Assistant (SUV)</option>
+                                            <option value="Caretaker Grade I (EST 1)">Caretaker Grade I (EST 1)</option>
+                                            <option value="Ferry Attendant (PEQ )">Ferry Attendant (PEQ )</option>
+                                            <option value="Tradesman Grade II(Plumb) EST 2">Tradesman Grade II(PLUMB) EST 2</option>
+                                            <option value="Senior Tradesman(Plumb) EST2">Senior Tradesman(Plumb) EST2</option>
+                                            <option value="Principal Tradesman (Plumber) (EST 2)">Principal Tradesman (Plumber) (EST 2)</option>
+                                            <option value="Artisan/Craftman (EST 2)">Artisan/Craftman (EST 2)</option>
+                                            <option value="Tradesman Grade II(Mason) (EST 2)">Tradesman Grade II(Mason) (EST 2)</option>
+                                            <option value="Principal Tradesman(Mason) (EST 2)">Principal Tradesman(Mason) (EST 2)</option>
+                                            <option value="Tradesman Grade II (MTC 2)">Tradesman Grade II (MTC 2)</option>
+                                            <option value="Principal Tradesman (MTC 2)">Principal Tradesman (MTC 2)</option>
+                                            <option value="Senior Driver (PEQ)">Senior Driver (PEQ)</option>
+                                            <option value="Junior Chargesman (PEQ)">Junior Chargesman (PEQ)</option>
+                                            <option value="Tradesman Grade I (PEQ)">Tradesman Grade I (PEQ)</option>
+                                            <option value="Tradesman Grade II (PEQ)">Tradesman Grade II (PEQ)</option>
+                                            <option value="Senior Tradesman (Welder) (PEQ)">Senior Tradesman (Welder) (PEQ)</option>
+                                            <option value="Tradesman Grade I(MECH) (PEQ)">Tradesman Grade I(MECH) (PEQ)</option>
+                                            <option value="Senior Light Equipment Operator (PEQ)">Senior Light Equipment Operator (PEQ)</option>
+                                            <option value="Chief Extra Heavy Vel Driver (PEQ)">Chief Extra Heavy Vel Driver (PEQ)</option>
+                                            <option value="Senior Tradesman (PEQ)">Senior Tradesman (PEQ)</option>
+                                            <option value="Driller Grade II (PEQ)">Driller Grade II (PEQ)</option>
+                                            <option value="Senior Driller (PEQ)">Senior Driller (PEQ)</option>
+                                            <option value="Heavy Equipment Operator Grade II (PEQ)">Heavy Equipment Operator Grade II (PEQ)</option>
+                                            <option value="Ass. Chief Heavy Equipment Operator (PEQ)">Ass. Chief Heavy Equipment Operator (PEQ)</option>
+                                            <option value="Tradesman Grade II (Auto Elect) (PEQ)">Tradesman Grade II (Auto Elect) ()</option>
+                                            <option value="Chief Heavy Equipment Operator (PEQ)">Chief Heavy Equipment Operator (PEQ)</option>
+                                            <option value="Heavy Equipment Operator Grade I(PEQ)">Heavy Equipment Operator Grade I(PEQ)</option>
+                                            <option value="Senior Tradesman(MECH) (PEQ)">Senior Tradesman(MECH) (PEQ)</option>
+                                            <option value="Tradesman Grade II(Vulc) (PEQ)">Tradesman Grade II(Vulc) (PEQ)</option>
+                                            <option value="Ass. Chief Extra Heavy Vel Driver (PEQ)">Ass. Chief Extra Heavy Vel Driver (PEQ)</option>
+                                            <option value="Ass. Chief Heavy Equipment Operator (PEQ)">Ass. Chief Heavy Equipment Operator (PEQ)</option>
+                                            <option value="Tradesman Grade I (Mech) (PEQ)">Tradesman Grade I (Mech) (PEQ)</option>
+                                            <option value="Tradesman Grade II (Elect) (PEQ)">Tradesman Grade II (Elect) (PEQ)</option>
+                                            <option value="Tradesman Grade II(Mechanical) (PEQ)">Tradesman Grade II(Mechanical) (PEQ)</option>
+                                            <option value="Light Equipment Operator Grade I (PEQ)">Light Equipment Operator Grade I (PEQ)</option>
+                                            <option value="Junior Chargeman (PEQ)">Junior Chargeman (PEQ)</option>
+                                            <option value="Driver Grade II (PEQ 1)">Driver Grade II (PEQ 1)</option>
+                                            <option value="Driver Grade III (PEQ 1)">Driver Grade III (PEQ 1)</option>
+                                            <option value="Driver Grade I (PEQ 1)">Driver Grade I (PEQ 1)</option>
+                                            <option value="Extra Heavy Vehicle Driver (PEQ 1A)">Extra Heavy Vehicle Driver (PEQ 1A)</option>
+                                            <option value="Principal Tradesman (PEQ 2)">Principal Tradesman (PEQ 2)</option>
+                                            <option value="Principal Tradesman(Mech) (PEQ 2)">Principal Tradesman(Mech) (PEQ 2)</option>
+                                            <option value="Principal Tradesman(A/Elec) (PEQ 2)">Principal Tradesman(A/Elec) (PEQ 2)</option>
+                                            <option value="Principal Tradesman(Elec) (PEQ 2)">Principal Tradesman(Elec) (PEQ 2)</option>
+                                            <option value="Principal Tradesman(M/M) (PEQ 2)">Principal Tradesman(M/M) (PEQ 2)</option>
+                                            <option value="Principal Tradesman(Mech) (PEQ 2)">Principal Tradesman(Mech) (PEQ 2)</option>
+                                            <option value="Principal Tradesman(Welder) (PEQ 2)">Principal Tradesman(Welder) (PEQ 2)</option>
+                                            <option value="Principal Tradesman(Elec) (PEQ 2)">Principal Tradesman(Elec) (PEQ 2)</option>
+                                            <option value="Principal Tradesman(Auto/Elec) (PEQ 2)">Principal Tradesman(Auto/Elec) (PEQ 2)</option>
+                                            <option value="Senior Chargeman (PEQ 2)">Senior Chargeman (PEQ 2)</option>
+                                            <option value="Principal Tradesman(Sign Writer) (PEQ 2)">Principal Tradesman(Sign Writer) (PEQ 2)</option>
+                                            <option value="Principal Tradesman Grade II(Mech) (PEQ 2)">Principal Tradesman Grade II(Mech) (PEQ 2)</option>
+                                            <option value="Principal Tradesman(Sprayer) (PEQ 2)">Principal Tradesman(Sprayer) (PEQ 2)</option>
+                                            <option value="Coxswain (PEQ 3)">Coxswain (PEQ 3)</option>
+                                            <option value="Principal Coxswain (PEQ 3)">Principal Coxswain (PEQ 3)</option>
+                                            <option value="Ferry Attendant (PEQ 3)">Ferry Attendant (PEQ 3)</option>
+                                            <option value="Chief Coxswain (PEQ 3)">Chief Coxswain (PEQ 3)</option>
+                                            <option value="Principal Tradesman (RDM)">Principal Tradesman (RDM)</option>
+                                            <option value="Senior Driver (RDM)">Senior Driver (RDM)</option>
+                                            <option value="Driver Grade I (RDM)">Driver Grade I (RDM)</option>
+                                            <option value="Tradesman Grade II(Painter) (RDM)">Tradesman Grade II(Painter) (RDM)</option>
+                                            <option value="Prin Tradesman (RDM)">Prin Tradesman (RDM)</option>
+                                            <option value="Tradesman Grade I (RDM)">Tradesman Grade I (RDM)</option>
+                                            <option value="Tradesman Grade II(Mech) (RDM)">Tradesman Grade II(Mech) (RDM)</option>
+                                            <option value="Tradesman Grade II(Motor Vehicle Mechanic) (RDM2)">Tradesman Grade II(Motor Vehicle Mechanic) (RDM2)</option>
+                                            <option value="Tradesman Grade II(Plumber) (RDM2)">Tradesman Grade II(Plumber) (RDM2)</option>
+                                            <option value="Tradesman Grade(Ungraded)  (TRN)">Tradesman Grade(Ungraded)  (TRN)</option>
+                                            <option value="Tradesman Grade I(Cook) (TRN)">Tradesman Grade I(Cook) (TRN)</option>
+                                            <option value="Tradesman Grade II(Cook) (TRN)">Tradesman Grade II(Cook) (TRN)</option>
+                                            <option value="Tradesman Grade II (TRN)">Tradesman Grade II (TRN)</option>
+                                            <option value="Head Cook (TRN)">Head Cook (TRN)</option>
+                                            <option value="Principal Technical Officer(MATS) MAT">Principal Technical Officer(MATS) MAT</option>
+                                            <option value="Senior Technical Officer (MAT)">Senior Technical Officer (MAT)</option>
+                                            <option value="Chief Technical Officer (MATS)">Chief Technical Officer (MATS)</option>
+                                            <option value="Senior Technical Officer (MAT)">Senior Technical Officer (MAT)</option>
+                                            <option value="Ass. Chief Technical Officer (MATS)">Ass. Chief Technical Officer (MATS)</option>
+                                            <option value="Senior Technical Officer Grade I (MATS)">Senior Technical Officer Grade I (MATS)</option>
+                                            <option value="Chief Technical Officer(RD MTCE) (MTC)">Chief Technical Officer(RD MTCE) (MTC)</option>
+                                            <option value="Chief Technical Officer (MTC)">Chief Technical Officer (MTC)</option>
+                                            <option value="Ass. Chief Technical Officer(MECH) (PEQ)">Ass. Chief Technical Officer(MECH) (PEQ)</option>
+                                            <option value="Ass. Chief Technical Officer (PEQ)">Ass. Chief Technical Officer (PEQ)</option>
+                                            <option value="Chief Technical Officer(QTY) (QTY)">Chief Technical Officer(QTY) (QTY)</option>
+                                            <option value="Chief Technical Officer(RD MTCE) (RDM)">Chief Technical Officer(RD MTCE) (RDM)</option>
+                                            <option value="Ass. Chief Technical Officer(MTCE) (RDM)">Ass. Chief Technical Officer(MTCE) (RDM)</option>
+                                            <option value="Chief Technical Officer (RDM)">Chief Technical Officer (RDM)</option>
+                                            <option value="Chief Technical Assistant (SUV)">Chief Technical Assistant (SUV)</option>
+                                            <option value="Chief Technical Officer(Surv) (SUV)">Chief Technical Officer(Surv) (SUV)</option>
+                                            <option value="Chief Technical Officer(MTCE) (TRF)">Chief Technical Officer(MTCE) (TRF)</option>
+                                            <option value="Ass. Chief Technical Officer(Traffic) (TRF)">Ass. Chief Technical Officer(Traffic) (TRF)</option>
+                                            <option value="Chief Technical Officer(Traffic) (TRF)">Chief Technical Officer(Traffic) (TRF)</option>
+                                            <option value="Chief Technical Officer(Val) (VAL)">Chief Technical Officer(Val) (VAL)</option>
+                                            <option value="Technical Officer Grade I (MAT)">Technical Officer Grade I (MAT)</option>
+                                            <option value="Technical Officer Grade II (MAT)">Technical Officer Grade II (MAT)</option>
+                                            <option value="Technical Officer Grade II(MATS) (MAT)">Technical Officer Grade II(MATS) (MAT)</option>
+                                            <option value="Technical Officer Grade II(MTCE) (MAT)">Technical Officer Grade II(MTCE) (MAT)</option>
+                                            <option value="Technical Officer Grade I(MATS) (MAT)">Technical Officer Grade I(MATS) (MAT)</option>
+                                            <option value="Technical Officer Grade II (MAT)">Technical Officer Grade II (MAT)</option>
+                                            <option value="Senior Technical Officer (MAT)">Senior Technical Officer (MAT)</option>
+                                            <option value="Senior Technical Officer(MTCE) (MTC)">Senior Technical Officer(MTCE) (MTC)</option>
+                                            <option value="Technical Officer Grade I(MIS) (MIS)">Technical Officer Grade I(MIS) (MIS)</option>
+                                            <option value="Technical Officer Grade II(MIS) (MIS)">Technical Officer Grade II(MIS) (MIS)</option>
+                                            <option value="Technical Officer (MTC)">Technical Officer (MTC)</option>
+                                            <option value="Technical Officer Grade II (MTC)">Technical Officer Grade II (MTC)</option>
+                                            <option value="Technical Officer Grade I (MTC)">Technical Officer Grade I (MTC)</option>
+                                            <option value="Technical Officer Grade I(RD MTCE) (MTC)">Technical Officer Grade I(RD MTCE) (MTC)</option>
+                                            <option value="Technical Officer Grade II(RD MTCE) (MTC)">Technical Officer Grade II(RD MTCE) (MTC)</option>
+                                            <option value="Technical Officer(RD MTCE) (MTC)">Technical Officer(RD MTCE) (MTC)</option>
+                                            <option value="Technical Officer Grade I (PEQ)">Technical Officer Grade I (PEQ)</option>
+                                            <option value="Technical Officer Grade I(ELECT) (PEQ)">Technical Officer Grade I(ELECT) (PEQ)</option>
+                                            <option value="Technical Officer Grade II(RD MTCE) (RDM)">Technical Officer Grade II(RD MTCE) (RDM)</option>
+                                            <option value="Technical Officer Grade I (RDM)">Technical Officer Grade I (RDM)</option>
+                                            <option value="Technical Officer (RDM)">Technical Officer (RDM)</option>
+                                            <option value="Technical Officer Grade I(MTCE) (RDM)">Technical Officer Grade I(MTCE) (RDM)</option>
+                                            <option value="Technical Officer Grade II(RD MTCE) (RDM)">Technical Officer Grade II(RD MTCE) (RDM)</option>
+                                            <option value="Technical Officer Grade I(RD MTCE) (RDM)">Technical Officer Grade I(RD MTCE) (RDM)</option>
+                                            <option value="Technical Officer Grade II(RD MTCE) (RDM)">Technical Officer Grade II(RD MTCE) (RDM)</option>
+                                            <option value="Technical Officer Grade I (RDM)">Technical Officer Grade I (RDM)</option>
+                                            <option value="Technical Officer Grade II (SUV)">Technical Officer Grade II (SUV)</option>
+                                            <option value="Technical Officer Grade I (Survey & Design) (SUV)">Technical Officer Grade I (Survey & Design) (SUV)</option>
+                                            <option value="Technical Officer Grade I (Survey) (SUV)">Technical Officer Grade I (Survey) (SUV)</option>
+                                            <option value="Technical Officer Grade II (Survey & Design) (SUV)">Technical Officer Grade II (Survey & Design) (SUV)</option>
+                                            <option value="Technician Engineer (Civil) (TRF)">Technician Engineer (Civil) (TRF)</option>
+                                            <option value="Technical Officer Grade II (TRG)">Technical Officer Grade II (TRG)</option>
+                                            <option value="Technical Officer Grade II (TRN)">Technical Officer Grade II (TRN)</option>
+                                            <option value="Technical Officer Grade I(MTCE) (MTC)">Technical Officer Grade I(MTCE) (MTC)</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Languages Spoken</label>
+                                        <textarea name="languages" id="languages" rows="3" class="form-control">{{ emp.languages }}</textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary prevBtn pull-left" type="button">Previous</button>
+                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+
+                    <!--3rd Step-->
+                    <div class="panel panel-primary setup-content" id="step-3">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Personal Details --3</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Marital Status</label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="mar_status" 
+                                                        id="married" value="Married" {% if emp.mar_status == 'Married' %} checked {% endif %}>
+                                                    Married
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="mar_status" 
+                                                        id="single" value="Single" {% if emp.mar_status == 'Single' %} checked {% endif %}>
+                                                    Single
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="mar_status" 
+                                                        id="separated" value="Separated" {% if emp.mar_status == 'Separated' %} checked {% endif %}>
+                                                    Separated
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="mar_status" 
+                                                        id="divorced" value="Divorced" {% if emp.mar_status == 'Divorced' %} checked {% endif %}>
+                                                    Divorced
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="mar_status" 
+                                                        id="widowed" value="Widowed" {% if emp.mar_status == 'Widowed' %} checked {% endif %}>
+                                                    Widowed
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading clearfix">
+                                            <h3 class="panel-title pull-left">Next of Kin</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Full Name</label>
+                                                        <input type="text" class="form-control" placeholder="Full Name" 
+                                                            name="nok_name" value="{{ emp.nok_name }}" id="nok_name">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Relationship</label>
+                                                        <input type="text" class="form-control" placeholder="Relationship" 
+                                                            name="nok_rel" value="{{ emp.nok_rel }}" id="nok_rel">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Address of Next of Kin</label>
+                                        <textarea name="nok_add" id="nok_add" rows="5" class="form-control">{{ emp.nok_add }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Employment Status</label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="radio-inline">
+                                                    <input type="radio" class="emp_status" name="emp_status" 
+                                                        id="Permanent" value="Permanent" {% if emp.emp_status == 'Permanent' %} checked {% endif %}>
+                                                    Permanent
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" class="emp_status" name="emp_status" 
+                                                        id="Temporary" value="Temporary" {% if emp.emp_status == 'Temporary' %} checked {% endif %}>
+                                                    Temporary
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" class="emp_status" name="emp_status" 
+                                                        id="Secondment" value="Secondment" {% if emp.emp_status == 'Secondment' %} checked {% endif %}>
+                                                    Secondment
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading clearfix">
+                                            <h3 class="panel-title pull-left">Father's Name</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <label class="control-label">Full Name</label>
+                                                        <input type="text" placeholder="Full Name" class="form-control" 
+                                                            name="dad_name" value="{{ emp.dad_name }}" id="dad_name">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Status</label>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="dad_status"
+                                                                        id="dad_status" value="Alive" {% if emp.dad_status == 'Alive' %} checked {% endif %}>
+                                                                        Alive
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="dad_status" 
+                                                                        id="dad_status" value="Dead" {% if emp.dad_status == 'Dead' %} checked {% endif %}>
+                                                                        Dead
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading clearfix">
+                                            <h3 class="panel-title pull-left">Mother's Name</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <label class="control-label">Full Name</label>
+                                                        <input type="text" class="form-control" placeholder="Full Name"
+                                                            name="mum_name" value="{{ emp.mum_name }}" id="mum_name">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Status</label>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" value="Alive"
+                                                                    name="mum_status" id="mum_status" {% if emp.mum_status == 'Alive' %} checked {% endif %}>
+                                                                    Alive
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" value="Dead"
+                                                                    name="mum_status" id="mum_status" {% if emp.mum_status == 'Dead' %} checked {% endif %}>
+                                                                    Dead
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary prevBtn pull-left" type="button">Previous</button>
+                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+
+                    <!--4th Step-->
+                    <div class="panel panel-primary setup-content" id="step-4">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Dependants</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading clearfix">
+                                        <h3 class="panel-title pull-left">Spouse, Children, etc</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="dependants" class="repeater">
+                                            <!-- Repeater Heading -->
+                                            <div class="repeater-heading">
+
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <!-- Repeater Items -->
+                                            <div class="items" data-group="dependants" data-repeater-list="dependants">
+                                                <!-- Repeater Content -->
+                                                <div class="item-content" data-repeater-item>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Full Name.</label>
+                                                                <input type="text" class="form-control" placeholder="Full Name" 
+                                                                id="dependant_name" name="dependant_name" data-name="dependant_name">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Relationship</label>
+                                                                <input type="text" class="form-control" placeholder="Relationship"
+                                                                id="dependant_rel" name="dependant_rel" data-name="dependant_rel">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label class="control-label">Date of Birth</label>
+                                                                <div class='input-group'>
+                                                                    <input type='text' class="form-control datepick_depend" placeholder="Date of Birth"
+                                                                        id="dependant_dob" name="dependant_dob" data-name="dependant_dob"/>
+                                                                    <span class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <!-- Repeater Remove Btn -->
+                                                                <div class="repeater-remove-btn">
+                                                                    <button data-repeater-delete type="button"
+                                                                        class="btn btn-danger">
+                                                                        Remove
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button data-repeater-create type="button"
+                                                class="btn btn-primary mt-5 pull-left">
+                                                Add new Row
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary prevBtn pull-left" type="button">Previous</button>
+                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+
+                    <!--5th Step-->
+                    <div class="panel panel-primary setup-content" id="step-5">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Education and Qualifications</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading clearfix">
+                                        <h3 class="panel-title pull-left">Education History (Recent First)</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="repeater" id="education">
+                                            <!-- Repeater Heading -->
+                                            <div class="repeater-heading">
+
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <!-- Repeater Items -->
+                                            <div data-repeater-list="education">
+                                                <!-- Repeater Content -->
+                                                <div class="item-content" data-repeater-item>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">
+                                                                    School/Inst. Attended(From Primary, Recent First)
+                                                                </label>
+                                                                <input type="text" class="form-control" placeholder="Instituition Attended" 
+                                                                    id="school" name="school" data-name="school">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">
+                                                                    Certificate Attained
+                                                                </label>
+                                                                <input type="text" class="form-control" placeholder="Certificate"
+                                                                    id="cert_att" name="cert_att" data-name="cert_att">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label class="control-label">Year of
+                                                                    Qualification</label>
+                                                                <div class='input-group '>
+                                                                    <input type='text' class="form-control datepick_edu" placeholder="Year of Qualification"
+                                                                        name="year_of_qual" id="year_of_qual"/>
+                                                                    <span class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <!-- Repeater Remove Btn -->
+                                                                <div class="repeater-remove-btn">
+                                                                    <button data-repeater-delete type="button"
+                                                                        class="btn btn-danger">
+                                                                        Remove
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- Repeater Remove Btn -->
+                                            </div>
+                                            <button data-repeater-create type="button"
+                                                class="btn btn-primary mt-5 pull-left">
+                                                Add new Row
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button class="btn btn-primary prevBtn pull-left" type="button">Previous</button>
+                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+
+                    <!--6th Step-->
+                    <div class="panel panel-primary setup-content" id="step-6">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Work Experience</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading clearfix">
+                                        <h3 class="panel-title pull-left">List All Work Experiences (Recent First)</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="workexperience" class="repeater">
+                                            <!-- Repeater Heading -->
+                                            <div class="repeater-heading">
+
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <!-- Repeater Items -->
+                                            <div class="items" data-group="workexperience" data-repeater-list="workexperience">
+                                                <!-- Repeater Content -->
+                                                <div class="item-content" data-repeater-item>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">
+                                                                        Name of Organisation
+                                                                    </label>
+                                                                    <textarea class="form-control" name="we_org_name" 
+                                                                    id="we_org_name" cols="34" rows="2"></textarea>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Date(From)</label>
+                                                                    <div class='input-group'>
+                                                                        <input type="text" autofocus="autofocus" style="display:none" />
+                                                                        <input type='text' class="form-control datepick_depend" placeholder="From"
+                                                                            name="we_date_form" id="we_date_from"/>
+                                                                        <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Date(To)</label>
+                                                                    <div class='input-group'>
+                                                                        <input type='text' class="form-control datepick_depend" placeholder="To"
+                                                                            name="we_date_to" id="we_date_to"/>
+                                                                        <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Position Held</label>
+                                                                    <textarea class="form-control" name="we_position" 
+                                                                    id="we_postion" rows="2"></textarea>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">
+                                                                        Place Of Organisation
+                                                                    </label>
+                                                                    <textarea class="form-control" name="we_org_place" 
+                                                                    id="we_org_place" rows="2"></textarea>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <!-- Repeater Remove Btn -->
+                                                                <div class="repeater-remove-btn">
+                                                                    <button data-repeater-delete type="button"
+                                                                        class="btn btn-danger">
+                                                                        Remove
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <button data-repeater-create type="button"
+                                                class="btn btn-primary mt-5 pull-left">
+                                                Add new Row
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <button class="btn btn-primary prevBtn pull-left" type="button">Previous</button>
+                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+
+                    <!--7th Step-->
+                    <div class="panel panel-primary setup-content" id="step-7">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Postings</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading clearfix">
+                                        <h3 class="panel-title pull-left">List All Postings (Recent First)</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="postings" class="repeater">
+                                            <!-- Repeater Heading -->
+                                            <div class="repeater-heading">
+
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <!-- Repeater Items -->
+                                            <div class="items" data-group="postings" data-repeater-list="postings">
+                                                <!-- Repeater Content -->
+                                                <div class="item-content" data-repeater-item>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">
+                                                                        Station
+                                                                    </label>
+                                                                    <textarea class="form-control" name="posting_st" 
+                                                                    id="posting_st" cols="34" rows="2"></textarea>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Date(From)</label>
+                                                                    <div class='input-group'>
+                                                                        <input type="text" autofocus="autofocus" style="display:none" />
+                                                                        <input type='text' class="form-control datepick_depend" placeholder="From"
+                                                                            name="posting_date_from" id="posting_date_from"/>
+                                                                        <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Date(To)</label>
+                                                                    <div class='input-group'>
+                                                                        <input type='text' class="form-control datepick_depend" placeholder="To"
+                                                                            name="posting_date_to" id="posting_date_to"/>
+                                                                        <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Position Held</label>
+                                                                    <textarea class="form-control" name="posting_pos" 
+                                                                    id="posting_pos" rows="2"></textarea>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Type of
+                                                                        Postings</label>
+                                                                    <select class="form-control" name="type_of_posting" id="type_of_posting">
+                                                                        <option value="Permanent">Permanent</option>
+                                                                        <option value="Temporary">Temporary</option>
+                                                                        <option value="Voluntary">Voluntary</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <!-- Repeater Remove Btn -->
+                                                                <div class="repeater-remove-btn">
+                                                                    <button data-repeater-delete type="button"
+                                                                        class="btn btn-danger">
+                                                                        Remove
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <button data-repeater-create type="button"
+                                                class="btn btn-primary mt-5 pull-left">
+                                                Add new Row
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <button class="btn btn-primary prevBtn pull-left" type="button">Previous</button>
+                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                        </div>
+                    </div> 
+
+                    <!--Final Step-->
+                    <div class="panel panel-primary setup-content" id="step-8">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Job Promotions</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading clearfix">
+                                        <h3 class="panel-title pull-left">List All Promotion History (Recent First)</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="promotion" class="repeater">
+                                            <!-- Repeater Heading -->
+                                            <div class="repeater-heading">
+
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <!-- Repeater Items -->
+                                            <div class="items" data-group="promotion" data-repeater-list="promotion">
+                                                <!-- Repeater Content -->
+                                                <div class="item-content" data-repeater-item>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">
+                                                                    Job Promotion
+                                                                </label>
+                                                                <input type="text" class="form-control" placeholder="Promotion Title" 
+                                                                name="promo_rank" id="promo_rank" data-name="promo_rank">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Date(From)</label>
+                                                                <div class='input-group'>
+                                                                        <input type='text' class="form-control datepick_depend" placeholder="From"
+                                                                            name="promo_date_from" id="promo_date_from"/>
+                                                                        <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label class="control-label">Date(To)</label>
+                                                                <div class='input-group'>
+                                                                        <input type='text' class="form-control datepick_depend" placeholder="To"
+                                                                            name="promo_date_to" id="promo_date_to"/>
+                                                                        <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <label class="control-label">&nbsp;</label>
+                                                                <!-- Repeater Remove Btn -->
+                                                                <div class="repeater-remove-btn">
+                                                                    <button data-repeater-delete type="button"
+                                                                        class="btn btn-danger">
+                                                                        Remove
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button data-repeater-create type="button"
+                                                class="btn btn-primary mt-5 pull-left">
+                                                Add new Row
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary prevBtn pull-left" type="button">Previous</button>
+                            <button class="btn btn-success pull-right" id="insert" type="submit">Update!</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datetimepicker({ 
+                format: 'YYYY-MM-DD',
+            });
+        });
+    </script>
+    <!--Repeaters datepicker-->
+    <script>
+        $(document).on('focus',".datepick_depend", function(){
+            $(this).datetimepicker({
+                format: 'YYYY-MM-DD',
+            });
+        });
+    </script>
+    <!--Education datepicker-->
+    <script>
+        $(document).on('focus',".datepick_edu", function(){
+            $(this).datetimepicker({
+                format: 'YYYY',
+            });
+        });
+    </script>
+
+
+    <!--Form Wizard navigation-->
+    <script>
+        $(document).ready(function () {
+
+            var navListItems = $('div.setup-panel div a'),
+                allWells = $('.setup-content'),
+                allNextBtn = $('.nextBtn');
+            allPrevBtn = $('.prevBtn');
+
+            allWells.hide();
+
+            navListItems.click(function (e) {
+                e.preventDefault();
+                var $target = $($(this).attr('href')),
+                    $item = $(this);
+
+                if (!$item.hasClass('disabled')) {
+                    navListItems.removeClass('btn-success').addClass('btn-default');
+                    $item.addClass('btn-success');
+                    allWells.hide();
+                    $target.show();
+                    $target.find('input:eq(0)').focus();
+                }
+            });
+
+            allPrevBtn.click(function () {
+
+                var curStep = $(this).closest(".setup-content"),
+
+                    curStepBtn = curStep.attr("id"),
+
+                    prevStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
+
+                prevStepWizard.removeAttr('disabled').trigger('click');
+
+            });
+
+            allNextBtn.click(function () {
+                var curStep = $(this).closest(".setup-content"),
+                    curStepBtn = curStep.attr("id"),
+                    nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                    curInputs = curStep.find("input[type='text'],input[type='url']"),
+                    isValid = true;
+
+                $(".form-group").removeClass("has-error");
+                for (var i = 0; i < curInputs.length; i++) {
+                    if (!curInputs[i].validity.valid) {
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
+                }
+
+                if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
+            });
+
+            $('div.setup-panel div a.btn-success').trigger('click');
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-imageupload-src@1.2.0/dist/js/bootstrap-imageupload.js"></script>
+    
+    <!--Image Upload-->
+    <script>
+        var $imageupload = $('.imageupload');
+        $imageupload.imageupload({
+
+            maxWidth: 240,
+
+            maxHeight: 260,
+ 
+            maxFileSizeKb: 3048,
+
+            imgSrc: "{{ url_for('static', filename='profile_pics/' +image) }}"
+        });
+        
+
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js"></script>
+    <script>
+        $(document).ready(function () {
+            'use strict';
+
+            var prof = document.getElementById("profile_pic").src;
+            console.log(prof)
+
+            var new_value = '{{ depe|tojson }}'
+            //console.log(JSON.parse(JSON.stringify(new_value)))
+            var myJson = new_value
+            var myObj = JSON.parse(new_value);
+            
+            var $dependants= $("#dependants").repeater();
+            //console.log(myObj)
+            $dependants.setList(myObj["dependants"]);
+
+            var $education= $("#education").repeater();
+            //console.log(myObj)
+            $education.setList(myObj["education"]);
+
+            var $workexperience= $("#workexperience").repeater();
+            //console.log(myObj)
+            $workexperience.setList(myObj["workexperience"]);
+
+            var $postings= $("#postings").repeater();
+            //console.log(myObj)
+            $postings.setList(myObj["postings"]);
+
+            var $promotion= $("#promotion").repeater();
+            //console.log(myObj)
+            $promotion.setList(myObj["promotion"]);
+
+            $('#form_submit').on('submit', function(event){  
+                event.preventDefault();
+                
+                $('.repeater').repeater(); 
+                var myFormObject = $(".repeater").repeaterVal();
+                var form_data = new FormData();
+                var all_data = {
+                        profile_url: $('#profile_url').val(),
+                        surname: $('#surname').val(),
+                        mid_name: $('#mid_name').val(),
+                        first_name: $('#first_name').val(),
+                        email: $('#email').val(),
+                        mobile_no: $('#mobile_no').val(),
+                        emp_dob: $('#emp_dob').val(),
+                        birth_place: $('#birth_place').val(),
+                        date_engaged: $('#date_engaged').val(),
+                        mar_status: $('input:radio[name=mar_status]:checked').val(),
+                        gender: $('#gender').val(), 
+                        staff_no: $('#staff_no').val(),
+                        seniority: $('#seniority').val(),
+                        ssnit_no: $('#ssnit_no').val(),
+                        hofl_no: $('#hofl_no').val(),
+                        emp_status: $('input:radio[name=emp_status]:checked').val(),
+                        home_add: $('#home_add').val(),
+                        category: $('#category').val(),
+                        catbydiv: $('#catbydiv').val(),
+                        languages: $('#languages').val(),
+                        nok_name: $('#nok_name').val(),
+                        nok_rel: $('#nok_rel').val(),
+                        nok_add: $('#nok_add').val(),
+                        dad_name: $('#dad_name').val(),
+                        dad_status: $('input:radio[name=dad_status]:checked').val(),
+                        mum_name: $('#mum_name').val(),
+                        mum_status: $('input:radio[name=mum_status]:checked').val(),
+                        json_data: JSON.stringify(myFormObject)
+                }
+                $.each(all_data, function(key, value){
+                    form_data.append(key, value);
+                })
+                form_data.append('profile_pic', $('#profile_pic').prop('files')[0]);
+                    
+                $.ajax({  
+                    url:"{{ url_for('admin.edit_emp_details', emp_id = emp.id) }}",  
+                    method:"POST",  
+                    data: form_data,  
+                    contentType: false,
+                    processData: false,
+                    success:function(data)  
+                    {    
+                       location.reload();
+                    
+                    }  
+                }); 
+                
+            }); 
+        });
+    </script>
+</body>
+
+</html>
