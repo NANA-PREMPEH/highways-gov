@@ -132,6 +132,12 @@
                         </div>
                     </div>
                 </div>
+                <div id='loader' style="display:none; flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                text-align: center;">
+                    <img src='{{ url_for("static", filename="img/ajax-loader.gif") }}'> <b>Please Wait..</b>
+                </div>
 
                 <form id="form_submit" class="repeater"  method="POST" action="{{ url_for('admin.register_staff') }} " enctype="multipart/form-data">
 
@@ -1388,7 +1394,11 @@
                 $.ajax({  
                     url:"{{ url_for('admin.edit_emp_details', emp_id = emp.id) }}",  
                     method:"POST",  
-                    data: form_data,  
+                    data: form_data, 
+                    beforeSend: function () {
+                        // Show image container
+                        $("#loader").show();
+                    },  
                     contentType: false,
                     processData: false,
                     success:function(data)  

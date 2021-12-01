@@ -132,7 +132,12 @@
                         </div>
                     </div>
                 </div>
-
+                <div id='loader' style="display:none; flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                text-align: center;">
+                    <img src='{{ url_for("static", filename="img/ajax-loader.gif") }}'> <b>Please Wait..</b>
+                </div>
                 <form id="form_submit"  method="POST" action="{{ url_for('admin.register_staff') }} " enctype="multipart/form-data">
 
                     <!--Beginning of Form-->
@@ -1192,6 +1197,7 @@
                             </div>
                             <button class="btn btn-primary prevBtn pull-left" type="button">Previous</button>
                             <button class="btn btn-success pull-right" id="insert" type="submit">Finish!</button>
+                            
                         </div>
                     </div>
                 </form>
@@ -1371,7 +1377,11 @@
                 $.ajax({  
                     url:"{{ url_for('admin.register_staff') }}",  
                     method:"POST",  
-                    data: form_data,  
+                    data: form_data, 
+                    beforeSend: function () {
+                        // Show image container
+                        $("#loader").show();
+                    }, 
                     contentType: false,
                     processData: false,
                     success:function(data)  
