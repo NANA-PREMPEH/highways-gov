@@ -189,7 +189,7 @@ def create_blog():
         db.session.add(post)
         db.session.commit()
         flash('Your Post has been submitted', 'success')
-        return redirect(url_for('blogs.blog')) 
+        return redirect(request.referrer) 
     return render_template('admin/create_news.html', title='New Post', form=form)
 
 #Add new Contract details to the database(Completed)
