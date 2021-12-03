@@ -31,7 +31,7 @@
                         <th>TITLE</th>
                         <th>DATE PUBLISHED</th>
                         <th>AUTHOR</th>
-                        <th colspan="2">ACTION</th>
+                        <th>ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,9 +47,8 @@
                         <td>{{ post.author.name }}</td>
                         <td style="text-align: center;">
                             <a class="btn btn-success"
-                                href="{{ url_for('admin.update_blog_post', post_id=post.id) }}">EDIT</a>
-                        </td>
-                        <td style="text-align: center;">
+                                href="{{ url_for('admin.update_blog_post', post_id=post.id) }}">EDIT
+                            </a>
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal_{{post.id}}">
                                 DEL
                             </button>
