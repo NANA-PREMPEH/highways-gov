@@ -208,7 +208,8 @@ class Staff(db.Model, UserMixin):
 
 
 #Create a Blog Post Model
-class Post(db.Model): 
+class Post(SearchableMixin, db.Model): 
+    __searchable__ = ['body']
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(180), nullable=False)
     slug = db.Column(db.String(180), nullable=False)
