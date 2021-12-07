@@ -7,7 +7,10 @@ from trial import mail
 from flask_mail import Message 
 from flask_login import current_user
 from trial.models import Permission
-import boto3
+
+from trial import azure_storage
+from azure.storage.blob import ContentSettings
+
 
 #define a save picture function
 #Takes picture data as an argument
@@ -27,9 +30,8 @@ def save_picture(form_picture):
     i.thumbnail(output_size)
     i.save(picture_path)
 
-
-    s3 = boto3.resource('s3', region_name='us-east-1')
-    s3.Bucket('santa-gha').upload_file(picture_path, 'static/profile_pics/'+picture_fn, ExtraArgs={'ACL':'public-read'})
+    #Store in azure blob
+    azure_storage.block_blob_service.create_blob_from_path(container_name='static/assets/static/profile_pics', blob_name=picture_fn, file_path=picture_path, content_settings=ContentSettings(content_type='image'))
 
     return picture_fn
   
