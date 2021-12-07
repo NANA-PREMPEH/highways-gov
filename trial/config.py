@@ -12,13 +12,11 @@ class Config:
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') 
     ADMIN_HIGHWAYS = os.environ.get('ADMIN_HIGHWAYS')
-
-
-    AZURE_STORAGE_ACCOUNT_NAME = os.environ.get('AZURE_STORAGE_ACCOUNT_NAME')
-    AZURE_STORAGE_ACCOUNT_KEY = os.environ.get('AZURE_STORAGE_ACCOUNT_KEY')
-    AZURE_STORAGE_CONTAINER_NAME = os.environ.get('AZURE_STORAGE_CONTAINER_NAME')  # make sure the container is created. Refer to the previous examples or to the Azure admin panel
-    AZURE_STORAGE_VIRTUAL_FOLDER_NAME = os.environ.get('AZURE_STORAGE_VIRTUAL_FOLDER_NAME')
-    AZURE_STORAGE_DOMAIN = os.environ.get('AZURE_STORAGE_DOMAIN')
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    ACL = 'public-read'
+    FLASKS3_BUCKET_NAME = os.environ.get('FLASKS3_BUCKET_NAME')
+    FLASKS3_REGION = 'us-east-1'
 
     
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
