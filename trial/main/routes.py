@@ -38,10 +38,10 @@ def landing_page():
 
 
 #Create a route for Yearly Report 
-@main.route('/report/yearly_report/')
-def yearly_report():
+@main.route('/report/road_con_survey/')
+def road_con_survey():
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('main/yearly_report.html', title='Yearly Report', posts=posts)
+    return render_template('main/road_con_survey.html', title='Road Con. Survey Report', posts=posts)
 
 #Create a route for 2018 report 
 @main.route('/yearly_report/2018')
@@ -101,6 +101,16 @@ def contractors():
 def contacts_page():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/contacts_page.html', title='Contractor List', posts=posts)
+
+@main.route('/reports')
+def reports():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/reports.html', title='Reports', posts=posts)
+
+@main.route('/quarterly_report')
+def quarterly_report():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('main/quarterly_report.html', title='Quarterly_report', posts=posts)
 
 @main.route('/organogram')
 def organogram():

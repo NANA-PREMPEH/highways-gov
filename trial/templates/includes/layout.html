@@ -15,12 +15,17 @@
         <!-- Icon css link -->
         <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/materialdesignicons.min.css') }}" rel="stylesheet">
-        
+
+       
         <!-- Bootstrap -->
         <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
         
         <!--Added Bootstrap for contact_page-->
+
+
+        <!-- slick css  -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
           
         
         <!-- Rev slider css -->
@@ -173,15 +178,15 @@
                                 <li class="dropdown submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downloads</a>
                                     <ul class="dropdown-menu" id="hello">
-                                        <li><a href="#" class="test">Report&nbsp; 
-                                            <span class="fa fa-plus"></span>
-                                            </a>
-                                            <ul>
-                                                <li><a href="{{ url_for('main.yearly_report') }}">Annual Report</a></li>
+                                        <li><a href="{{ url_for('main.reports') }}">Reports&nbsp; 
+                                        </a>
+                                        
+                                            <!-- <ul>
+                                                <li><a href="#">Annual Report</a></li>
                                                 <li><a href="#">Quarterly Report</a></li>
                                                 <li><a href="{{ url_for('main.status_report') }}">Status Report</a></li>
-                                                <li><a href="#">Road Con. Survey</a></li>
-                                            </ul>
+                                                <li><a href="{{ url_for('main.road_con_survey') }}">Road Con. Survey</a></li>
+                                            </ul> -->
                                         </li>
                                         <li><a href="#" class="test">Forms&nbsp;
                                                 <span class="fa fa-plus"></span>
@@ -420,6 +425,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </footer>
 
         <!--================End Footer Area =================-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+         <!-- slick cdn js -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" ></script>
+         <script type="text/javascript">
+             $('.leadership.carousel_show').slick();
+
+         </script>
+        
         <script src="{{ url_for('static', filename='js/radio.js') }}"></script>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="{{ url_for('static', filename='js/jquery-2.2.4.js') }}"></script>
