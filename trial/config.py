@@ -20,6 +20,6 @@ class Config:
     AZURE_STORAGE_DOMAIN = os.environ.get('AZURE_STORAGE_DOMAIN')
 
     
-    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL') 
     POSTS_PER_PAGE = 3
 

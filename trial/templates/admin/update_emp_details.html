@@ -1351,6 +1351,7 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js"></script>
+
     <script>
         $(document).ready(function () {
             'use strict';
@@ -1422,6 +1423,7 @@
                 $.each(all_data, function(key, value){
                     form_data.append(key, value);
                 })
+                
                 form_data.append('profile_pic', $('#profile_pic').prop('files')[0]);
                     
                 $.ajax({  
