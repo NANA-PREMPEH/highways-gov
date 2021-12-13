@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app, jsonify
 from flask_login import current_user, logout_user, login_required
@@ -106,9 +106,27 @@ def register_staff():
     
     return render_template('admin/register_staff.html', title='Register') 
 
+#View All employee list in Dashboard
+@admin.route('/admin/dashboard/view_employee_list')
+@login_required
+def admin_view_employee_list():
+    empl = EmployeeDetails.query.all()
+    today = date.today()
+    return render_template('admin/view_employee_list.html', title='Employee List', 
+                            empl=empl, datetime=datetime, today=today)
 
+@admin.route('/admin/employee/<int:id>/delete_details', methods=['POST'])
+@login_required
+def delete_employee(id):
+    empl = EmployeeDetails.query.get_or_404(id)
+    db.session.delete(empl)
+    db.session.commit()
+    flash('Employee has been deleted successfully!', 'success')
+    return redirect(url_for('admin.admin_view_employee_list'))
 
+#Update Gallery
 @admin.route('/update_gallery', methods=['GET', 'POST'])
+@login_required
 def update_gallery():
     form = GalleryForm()
     if form.validate_on_submit():
@@ -121,6 +139,7 @@ def update_gallery():
 
 #Update Blog Post
 @admin.route('/blog_post/<int:post_id>/update', methods=['GET', 'POST'])
+@login_required
 def update_blog_post(post_id):
     form = BlogPostForm()
     blog_post = Post.query.get_or_404(post_id)
