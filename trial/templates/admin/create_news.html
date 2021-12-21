@@ -40,7 +40,7 @@
 
                         <!--If form had errors-->
                         {% if form.blog_content.errors %}
-                            {{ form.blog_content(class="form-control", cols="35", rows="9",  style="border-color: #a94442;") }}
+                            {{ form.blog_content(class="form-control", cols="35", rows="9",  style="border-color: #a94442;"|safe) }}
                             <div class="form-group has-error">
                                 {% for error in form.blog_content.errors %}
                                     <span class="help-block">{{ error }}</span> 
@@ -48,8 +48,12 @@
                             </div>
                         <!--if there are no errors-->
                         {% else %}
-                            {{ form.blog_content(class="form-control", cols="35", rows="9")}}
+                            {{ form.blog_content(class="form-control", cols="35", rows="9"|safe) }}
                         {% endif %}    
+
+                    {{ ckeditor.load() }}
+                    {{ ckeditor.config(name='blog_content') }}
+
                     </div>
                     <div class="form-group">
                         {{ form.picture.label() }}

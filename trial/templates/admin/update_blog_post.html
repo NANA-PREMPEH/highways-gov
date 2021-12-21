@@ -49,7 +49,10 @@
                         <!--if there are no errors-->
                         {% else %}
                             {{ form.blog_content(class="form-control", cols="35", rows="9")}}
-                        {% endif %}    
+                        {% endif %} 
+                    <!-- load ckeditor textarea -->
+                    {{ ckeditor.load()}}
+                    {{ ckeditor.config(name="blog_content") }}
                     </div>
                     <div class="form-group">
                         {{ form.picture.label() }}

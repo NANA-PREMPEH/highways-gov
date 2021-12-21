@@ -36,7 +36,7 @@
                                 </span>
                             </h6>
                             <a href="#"><h3>{{ single_post.title }}</h3></a>
-                            <p style="line-height: 40px;">{{ single_post.body }}</p>
+                            <p style="line-height: 40px;">{{ single_post.body | safe }}</p>
                         </div>
                     </div>
                     <div class="comment_list">
