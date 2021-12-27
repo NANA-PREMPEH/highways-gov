@@ -19,7 +19,7 @@
                         <div class="blog_d_text">
                             <h6>Posted by <a href="#">{{ post.author.username }}</h6>
                             <a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}"><h3>{{ post.title }}</h3></a>
-                            <p>{{ post.body | truncate(300, True) }}<a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}">Read more</a></p>
+                            <p>{{ post.body | truncate(300, True) | safe }}<a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}">Read more</a></p>
                         </div>
                         {% endfor %}
                     </div>

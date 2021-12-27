@@ -2,10 +2,11 @@
 {% block content %}
 
 <style>
-    .lab{
-        width: 250px; height: 40px; 
+    .lab {
+        width: 250px;
+        height: 40px;
         display: block;
-        background-color:#b8c3ff;
+        background-color: #b8c3ff;
         color: #333;
         text-align: center;
         padding-top: 16px;
@@ -24,7 +25,7 @@
     }
 
 
-    .title_head{
+    .title_head {
         padding-bottom: 10px;
         color: #000;
         font-weight: bold;
@@ -32,7 +33,7 @@
 
     .policy-main {
         margin-bottom: 10px;
-        padding: 10px; 
+        padding: 10px;
         font-family: 'Montserrat', sans-serif;
         border: 1px dashed #ccc;
     }
@@ -103,6 +104,102 @@
         margin-top: -10px;
     }
 
+    /* Start styling for the tab features for pdf */
+
+    /* body{
+    background:#ccc;
+    font-family: 'Roboto', sans-serif;
+    } */
+
+    .mytabs {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 6000px;
+        /* margin: 50px auto; */
+        padding: 0px;
+    }
+
+    .mytabs input[type="radio"] {
+        display: none;
+    }
+
+    .mytabs label {
+        padding: 25px;
+        background: #01368c;
+        font-weight: bold;
+        color: white
+    }
+
+    /* Content of tab */
+    .mytabs .tab {
+        width: 100%;
+        padding: 20px;
+        background: #b8c3ff;
+        order: 1;
+        display: none;
+    }
+
+    .mytabs .tab h2 {
+        font-size: 3em;
+    }
+
+    /* for content */
+    .mytabs input[type='radio']:checked+label+.tab {
+        display: block;
+    }
+
+    /* for active tab */
+    .mytabs input[type="radio"]:checked+label {
+        background: #b8c3ff;
+
+    }
+
+    /* End of styling for the tab features for pdf */
+
+    /* Start_from codepen */
+#exTab1 .tab-content {
+  color : white;
+  background-color: #b8c3ff;
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  color : white;
+  background-color: #b8c3ff;
+  padding : 5px 15px;
+}
+
+/* remove border radius for the tab */
+
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+/* start of Editing bootstrap4 css to have choice colors */
+.nav-tabs.nav-justified>.active>a:hover,.nav-tabs.nav-justified>.active>a:focus{
+            border-bottom-color:#fff}
+            .nav-pills>li{float:left}
+            .nav-pills>li>a{border-radius:4px}
+            .nav-pills>li+li{margin-left:2px}
+            .nav-pills>li.active>a,.nav-pills>li.active>a:hover,
+            .nav-pills>li.active>a:focus{color:#fff;background-color:#b8c3ff}
+/* end of Editing bootstrap4 css to have choice colors */
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+  
+}
+
+#exTab3 .tab-content {
+  /* color : white; */
+  background-color: #b8c3ff;
+  padding : 0px;
+}
+
+    /* End from codepen */
 </style>
 
 <div class="container">
@@ -115,67 +212,134 @@
                 <a class="lab" href="{{ url_for('main.status_report') }}">Status Report</a>
                 <a class="lab" href="{{ url_for('main.road_con_survey') }}">Road Con. And Survey</a>
             </div>
-    
+
             <div style="font-size: 18px; font-family: 'Montserrat', sans-serif; width: 100%;">
                 <h5 id="no_news">Quarterly report</h5>
                 <div>
-                    <div style="margin-top: -10px;">2015</div>
+                    <div style="margin-top: -10px;"><b>2018</b></div>
                     <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
                 </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-                            <div class="policy-pdf-file">
-                                <p style="padding-right: 20px;">1</p>
-                                <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                                <span>PDF name</span>
-                                <a href="#">
-                                    <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                                </a>
+
+                <div class="policy-main">
+                    <!-- start of tab features -->
+
+                    
+                    <div id="exTab3">
+                        <ul class="nav nav-pills">
+                            <li class="active" id="active">
+                                <a href="#1b" data-toggle="tab">1st Quarter</a>
+                            </li>
+                            <li><a href="#2b" data-toggle="tab">2nd Quarter</a>
+                            </li>
+                            <li><a href="#3b" data-toggle="tab">3rd Quarter</a>
+                            </li>
+                            <li><a href="#4b" data-toggle="tab">4th Quarter</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="1b">
+                                <!-- Start PDF Section -->
+                            <div class="policy-pdf">
+                                <div class="policy-pdf-file">
+                                    <p style="padding-right: 20px;">1</p>
+                                    <i class="fa fa-file-pdf-o"
+                                        style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                                    <span>G.H.A 1st Quarterly Report</span>
+                                    <a href="#">
+                                        <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="policy-pdf">
-                            <div class="policy-pdf-file">
-                                <p style="padding-right: 20px;">2</p>
-                                <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                                <span>PDF name</span>
-                                <a href="#">
-                                    <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                                </a>
+                            <!-- End PDF Section -->
+                            </div>
+                            <div class="tab-pane" id="2b">
+                                <!-- Start PDF Section -->
+                            <div class="policy-pdf">
+                                <div class="policy-pdf-file">
+                                    <p style="padding-right: 20px;">2</p>
+                                    <i class="fa fa-file-pdf-o"
+                                        style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                                    <span>G.H.A 2nd Quarterly Report</span>
+                                    <a href="#">
+                                        <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End PDF Section -->
+                            </div>
+                            <div class="tab-pane" id="3b">
+                                <!-- Start PDF Section -->
+                            <div class="policy-pdf">
+                                <div class="policy-pdf-file">
+                                    <p style="padding-right: 20px;">3</p>
+                                    <i class="fa fa-file-pdf-o"
+                                        style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                                    <span>G.H.A 3rd Quarterly Report</span>
+                                    <a href="#">
+                                        <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End PDF Section -->
+                            </div>
+                            <div class="tab-pane" id="4b">
+                                <!-- Start PDF Section -->
+                            <div class="policy-pdf">
+                                <div class="policy-pdf-file">
+                                    <p style="padding-right: 20px;">4</p>
+                                    <i class="fa fa-file-pdf-o"
+                                        style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                                    <span>G.H.A 4th Quarterly Report</span>
+                                    <a href="#">
+                                        <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End PDF Section -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- the next year -->
-                    <div>
-                        <div style="margin-top: -10px;">2015</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                        <div class="policy-main">
-                            <div class="policy-pdf">
-                                <div class="policy-pdf-file">
-                                    <p style="padding-right: 20px;">1</p>
-                                    <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                                    <span>PDF name</span>
-                                    <a href="#">
-                                        <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="policy-pdf">
-                                <div class="policy-pdf-file">
-                                    <p style="padding-right: 20px;">2</p>
-                                    <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                                    <span>PDF name</span>
-                                    <a href="#">
-                                        <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                                    </a>
-                                </div>
-                            </div>
+                    <!-- End of tab features -->
+
+                    <!-- start of tab features -->
+                    
+                    <!-- End of tab features -->
+
+                </div>
+
+                <!-- the next year -->
+                <div>
+                    <div style="margin-top: -10px;"><b>2017</b></div>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                </div>
+                <div class="policy-main">
+                    <div class="policy-pdf">
+                        <div class="policy-pdf-file">
+                            <p style="padding-right: 20px;">1</p>
+                            <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                            <span>PDF name</span>
+                            <a href="#">
+                                <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                            </a>
                         </div>
+                    </div>
+                    <div class="policy-pdf">
+                        <div class="policy-pdf-file">
+                            <p style="padding-right: 20px;">2</p>
+                            <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                            <span>PDF name</span>
+                            <a href="#">
+                                <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        
+
+
         <!-- {% include 'includes/sidebar.html' %} -->
     </div>
 </div>
