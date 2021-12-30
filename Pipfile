@@ -89,6 +89,7 @@ boto3 = "*"
 flask-azure-storage = "==0.2.1"
 azure-storage-blob = "*"
 azure-storage = "*"
+flask-ckeditor = "*"
 
 [dev-packages]
 
