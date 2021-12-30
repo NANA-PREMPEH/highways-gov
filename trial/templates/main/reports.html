@@ -2,11 +2,10 @@
 {% block content %}
 
 <style>
-    .lab {
-        width: 250px;
-        height: 40px;
+    .lab{
+        width: 250px; height: 40px; 
         display: block;
-        background-color: #b8c3ff;
+        background-color:#b8c3ff;
         color: #333;
         text-align: center;
         padding-top: 16px;
@@ -25,7 +24,7 @@
     }
 
 
-    .title_head {
+    .title_head{
         padding-bottom: 10px;
         color: #000;
         font-weight: bold;
@@ -33,7 +32,7 @@
 
     .policy-main {
         margin-bottom: 10px;
-        padding: 10px;
+        padding: 10px; 
         font-family: 'Montserrat', sans-serif;
         border: 1px dashed #ccc;
     }
@@ -54,7 +53,6 @@
         box-sizing: border-box;
         border: 1px solid #e5e5e5;
         vertical-align: bottom;
-        /* padding: 10px 0px 10px 16px; */
     }
 
     .policy-pdf-file a {
@@ -104,6 +102,7 @@
         overflow: visible;
         margin-top: -10px;
     }
+
 </style>
 
 <div class="container">
@@ -116,157 +115,67 @@
                 <a class="lab" href="{{ url_for('main.status_report') }}">Status Report</a>
                 <a class="lab" href="{{ url_for('main.road_con_survey') }}">Road Con. And Survey</a>
             </div>
-
+    
             <div style="font-size: 18px; font-family: 'Montserrat', sans-serif; width: 100%;">
                 <h5 id="no_news">Annual report</h5>
                 <div>
-                    <div style="margin-top: -10px;"><b>2018</b></div>
+                    <div style="margin-top: -10px;">2015</div>
                     <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
                 </div>
-                <!-- <div class="policy-main"> -->
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: #ff0000; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2018</span>
-                        <a href="../static/report/annual/Ann2018.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
-                    </div>
-                </div>
+                    <!-- <div class="policy-main"> -->
+                        <div class="policy-pdf">
+                            <div class="policy-pdf-file">
+                                <p style="padding-right: 20px;">1</p>
+                                <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                                <span>PDF name</span>
+                                <a href="#">
+                                    <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="policy-pdf">
+                            <div class="policy-pdf-file">
+                                <p style="padding-right: 20px;">2</p>
+                                <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                                <span>PDF name</span>
+                                <a href="#">
+                                    <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                                </a>
+                            </div>
+                        </div>
+                    <!-- </div> -->
 
-
-                <!-- the next year -->
-                <div>
-                    <div style="margin-top: -10px;"><b>2017</b></div>
-                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                </div>
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2017</span>
-                        <a href="../static/report/annual/Ann2017.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
+                    <!-- the next year -->
+                    <div>
+                        <div style="margin-top: -10px;">2015</div>
+                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
                     </div>
-                </div>
-
-                <!-- next year -->
-                <div>
-                    <div style="margin-top: -10px;"><b>2016</b></div>
-                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                </div>
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2016</span>
-                        <a href="../static/report/annual/Ann2016.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- next year -->
-                <div>
-                    <div style="margin-top: -10px;"><b>2015</b></div>
-                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                </div>
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2015</span>
-                        <a href="../static/report/annual/Ann2015.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- next year -->
-                <div>
-                    <div style="margin-top: -10px;"><b>2014</b></div>
-                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                </div>
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2014</span>
-                        <a href="../static/report/annual/Ann2014.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- next year -->
-                <div>
-                    <div style="margin-top: -10px;"><b>2013</b></div>
-                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                </div>
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2013</span>
-                        <a href="../static/report/annual/Ann2013.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- next year -->
-                <div>
-                    <div style="margin-top: -10px;"><b>2012</b></div>
-                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                </div>
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2012</span>
-                        <a href="../static/report/annual/Ann2012.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- next year -->
-                <div>
-                    <div style="margin-top: -10px;"><b>2011</b></div>
-                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                </div>
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2011</span>
-                        <a href="../static/report/annual/Ann2011.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- next year -->
-                <div>
-                    <div style="margin-top: -10px;"><b>2010</b></div>
-                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                </div>
-                <div class="policy-pdf">
-                    <div class="policy-pdf-file">
-                        <p style="padding-right: 20px;">1</p>
-                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
-                        <span>Annual Report 2010</span>
-                        <a href="../static/report/annual/Ann2010.pdf">
-                            <img src="static/img/download.png" alt="Image not found" width="40" height="40">
-                        </a>
-                    </div>
-                </div>
+                        <!-- <div class="policy-main"> -->
+                            <div class="policy-pdf">
+                                <div class="policy-pdf-file">
+                                    <p style="padding-right: 20px;">1</p>
+                                    <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                                    <span>PDF name</span>
+                                    <a href="#">
+                                        <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="policy-pdf">
+                                <div class="policy-pdf-file">
+                                    <p style="padding-right: 20px;">2</p>
+                                    <i class="fa fa-file-pdf-o" style="color: red; font-size: 30px; padding-top: 8px;"></i>
+                                    <span>PDF name</span>
+                                    <a href="#">
+                                        <img src="static/img/download.png" alt="Image not found" width="40" height="40">
+                                    </a>
+                                </div>
+                            </div>
+                        <!-- </div> -->
             </div>
         </div>
-
-
+        
+        
         <!-- {% include 'includes/sidebar.html' %} -->
     </div>
 </div>

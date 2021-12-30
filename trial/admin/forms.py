@@ -4,7 +4,6 @@ from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
 from trial.models import User
 from flask_login import current_user 
-from flask_ckeditor import CKEditorField
 
 
 
@@ -80,7 +79,7 @@ class UpdateStaffForm(FlaskForm):
 #Create Blog Post Form
 class BlogPostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    blog_content = CKEditorField('Content', validators=[DataRequired()]) 
+    blog_content = TextAreaField('Content', validators=[DataRequired()]) 
     picture = FileField('Upload Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Post')
 

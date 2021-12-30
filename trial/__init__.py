@@ -9,8 +9,6 @@ from trial.config import Config
 
 
 from trial.flask_azure_storage import FlaskAzureStorage
-#text editor feature
-from flask_ckeditor import CKEditor
 
 
 
@@ -30,11 +28,6 @@ login_manager.login_message_category = 'info'
 
 azure_storage = FlaskAzureStorage()
 
-#for Ckeditor text editor
-ckeditor = CKEditor()
-
-
-
 
 
 
@@ -53,9 +46,6 @@ def create_app(config_class=Config):
     
     
     azure_storage.init_app(app)
-
-    #for ckeditor text editor
-    ckeditor.init_app(app)
 
 
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
