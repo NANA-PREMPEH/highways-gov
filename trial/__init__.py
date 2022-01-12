@@ -7,8 +7,8 @@ from elasticsearch import Elasticsearch
 from flask_mail import Mail
 from trial.config import Config
 
+from flask_s3 import FlaskS3
 
-from trial.flask_azure_storage import FlaskAzureStorage
 
 
 
@@ -25,9 +25,7 @@ migrate = Migrate()
 login_manager = LoginManager() 
 login_manager.login_view = 'users.login' 
 login_manager.login_message_category = 'info' 
-
-azure_storage = FlaskAzureStorage()
-
+s3 = FlaskS3()
 
 
 
@@ -42,10 +40,8 @@ def create_app(config_class=Config):
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
-    migrate.init_app(app, db)
-    
-    
-    azure_storage.init_app(app)
+    migrate.init_app(app, db) 
+    s3.init_app(app)
 
 
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \

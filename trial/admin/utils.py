@@ -1,11 +1,7 @@
 import os
 from flask import current_app
 import secrets
-
-
-from trial import azure_storage
-from azure.storage.blob import ContentSettings
-
+import boto3
 
 #Takes picture data as an argument
 def save_photo(photo):
@@ -19,8 +15,9 @@ def save_photo(photo):
 
     photo.save(photo_path)
     
-    azure_storage.block_blob_service.create_blob_from_path(container_name='static/assets/static/blog_images', blob_name=photo_name, file_path=photo_path, content_settings=ContentSettings(content_type='image'))
-
+    s3 = boto3.resource('s3', region_name='us-east-1')
+    s3.Bucket('static-gha').upload_file(photo_path, 'static/blog_images/'+photo_name, ExtraArgs={'ACL':'public-read'})
+    
     return photo_name 
 
 #define a save picture function
@@ -36,11 +33,9 @@ def save_picture(form_picture):
 
     form_picture.save(picture_path)
 
-
+    s3 = boto3.resource('s3', region_name='us-east-1')
+    s3.Bucket('static-gha').upload_file(picture_path, 'static/profile_pics/'+picture_fn, ExtraArgs={'ACL':'public-read'})
     
-    #Store in azure blob
-    azure_storage.block_blob_service.create_blob_from_path(container_name='static/assets/static/profile_pics', blob_name=picture_fn, file_path=picture_path, content_settings=ContentSettings(content_type='image'))
-
     return picture_fn
 
 def save_proj_image(form_picture):
@@ -54,11 +49,9 @@ def save_proj_image(form_picture):
 
     form_picture.save(picture_path)
 
-
+    s3 = boto3.resource('s3', region_name='us-east-1')
+    s3.Bucket('static-gha').upload_file(picture_path, 'static/completed_proj/'+picture_fn, ExtraArgs={'ACL':'public-read'})
     
-    #Store in azure blob
-    azure_storage.block_blob_service.create_blob_from_path(container_name='static/assets/static/completed_proj', blob_name=picture_fn, file_path=picture_path, content_settings=ContentSettings(content_type='image'))
-
     return picture_fn
 
 def save_gallery_image(form_picture):
@@ -72,9 +65,8 @@ def save_gallery_image(form_picture):
 
     form_picture.save(picture_path)
 
+    s3 = boto3.resource('s3', region_name='us-east-1')
+    s3.Bucket('static-gha').upload_file(picture_path, 'static/gallery/'+picture_fn, ExtraArgs={'ACL':'public-read'})
 
-    #Store in azure blob
-    azure_storage.block_blob_service.create_blob_from_path(container_name='static/assets/static/gallery', blob_name=picture_fn, file_path=picture_path, content_settings=ContentSettings(content_type='image'))
-    
     return picture_fn
 
