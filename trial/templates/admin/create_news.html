@@ -37,6 +37,9 @@
                     </div>
                     <div class="form-group">
                         {{ form.blog_content.label }}
+                        <!-- to load the text editor -->
+                        {{ ckeditor.load()}} 
+                        {{ ckeditor.config(name='blog_content') }}
 
                         <!--If form had errors-->
                         {% if form.blog_content.errors %}

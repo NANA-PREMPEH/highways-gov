@@ -8,7 +8,8 @@ from flask_mail import Mail
 from trial.config import Config
 
 from flask_s3 import FlaskS3
-
+#for text editor
+from flask_ckeditor import CKEditor
 
 
 
@@ -27,6 +28,8 @@ login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info' 
 s3 = FlaskS3()
 
+#for text editor
+ckeditor = CKEditor()
 
 
 def create_app(config_class=Config):
@@ -42,6 +45,7 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     migrate.init_app(app, db) 
     s3.init_app(app)
+    ckeditor.init_app(app) #for text editor
 
 
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
