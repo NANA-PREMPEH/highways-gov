@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Add Image</title>
+        <title>Update Gallery</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
@@ -12,13 +12,22 @@
 
     <body>
         <div class="jumbotron text-center">
-            <h2>ADD IMAGE</h2>
+            <h2>UPDATE GALLERY</h2>
         </div>
         <div class="container">
             {% include "admin/header.html" %}
             {% include "admin/messages.html" %}
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6" style="margin-left: 25%;">
+                    <div class="form-group">
+                        <label for="">Image ID</label>
+                        <input type="text" name="" id="" 
+                            class="form-control" value="{{ pic.image_file }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <img src="{{ url_for('static', filename='gallery/'+pic.image_file) }}" alt="image.jpg"
+                            width="540px" height="420px">
+                    </div>
                     <div class="form-group">
                         {{ form.picture.label() }}
                         {{ form.picture}}
@@ -29,7 +38,7 @@
                         {% endif %}
                     </div>
                     <div class="form-group">
-                        {{ form.submit(class="btn btn-primary") }} </br>
+                        {{ form.submit(class="btn btn-primary") }} <br>
                     </div>     
                 </div> 
                 {{ form.csrf_token }} 
