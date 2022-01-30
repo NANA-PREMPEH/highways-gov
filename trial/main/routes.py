@@ -31,10 +31,8 @@ def no_info():
 
 #Create a route for Landing Page
 @main.route('/main/landing_page')
-def landing_page():
-    
+def landing_page():    
     return render_template('landing/landing_page.html')
-
 
 
 #Create a route for Yearly Report 

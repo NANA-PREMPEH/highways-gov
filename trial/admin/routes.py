@@ -125,9 +125,9 @@ def delete_employee(id):
     return redirect(url_for('admin.admin_view_employee_list'))
 
 #Update Gallery
-@admin.route('/update_gallery', methods=['GET', 'POST'])
+@admin.route('/add_image', methods=['GET', 'POST'])
 @login_required
-def update_gallery():
+def add_image():
     form = GalleryForm()
     if form.validate_on_submit():
         picture = save_gallery_image(form.picture.data)
@@ -170,10 +170,43 @@ def delete_blog_post(id):
     flash('Post has been deleted successfully!', 'success')
     return redirect(request.referrer)
 
+#Return list of Blog Posts
 @admin.route('/blog/blog_posts')
 def blog_posts():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('admin/blog_posts.html', posts=posts)
+
+#Return list of Gallery Images
+@admin.route('/gallery')
+def gallery():
+    pics = Gallery.query.all()
+    return render_template('admin/gallery.html', title='Gallery', pics=pics)
+
+#Update Image
+#Update Blog Post
+@admin.route('/image/<int:image_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_image(image_id):
+    form = GalleryForm()
+    pic = Gallery.query.get_or_404(image_id)
+    if form.validate_on_submit():
+        if form.picture.data:
+            picture = save_gallery_image(form.picture.data)
+            pic.image_file = picture
+        db.session.commit()
+        flash('Image has been updated!', 'success')
+        return redirect(request.url)
+    return render_template('admin/update_image.html', form=form, pic=pic)
+
+#Delete Images
+@admin.route('/image/<int:id>/delete', methods=['POST'])
+def delete_image(id):
+    image = Gallery.query.get_or_404(id)
+
+    db.session.delete(image)
+    db.session.commit()
+    flash('Image has been deleted successfully!', 'success')
+    return redirect(request.referrer)
 
 @admin.route('/register', methods=['GET', 'POST'])
 def register():
