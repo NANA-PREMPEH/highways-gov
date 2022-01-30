@@ -66,10 +66,10 @@ def inst_prof():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/institution_profile.html', title='Institution Profile', posts=posts)
 
-@main.route('/directors_office')
-def directors_office():
+@main.route('/ceo_office')
+def ceo_office():
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('main/directors_office.html', title='Institution Profile', posts=posts)
+    return render_template('main/ceo_office.html', title='Institution Profile', posts=posts)
 
 @main.route('/road_net')
 def road_net():
