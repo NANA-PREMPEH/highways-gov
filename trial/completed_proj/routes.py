@@ -293,7 +293,7 @@ def surface_dressing():
 @completed_proj.route('/completed/periodic/drainage_structures', methods=['GET', 'POST']) 
 def drainage_struct():
     
-    drainage_list = CompletedProj.query.filter_by(category="Drainage Structures")
+    drainage_list = CompletedProj.query.filter_by(category="Drainage Structures") 
     posts = Post.query.order_by(Post.id.desc()).all()
 
     if request.method == "POST":

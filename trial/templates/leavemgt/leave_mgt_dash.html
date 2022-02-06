@@ -223,8 +223,8 @@ $(document).ready(function () {
                                                   <div class="confirmation modal-body pb-0">
                                                     <p>Please confirm your selection</p>
                                                     <input name="user_id" class="d-none" type="text">
-                                                    <input type="text" id="newval_mybtnapprove_{{ requests.id }}" style="">
-                                                    <input type="text" id="newval_mybtnapprove_{{ requests.id }}" style="" value="{{requests.id}}">
+                                                    <input type="text" id="newval_mybtnapprove_{{ requests.id }}">
+                                                    <input type="text" id="newval_mybtnapprove_{{ requests.id }}" value="{{requests.id}}">
                                                     
                                                       {{ form.approve(value="Approved")}}   
                                                   </div>

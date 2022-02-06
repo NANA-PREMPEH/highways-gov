@@ -118,23 +118,17 @@
                                         <label for="terminated_proj">Project Category</label> 
                                         <select class="form-control" name="terminated_proj" id="terminated_proj"> 
                                             <option value="">Please Select an Option</option>
-                                            <option value="Rehabilitation">Rehabilitation</option>
                                             <option value="Regravelling">Regravelling</option>
                                             <option value="Construction">Construction</option>
                                             <option value="Resealing">Resealing</option>
-                                            <option value="Grading">Grading</option>
-                                            <option value="Partial Reconstruction">Partial Reconstruction</option>
+                                            <option value="Partial Construction">Partial Construction/Rehabilitation (paved and unpaved)</option>
                                             <option value="Supply & Installation of Materials">Supply & Installation of Materials</option>
-                                            <option value="Decongestion">Decongestion</option>
-                                            <option value="Pre-Construction">Pre-Construction</option>
-                                            <option value="Resurfacing">Resurfacing</option>
-                                            <option value="Upgrading">Upgrading</option>
-                                            <option value="Asphaltic Overlay">Asphaltic Overlay</option> 
-                                            <option value="Repairs & Asphaltic">Repairs & Asphaltic</option>
-                                            <option value="Bituminous Surfacing">Bituminous Surfacing</option>
-                                            <option value="Surface Dressing">Surface Dressing</option>
                                             <option value="Reconstruction">Reconstruction</option>
-                                            <option value="Drainage Structures">Drainage Structures</option>
+                                            <option value="Upgrading">Upgrading</option>
+                                            <option value="Asphaltic Overlay">Asphaltic Overlay</option>                                           
+                                            <option value="Surface Dressing">
+                                                Surface Dressing/Resurfacing/Bituminous Surf./Repairs & Asphaltic
+                                            </option>
                                             <option value="Others">Others</option>
                                         </select>
                                     </div>
@@ -235,7 +229,7 @@
                                         {% endif %}
                                     </div>    
                                 </div>
-                            </div></br>
+                            </div><br>
                         </fieldset>
                         <div class="form-group" style="text-align: center; margin-top: 2px;">
                             {{ form.submit(class="btn btn-primary") }}

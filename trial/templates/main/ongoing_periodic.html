@@ -8,9 +8,6 @@
                 <table> 
                     <tbody>
                         <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.rehabilitation') }}">Rehabilitation</a></td>
-                        </tr>
-                        <tr>
                             <td><a class="view_btn1" href="{{ url_for('ongoing_proj.resealing') }}">Resealing</a></td>
                         </tr>
                         <tr>
@@ -19,12 +16,7 @@
                         <tr>
                             <td><a class="view_btn1" href="{{ url_for('ongoing_proj.part_reconst') }}">Partial Reconstruct.</a></td>
                         </tr>
-                        <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.grading') }}">Grading</a></td>
-                        </tr>
-                        <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.surface_dressing') }}">Surface Dressing</a></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -32,22 +24,13 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.regravelling') }}">Regravelling</a></td>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.surface_dressing') }}">Road Surface Struc.</a></td>
                         </tr>
                         <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.preconstruct') }}">Pre-Construction</a></td>
-                        </tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.regravelling') }}">Regravelling</a></td>
+                        </tr>                        
                         <tr>
                             <td><a class="view_btn1" href="{{ url_for('ongoing_proj.asphalticoverlay') }}">Alsphaltic Overlay</a></td>
-                        </tr>
-                        <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.decongestion') }}">Decongestion</a></td>
-                        </tr>
-                        <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.bituminous') }}">Bituminous Surf.</a></td>
-                        </tr>
-                        <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.other_proj') }}">Others</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -59,24 +42,15 @@
                             <td><a class="view_btn1" href="{{ url_for('ongoing_proj.construction') }}">Construction</a></td>
                         </tr>
                         <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.resurfacing') }}">Resurfacing</a></td>
-                        </tr>
-                        <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.repairs_asphaltic') }}">Repairs &#38; Alsphaltic</a></td>
-                        </tr>
-                        <tr>
                             <td><a class="view_btn1" href="{{ url_for('ongoing_proj.supply') }}">Supply &#38; Inst. of Mat.</a></td> 
-                        </tr>
-                        <tr>
-                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.drainage_struct') }}">Drainage Structures</a></td> 
                         </tr>
                         <tr>
                             <td><a class="view_btn1" href="{{ url_for('ongoing_proj.reconstruction') }}">Reconstruction</a></td> 
                         </tr>
                     </tbody>
                 </table>
-            </div></br></br></br>
-            <div style="margin-top: 8em;">
+            </div><br><br><br>
+            <div style="margin-top: 1em;">
                 <form action="" method="post">
                     <div class="col-md-6" >
                         <label for="start_date" style="font-size: 15px;">From :</label>
@@ -96,11 +70,11 @@
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
-                    </div></br>
+                    </div><br>
                         <div class="col-md-6" id="ongoing_proj_sum">
                             <label for="" style="font-size: 15px;">Contract Sum</label>
                             <input class="form-control" type="text" value="{{ results }}" readonly>
-                        </div></br></br></br>
+                        </div><br><br><br>
                     <div class="form-group col-md-6">
                         <input type="submit" class="btn btn-info" id="ongoing_proj_sub" name="submit" value="Submit">
                     </div>
