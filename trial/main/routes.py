@@ -232,22 +232,26 @@ def lab_test_services():
 # route for foundations
 @main.route('/foundations')
 def foundations():
-    return render_template('/main/foundations.html', title='Foundations')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/foundations.html', title='Foundations', posts=posts)
 
 # route for soil_aggregate_concrete
 @main.route('/soil_agg_con')
 def soil_agg_con():
-    return render_template('/main/soil_agg_con.html', title='Soil, Aggregate and concrete')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/soil_agg_con.html', title='Soil, Aggregate and concrete', posts=posts)
 
 # route for Bitumen
 @main.route('/bitumen')
 def bitumen():
-    return render_template('/main/bitumen.html', title='Bitumen & Bituminous Products')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/bitumen.html', title='Bitumen & Bituminous Products', posts=posts)
 
 # route for Pavements
 @main.route('/pavements')
 def pavements():
-    return render_template('/main/pavements.html', title='Pavements')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/pavements.html', title='Pavements', posts=posts)
 
 #  ----- Start of Axle Load page ------
 # route for introduction 
