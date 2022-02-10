@@ -3,12 +3,12 @@
 <div class="container"> 
     <div class="row blog_details_inner" style="margin-left: 1%; width: fit-content;">
         <h3 class="table_h3" id="table_h3">
-            PARTIAL RECONSTRUCTION PROJECTS 
-            <spans style="font-size: medium;">(ONGOING)</span>
+            PARTIAL RECONSTRUCTION/REHABILITATION PROJECTS 
+            <span style="font-size: medium;">(ONGOING)</span>
         </h3>
         
         <table id="mytable" class="display" style="width:100%">
-            <thead>
+            <thead> 
                 <tr>
                     <th>REGION</th>
                     <th>PROJECT</th>
@@ -16,9 +16,9 @@
                     <th>CONTRACTOR</th>
                     <th>DATE OF COMMENCE</th>
                     <th>DATE OF COMPLETION</th>
-                    <th>REVISED COMPLETION DATE</th>
+                    
                     <th>ORIGINAL CONTRACT SUM(GH¢)</th>
-                    <th>REVISED CONTRACT SUM(GH¢)</th>
+                    
                     <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
                     <th>VIEW DETAILS</th> 
                 </tr> 
@@ -32,7 +32,7 @@
                         <td>{{ part_reconst.contractor }}</td>
                         <td>{{ part_reconst.date_commenced }}</td>
                         <td>{{ part_reconst.date_completed }}</td>
-                        <td>{{ part_reconst.revised_date }}</td>
+                        
                         
                         {% if part_reconst.contract_sum == "N/A" %}
                             <td>{{ part_reconst.contract_sum }}</td>
@@ -40,11 +40,6 @@
                             <td>{{ "{:,.2f}".format(part_reconst.contract_sum|float) }}</td>
                         {% endif %}
 
-                        {% if part_reconst.revised_sum == "N/A" %} 
-                            <td>{{ part_reconst.revised_sum }}</td>
-                        {% else %}
-                            <td>{{ "{:,.2f}".format(part_reconst.revised_sum|float) }}</td>
-                        {% endif %}
 
                         {% if part_reconst.amt_to_date == "N/A" %}
                             <td>{{ part_reconst.amt_to_date }}</td>
@@ -58,7 +53,7 @@
                     </tr>
                 {% endfor %}
             </tbody>
-        </table></br>
+        </table><br>
         <div>
             <form action="" method="post">
                 <div class="col-md-6">
@@ -78,16 +73,16 @@
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span> 
                     </div>
-                </div></br></br></br>
+                </div><br><br><br>
                 
                 <div class="col-md-6" id="ongoing_part_reconst_sum">
                     <label for="">Contract Sum</label>
                     <input class="form-control" type="text" name=""  value="{{ sum }}"readonly>
-                </div></br></br></br>
+                </div><br><br><br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>
                     <input class="form-control" type="text" name="" id="" value="0.00">
-                </div></br></br></br>-->
+                </div><br><br><br>-->
                 <div class="form-group col-md-6">
                     <input type="submit" class="btn btn-info" id="ongoing_part_reconst_sub" name="submit" value="Submit">
                 </div> 

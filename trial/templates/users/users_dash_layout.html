@@ -48,12 +48,12 @@
                             </div>
                             <div class="sb-nav-link-icon" style="margin-left: 32px;">
                                 {{ current_user.username }}
-                            </div></br>
+                            </div><br>
                             <a class="nav-link" 
                                 href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
-                            </a></br>
+                            </a><br>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Leave Management
@@ -85,7 +85,7 @@
                             href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">
                                 <div class="sb-nav-link-icon"><i class="fa fa-icon-certificate"></i></div>
                                 User Dashboard
-                            </a></br> -->
+                            </a><br> -->
                             
                         </div>
                     </div>

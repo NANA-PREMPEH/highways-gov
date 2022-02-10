@@ -7,14 +7,14 @@ function isChecked()
 
     if(checkedYes == false && checkedNo == false)
     {
-        var msg = '<span style="color:#a94442;">Please an option</span></br>';
+        var msg = '<span style="color:#a94442;">Please an option</span><br>';
         document.getElementById('msg').innerHTML = msg;
         //alert('You need to select an option!');
         return false;
     }
     else if(checkedreport == false && checkedcomplain == false)
     {
-        var message = '<span style="color:#a94442;">Please select an option</span></br>';
+        var message = '<span style="color:#a94442;">Please select an option</span><br>';
         document.getElementById('message').innerHTML = message;
         //alert('You need to select an option!');
         return false;
