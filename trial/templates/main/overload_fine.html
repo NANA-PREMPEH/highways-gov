@@ -1,0 +1,175 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .axl{
+        width: 250px; height: 40px; 
+        display: block;
+        background-color:#b8c3ff;
+        color: #333;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 28px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+        /* margin-right: 20px; */
+    }
+
+    .axl:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
+
+    .title_head{
+        padding-bottom: 10px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    table{
+        font-family: "Montserrat", sans-serif;
+        width: 100%;
+        margin-right: 20px;
+    }
+
+    td{
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 1px;
+        line-height: 20px;
+    }
+
+    th {
+        border: 1px solid #dddddd;
+        border-collapse: collapse;
+        text-align: left;
+        padding: 8px;
+        line-height: 20px;
+    }
+
+
+
+    tr:nth-child(even){
+        background-color: #dddddd;
+    }
+    h2 {
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">axle Load</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div style="display: block";>
+                <a class="axl" href="{{ url_for('main.axle_load') }}">Introduction</a>
+                <a class="axl" href="{{ url_for('main.w_protocol') }}">Weighing Protocols</a>
+                <a class="axl" href="{{ url_for('main.w_station') }}">Weighbridge Stations</a>
+                <a class="axl" href="{{ url_for('main.d_limit') }}">Dimension Limits</a>
+                <a class="axl" href="{{ url_for('main.overload_fine') }}">Overload Fine</a>
+                <a class="axl" href="{{ url_for('main.effects') }}">Effects</a>
+            </div>
+    
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+                    
+                    <div style="line-height: 26px; padding-left: 20px;  margin-left: 2%;width:860px">
+                        <h2 id="no_news">OVERLOAD FINE</h2>
+                    
+                    <!-- Table for overload fine -->
+
+                    <table>
+                        <tr>
+                            <th>Axle Load (Tonnes)</th>
+                            <th>Excess of Total Weights of vehicle on the Road (Tonnes)</th>
+                            <th>Fine (GH ¢)</th>
+                        </tr>
+                        <tr>
+                            <td>11.5</td>
+                            <td>0.0</td>
+                            <td>Legal</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>0.5</td>
+                            <td>Tolerance Margin</td>
+                        </tr>
+                        <tr>
+                            <td>12.5</td>
+                            <td>1.0</td>
+                            <td>100.00</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>1.5</td>
+                            <td>200.00</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>2.5</td>
+                            <td>500.00</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>3.5</td>
+                            <td>1000.00</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>3.5</td>
+                            <td>1000.00</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>5.5</td>
+                            <td>2000.00</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>6.5</td>
+                            <td>3000.00</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>7.5</td>
+                            <td>4000.00</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>8.5</td>
+                            <td>5000.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Unauthorised out gauge load</td>
+                            <td >65.12</td>
+                    
+                        </tr>
+                        <tr>
+                            <td colspan="2">Unauthorised transformation of gauge</td>
+                            <td >293.04</td>
+    
+                        </tr>
+                        <tr>
+                            <td colspan="2">Refusal to pass through weighbridge station</td>
+                            <td >293.04</td>
+                    
+                        </tr>
+                        
+                    </table>
+                    <!-- </table> -->
+                    </div>
+            </div>
+        </div>
+        
+        
+        <!-- {% include 'includes/sidebar.html' %} -->
+    </div>
+</div>
+{% endblock content %}

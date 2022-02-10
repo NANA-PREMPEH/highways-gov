@@ -1,0 +1,217 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .axl {
+        width: 250px;
+        height: 40px;
+        display: inline-block;
+        background-color: #b8c3ff;
+        color: #333;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 28px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+    }
+
+    .axl:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
+    h2 {
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .img1 {
+        width: 270px;
+        height: 270px;
+        border-radius: 20%;
+        margin: 22px;
+        object-fit: center;
+        object-position: center;
+        border: 5px double#01368c;
+    }
+
+    #hr_divider {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    hr {
+        box-sizing: content-box;
+        height: 0;
+        border-top: 1px solid #eee;
+        border-color: #e5e5e5;
+        background-color: #e5e5e5;
+    }
+
+    .divider_bg {
+        position: relative;
+        overflow: visible;
+        margin-top: 10px;
+    }
+
+    .divider_bg::before {
+        content: "";
+        display: block;
+        border-bottom: 5px solid #b8c3ff;
+        position: absolute;
+        left: 0;
+        top: -1px;
+        width: 83px;
+        height: 1px;
+        opacity: 1;
+        z-index: 100;
+    }
+
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+    }
+
+    .row::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">AXLE LOAD</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div style="display: block;">
+                <a class="axl" href="{{ url_for('main.axle_load') }}">Introduction</a>
+                <a class="axl" href="{{ url_for('main.w_protocol') }}">Weighing Protocols</a>
+                <a class="axl" href="{{ url_for('main.w_station') }}">Weighbridge Stations</a>
+                <a class="axl" href="{{ url_for('main.d_limit') }}">Dimension Limits</a>
+                <a class="axl" href="{{ url_for('main.overload_fine') }}">Overload Fine</a>
+                <a class="axl" href="{{ url_for('main.effects') }}">Effects</a>
+            </div>
+
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+                <h5 id="no_news">effects</h5>
+                <!-- Effects starts HERE -->
+                <div class="text"
+                    style="line-height: 26px; padding-left: 2px; padding-bottom: 20px; margin-left: 2%; height:270px ; width:860px">
+
+                    <div class="application_text">
+                        <!-- overload images starts here -->
+                        <div>
+                            <div>
+                                <div style="margin-top: -10px;">Overloading</div>
+                                <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <div class="news_image">
+                                        <img class="img1"
+                                            src="{{ url_for('static', filename='img/axleload/fatigue_cracking.jpg') }}"
+                                            alt="fatigue_cracking image not available" />
+                                        <p style="padding-left: 28%;">Fatigue Cracking</p>
+
+                                    </div>
+
+                                </div>
+                                <div class="column">
+                                    <img class="img1" src="{{ url_for('static', filename='img/axleload/rutting.jpg') }}"
+                                        alt="fatigue_cracking image not available" />
+                                    <p style="padding-left: 45%;">Rutting</p>
+                                </div>
+                                <div class="column">
+                                    <img class="img1"
+                                        src="{{ url_for('static', filename='img/axleload/overloading.jpg') }}"
+                                        alt="fatigue_cracking image not available" />
+                                    <p style="padding-left: 25%;">Heavy loaded 7-axle</p>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <!-- Truck length starts here -->
+                        <div>
+                            <div>
+                                <div style="margin-top: -10px;">Truck Length</div>
+                                <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <div class="news_image">
+                                        <img class="img1"
+                                            src="{{ url_for('static', filename='img/axleload/difficult_uturn.jpg') }}"
+                                            alt="fatigue_cracking image not available" />
+                                        <p style="padding-left: 15%;">Difficulty in negotiating curves and U-turn</p>
+
+                                    </div>
+
+                                </div>
+                                <div class="column">
+                                    <img class="img1" src="{{ url_for('static', filename='img/axleload/abnormal_len.jpg') }}"
+                                        alt="fatigue_cracking image not available" />
+                                    <p style="padding-left: 25%;">Abnormal length of articulator</p>
+                                </div>
+                            
+
+
+                            </div>
+                        </div>
+                    
+                        <br>
+
+                        <!-- Truck Hight -->
+                        <div>
+                            <div>
+                                <div style="margin-top: -10px;">Truck Hight</div>
+                                <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <div class="news_image">
+                                        <img class="img1"
+                                            src="{{ url_for('static', filename='img/axleload/over_height.jpg') }}"
+                                            alt="fatigue_cracking image not available" />
+                                        <p style="padding-left: 28%;">Over-height of overloaded truck </p>
+
+                                    </div>
+
+                                </div>
+                                <div class="column">
+                                    <img class="img1" src="{{ url_for('static', filename='img/axleload/over_height_result.jpg') }}"
+                                        alt="fatigue_cracking image not available" />
+                                    <p style="padding-left: 25%;">Over-height result</p>
+                                </div>
+                                <div class="column">
+                                    <img class="img1"
+                                        src="{{ url_for('static', filename='img/axleload/over_height_result2.jpg') }}"
+                                        alt="fatigue_cracking image not available" />
+                                    <p style="padding-left: 25%;">End result of over-height truck</p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Effects ENDS HERE -->
+                </div>
+            </div>
+
+
+            <!-- {% include 'includes/sidebar.html' %} -->
+        </div>
+    </div>
+</div>
+<!-- {% endblock content %} -->
