@@ -249,6 +249,45 @@ def bitumen():
 def pavements():
     return render_template('/main/pavements.html', title='Pavements')
 
+#  ----- Start of Axle Load page ------
+# route for introduction 
+@main.route('/axle_load')
+def axle_load():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/axle_load.html', title='Axle Load', posts=posts)
+
+# route for Weighing protocol 
+@main.route('/w_protocol')
+def w_protocol():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/w_protocol.html', title='Weighing Protocol', posts=posts)
+
+# route for Weighbridge Station
+@main.route('/w_station')
+def w_station():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/w_station.html', title='Weighbridge Station', posts=posts)
+
+# route for Dimension Limit
+@main.route('/d_limit')
+def d_limit():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/d_limit.html', title='Dimension Limit', posts=posts)
+
+# route for OverLoad filename
+@main.route('/overload_fine')
+def overload_fine():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/overload_fine.html', title='Overload Fine', posts=posts)
+
+# route for effects
+@main.route('/effects')
+def effects():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/effects.html', title='Effects', posts=posts)
+
+# ---- end of Axle Load page ----    
+
 @main.before_app_request 
 def before_request():
     g.search_form = SearchForm()

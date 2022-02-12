@@ -1,0 +1,66 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .axl {
+        width: 250px;
+        height: 40px;
+        display: inline-block;
+        background-color: #b8c3ff;
+        color: #333;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 28px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+    }
+
+    .axl:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
+    h2 {
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+    
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">AXLE LOAD</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div style="display: block;">
+                <a class="axl" href="{{ url_for('main.axle_load') }}">Introduction</a>
+                <a class="axl" href="{{ url_for('main.w_protocol') }}">Weighing Protocols</a>
+                <a class="axl" href="{{ url_for('main.w_station') }}">Weighbridge Stations</a>
+                <a class="axl" href="{{ url_for('main.d_limit') }}">Dimension Limits</a>
+                <a class="axl" href="{{ url_for('main.overload_fine') }}">Overload Fine</a>
+                <a class="axl" href="{{ url_for('main.effects') }}">Effects</a>
+            </div>
+
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+
+                <!-- dimension limits STARTs HERE -->
+                <div 
+                    style="line-height: 26px; padding-left: 2px;  margin-left: 2%;width:860px">
+                    <h2 id="no_news">Permissible axle load, gross weight and dimension limits</h2>
+                    <img style="height: 50%;" src="{{ url_for('static', filename='img/axleload/axleload_d_limit.jpg')}}" alt="no image for Axleload Dimension Limit" />
+                </div>
+
+                
+            </div>
+
+
+            <!-- {% include 'includes/sidebar.html' %} -->
+        </div>
+    </div>
+</div>
+{% endblock content %}
