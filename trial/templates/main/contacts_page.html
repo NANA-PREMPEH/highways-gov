@@ -2,512 +2,468 @@
 {% block content %}
 
 <style>
-body {
-    border: 0px;
-    margin: 20px;
-    box-sizing: border-box;
-    /* background: lightgray !important; */
+    body {
+        border: 0px;
+        margin: 20px;
+        box-sizing: border-box;
+        /* background: lightgray !important; */
 
-    line-height: 24px;
-    font-size: 14px;
-    font-family: "Montserrat", sans-serif;
-  
-}
+        line-height: 24px;
+        font-size: 14px;
+        font-family: "Montserrat", sans-serif;
 
-.cus_row {
-    display: flex;
-    max-width: 100%;
-    padding: 10px;
-    background: white;
-    position: relative;
-
-}
-
-.section_one {
-    width: 25%;
-    margin: 5px;
-    padding: 10px;
-    
-}
-
-.section_two {
-    width: 75%;
-    margin: 5px;
-    padding: 10px;
-}
-
-.info_link {
-    margin-bottom: 50px;
-}
-
-.info_link li {
-    text-decoration: none;
-}
-
-.info_link li a i {
-    padding: 8px;
-}
-
-.info_link li > a {
-    display: block;
-    text-align: left;
-    text-decoration: none;
-    color: black;
-    height: 40px;
-    overflow: hidden;
-    background-color: #eeeeee;
-    margin: 1px;
-    padding: 7px 25px 7px 10px;
-}
-
-.info_link a:hover {
-    background: #b8c3ff !important;
-    color: white;
-    transition: color .35s ease, background-color .35s ease, border-color .35s ease;
-}
-
-.map_div{
-    object-fit: contain;
-    margin-bottom: 25px;
-}
-
-
-.contact_us {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content: space-between; */
-}
-
-.divider_bg::before {
-    content: "";
-    display: block;
-    border-bottom: 5px solid #b8c3ff;
-    position: absolute;
-    left: 0;
-    top: -1px;
-    width: 83px;
-    height: 1px;
-    opacity: 1.;
-    z-index: 100;
-}
-
-#hr_divider{
-    opacity: 1;
-    z-index: 1;
-}
-
-hr {
-    box-sizing: content-box;
-    height: 0;
-    border-top: 1px solid #eee;
-}
-
-.contact_us .main {
-    margin: 5px;
-    padding-bottom: 50px;
-    width: 30%;
-    flex: 1 1 250px;
-}
-
-.contact_us .main ul{
-    list-style-type: none;
-    /* margin-left: -5px; */
-}
-/* 
-.main ul li .content {
-    position: absolute;
-    bottom: 1;
-    width: 400px; 
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    visibility: visible;
-    margin-top: 0px;
-    opacity: 0;
-    transition: 0.5s;
-    transform: translateX(-50%) translateY(-50px);
-}
-
-#map_show:before {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 30px;
-}
-
-.main ul #map_show:hover .content {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(-50%) translateY(-0px);
-} */
-
-.contact_us .main ul a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.contact_us .main ul a:hover {
-    color: #b8c3ff;
-    transition: ease-in-out;
-}
-
-.contact_us .main ul li i{
-    padding-right: 10px;
-}
-
-.divider_bg {
-    position: relative;
-    overflow: visible;
-}
-
-.m_bottom_25 {
-    margin-bottom: 25px;
-}
-
-hr {
-    border-color: #e5e5e5;
-    background-color: #e5e5e5;
-}
-
-
-@media screen and (max-width: 1132px) {
-   
-    .cus_row {
-        display: block;
-        padding: 10px;
     }
-    .contact_us {
+
+    .cus_row {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        max-width: 100%;
+        padding: 10px;
+        background: white;
+        position: relative;
+
     }
 
     .section_one {
-        width: 100%;
+        width: 25%;
         margin: 5px;
         padding: 10px;
-        
+
     }
-    
+
     .section_two {
-        width: 100%;
+        width: 75%;
         margin: 5px;
         padding: 10px;
     }
-    
-}
+
+    .info_link {
+        margin-bottom: 50px;
+    }
+
+    .info_link li {
+        text-decoration: none;
+    }
+
+    .info_link li a i {
+        padding: 8px;
+    }
+
+    .info_link li>a {
+        display: block;
+        text-align: left;
+        text-decoration: none;
+        color: black;
+        height: 40px;
+        overflow: hidden;
+        background-color: #eeeeee;
+        margin: 1px;
+        padding: 7px 25px 7px 10px;
+    }
+
+    .info_link a:hover {
+        background: #b8c3ff !important;
+        color: white;
+        transition: color .35s ease, background-color .35s ease, border-color .35s ease;
+    }
+
+    .map_div {
+        object-fit: contain;
+        margin-bottom: 25px;
+    }
+
+
+    .contact_us {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        /* justify-content: space-between; */
+    }
+
+    .divider_bg::before {
+        content: "";
+        display: block;
+        border-bottom: 5px solid #b8c3ff;
+        position: absolute;
+        left: 0;
+        top: -1px;
+        width: 83px;
+        height: 1px;
+        opacity: 1.;
+        z-index: 100;
+    }
+
+    #hr_divider {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    hr {
+        box-sizing: content-box;
+        height: 0;
+        border-top: 1px solid #eee;
+    }
+
+    .contact_us .main {
+        margin: 5px;
+        padding-bottom: 50px;
+        width: 30%;
+        flex: 1 1 250px;
+    }
+
+    .contact_us .main ul {
+        list-style-type: none;
+        /* margin-left: -5px; */
+    }
+
+
+
+    .contact_us .main ul a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .contact_us .main ul a:hover {
+        color: #b8c3ff;
+        transition: ease-in-out;
+    }
+
+    .contact_us .main ul li i {
+        padding-right: 10px;
+    }
+
+    .divider_bg {
+        position: relative;
+        overflow: visible;
+    }
+
+    .m_bottom_25 {
+        margin-bottom: 25px;
+    }
+
+    hr {
+        border-color: #e5e5e5;
+        background-color: #e5e5e5;
+    }
+
+
+    @media screen and (max-width: 1132px) {
+
+        .cus_row {
+            display: block;
+            padding: 10px;
+        }
+
+        .contact_us {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .section_one {
+            width: 100%;
+            margin: 5px;
+            padding: 10px;
+
+        }
+
+        .section_two {
+            width: 100%;
+            margin: 5px;
+            padding: 10px;
+        }
+
+    }
 </style>
+
 <div class="container">
     <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
-        <!-- <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;"> -->
-            <h3 id="table_h3">Contacts</h3>
-            <div class="section_two">
-                <h3 id="ta"><b>GHA HEAD-OFFICE & REGIONAL CONTACTS</b></h3>
-                <hr id="hr_divider" class="divider_bg m_bottom_25">
-                <div class="map">
-                    <div class="map_div">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.106817763158!2d-0.20396578572090657!3d5.5511795959750945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4.1!3m3!1m2!1s0xfdf9099e186e8d1%3A0x7a3b075622bab0a5!2sGhana%20Highways%20Authority!5e0!3m2!f131sen!2sgh!4v1634071459585!5m2!1sen!2sgh"
-                            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-                <div class="contact_us">
-                    <div class="main">
-                    <h5 id="no_news">HEAD OFFICE</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Kinbu Rd, Accra</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>P.O.Box 123, 1614, Accra</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 302961620</span></li>
-                            <a href="mailto:ce@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>ce@highways.gov.gh</span></li>
-                            </a>
-                            <a
-                                href="https://www.google.com/maps/dir//Ghana+Highways+Authority+Kinbu+Rd+Accra/@5.5511707,-0.2017762,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0xfdf9099e186e8d1:0x7a3b075622bab0a5!2m2!1d-0.2017762!2d5.5511707">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>GA-107-2101</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">GREATER ACCRA</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>2nd Giffard Ln, Accra</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>P.O.BOX 1641</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 123456789</span></li>
-                            <a href="mailto:greater-accra@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>greater-accra@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//5.588554,-0.171645/@5.588554,-0.1738337,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>GL-091-7896</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">CENTRAL</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Cape Coast (Pedu / Abura)</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>Cape Coast</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:central@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>central@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//5.125614,-1.263772/@5.125614,-1.2659607,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>CC-033-6311</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">WESTERN</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Paa Grant Blvd, (near) Angola</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>Sekondi-Takoradi</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:western@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>western@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//4.902873,-1.758205/@4.902873,-1.7603937,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>WS-201-5567</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">WESTERN NORTH</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Ghana National Fire Service</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>Sefwi Wiawso - Western North</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 244384975</span></li>
-                            <a href="mailto:western-north@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>western-north@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//6.232759,-2.482292/@6.232759,-2.4844807,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>WG-0133-3431</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">ASHANTI</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Adum/Pampaso, Mango Lane</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>Kumasi</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:ashanti@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>ashanti@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//6.690299,-1.625614/@6.690299,-1.6278027,17z?hl=en-US">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>AK-037-0716</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">EASTERN</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>.......</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>.....</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:eastern@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>eastern@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//6.109999,-0.276659/@6.109999,-0.2777533,18z?hl=en-US">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>EN-093-4098</span></li>
-                            </a>
-    
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">VOLTA</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>.......</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>.....</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:volta@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>volta@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="">
-                                <li><i class="fa fa-map-marker color_dark"></i><span></span></li>
-                            </a>
-    
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">OTI</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>......</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>...........</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:oti@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>oti@highways.gov.gh</span></li>
-                            </a>
-                            <li><i class="fa fa-map-marker color_dark"></i><span>VH-004-5853</span></li>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">BONO EAST</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Sunyani Rd</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>Sunyani</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:bono-east@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>bono-east@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//7.333375,-2.330072/@7.333375,-2.3322607,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>BS-0006-2312</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">BONO</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span></span></li>
-                            <li><i class="fa fa-home color_dark"></i><span></span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:bono@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>bono@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="">
-                                <li><i class="fa fa-map-marker color_dark"></i><span></span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">AHAFO</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>.......</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>..........</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:ahafo@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>ahafo@highways.gov.gh</span></li>
-                            </a>
-                            <li><i class="fa fa-map-marker color_dark"></i><span>location</span></li>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">NORTHERN</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Katari Ave, Nyohini</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>Tamale District</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 264229643</span></li>
-                            <a href="mailto:northern@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>northern@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//9.403498,-0.861911/@9.403498,-0.8640997,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>NT-0084-1007</span></li>
-                            </a>
-    
-                        </ul>
-    
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">NORTH EAST</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>......</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>Nalerigu</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:north-east@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>north-east@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//9.403498,-0.861911/@9.403498,-0.8640997,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>NT-0084-1007</span> </li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">SAVANNAH</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Damongo</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>West Gonja</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:savannah@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>savannah@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//9.1141184,-1.8345616/@9.1141184,-1.8367503,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>N5-00187-5565</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">UPPER EAST</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>.....</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>.....</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
-                            <a href="mailto:upper-east@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>upper-east@highways.gov.gh</span></li>
-                            </a>
-                            <li><i class="fa fa-map-marker color_dark"></i><span>UB-0093-8747</span></li>
-                        </ul>
-                    </div>
-                    <div class="main">
-                        <h5 id="no_news">UPPER WEST</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Ferguson Rd, Wa</span>
-                            </li>
-                            <li><i class="fa fa-home color_dark"></i><span>WA</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 249386464</span></li>
-                            <a href="mailto:upper-west@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>upper-west@highways.gov.gh</span></li>
-                            </a>
-                            <a target="_blank"
-                                href="https://www.google.com/maps/dir//10.068434,-2.490332/@10.068434,-2.4925207,17z?hl=en">
-                                <li><i class="fa fa-map-marker color_dark"></i><span>XW-0009-5505</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                    
-                    <!-- <div class="main">
-                        <h5 id="no_news">TAMALE</h5>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25">
-                        <ul>
-                            <li><i class="fa fa-location-arrow color_dark"></i><span>Nkwanr-kpando Rd</span></li>
-                            <li><i class="fa fa-home color_dark"></i><span>Tamale</span></li>
-                            <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 264229643</span></li>
-                            <a href="mailto:tamale@highways.gov.gh">
-                                <li><i class="fa fa-envelope color_dark"></i><span>tamale@highways.gov.gh</span></li>
-                            </a>
-                            <li><i class="fa fa-map-marker color_dark"></i><span>location</span></li>
-                        </ul>
-                    </div>               -->
-                 
-                   
+
+        <h3 id="table_h3">Contacts</h3>
+        <div class="section_two">
+            <h3 id="ta"><b>GHA HEAD-OFFICE & REGIONAL CONTACTS</b></h3>
+            <hr id="hr_divider" class="divider_bg m_bottom_25">
+            <div class="map">
+                <div class="map_div">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.106817763158!2d-0.20396578572090657!3d5.5511795959750945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4.1!3m3!1m2!1s0xfdf9099e186e8d1%3A0x7a3b075622bab0a5!2sGhana%20Highways%20Authority!5e0!3m2!f131sen!2sgh!4v1634071459585!5m2!1sen!2sgh"
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-            <!-- <section>
-                <div id="no_news">
-                    No Information for now
+            <div class="contact_us">
+                <div class="main">
+                    <h5 id="no_news">HEAD OFFICE</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Kinbu Rd, Accra</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>P.O.Box 123, 1614, Accra</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 302961620</span></li>
+                        <a href="mailto:ce@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>ce@highways.gov.gh</span></li>
+                        </a>
+                        <a
+                            href="https://www.google.com/maps/dir//Ghana+Highways+Authority+Kinbu+Rd+Accra/@5.5511707,-0.2017762,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0xfdf9099e186e8d1:0x7a3b075622bab0a5!2m2!1d-0.2017762!2d5.5511707">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>GA-107-2101</span></li>
+                        </a>
+                    </ul>
                 </div>
-            </section> -->
+                <div class="main">
+                    <h5 id="no_news">GREATER ACCRA</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>2nd Giffard Ln, Accra</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>P.O.BOX 1641</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 123456789</span></li>
+                        <a href="mailto:greater-accra@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>greater-accra@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//5.588554,-0.171645/@5.588554,-0.1738337,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>GL-091-7896</span></li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">CENTRAL</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Cape Coast (Pedu / Abura)</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>Cape Coast</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:central@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>central@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//5.125614,-1.263772/@5.125614,-1.2659607,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>CC-033-6311</span></li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">WESTERN</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Paa Grant Blvd, (near) Angola</span>
+                        </li>
+                        <li><i class="fa fa-home color_dark"></i><span>Sekondi-Takoradi</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:western@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>western@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//4.902873,-1.758205/@4.902873,-1.7603937,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>WS-201-5567</span></li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">WESTERN NORTH</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Ghana National Fire Service</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>Sefwi Wiawso - Western North</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 244384975</span></li>
+                        <a href="mailto:western-north@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>western-north@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//6.232759,-2.482292/@6.232759,-2.4844807,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>WG-0133-3431</span></li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">ASHANTI</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Adum/Pampaso, Mango Lane</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>Kumasi</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:ashanti@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>ashanti@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//6.690299,-1.625614/@6.690299,-1.6278027,17z?hl=en-US">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>AK-037-0716</span></li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">EASTERN</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>.......</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>.....</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:eastern@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>eastern@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//6.109999,-0.276659/@6.109999,-0.2777533,18z?hl=en-US">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>EN-093-4098</span></li>
+                        </a>
 
-            
-        <!-- </div> -->
-        <!-- {% include 'includes/sidebar.html' %} -->
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">VOLTA</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>.......</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>.....</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:volta@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>volta@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank" href="">
+                            <li><i class="fa fa-map-marker color_dark"></i><span></span></li>
+                        </a>
+
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">OTI</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>......</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>...........</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:oti@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>oti@highways.gov.gh</span></li>
+                        </a>
+                        <li><i class="fa fa-map-marker color_dark"></i><span>VH-004-5853</span></li>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">BONO EAST</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Sunyani Rd</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>Sunyani</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:bono-east@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>bono-east@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//7.333375,-2.330072/@7.333375,-2.3322607,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>BS-0006-2312</span></li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">BONO</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span></span></li>
+                        <li><i class="fa fa-home color_dark"></i><span></span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:bono@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>bono@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank" href="">
+                            <li><i class="fa fa-map-marker color_dark"></i><span></span></li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">AHAFO</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>.......</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>..........</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:ahafo@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>ahafo@highways.gov.gh</span></li>
+                        </a>
+                        <li><i class="fa fa-map-marker color_dark"></i><span>location</span></li>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">NORTHERN</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Katari Ave, Nyohini</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>Tamale District</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 264229643</span></li>
+                        <a href="mailto:northern@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>northern@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//9.403498,-0.861911/@9.403498,-0.8640997,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>NT-0084-1007</span></li>
+                        </a>
+
+                    </ul>
+
+                </div>
+                <div class="main">
+                    <h5 id="no_news">NORTH EAST</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>......</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>Nalerigu</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:north-east@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>north-east@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//9.403498,-0.861911/@9.403498,-0.8640997,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>NT-0084-1007</span> </li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">SAVANNAH</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Damongo</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>West Gonja</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:savannah@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>savannah@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//9.1141184,-1.8345616/@9.1141184,-1.8367503,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>N5-00187-5565</span></li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">UPPER EAST</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>.....</span></li>
+                        <li><i class="fa fa-home color_dark"></i><span>.....</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) </span></li>
+                        <a href="mailto:upper-east@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>upper-east@highways.gov.gh</span></li>
+                        </a>
+                        <li><i class="fa fa-map-marker color_dark"></i><span>UB-0093-8747</span></li>
+                    </ul>
+                </div>
+                <div class="main">
+                    <h5 id="no_news">UPPER WEST</h5>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25">
+                    <ul>
+                        <li><i class="fa fa-location-arrow color_dark"></i><span>Ferguson Rd, Wa</span>
+                        </li>
+                        <li><i class="fa fa-home color_dark"></i><span>WA</span></li>
+                        <li><i class="fa fa-phone color_dark"></i><span>+233 (0) 249386464</span></li>
+                        <a href="mailto:upper-west@highways.gov.gh">
+                            <li><i class="fa fa-envelope color_dark"></i><span>upper-west@highways.gov.gh</span></li>
+                        </a>
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir//10.068434,-2.490332/@10.068434,-2.4925207,17z?hl=en">
+                            <li><i class="fa fa-map-marker color_dark"></i><span>XW-0009-5505</span></li>
+                        </a>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
     </div>
-</div> 
-{% endblock content %}
+
+</div>
+
+{% endblock content%}

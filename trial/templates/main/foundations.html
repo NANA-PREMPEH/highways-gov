@@ -2,10 +2,11 @@
 {% block content %}
 
 <style>
-    .lab{
-        width: 250px; height: 40px; 
+    .lab {
+        width: 250px;
+        height: 40px;
         display: block;
-        background-color:#b8c3ff;
+        background-color: #b8c3ff;
         color: #333;
         text-align: center;
         padding-top: 16px;
@@ -24,18 +25,18 @@
     }
 
 
-    .title_head{
+    .title_head {
         padding-bottom: 10px;
         color: #000;
         font-weight: bold;
     }
 
-    table{
+    table {
         font-family: "Montserrat", sans-serif;
         width: 100%;
     }
 
-    td{
+    td {
         border: 1px solid #dddddd;
         text-align: left;
         padding: 1px;
@@ -52,10 +53,9 @@
 
 
 
-    tr:nth-child(even){
+    tr:nth-child(even) {
         background-color: #dddddd;
     }
-
 </style>
 
 <div class="container">
@@ -69,162 +69,168 @@
                 <a class="lab" href="{{ url_for('main.bitumen') }}">Bitumen and Bituminous Products</a>
                 <a class="lab" href="{{ url_for('main.pavements') }}">Pavements</a>
             </div>
-    
+
             <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
                 <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
-                    <h3 style="padding-bottom: 10px">FOUNDATIONS</h3>
-                    <h4>FEES AND CHARGES (AMENDMENT INSTRUMENT, 2014 (L.I. 2216)</h4>
-                    <p>NEW RATES FOR LABORATORY TESTS AND SERVICES</p>
-                    
-                    <!-- Table for foundations service data -->
-                    <table>
-                        <tr>
-                            <th>CODE NO.</th>
-                            <th>DESCRIPTION</th>
-                            <th>FILE NO.</th>
-                            <th>OLD RATE GHC</th>
-                            <th>NEW RATE GHC</th>
-                        </tr>
-                        <tr>
-                            <th colspan="5">FIELD TESTS</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Carry out In-Situ Density Tests, including
-                                Moisture Content Determination (Transport Extra)
-                            </td>
-                            <td>SF/FT.01</td>
-                            <td>40.00</td>
-                            <td>60.00</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Carry out In-Situ CBR Test</td>
-                            <td>SF/FT/02</td>
-                            <td>40.00</td>
-                            <td>60.00</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Carry out Plate Bearing Test (Transport Extra)</td>
-                            <td>SF/FT/03</td>
-                            <td>1,500.00</td>
-                            <td>1500.00</td>
-                        </tr>
-                        <tr>
-                            <th colspan="5">TEST PITS (FIELD)</th>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Sinking of Test Minimum Plan Area of 1m x 1.5m from Ground Level to a Depth not Exceeding 1.5m (Hand Dug)</td>
-                            <td>SF/FT/04</td>
-                            <td>55.00</td>
-                            <td>100.00</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Sinking of Test Minimum Plan Area of 1m x 1.2m below Ground Level (Hand Dug) Depth exceeding 1.5m</td>
-                            <td>SF/FT/05</td>
-                            <td>55.00</td>
-                            <td>80.00</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Extra over for taking disturbed Samples in Air Tight containers Labelling and Transporting to Laboratory</td>
-                            <td>SF/FT/05</td>
-                            <td>30.00</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <th colspan="5">LABORATORY TESTS</th>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Standard Triaxial Shear Test on 0.037m diameter x 0.760 specimen.  Undrained Quick Test without Pore pressure Measurement</td>
-                            <td>FD/LT/02</td>
-                            <td>700.00</td>
-                            <td>1,000.00</td>
-                        </tr>
-                        <tr>
+                <h3 style="padding-bottom: 10px">FOUNDATIONS</h3>
+                <h4>FEES AND CHARGES (AMENDMENT INSTRUMENT, 2014 (L.I. 2216)</h4>
+                <p>NEW RATES FOR LABORATORY TESTS AND SERVICES</p>
+
+                <!-- Table for foundations service data -->
+                <table>
+                    <tr>
+                        <th>CODE NO.</th>
+                        <th>DESCRIPTION</th>
+                        <th>FILE NO.</th>
+                        <th>OLD RATE GHC</th>
+                        <th>NEW RATE GHC</th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">FIELD TESTS</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Carry out In-Situ Density Tests, including
+                            Moisture Content Determination (Transport Extra)
+                        </td>
+                        <td>SF/FT.01</td>
+                        <td>40.00</td>
+                        <td>60.00</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Carry out In-Situ CBR Test</td>
+                        <td>SF/FT/02</td>
+                        <td>40.00</td>
+                        <td>60.00</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Carry out Plate Bearing Test (Transport Extra)</td>
+                        <td>SF/FT/03</td>
+                        <td>1,500.00</td>
+                        <td>1500.00</td>
+                    </tr>
+                    <tr>
+                        <th colspan="5">TEST PITS (FIELD)</th>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sinking of Test Minimum Plan Area of 1m x 1.5m from Ground Level to a Depth not Exceeding
+                            1.5m (Hand Dug)</td>
+                        <td>SF/FT/04</td>
+                        <td>55.00</td>
+                        <td>100.00</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Sinking of Test Minimum Plan Area of 1m x 1.2m below Ground Level (Hand Dug) Depth exceeding
+                            1.5m</td>
+                        <td>SF/FT/05</td>
+                        <td>55.00</td>
+                        <td>80.00</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Extra over for taking disturbed Samples in Air Tight containers Labelling and Transporting
+                            to Laboratory</td>
+                        <td>SF/FT/05</td>
+                        <td>30.00</td>
+                        <td>50.00</td>
+                    </tr>
+                    <tr>
+                        <th colspan="5">LABORATORY TESTS</th>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Standard Triaxial Shear Test on 0.037m diameter x 0.760 specimen. Undrained Quick Test
+                            without Pore pressure Measurement</td>
+                        <td>FD/LT/02</td>
+                        <td>700.00</td>
+                        <td>1,000.00</td>
+                    </tr>
+                    <tr>
                         <td>8</td>
-                            <td>Standard Triaxial Shear Test on 0.037m diameter x 0.0760 specimen.  Undrained Quick Test with Pore pressure Measurement</td>
-                            <td>FD/LT/03</td>
-                            <td>1,000.00</td>
-                            <td>1,200.00</td>
-                        </tr>
-                        <tr>
+                        <td>Standard Triaxial Shear Test on 0.037m diameter x 0.0760 specimen. Undrained Quick Test with
+                            Pore pressure Measurement</td>
+                        <td>FD/LT/03</td>
+                        <td>1,000.00</td>
+                        <td>1,200.00</td>
+                    </tr>
+                    <tr>
                         <td>9</td>
-                            <td>Triaxial Shear Test, Drained Slow Test with Rate of Loading adjusted for negligible excess Pore Pressure in specimen during loading (4 days)</td>
-                            <td>FD/LT/04</td>
-                            <td>1,000.00</td>
-                            <td>1,200.00</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Unconfined Compression Test on 0.0375m x 0.760m specimen (TSR)</td>
-                            <td>FD/LT/05</td>
-                            <td>600.00</td>
-                            <td>800.00</td>
-                        </tr>
+                        <td>Triaxial Shear Test, Drained Slow Test with Rate of Loading adjusted for negligible excess
+                            Pore Pressure in specimen during loading (4 days)</td>
+                        <td>FD/LT/04</td>
+                        <td>1,000.00</td>
+                        <td>1,200.00</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Unconfined Compression Test on 0.0375m x 0.760m specimen (TSR)</td>
+                        <td>FD/LT/05</td>
+                        <td>600.00</td>
+                        <td>800.00</td>
+                    </tr>
 
-                            <tr>
-                                <td>11</td>
-                                <td>Director Shear Test on Undistributed or Remolded circular specimens</td>
-                                <td>FD/LT/06</td>
-                                <td>500.00</td>
-                                <td>700.00</td>
-                            </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Director Shear Test on Undistributed or Remolded circular specimens</td>
+                        <td>FD/LT/06</td>
+                        <td>500.00</td>
+                        <td>700.00</td>
+                    </tr>
 
-                            <tr>
-                                <td>12</td>
-                                <td>Consolidation Test One Dimensional (7 days)</td>
-                                <td>FD/LT/07</td>
-                                <td>700.00</td>
-                                <td>1000.00</td>
-                            </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Consolidation Test One Dimensional (7 days)</td>
+                        <td>FD/LT/07</td>
+                        <td>700.00</td>
+                        <td>1000.00</td>
+                    </tr>
 
-                            <tr>
-                                <td>13</td>
-                                <td>Permeability Test with falling Head of constant Head Permeability (2 days)</td>
-                                <td>FD/LT/08</td>
-                                <td>800.00</td>
-                                <td>----</td>
-                            </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Permeability Test with falling Head of constant Head Permeability (2 days)</td>
+                        <td>FD/LT/08</td>
+                        <td>800.00</td>
+                        <td>----</td>
+                    </tr>
 
-                             <tr>
-                                <td>14</td>
-                                <td>Point Load Test</td>
-                                <td>----</td>
-                                <td>1,000.00</td>
-                                <td>1,500.00</td>
-                            </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Point Load Test</td>
+                        <td>----</td>
+                        <td>1,000.00</td>
+                        <td>1,500.00</td>
+                    </tr>
 
-                            <tr>
-                                <th colspan="5">RESILIENT MODULUS TESTING</th>
-                            </tr>
+                    <tr>
+                        <th colspan="5">RESILIENT MODULUS TESTING</th>
+                    </tr>
 
-                            <tr>
-                                <td>15</td>
-                                <td>Resilient Modulus of Asphalt (Cores/Briquettes)</td>
-                                <td>BP/LT/24</td>
-                                <td>450.00</td>
-                                <td>700.00</td>
-                            </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Resilient Modulus of Asphalt (Cores/Briquettes)</td>
+                        <td>BP/LT/24</td>
+                        <td>450.00</td>
+                        <td>700.00</td>
+                    </tr>
 
-                            <tr>
-                                <td>16</td>
-                                <td>Resilient Modulus of Soil</td>
-                                <td>SA/LT/41</td>
-                                <td>450.00</td>
-                                <td>700.00</td>
-                            </tr>
-                    </table>
-                    <!-- </table> -->
+                    <tr>
+                        <td>16</td>
+                        <td>Resilient Modulus of Soil</td>
+                        <td>SA/LT/41</td>
+                        <td>450.00</td>
+                        <td>700.00</td>
+                    </tr>
+                </table>
+                
             </div>
         </div>
-        
-        
-        <!-- {% include 'includes/sidebar.html' %} -->
+
+
+
     </div>
 </div>
 {% endblock content %}
