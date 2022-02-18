@@ -2924,14 +2924,14 @@ div.leadership{
   display: inline-block;
   background-color:#b8c3ff;
   text-align: center;
-  padding: 0px 20px;
+  padding: -1px 20px;
   padding-top: 6px;
   border-radius: 5px;
   line-height: 28px;
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
   width: 230px;
-  height: 41px;
+  height: 55px;
   
 }
 .view_btn1:hover {
