@@ -3,3 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/highwaysgov/public_html/
     - /bin/cp -R images $DEPLOYPATH
+    
