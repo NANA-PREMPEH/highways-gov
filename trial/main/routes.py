@@ -214,12 +214,14 @@ def status_report():
 # Navbar regional directors
 @main.route('/regional_directors')
 def regional_directors():
-    return render_template('/main/regional_directors.html', title='Regional Directors')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/regional_directors.html', title='Regional Directors', posts=posts)
 
 # Navbar upcoming events
 @main.route('/upcoming_event')
 def upcoming_event():
-    return render_template('/main/upcoming_event.html', title='Upcoming Event')
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/upcoming_event.html', title='Upcoming Event', posts=posts)
 
 
 # Start of services route
