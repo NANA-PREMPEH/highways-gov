@@ -255,6 +255,22 @@ def pavements():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('/main/pavements.html', title='Pavements', posts=posts)
 
+# ------ start of Road Safety ------
+# route for Road Safety (introduction)
+@main.route('/road_safety')
+def road_safety():
+    return render_template('/main/road_safety.html', title='Road Safety')
+
+# route for responsibilities
+@main.route('/rs_respon')
+def rs_respon():
+    return render_template('/main/rs_respon.html', title='Road Safety Responsibilities')
+
+# route for standards
+@main.route('/rs_standards')
+def rs_standards():
+    return render_template('/main/rs_standards.html', title='Road Safety Standards')
+
 #  ----- Start of Axle Load page ------
 # route for introduction 
 @main.route('/axle_load')

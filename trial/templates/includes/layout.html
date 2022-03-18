@@ -10,7 +10,7 @@
         {% if title %}
             <title>Ghana Highway Authority - {{ title }}</title>
         {% else %}
-            <title>Ghana Highway Authority- Being a world-class provider of safe road infrastructure.</title>
+            <title>Ghana Highway Authority- To be a <b>world class</b> provider of safe road infrastructure.</title>
         {% endif %}
         <!-- Icon css link -->
         <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
@@ -169,8 +169,23 @@
                                         
                                     </ul>
                                 </li>
-                                <!-- for axle load page -->
-                                <li><a href="{{ url_for('main.axle_load')}}">Axle Load</a></li>
+
+                                <li class="dropdown submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Safety</a>
+                                    <ul class="dropdown-menu" id="hello">
+                                        <li><a href="{{ url_for('main.road_safety')}}">Road Safety&nbsp; 
+                                            <li><a href="{{ url_for('main.axle_load')}}">Axle Load&nbsp; 
+                                            </a>
+                                        </li>
+                                        
+                                    </ul>
+                                </li>
+                                
+                                 <!-- for Road safety
+                                <li><a href="{{ url_for('main.road_safety')}}">Road Safety</a></li> -->
+
+                                <!-- for axle load page
+                                <li><a href="{{ url_for('main.axle_load')}}">Axle Load</a></li> -->
 
                                 <li class="dropdown submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downloads</a>
@@ -224,6 +239,9 @@
                                 </li>    
                             </ul> 
                         </div><!-- /.navbar-collapse -->
+
+
+                        
                     </nav>
                 </div> 
             </div>

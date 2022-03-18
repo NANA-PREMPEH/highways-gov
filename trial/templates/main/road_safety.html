@@ -1,0 +1,87 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .axl {
+        width: 250px;
+        height: 40px;
+        display: inline-block;
+        background-color: #b8c3ff;
+        color: #333;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 28px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+    }
+
+    .axl:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+    h2 {
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+    .img_new{
+        width: 860px;
+        height: 270px;
+        vertical-align: 0;
+    }
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">ROAD SAFETY</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div style="display: block;">
+                <a class="axl" href="{{ url_for('main.road_safety') }}">Introduction</a>
+                <a class="axl" href="{{ url_for('main.rs_respon') }}">Responsibilities</a>
+                <a class="axl" href="{{ url_for('main.rs_standards') }}">Standards/Specifications</a>
+               
+            </div>
+
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+                <img class="img_new" src="{{ url_for('static', filename='img/road_safety/Ghana Highways Authority road-safety-concept.jpg')}}" alt="Ghana Highways Authority road-safety-concept image not found"/>
+
+                <!-- Weighing Protocols STARTs HERE -->
+                <div class="text"
+                    style="line-height: 26px; padding-left: 2px; padding-bottom: 20px; margin-left: 2%; height:270px ; width:860px">
+                    <h2 id="no_news">introduction</h2>
+                    <div class="application_text">
+
+                        <ul style="break-after: 18px;">
+                            <p>The Road Safety and Environment Division <b>(RSED)</b> is one of the seven (7) divisions under the <b>Development 
+                                Department</b> of the Ghana Highway Authority. RSED consist of three (3) units as follows:</p>
+
+                                <ol style="list-style-type:decimal">
+                                    <li>
+                                        Road Safety Unit
+                                    </li>
+                                    <li>
+                                        Environmental Management Unit
+                                    </li>
+                                    <li>
+                                        <a href="{{ url_for('main.axle_load') }}" target="_blank">Axle Load Management Unit</a>
+                                    </li>
+                                </ol>
+                            
+                        </ul>
+                    </div>
+
+                    <!-- AVAILABLE INFORMATION ENDS HERE -->
+                </div>
+            </div>
+
+
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}
