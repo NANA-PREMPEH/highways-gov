@@ -519,7 +519,7 @@ def admin_logout():
     return redirect(url_for('users.login'))
 
 
-#Add new Contract details to the database(Ongoing)
+#Update Contract details in database(Ongoing)
 @admin.route('/contract/ongoing/edit/<int:contract_id>/', methods=['GET', 'POST'])
 @login_required
 @admin_required
@@ -561,8 +561,32 @@ def edit_ongoing_contract(contract_id):
         contract.video_description = form.video_description.data or "N/A"
         contract.video_title = form.video_title.data or "N/A"
         contract.video_link = video_link
-        contract.video_thumb = video_thumb
+        contract.video_thumb = video_thumb    
+        contract.status = request.form.get('ongoing_status')
+        contract.procurement = form.procurement.data
+        contract.award_date = form.award_date.data
+        contract.cost_to_complete = form.cost_to_complete.data
+        contract.physical = form.physical.data
+        contract.time_elapsed = form.time_elapsed.data
+        contract.remarks = form.remarks.data
+        contract.funding = form.funding.data
         
+        #If status is changed to Completed, Ongoing Contract is moved to Completed Projects
+        if request.form.get('ongoing_status') == 'Project Completed':
+            uploaded_details = CompletedProj(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data or 'N/A', contractor=form.contractor.data or 'N/A', 
+                                            category=form.category.data or 'N/A', date_commenced=form.date_commenced.data or None, 
+                                            date_completed=form.date_completed.data or None, revised_date=form.revised_date.data or None, 
+                                            contract_sum=form.contract_sum.data or None, revised_sum=form.revised_sum.data or None,
+                                            amt_to_date=form.amt_to_date.data or None,video_title=form.video_title.data or "N/A",
+                                            video_link=video_link,video_description=form.video_description.data or "N/A",
+                                            procurement=form.procurement.data, award_date=form.award_date.data or None,
+                                            cost_to_complete=form.cost_to_complete.data, 
+                                            physical=form.physical.data, time_elapsed=form.time_elapsed.data,
+                                            remarks=form.remarks.data, funding=form.funding.data,
+                                            status= request.form.get('ongoing_status'), 
+                                            video_thumb=video_thumb, user_id=current_user.id)
+            db.session.add(uploaded_details)
                
         # saving to database
         db.session.commit()
@@ -585,6 +609,13 @@ def edit_ongoing_contract(contract_id):
         form.video_description.data =  contract.video_description
         form.video_title.data = contract.video_title
         form.video_link.data = contract.video_link
+        form.procurement.data = contract.procurement
+        form.award_date.data = contract.award_date
+        form.cost_to_complete.data = contract.cost_to_complete
+        form.physical.data = contract.physical
+        form.time_elapsed.data = contract.time_elapsed
+        form.remarks.data = contract.remarks
+        form.funding.data = contract.funding
 
 
     return render_template('admin/ongoing_proj-edit.html', form=form, contract=contract, contract_id=contract_id)
@@ -696,7 +727,31 @@ def edit_planned_contract(contract_id):
         contract.video_title = form.video_title.data or "N/A"
         contract.video_link = video_link
         contract.video_thumb = video_thumb
+        contract.status = request.form.get('planned_status')
+        contract.procurement = form.procurement.data
+        contract.award_date = form.award_date.data
+        contract.cost_to_complete = form.cost_to_complete.data
+        contract.physical = form.physical.data
+        contract.time_elapsed = form.time_elapsed.data
+        contract.remarks = form.remarks.data
+        contract.funding = form.funding.data
         
+        #If status is changed to Ongoing, Planned Contract is moved to Ongoing Projects
+        if request.form.get('planned_status') == 'Project Ongoing':
+            uploaded_details = OngoingProj(region=form.region.data, project=form.project.data, 
+                                            length=form.length.data or 'N/A', contractor=form.contractor.data or 'N/A', 
+                                            category=form.category.data or 'N/A', date_commenced=form.date_commenced.data or None, 
+                                            date_completed=form.date_completed.data or None, revised_date=form.revised_date.data or None, 
+                                            contract_sum=form.contract_sum.data or None, revised_sum=form.revised_sum.data or None,
+                                            amt_to_date=form.amt_to_date.data or None,video_title=form.video_title.data or "N/A",
+                                            video_link=video_link,video_description=form.video_description.data or "N/A",
+                                            procurement=form.procurement.data, award_date=form.award_date.data or None,
+                                            cost_to_complete=form.cost_to_complete.data, 
+                                            physical=form.physical.data, time_elapsed=form.time_elapsed.data,
+                                            remarks=form.remarks.data, funding=form.funding.data,
+                                            status= request.form.get('planned_status'), 
+                                            video_thumb=video_thumb, user_id=current_user.id)
+            db.session.add(uploaded_details)   
                
         # saving to database
         db.session.commit()
@@ -718,7 +773,15 @@ def edit_planned_contract(contract_id):
         form.amt_to_date.data = contract.amt_to_date
         form.video_description.data =  contract.video_description
         form.video_title.data = contract.video_title
-        form.video_link.data = contract.video_link
+        form.video_link.data = contract.video_link       
+        form.procurement.data = contract.procurement
+        form.award_date.data = contract.award_date
+        form.cost_to_complete.data = contract.cost_to_complete
+        form.physical.data = contract.physical
+        form.time_elapsed.data = contract.time_elapsed
+        form.remarks.data = contract.remarks
+        form.funding.data = contract.funding
+        
 
 
     return render_template('admin/planned_proj-edit.html', form=form, contract=contract, contract_id=contract_id)

@@ -21,7 +21,7 @@
                 <div class="col-md-12">
                     <form action="" method="POST">
                         <fieldset class="form-group" style="margin-left: 10%;">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     {{ form.region.label }}
                                     <!--If form had errors-->
@@ -111,8 +111,18 @@
                                         </div>
                                     </div> 
                                 </div>   
+                                <div class="form-group">
+                                    <label for="planned_status">Project Status</label> 
+                                    <select class="form-control" name="planned_status" id="planned_status">
+                                        {% if contract.status %}
+                                        <option value="{{contract.status}}" style="display: none;">{{ contract.status }}</option>
+                                        {% endif %}
+                                        <option value="Project Ongoing">Project Ongoing</option>
+                                        <option value="Project Planned">Project Planned</option>
+                                    </select>
+                                </div>  
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="sidebar_area" >
                                     <div class="form-group">
                                         {{ form.category.label }}
@@ -215,7 +225,7 @@
                                         
                                         <!--If form had errors-->
                                         {% if form.video_description.errors %}
-                                        {{ form.video_description(class="form-control", cols="30", rows="2", style="border-color: #a94442;") }}
+                                        {{ form.video_description(class="form-control", cols="30", rows="4", style="border-color: #a94442;") }}
                                         <div class="form-group has-error">
                                             {% for error in form.video_description.errors %}
                                                 <div class="help-block">{{ error }}</div>
@@ -223,9 +233,132 @@
                                         </div>
                                         <!--if there are no errors-->
                                         {% else %}
-                                            {{ form.video_description(class="form-control", cols="30", rows="2")}}
+                                            {{ form.video_description(class="form-control", cols="30", rows="4")}}
                                         {% endif %}
                                     </div>    
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="sidebar_area" >
+                                    <div class="form-group">
+                                        {{ form.procurement.label }}
+                
+                                        <!--If form had errors-->
+                                        {% if form.procurement.errors %}
+                                            {{ form.procurement(class="form-control", style="border-color: #a94442;") }}
+                                            <div class="form-group has-error">
+                                                {% for error in form.procurement.errors %}
+                                                    <div class="help-block">{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        <!--if there are no errors-->
+                                        {% else %} 
+                                            {{ form.procurement(class="form-control")}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.award_date.label }}
+                                        <div class="input-group datepicker">
+                                            {{ form.award_date(class="form-control")}}
+                                            <div class="input-group-addon">
+                                                <div class="glyphicon glyphicon-calendar"></div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.cost_to_complete.label }}
+                
+                                        <!--If form had errors-->
+                                        {% if form.cost_to_complete.errors %}
+                                            {{ form.cost_to_complete(class="form-control", style="border-color: #a94442;") }}
+                                            <div class="form-group has-error">
+                                                {% for error in form.cost_to_complete.errors %}
+                                                    <div class="help-block">{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        <!--if there are no errors-->
+                                        {% else %} 
+                                            {{ form.cost_to_complete(class="form-control")}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading panel-info">
+                                                <strong>Progress</strong>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        {{ form.physical.label }}
+                
+                                                <!--If form had errors-->
+                                                {% if form.physical.errors %}
+                                                    {{ form.physical(class="form-control", style="border-color: #a94442;") }}
+                                                    <div class="form-group has-error">
+                                                        {% for error in form.physical.errors %}
+                                                            <div class="help-block">{{ error }}</div>
+                                                        {% endfor %}
+                                                    </div>
+                                                <!--if there are no errors-->
+                                                {% else %} 
+                                                    {{ form.physical(class="form-control")}}
+                                                {% endif %}
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        {{ form.time_elapsed.label }}
+                
+                                                <!--If form had errors-->
+                                                {% if form.time_elapsed.errors %}
+                                                    {{ form.time_elapsed(class="form-control", style="border-color: #a94442;") }}
+                                                    <div class="form-group has-error">
+                                                        {% for error in form.time_elapsed.errors %}
+                                                            <div class="help-block">{{ error }}</div>
+                                                        {% endfor %}
+                                                    </div>
+                                                <!--if there are no errors-->
+                                                {% else %} 
+                                                    {{ form.time_elapsed(class="form-control")}}
+                                                {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.funding.label }}
+                
+                                        <!--If form had errors-->
+                                        {% if form.funding.errors %}
+                                            {{ form.funding(class="form-control", style="border-color: #a94442;") }}
+                                            <div class="form-group has-error">
+                                                {% for error in form.funding.errors %}
+                                                    <div class="help-block">{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        <!--if there are no errors-->
+                                        {% else %} 
+                                            {{ form.funding(class="form-control")}}
+                                        {% endif %}
+                                    </div> 
+                                    <div class="form-group">
+                                        {{ form.remarks.label }}
+                                        
+                                        <!--If form had errors-->
+                                        {% if form.remarks.errors %}
+                                        {{ form.remarks(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.remarks.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                        <!--if there are no errors-->
+                                        {% else %}
+                                            {{ form.remarks(class="form-control", rows="4")}} 
+                                        {% endif %}
+                                    </div>
+                                       
                                 </div>
                             </div><br>
                         </fieldset>

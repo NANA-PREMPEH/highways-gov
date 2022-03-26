@@ -22,34 +22,57 @@
             {% include "admin/header.html" %}
             {% include "admin/messages.html" %}
                 <div class="col-md-12"> 
-                    <table id="mytable" class="display" style="width:100%">
+                    <table id="mytable" class="table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>REGION</th>
-                                <th>PROJECT</th>
-                                <th>LENGTH (Km)</th>
-                                <th>CONTRACTOR</th>
-                                <th>DATE OF COMMENCE</th>
-                                <th>DATE OF COMPLETION</th>
-                                <th>ORIGINAL CONTRACT SUM(GH¢)</th>
-                                <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
-                                <th>VIEW DETAILS</th> 
+                                <th rowspan="2">REGION</th>
+                                <th rowspan="2">FUNDING SOURCE</th>
+                                <th rowspan="2">PROCUREMENT PROGRAM</th>
+                                <th rowspan="2">CONTRACTOR</th>
+                                <th rowspan="2">PROJECT</th>
+                                <th rowspan="2">LENGTH (Km)</th>
+                                <th rowspan="2">AWARD DATE</th>
+                                <th rowspan="2">START DATE</th>
+                                <th rowspan="2">COMPLETION DATE</th>
+                                <th rowspan="2">REVISED COMPLETION DATE</th>
+                                <th rowspan="2">ORIGINAL CONTRACT SUM(GH¢)</th>
+                                <th rowspan="2">REVISED CONTRACT SUM(GH¢)</th>
+                                <th rowspan="2">TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
+                                <th rowspan="2">COST TO COMPLETE(GH¢)</th> 
+                                <th colspan="2">PROGRESS</th> 
+                                <th rowspan="2">REMARKS</th> 
+                                <th rowspan="2">STATUS</th> 
+                                <th rowspan="2">VIEW DETAILS</th> 
                             </tr> 
+                            <tr>
+                                <th>% PHYSICAL</th>
+                                <th>% TIME ELAPSED</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {% for planned in planned_list %} 
                                 <tr>  
                                     <td>{{ planned.region }}</td>
+                                    <td>{{ planned.funding }}</td>
+                                    <td>{{ planned.procurement }}</td>
+                                    <td>{{ planned.contractor }}</td>
                                     <td>{{ planned.project }}</td>
                                     <td>{{ planned.length }}</td>
-                                    <td>{{ planned.contractor }}</td>
+                                    <td>{{ planned.award_date }}</td>
                                     <td>{{ planned.date_commenced }}</td>
                                     <td>{{ planned.date_completed }}</td>
+                                    <td>{{ planned.revised_date }}</td>   
                                     
                                     {% if planned.contract_sum == "N/A" %}
                                         <td>{{ planned.contract_sum }}</td>
                                     {% else %}
                                         <td>{{ "{:,.2f}".format(planned.contract_sum|float) }}</td>
+                                    {% endif %}
+
+                                    {% if planned.revised_sum == "N/A" %}
+                                        <td>{{ planned.revised_sum }}</td>
+                                    {% else %}
+                                        <td>{{ "{:,.2f}".format(planned.revised_sum|float) }}</td>
                                     {% endif %}
 
                                     {% if planned.amt_to_date == "N/A" %}
@@ -58,6 +81,17 @@
                                         <td>{{ "{:,.2f}".format(planned.amt_to_date|float) }}</td>
                                     {% endif %}
 
+                                    {% if planned.cost_to_complete == "N/A" %}
+                                        <td>{{ planned.cost_to_complete }}</td>
+                                    {% else %}
+                                        <td>{{ "{:,.2f}".format(planned.cost_to_complete|float) }}</td>
+                                    {% endif %}
+
+                                    <td>{{ planned.physical }}</td>
+                                    <td>{{ planned.time_elapsed }}</td>
+                                    <td>{{ planned.remarks }}</td>
+                                    <td><span class="label label-warning">{{ planned.status }}</span></td> 
+                                    
                                     <td style="text-align: center;">
                                         <a class="btn btn-success" href="{{ url_for('admin.edit_planned_contract', contract_id=planned.id) }}">EDIT</a>
                                     </td>

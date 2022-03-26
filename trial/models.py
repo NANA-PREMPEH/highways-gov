@@ -296,6 +296,16 @@ class OngoingProj(db.Model):
     video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
+    
+
+    procurement = db.Column(db.String(50), nullable=True, default='N/A')
+    award_date = db.Column(db.Date, nullable=True, default=None)
+    cost_to_complete = db.Column(db.String(50), nullable=True, default='N/A')
+    physical = db.Column(db.String(50), nullable=True, default='N/A')
+    time_elapsed = db.Column(db.String(50), nullable=True, default='N/A')
+    remarks = db.Column(db.Text, nullable=True, default='N/A')
+    funding = db.Column(db.String(50), nullable=True, default='N/A')
+    status = db.Column(db.String(80), default='Project Ongoing')
 
     # this is the column with which we are creating the relation with user table
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
@@ -311,9 +321,11 @@ class CompletedProj(db.Model):
     length = db.Column(db.String(50), nullable=True, default='N/A') 
     contractor = db.Column(db.String(120), nullable=True, default='N/A')
     category = db.Column(db.String(120), nullable=True, default='N/A')
-    date_commenced = db.Column(db.Date, nullable=True, default=None)
+    date_commenced = db.Column(db.Date, nullable=True, default=None) 
     date_completed = db.Column(db.Date, nullable=True, default=None) 
+    revised_date = db.Column(db.Date, nullable=True, default=None)
     contract_sum = db.Column(db.String(50), nullable=True, default='N/A')
+    revised_sum = db.Column(db.String(50), nullable=True, default='N/A')
     amt_to_date = db.Column(db.String(50), nullable=True, default='N/A')
     video_title = db.Column(db.String(300), nullable=True, default='N/A')
     video_link = db.Column(db.String(250), nullable=True, default='N/A')
@@ -322,6 +334,15 @@ class CompletedProj(db.Model):
     image_one = db.Column(db.String(120), default='project-7.jpg')
     image_two = db.Column(db.String(120), default='project-7.jpg')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    procurement = db.Column(db.String(50), nullable=True, default='N/A')
+    award_date = db.Column(db.Date, nullable=True, default=None)
+    cost_to_complete = db.Column(db.String(50), nullable=True, default='N/A')
+    physical = db.Column(db.String(50), nullable=True, default='N/A')
+    time_elapsed = db.Column(db.String(50), nullable=True, default='N/A')
+    remarks = db.Column(db.Text, nullable=True, default='N/A')
+    funding = db.Column(db.String(50), nullable=True, default='N/A')
+    status = db.Column(db.String(80), default='Project Completed')
 
     # this is the column with which we are creating the relation with user table
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
@@ -404,6 +425,16 @@ class PlannedProj(db.Model):
     video_description = db.Column(db.Text, nullable=True, default='N/A')
     video_thumb = db.Column(db.String(50), default='default.png')
     uploaded_time = db.Column(db.DateTime, default=datetime.now)
+
+    procurement = db.Column(db.String(50), nullable=True, default='N/A')
+    award_date = db.Column(db.Date, nullable=True, default=None)
+    cost_to_complete = db.Column(db.String(50), nullable=True, default='N/A')
+    physical = db.Column(db.String(50), nullable=True, default='N/A')
+    time_elapsed = db.Column(db.String(50), nullable=True, default='N/A')
+    remarks = db.Column(db.Text, nullable=True, default='N/A')
+    funding = db.Column(db.String(50), nullable=True, default='N/A')
+    status = db.Column(db.String(80), default='Project Planned')
+    
 
     # this is the column with which we are creating the relation with user table
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
