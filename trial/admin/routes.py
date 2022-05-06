@@ -279,6 +279,18 @@ def add_contract():
         else:
             pic_two = "N/A"
         
+        funding = form.funding.data or "N/A"
+        procurement = form.procurement.data or "N/A"
+        # contractor = form.contractor.data or "N/A"
+        award_date = form.award_date.data or "N/A"
+        revised_date = form.revised_date.data or "N/A"
+        revised_sum = form.revised_sum.data or "N/A"
+        cost_to_complete = form.cost_to_complete.data or "N/A"
+        physical = form.physical.data or "N/A"
+        time_elapsed = form.time_elapsed.data or "N/A"
+        activity = form.activity.data or "N/A"
+        phy = form.phy.data or "N/A"
+        remarks = form.remarks.data or "N/A"
         category = request.form.get('completed_periodic') or 'N/A' 
         length = form.length.data or 'N/A'
         date_completed = form.date_completed.data or None
@@ -288,7 +300,10 @@ def add_contract():
         video_description = form.video_description.data or "N/A"
         video_title = form.video_title.data or "N/A"
 
-        uploaded_details = CompletedProj(region=form.region.data, project=form.project.data, length=length, 
+        uploaded_details = CompletedProj(region=form.region.data, project=form.project.data, length=length,
+                                            funding=funding, procurement=procurement, award_date=award_date,
+                                            revised_date=revised_date, revised_sum=revised_sum, cost_to_complete=cost_to_complete,
+                                            physical=physical, time_elapsed=time_elapsed, activity=activity, phy=phy, remarks=remarks, 
                                             contractor=form.contractor.data, category=category, date_commenced=date_commenced, 
                                             date_completed=date_completed, contract_sum=contract_sum,
                                             amt_to_date=amt_to_date,video_title=video_title,
@@ -647,6 +662,18 @@ def edit_completed_contract(contract_id):
             video_link = "N/A"
             video_thumb = "N/A"
 
+        # Start of Additional data enrty items
+        contract.funding = form.funding.data or "N/A"
+        contract.procurement = form.procurement.data or "N/A"
+        contract.award_date = form.award_date.data or None
+        contract.revised_date = form.revised_date.data or None
+        contract.cost_to_complete = form.cost_to_complete.data or "N/A"
+        contract.physical = form.physical.data or None
+        contract.time_elapsed = form.time_elapsed.data or None
+        contract.phy = form.phy.data or None
+        contract.activity = form.activity.data or "N/A"
+        contract.remarks = form.remarks.data or "N/A"
+        # end of Additional data enrty items
         contract.region = form.region.data or "N/A"
         contract.project = form.project.data or "N/A"
         contract.contractor = form.contractor.data or "N/A"
@@ -654,8 +681,8 @@ def edit_completed_contract(contract_id):
         contract.length = form.length.data or 'N/A'
         contract.date_completed = form.date_completed.data or None
         contract.date_commenced = form.date_commenced.data or None
-        contract.contract_sum = form.contract_sum.data or None
-        contract.amt_to_date = form.amt_to_date.data or None
+        contract.contract_sum = form.contract_sum.data or "N/A"
+        contract.amt_to_date = form.amt_to_date.data or "N/A"
         contract.video_description = form.video_description.data or "N/A"
         contract.video_title = form.video_title.data or "N/A"
         contract.video_link = video_link
@@ -669,6 +696,19 @@ def edit_completed_contract(contract_id):
 
     elif request.method == "GET":
         
+        # populate project from the database
+        # Start of Additional data enrty items
+        form.funding.data = contract.funding
+        form.procurement.data = contract.procurement
+        form.award_date.data =  contract.award_date
+        form.revised_date.data = contract.revised_date
+        form.cost_to_complete.data = contract.cost_to_complete
+        form.physical.data =  contract.physical
+        form.time_elapsed.data = contract.time_elapsed
+        form.phy.data = contract.phy
+        form.activity.data = contract.activity
+        form.remarks.data = contract.remarks
+        # end of Additional data enrty items
         form.region.data = contract.region
         form.project.data = contract.project
         form.contractor.data = contract.contractor

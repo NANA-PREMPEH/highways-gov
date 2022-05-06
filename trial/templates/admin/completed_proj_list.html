@@ -39,15 +39,23 @@
                                 <th rowspan="2">REVISED CONTRACT SUM(GH¢)</th>
                                 <th rowspan="2">TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
                                 <th rowspan="2">COST TO COMPLETE(GH¢)</th> 
-                                <th colspan="2">PROGRESS</th> 
+                                <th colspan="2">PROGRESS</th>
+                                <th colspan="2">DETAILS OF WORK PROGRESS</th> 
                                 <th rowspan="2">REMARKS</th> 
                                 <th rowspan="2">STATUS</th> 
                                 <th rowspan="2">VIEW DETAILS</th> 
                             </tr> 
                             <tr>
+                                <!-- for progress data -->
                                 <th>% PHYSICAL</th>
                                 <th>% TIME ELAPSED</th>
+                                
+                                <!-- for details of work progress -->
+                                <th>ACTIVITY</th>
+                                <th>% PHY</th>
+                                
                             </tr> 
+                            
                         </thead>
                         <tbody>
                             {% for completed in completed_list %} 
@@ -89,6 +97,8 @@
 
                                     <td>{{ completed.physical }}</td>
                                     <td>{{ completed.time_elapsed }}</td>
+                                    <td>{{ completed.activity }}</td>
+                                    <td>{{ completed.phy }}</td>
                                     <td>{{ completed.remarks }}</td>
                                     <td><span class="label label-default">{{ completed.status }}</span></td>
 
