@@ -1,229 +1,251 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1"> 
-        
-        <link rel="icon" href="{{ url_for('static', filename='img/Coat_of_arms_of_Ghana.png') }}" type="image/x-icon" />
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        {% if title %}
-            <title>Ghana Highway Authority - {{ title }}</title>
-        {% else %}
-            <title>Ghana Highway Authority- To be a <b>world class</b> provider of safe road infrastructure.</title>
-        {% endif %}
-        <!-- Icon css link -->
-        <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='css/materialdesignicons.min.css') }}" rel="stylesheet">
 
-       
-        <!-- Bootstrap -->
-        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-        
-        <!--Added Bootstrap for contact_page-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="{{ url_for('static', filename='img/Coat_of_arms_of_Ghana.png') }}" type="image/x-icon" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    {% if title %}
+    <title>Ghana Highway Authority - {{ title }}</title>
+    {% else %}
+    <title>Ghana Highway Authority- To be a <b>world class</b> provider of safe road infrastructure.</title>
+    {% endif %}
+    <!-- Icon css link -->
+    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/materialdesignicons.min.css') }}" rel="stylesheet">
 
 
-        <!-- slick css  -->
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
-          
-        
-        <!-- Rev slider css -->
-        <link href="{{ url_for('static', filename='vendors/revolution/css/settings.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='vendors/revolution/css/layers.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='vendors/revolution/css/navigation.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='vendors/animate-css/animate.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='vendors/owl-carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-        
-        <!-- Extra plugin css -->
-        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='css/lightbox.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet"> 
-
-        <!--DataTables-->  
-        <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/css/jquery.dataTables.min.css') }}">  
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+
+    <!--Added Bootstrap for contact_page-->
+
+
+    <!-- slick css  -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+
+
+
+
+    <!-- Rev slider css -->
+    <link href="{{ url_for('static', filename='vendors/revolution/css/settings.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendors/revolution/css/layers.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendors/revolution/css/navigation.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendors/animate-css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendors/owl-carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+    <!-- Extra plugin css -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/lightbox.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+
+    <!--DataTables-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/css/jquery.dataTables.min.css') }}">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        WARNING: Respond.js doesn't work if you view the page via file://
+        [if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]--> 
-       
-    </head>
-    <style> 
-        
-    </style>
-    <body>
+        ![endif]  -->
 
-        
-        <!--================Header Area =================-->
-        <header class="main_header_area">
-            <div class="header_top_area">
-                <div class="container">
-                    <div class="pull-left">
-                        <a href="#"><i class="fa fa-phone"></i>0302-961616, 0302-961620</a>
-                        <a href="#"><i class="fa fa-map-marker"></i>Accra Ministries, Ghana</a> 
-                        <a href="#"><i class="fa fa-map-marker"></i>Digital Add: GA-107-2101</a>
-                        <a href="#"><i class="mdi mdi-clock"></i>08 AM - 5 PM</a>
-                    </div>
-                    <div class="pull-right">
-                        <ul class="header_social" style="margin-right: -15px;">
-                            <li>
-                                <a href="https://www.twitter.com/highwaysghana/" target="_blank"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/company/highwaysghana/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://www.instagram.com/highwaysghana/" target="_bank"><i class="fa fa-instagram"></i></a>
-                            </li>
-                            {% if current_user.is_authenticated %}
-                                {% if current_user.role_id == 3 %}
-                                <li><a href="{{ url_for('leavemgt.leave_dash') }}">PORTAL</a></li>
-                                <li><a href="{{ url_for('users.logout') }}"><i class="fa fa-sign-out mr-20"></i>&nbsp;LOGOUT</a></li>
-                                {% else %}
-                                <li><a href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">PORTAL</a></li>
-                                <li><a href="{{ url_for('users.logout') }}"><i class="fa fa-sign-out mr-20"></i>&nbsp;LOGOUT</a></li>
-                                {% endif %}
-                            {% else %}
-                                <li><a href="{{ url_for('main.landing_page') }}"><i class="fa fa-sign-in mr-20"></i>&nbsp;PORTAL</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
+</head>
+<style>
+
+</style>
+
+<body>
+
+
+    <!--================Header Area =================-->
+    <header class="main_header_area">
+        <div class="header_top_area">
+            <div class="container">
+                <div class="pull-left">
+                    <a href="#"><i class="fa fa-phone"></i>0302-961616, 0302-961620</a>
+                    <a href="#"><i class="fa fa-map-marker"></i>Accra Ministries, Ghana</a>
+                    <a href="#"><i class="fa fa-map-marker"></i>Digital Add: GA-107-2101</a>
+                    <a href="#"><i class="mdi mdi-clock"></i>08 AM - 5 PM</a>
+                </div>
+                <div class="pull-right">
+                    <ul class="header_social" style="margin-right: -15px;">
+                        <li>
+                            <a href="https://www.twitter.com/highwaysghana/" target="_blank"><i
+                                    class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/company/highwaysghana/" target="_blank"><i
+                                    class="fa fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/highwaysghana/" target="_bank"><i
+                                    class="fa fa-instagram"></i></a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        {% if current_user.role_id == 3 %}
+                        <li><a href="{{ url_for('leavemgt.leave_dash') }}">PORTAL</a></li>
+                        <li><a href="{{ url_for('users.logout') }}"><i class="fa fa-sign-out mr-20"></i>&nbsp;LOGOUT</a>
+                        </li>
+                        {% else %}
+                        <li><a href="{{ url_for('users.user_dashboard', user_name=current_user.name) }}">PORTAL</a></li>
+                        <li><a href="{{ url_for('users.logout') }}"><i class="fa fa-sign-out mr-20"></i>&nbsp;LOGOUT</a>
+                        </li>
+                        {% endif %}
+                        {% else %}
+                        <li><a href="{{ url_for('main.landing_page') }}"><i
+                                    class="fa fa-sign-in mr-20"></i>&nbsp;PORTAL</a></li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
-            <div class="main_menu_area">
-                <div class="container">
-                    <nav class="navbar navbar-default">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        </div>
+        <div class="main_menu_area">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="{{ url_for('main.home') }}"><img src="{{ url_for('static', filename='img/GHA.jpg') }}" alt="" style="width:190px;height:72px;"></a>
-                        </div>
-                        
+                        </button>
+                        <a class="navbar-brand" href="{{ url_for('main.home') }}"><img
+                                src="{{ url_for('static', filename='img/GHA.jpg') }}" alt=""
+                                style="width:190px;height:72px;"></a>
+                    </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                                <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About US</a>
-                                    <ul class="dropdown-menu" id="hello">
-                                        <li><a href="{{ url_for('main.mission') }}">Vision &#38; Mission</a></li>
 
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="test">Organizational Structure&nbsp;
-                                                <span class="fa fa-plus"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="{{ url_for('main.organogram') }}">Organogram</a></li>
-                                                <li><a href="{{ url_for('main.leaders') }}">Leadership</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="{{ url_for('main.ceo_office') }}">C.E's Office</a></li>
-                                        <li><a href="{{ url_for('main.division') }}">Department</a></li>
-                                        <li><a href="{{ url_for('main.inst_prof') }}">Institution Profile</a></li>
-                                        <!-- <li><a href="{{ url_for('main.contractors') }}">Eng. Consultancies</a></li> -->
-                                        <li><a href="{{ url_for('main.regional_directors') }}">Regional Directors</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
-                                    <ul class="dropdown-menu" id="hello">
-                                        <li><a href="{{ url_for('main.completed_periodic') }}" >Completed Projects&nbsp;
-                                                <span class="fa fa-plus"></span>
-                                            </a>
-                                            <!-- <ul>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                            <li class="dropdown submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">About US</a>
+                                <ul class="dropdown-menu" id="hello">
+                                    <li><a href="{{ url_for('main.mission') }}">Vision &#38; Mission</a></li>
+
+                                    <li class="dropdown submenu">
+                                        <a href="#" class="test">Organizational Structure&nbsp;
+                                            <span class="fa fa-plus"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ url_for('main.organogram') }}">Organogram</a></li>
+                                            <li><a href="{{ url_for('main.leaders') }}">Leadership</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ url_for('main.ceo_office') }}">C.E's Office</a></li>
+                                    <li><a href="{{ url_for('main.division') }}">Department</a></li>
+                                    <li><a href="{{ url_for('main.inst_prof') }}">Institution Profile</a></li>
+                                    <!-- <li><a href="{{ url_for('main.contractors') }}">Eng. Consultancies</a></li> -->
+                                    <li><a href="{{ url_for('main.regional_directors') }}">Regional Directors</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Projects</a>
+                                <ul class="dropdown-menu" id="hello">
+                                    <li><a href="{{ url_for('main.completed_periodic') }}">Completed Projects&nbsp;
+                                            <span class="fa fa-plus"></span>
+                                        </a>
+                                        <!-- <ul>
                                                 <li><a href="{{ url_for('main.completed_periodic') }}">Periodic</a></li> 
                                                 <li><a href="{{ url_for('main.completed_routine') }}" >Routine</a></li>   
                                             </ul> -->
-                                        </li>
-                                        <li><a href="{{ url_for('main.ongoing_periodic') }}">Ongoing Projects&nbsp;
-                                                <span class="fa fa-plus"></span>
-                                            </a>
-                                            <!-- <ul> 
+                                    </li>
+                                    <li><a href="{{ url_for('main.ongoing_periodic') }}">Ongoing Projects&nbsp;
+                                            <span class="fa fa-plus"></span>
+                                        </a>
+                                        <!-- <ul> 
                                                 <li ><a href="{{ url_for('main.ongoing_periodic') }}">Periodic</a></li>
                                                 <li ><a href="{{ url_for('main.ongoing_routine') }}" >Routine</a></li>   
                                             </ul> -->
-                                        </li>
-                                        <!-- <li><a href="{{ url_for('projects.planned_proj') }}">Projects Under Planning</a></li> -->
-                                        <!-- <li><a href="{{ url_for('projects.critical_roads') }}">Critical Roads</a></li> -->
-                                        <li><a href="{{ url_for('projects.terminated_proj') }}">Terminated Projects</a></li>
-                                        <li><a href="{{ url_for('projects.awarded_proj') }}">Awarded Projects</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
-                                    <ul class="dropdown-menu" id="hello">
-                                        <li><a href="{{ url_for('main.foundations')}}">Lab. Test and Services&nbsp; 
-                                            </a>
-                                        </li>
-                                        
-                                    </ul>
-                                </li>
+                                    </li>
+                                    <!-- <li><a href="{{ url_for('projects.planned_proj') }}">Projects Under Planning</a></li> -->
+                                    <!-- <li><a href="{{ url_for('projects.critical_roads') }}">Critical Roads</a></li> -->
+                                    <li><a href="{{ url_for('projects.terminated_proj') }}">Terminated Projects</a></li>
+                                    <li><a href="{{ url_for('projects.awarded_proj') }}">Awarded Projects</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Services</a>
+                                <ul class="dropdown-menu" id="hello">
+                                    <li><a href="{{ url_for('main.foundations')}}">Lab. Test and Services&nbsp;
+                                        </a>
+                                    </li>
 
-                                <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Safety</a>
-                                    <ul class="dropdown-menu" id="hello">
-                                        <li><a href="{{ url_for('main.road_safety')}}">Road Safety&nbsp; 
-                                            <li><a href="{{ url_for('main.axle_load')}}">Axle Load&nbsp; 
-                                            </a>
-                                        </li>
-                                        
-                                    </ul>
-                                </li>
-                                
-                                 <!-- for Road safety
+                                </ul>
+                            </li>
+
+                            <li class="dropdown submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Safety</a>
+                                <ul class="dropdown-menu" id="hello">
+                                    <li><a href="{{ url_for('main.road_safety')}}">Road Safety&nbsp;
+                                    <li><a href="{{ url_for('main.axle_load')}}">Axle Load&nbsp;
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <!-- for Road safety
                                 <li><a href="{{ url_for('main.road_safety')}}">Road Safety</a></li> -->
 
-                                <!-- for axle load page
+                            <!-- for axle load page
                                 <li><a href="{{ url_for('main.axle_load')}}">Axle Load</a></li> -->
 
-                                <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downloads</a>
-                                    <ul class="dropdown-menu" id="hello">
-                                        <li><a href="{{ url_for('main.reports') }}">Reports&nbsp; 
+                            <li class="dropdown submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Downloads</a>
+                                <ul class="dropdown-menu" id="hello">
+                                    <li><a href="{{ url_for('main.reports') }}">Reports&nbsp;
                                         </a>
-                                        
-                                            <!-- <ul>
+
+                                        <!-- <ul>
                                                 <li><a href="#">Annual Report</a></li>
                                                 <li><a href="#">Quarterly Report</a></li>
                                                 <li><a href="{{ url_for('main.status_report') }}">Status Report</a></li>
                                                 <li><a href="{{ url_for('main.road_con_survey') }}">Road Con. Survey</a></li>
                                             </ul> -->
-                                        </li>
-                                        <li><a href="#" class="test">Forms&nbsp;
-                                                <span class="fa fa-plus"></span>
-                                            </a>
-                                            <ul>
-                                                <li ><a href="{{ url_for('generalforms.defect') }}" >Defect Report</a></li>
-                                                <!-- <li ><a href="{{ url_for('generalforms.leave') }}">Leave</a></li> -->
-                                                <!-- <li ><a href="{{ url_for('generalforms.others') }}">Others</a></li>  -->
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="{{ url_for('main.rti_page') }}">RTI</a></li>
-                                <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media/News</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ url_for('blogs.blog')}}">Latest News</a></li>
-                                        <li><a href="{{ url_for('main.upcoming_event') }}">Upcoming Events</a></li>
-                                        <li><a href="{{ url_for('main.photo_gallery') }}">Photo Gallery</a></li>
-                                        <li><a href="{{ url_for('main.video_gallery') }}">Video Gallery</a></li>
-                                        <li><a href="{{ url_for('main.road_net') }}">Road Network</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="{{ url_for('main.contacts_page') }}">Contact Us</a></li>
-                                <li><a href="#">
+                                    </li>
+                                    <li><a href="#" class="test">Forms&nbsp;
+                                            <span class="fa fa-plus"></span>
+                                        </a>
+                                        <ul>
+                                            <li><a href="{{ url_for('generalforms.defect') }}">Defect Report</a></li>
+                                            <!-- <li ><a href="{{ url_for('generalforms.leave') }}">Leave</a></li> -->
+                                            <!-- <li ><a href="{{ url_for('generalforms.others') }}">Others</a></li>  -->
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ url_for('main.rti_page') }}">RTI</a></li>
+                            <li class="dropdown submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Media/News</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url_for('blogs.blog')}}">Latest News</a></li>
+                                    <li><a href="{{ url_for('main.upcoming_event') }}">Upcoming Events</a></li>
+                                    <li><a href="{{ url_for('main.photo_gallery') }}">Photo Gallery</a></li>
+                                    <li><a href="{{ url_for('main.video_gallery') }}">Video Gallery</a></li>
+                                    <li><a href="{{ url_for('main.road_net') }}">Road Network</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ url_for('main.contacts_page') }}">Contact Us</a></li>
+                            <li><a href="#">
                                     <!-- for the search box -->
                                     <!-- {% if g.search_form %}
                                         <form method="get" action="#">
@@ -235,404 +257,510 @@
                                             </div>
                                         </form> -->
                                     {% endif %}
-                                    </a>
-                                </li>    
-                            </ul> 
-                        </div><!-- /.navbar-collapse -->
-
-
-                        
-                    </nav>
-                </div> 
-            </div>
-        </header>
-        <!--================Header Area =================-->
-
-        <!--Display Flash messages if any-->
-        <div style="margin-top: 13%; margin-left: 99px;">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
-                <p class="alert alert-{{ category }}" style="width: 44.2%; margin-left: 12%; margin-bottom: 5px;"> 
-                    {{ message }}
-                </p>
-              {% endfor %}
-            {% endif %}
-            {% endwith %}
-        </div>
-        <!--Area for the Display of other contents/pages-->
-       
-        {% block content %}{% endblock %}
-        <!--================Address Area =================-->
-        <section class="address_area" style="margin-top: 8%;">
-            <div class="container">
-                <div class="row address_inner">
-                    <div class="col-md-4">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="{{ url_for('static', filename='img/icon/place-icon.png') }}" alt="">
-                            </div>
-                            <div class="media-body">
-                                <h4>Office Address :</h4>
-                                <h5>HEAD OFFICE</h5>
-                                <h5>P.O.Box 1914</h5>
-                                <h5>Ministries</h5>
-                                <h5>Accra - Ghana</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="{{ url_for('static', filename='img/icon/phone-icon.png') }}" alt="">
-                            </div>
-                            <div class="media-body">
-                                <h5>03202-961616</h5>
-                                <h5>03202-961620</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="{{ url_for('static', filename='img/icon/inbox-icon.png') }}" alt="">
-                            </div>
-                            <div class="media-body">
-                                <h5>ce@highways.gov.gh</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--================End Address Area =================-->
-
-        <!--================Footer Area =================-->
-        <footer class="footer_area">
-            <div class="footer_widgets_area">
-                <div class="container">
-                    <div class="row footer_widgets_inner">
-                        <div class="col-md-3 col-sm-6">
-                            <aside class="f_widget about_widget">
-                                <div class="f_w_title_1">
-                                    <h3>Ghana Highway Authority</h3>
-                                </div> 
-                                <p>
-                                    The Ghana Highway Authority was established as a 
-                                    body corporate under NRC Decree 298 in December 1974. 
-                                    The NRCD 298 was repealed by GHA Act 1997 (Act 540 ) which limited 
-                                    the Authority's responsibility to the administration, control, 
-                                    development and maintenance of the country's trunk road network 
-                                    totalling 15,000 km and related facilities in Ghana.
-                                </p>
-                                <ul>
-                                    <li>
-                                        <a href="https://www.twitter.com/highwaysghana/" target="_blank"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/company/highwaysghana/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/highwaysghana/" target="_bank"><i class="fa fa-instagram"></i></a>
-                                    </li>
-                                    
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <aside class="f_widget recent_widget">
-                                <div class="f_w_title">
-                                    <h3>Recent Posts</h3>
-                                </div>
-                                {% if posts %}
-                                <div class="recent_w_inner">
-                                    {% for post in posts[:2] %}
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <img src="{{ url_for('static', filename='blog_images/' + post.image) }}" style="width: 95px; height: 63px;" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}"><p>{{ post.title | truncate(60, True) }}</p></a>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                                {% else %}
-                                <div class="recent_w_inner">
-                                    <p style="color: #e8e8e8;font-family: 'Open Sans', sans-serif; line-height: 20px;font-size: 15px;">
-                                        There are no recent Posts
-                                    </p> 
-                                </div>
-                                {% endif %}
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <aside class="f_widget address_widget">
-                                <div class="f_w_title">
-                                    <h3>Office Address</h3>
-                                </div>
-                                <div class="address_w_inner">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-address-card-o"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p>P.O.Box 1641</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Accra - Ghana</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-phone"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p>03202-961616</p>
-                                            <p>03202-961620</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-fax">&nbsp;FAX</i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p>03220-28019(Direct)</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-envelope"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p>ce@highways.gov.gh</p>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </aside>
-                        </div> 
-                        <div class="col-md-3 col-sm-6">
-                            <aside class="f_widget give_us_widget">
-                                <h5>Give Us A Call</h5>
-                                <h4>03202-961616/<br>961620/961641<br>961427/966303</h4>
-                                <br><br>
-                                <a class="get_bg_btn" href="{{ url_for('main.landing_page') }}">
-                                    PORTAL
                                 </a>
-                            </aside>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+
+
+
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--================Header Area =================-->
+
+    <!--Display Flash messages if any-->
+    <div style="margin-top: 13%; margin-left: 99px;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <p class="alert alert-{{ category }}" style="width: 44.2%; margin-left: 12%; margin-bottom: 5px;">
+            {{ message }}
+        </p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <!--Area for the Display of other contents/pages-->
+
+    {% block content %}{% endblock %}
+    <!--================Address Area =================-->
+    <section class="address_area" style="margin-top: 8%;">
+        <div class="container">
+            <div class="row address_inner">
+                <div class="col-md-4">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="{{ url_for('static', filename='img/icon/place-icon.png') }}" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h4>Office Address :</h4>
+                            <h5>HEAD OFFICE</h5>
+                            <h5>P.O.Box 1614</h5>
+                            <h5>Ministries</h5>
+                            <h5>Accra - Ghana</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="{{ url_for('static', filename='img/icon/phone-icon.png') }}" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h5>03202-961616</h5>
+                            <h5>03202-961620</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="{{ url_for('static', filename='img/icon/inbox-icon.png') }}" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h5>ce@highways.gov.gh</h5>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer_copy_right">
-                <div class="container">
-                    <h4>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></h4>
+        </div>
+    </section>
+    <!--================End Address Area =================-->
+
+    <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="footer_widgets_area">
+            <div class="container">
+                <div class="row footer_widgets_inner">
+                    <div class="col-md-3 col-sm-6">
+                        <aside class="f_widget about_widget">
+                            <div class="f_w_title_1">
+                                <h3>Ghana Highway Authority</h3>
+                            </div>
+                            <p>
+                                The Ghana Highway Authority was established as a
+                                body corporate under NRC Decree 298 in December 1974.
+                                The NRCD 298 was repealed by GHA Act 1997 (Act 540 ) which limited
+                                the Authority's responsibility to the administration, control,
+                                development and maintenance of the country's trunk road network
+                                totalling 15,000 km and related facilities in Ghana.
+                            </p>
+                            <ul>
+                                <li>
+                                    <a href="https://www.twitter.com/highwaysghana/" target="_blank"><i
+                                            class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/company/highwaysghana/" target="_blank"><i
+                                            class="fa fa-linkedin"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/highwaysghana/" target="_bank"><i
+                                            class="fa fa-instagram"></i></a>
+                                </li>
+
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <aside class="f_widget recent_widget">
+                            <div class="f_w_title">
+                                <h3>Recent Posts</h3>
+                            </div>
+                            {% if posts %}
+                            <div class="recent_w_inner">
+                                {% for post in posts[:2] %}
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img src="{{ url_for('static', filename='blog_images/' + post.image) }}"
+                                            style="width: 95px; height: 63px;" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}">
+                                            <p>{{ post.title | truncate(60, True) }}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="recent_w_inner">
+                                <p
+                                    style="color: #e8e8e8;font-family: 'Open Sans', sans-serif; line-height: 20px;font-size: 15px;">
+                                    There are no recent Posts
+                                </p>
+                            </div>
+                            {% endif %}
+                        </aside>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <aside class="f_widget address_widget">
+                            <div class="f_w_title">
+                                <h3>Office Address</h3>
+                            </div>
+                            <div class="address_w_inner">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="fa fa-address-card-o"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>P.O.Box 1641</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>Accra - Ghana</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>03202-961616</p>
+                                        <p>03202-961620</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="fa fa-fax">&nbsp;FAX</i>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>03220-28019(Direct)</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>ce@highways.gov.gh</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <aside class="f_widget give_us_widget">
+                            <h5>Give Us A Call</h5>
+                            <h4>03202-961616/<br>961620/961641<br>961427/966303</h4>
+                            <br><br>
+                            <a class="get_bg_btn" href="{{ url_for('main.landing_page') }}">
+                                PORTAL
+                            </a>
+                        </aside>
+                    </div>
                 </div>
             </div>
-        </footer>
+        </div>
+        <div class="footer_copy_right">
+            <div class="container">
+                <h4>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | Ghana Highway
+                    Authority
+                    <!-- <i
+                        class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                        target="_blank">Colorlib</a> -->
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </h4>
+            </div>
+        </div>
+    </footer>
 
-        <!--================End Footer Area =================-->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-         <!-- slick cdn js -->
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" ></script>
-         <script type="text/javascript">
-             $('.leadership.carousel_show').slick();
+    <!--================End Footer Area =================-->
 
-         </script>
-        
-        <script src="{{ url_for('static', filename='js/radio.js') }}"></script>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="{{ url_for('static', filename='js/jquery-2.2.4.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
-        <script>
-            lightbox.option({
-              'resizeDuration': 200,
-              'wrapAround': true,
-              'disableScrolling': true
-            })
-        </script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-        <script>
-            $(document).ready(function(){
-              $('.submenu a.test').on("click", function(e){
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+    <!-- slick cdn js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script type="text/javascript">
+        // $('.leadership.carousel_show').slick();
+
+        // $('.responsive').slick({
+        //     slidesToShow: 3,
+        //     slidesToScroll: 1,
+        //     autoplay: true,
+        //     autoplaySpeed: 2000,
+        //     // arrow: false,
+        // });
+
+        $('.responsive').slick({
+            // dots: true,
+            centerMode: true,
+            autoplay: true,
+            // autoplaySpeed: 2000,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false,
+
+                    }
+                },
+
+                {
+                    breakpoint: 600,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        dots: false,
+                        mobileFirst: true,
+
+                    }
+                },
+
+                {
+                    breakpoint: 480,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false,
+                        arrows: false,
+                        autoplay: true,
+                        autoplaySpeed: 4000,
+
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+
+
+            // centerMode: true,
+            // slidesToShow: 1,
+            // slidesToScroll: 1,
+            // dots: true,
+            // infinite: true,
+            // cssEase: 'linear',
+            // mobileFirst: true, //optional, to be used only if your page is mobile first
+            // responsive: [{
+            //     breakpoint: 1024,
+            //     settings: {
+            //         slidesToShow: 4,
+            //         slidesToScroll: 1,
+            //         centerMode: false,
+            //     }
+            // }]
+    
+
+
+        });
+
+    </script>
+
+    <script src="{{ url_for('static', filename='js/radio.js') }}"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ url_for('static', filename='js/jquery-2.2.4.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'disableScrolling': true
+        })
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.submenu a.test').on("click", function (e) {
                 $(this).next('ul').toggle();
                 e.stopPropagation();
                 e.preventDefault();
-              });
             });
-        </script>
+        });
+    </script>
 
-        <!-- Rev slider js -->
-        <script src="{{ url_for('static', filename='vendors/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-        
-        <script src="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/isotope/imagesloaded.pkgd.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/isotope/isotope.pkgd.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/counterup/waypoints.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/counterup/jquery.counterup.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/flex-slider/jquery.flexslider-min.js') }}"></script>
-        
-        <!--gmaps Js-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-        <script src="{{ url_for('static', filename='js/gmaps.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
-        <!-- DataTables -->
-        <script src="{{ url_for('static', filename='DataTables/js/jquery.dataTables.min.js') }}"></script>
-        <script src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
-        <script>
-            $(document).ready(function(){
+    <!-- Rev slider js -->
+    <script src="{{ url_for('static', filename='vendors/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='vendors/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/isotope/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/counterup/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/counterup/jquery.counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/flex-slider/jquery.flexslider-min.js') }}"></script>
+
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="{{ url_for('static', filename='js/gmaps.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <!-- DataTables -->
+    <script src="{{ url_for('static', filename='DataTables/js/jquery.dataTables.min.js') }}"></script>
+    <script
+        src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
+    <script>
+        $(document).ready(function () {
             var table = $('#critical_roads').DataTable({
                 'ajax': 'https://santa-gha.s3.amazonaws.com/static/json/arrays.json',
                 'rowsGroup': [0]
             });
-            });
-        </script>
-        <!-- page script -->    
-        <script>
-            $(function () {
-                $("#mytable").DataTable();
-            });
-        </script>
+        });
+    </script>
+    <!-- page script -->
+    <script>
+        $(function () {
+            $("#mytable").DataTable();
+        });
+    </script>
 
-        <!--Ajax script for completed periodic projects' sum-->
-        <script>
-            $(document).ready(function(){
-                $('#completed_proj_sub').on('click', function(event){
+    <!--Ajax script for completed periodic projects' sum-->
+    <script>
+        $(document).ready(function () {
+            $('#completed_proj_sub').on('click', function (event) {
 
-                    var start_date = $('#start_date').val();
-                    var end_date = $('#end_date').val();
+                var start_date = $('#start_date').val();
+                var end_date = $('#end_date').val();
 
-                    $.ajax({
-                        type : "POST",
-                        url : "{{ url_for('main.completed_periodic') }}",
-                        dataType: "json",
-                        data : {
-                            start_date: start_date, end_date : end_date
-                        },
-                        success: function(data){
-                            $('#completed_proj_sum').replaceWith(data.data)
-                        }
-                    });
-                    event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url_for('main.completed_periodic') }}",
+                    dataType: "json",
+                    data: {
+                        start_date: start_date, end_date: end_date
+                    },
+                    success: function (data) {
+                        $('#completed_proj_sum').replaceWith(data.data)
+                    }
                 });
+                event.preventDefault();
             });
-        </script>
-        <!--Ajax script for Ongoing periodic projects' sum-->
-        <script>
-            $(document).ready(function(){
-                $('#ongoing_proj_sub').on('click', function(event){
+        });
+    </script>
+    <!--Ajax script for Ongoing periodic projects' sum-->
+    <script>
+        $(document).ready(function () {
+            $('#ongoing_proj_sub').on('click', function (event) {
 
-                    var start_date = $('#start_date').val();
-                    var end_date = $('#end_date').val();
+                var start_date = $('#start_date').val();
+                var end_date = $('#end_date').val();
 
-                    $.ajax({
-                        type : "POST",
-                        url : "{{ url_for('main.ongoing_periodic') }}",
-                        dataType: "json",
-                        data : {
-                            start_date: start_date, end_date : end_date
-                        },
-                        success: function(data){
-                            $('#ongoing_proj_sum').replaceWith(data.data)
-                        }
-                    });
-                    event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url_for('main.ongoing_periodic') }}",
+                    dataType: "json",
+                    data: {
+                        start_date: start_date, end_date: end_date
+                    },
+                    success: function (data) {
+                        $('#ongoing_proj_sum').replaceWith(data.data)
+                    }
                 });
+                event.preventDefault();
             });
-        </script>
-        <!--Ajax script for Awarded Projects' sum-->
-        <script>
-            $(document).ready(function(){
-                $('#awarded_proj_sub').on('click', function(event){
+        });
+    </script>
+    <!--Ajax script for Awarded Projects' sum-->
+    <script>
+        $(document).ready(function () {
+            $('#awarded_proj_sub').on('click', function (event) {
 
-                    var start_date = $('#start_date').val();
-                    var end_date = $('#end_date').val();
+                var start_date = $('#start_date').val();
+                var end_date = $('#end_date').val();
 
-                    $.ajax({
-                        type : "POST",
-                        url : "{{ url_for('projects.awarded_proj') }}",
-                        dataType: "json",
-                        data : {
-                            start_date: start_date, end_date : end_date
-                        },
-                        success: function(data){
-                            $('#awarded_proj_sum').replaceWith(data.data) 
-                        }
-                    });
-                    event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url_for('projects.awarded_proj') }}",
+                    dataType: "json",
+                    data: {
+                        start_date: start_date, end_date: end_date
+                    },
+                    success: function (data) {
+                        $('#awarded_proj_sum').replaceWith(data.data)
+                    }
                 });
+                event.preventDefault();
             });
-        </script>
-        <!--Ajax script for Terminated Projects' sum-->
-        <script>
-            $(document).ready(function(){
-                $('#terminated_proj_sub').on('click', function(event){
+        });
+    </script>
+    <!--Ajax script for Terminated Projects' sum-->
+    <script>
+        $(document).ready(function () {
+            $('#terminated_proj_sub').on('click', function (event) {
 
-                    var start_date = $('#start_date').val();
-                    var end_date = $('#end_date').val();
+                var start_date = $('#start_date').val();
+                var end_date = $('#end_date').val();
 
-                    $.ajax({
-                        type : "POST",
-                        url : "{{ url_for('projects.terminated_proj') }}",
-                        dataType: "json",
-                        data : {
-                            start_date: start_date, end_date : end_date
-                        },
-                        success: function(data){
-                            $('#terminated_proj_sum').replaceWith(data.data) 
-                        }
-                    });
-                    event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url_for('projects.terminated_proj') }}",
+                    dataType: "json",
+                    data: {
+                        start_date: start_date, end_date: end_date
+                    },
+                    success: function (data) {
+                        $('#terminated_proj_sum').replaceWith(data.data)
+                    }
                 });
+                event.preventDefault();
             });
-        </script>
-        {% include "includes/completed_scripts.html" %}
-        {% include "includes/ongoing_scripts.html" %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $(".datepicker").datetimepicker({
-                    format: 'YYYY-MM-DD',                          
-                });
+        });
+    </script>
+    {% include "includes/completed_scripts.html" %}
+    {% include "includes/ongoing_scripts.html" %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".datepicker").datetimepicker({
+                format: 'YYYY-MM-DD',
             });
-        </script>
+        });
+    </script>
 
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker6').datetimepicker({
-                    format: 'YYYY-MM-DD',
-                });
-
-                $('#datetimepicker7').datetimepicker({
-                    format: 'YYYY-MM-DD',
-                    useCurrent: false //Important! See issue #1075
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker6').datetimepicker({
+                format: 'YYYY-MM-DD',
             });
-                $("#datetimepicker6").on("dp.change", function (e) {
-                    $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-                });
-                $("#datetimepicker7").on("dp.change", function (e) {
-                    $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-                });
-            });
-        </script>
-        
 
-    </body>
+            $('#datetimepicker7').datetimepicker({
+                format: 'YYYY-MM-DD',
+                useCurrent: false //Important! See issue #1075
+            });
+            $("#datetimepicker6").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+    </script>
+
+
+</body>
+
 </html>
