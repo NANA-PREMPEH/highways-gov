@@ -2800,7 +2800,7 @@ div.leadership{
   margin-bottom: 30px; 
   margin-left: auto;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 992px) {
   div.leadership {
   display: block;
   float: none;
@@ -2895,7 +2895,7 @@ div.leadership{
 }
 
 /* The overlay effect - lays on top of the container and over the image */
-/* .overlay {
+.overlay {
   position: absolute;    
   
   background: rgb(0, 0, 0);
@@ -2908,17 +2908,17 @@ div.leadership{
   padding: 10px;
   text-align: center;
   margin-top: -16%; 
-} */
+}
 
-/* #img_style {
+#img_style {
   display: inline-flex; 
   margin-bottom: 30px;
-} */
+}
 
 
-/* .img_disp:hover .overlay { 
+.img_disp:hover .overlay { 
   opacity: 1;
-} */
+}
 
 .view_btn1 {
   display: inline-block;
@@ -2935,7 +2935,8 @@ div.leadership{
   
 }
 .view_btn1:hover {
-  color: rgb(245, 244, 244);
+  /* color: rgb(245, 244, 244); */
+  background-color:#01368c;
 }
 
 #periodic {
@@ -2948,6 +2949,10 @@ div.leadership{
 
 #periodic table a {
   color: #31353d;
+}
+
+#periodic table a:hover{
+  color:white;
 }
 
 /*End of Styling*/
@@ -4436,19 +4441,3 @@ div.leadership{
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
-
-/* additional styling */
-.label_for_homepage{
-  font-size: 60px; 
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-}
-
-@media screen and (min-width: 600px){
-  .label_for_homepage{
-    font-size:1em;
-    color: rgb(255, 255, 255);
-    text-shadow: 2px 2px 4px #000000;
-  }
-}
-
