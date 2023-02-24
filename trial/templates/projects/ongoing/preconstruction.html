@@ -1,64 +1,71 @@
 {% extends "includes/layout.html" %}
 {% block content %}
-<div class="container"> 
+<div class="container">
     <div class="row blog_details_inner" style="margin-left: 1%; width: fit-content;">
         <h3 class="table_h3" id="table_h3">
-            PRE-CONSTRUCTION PROJECTS 
+            PRE-CONSTRUCTION PROJECTS
             <span style="font-size: medium;">(ONGOING)</span>
         </h3>
-        
-        <table id="mytable" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>REGION</th>
-                    <th>PROJECT</th>
-                    <th>LENGTH (Km)</th>
-                    <th>CONTRACTOR</th>
-                    <th>DATE OF COMMENCE</th>
-                    <th>DATE OF COMPLETION</th>
-                    <th>REVISED COMPLETION DATE</th>
-                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
-                    <th>REVISED CONTRACT SUM(GH¢)</th>
-                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
-                    <th>VIEW DETAILS</th> 
-                </tr> 
-            </thead>
-            <tbody>
-                {% for precons in precons_list %} 
-                    <tr>  
-                        <td>{{ precons.region }}</td>
-                        <td>{{ precons.project }}</td>
-                        <td>{{ precons.length }}</td>
-                        <td>{{ precons.contractor }}</td>
-                        <td>{{ precons.date_commenced }}</td>
-                        <td>{{ precons.date_completed }}</td>
-                        <td>{{ precons.revised_date }}</td>
-                        
-                        {% if precons.contract_sum == "N/A" %}
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-11 col-sm-8 col-xs-8">
+                <table id="mytable" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>REGION</th>
+                            <th>PROJECT</th>
+                            <th>LENGTH (Km)</th>
+                            <th>CONTRACTOR</th>
+                            <th>DATE OF COMMENCE</th>
+                            <th>DATE OF COMPLETION</th>
+                            <th>REVISED COMPLETION DATE</th>
+                            <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                            <th>REVISED CONTRACT SUM(GH¢)</th>
+                            <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th>
+                            <th>VIEW DETAILS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for precons in precons_list %}
+                        <tr>
+                            <td>{{ precons.region }}</td>
+                            <td>{{ precons.project }}</td>
+                            <td>{{ precons.length }}</td>
+                            <td>{{ precons.contractor }}</td>
+                            <td>{{ precons.date_commenced }}</td>
+                            <td>{{ precons.date_completed }}</td>
+                            <td>{{ precons.revised_date }}</td>
+
+                            {% if precons.contract_sum == "N/A" %}
                             <td>{{ precons.contract_sum }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(precons.contract_sum|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if precons.revised_sum == "N/A" %} 
+                            {% if precons.revised_sum == "N/A" %}
                             <td>{{ precons.revised_sum }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(precons.revised_sum|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if precons.amt_to_date == "N/A" %}
+                            {% if precons.amt_to_date == "N/A" %}
                             <td>{{ precons.amt_to_date }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(precons.amt_to_date|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        <td style="text-align: center;">
-                            <a href="#"><i class="fa fa-eye"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table><br>
+                            <td style="text-align: center;">
+                                <a href="#"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
         <div>
             <form action="" method="post">
                 <div class="col-md-6">
@@ -76,13 +83,13 @@
                         <input type="text" class="form-control" name="end_date" id="end_date">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span> 
+                        </span>
                     </div>
                 </div><br><br><br>
-                
+
                 <div class="col-md-6" id="ongoing_precons_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name=""  value="{{ sum }}"readonly>
+                    <input class="form-control" type="text" name="" value="{{ sum }}" readonly>
                 </div><br><br><br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>
@@ -90,8 +97,8 @@
                 </div><br><br><br>-->
                 <div class="form-group col-md-6">
                     <input type="submit" class="btn btn-info" id="ongoing_precons_sub" name="submit" value="Submit">
-                </div> 
-            </form>        
+                </div>
+            </form>
         </div>
     </div>
 </div>

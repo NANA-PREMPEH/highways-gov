@@ -21,8 +21,11 @@
                 <div class="col-md-12">
                     <form action="" method="POST">
                         <fieldset class="form-group" style="margin-left: 10%;">
-                            <div class="col-md-6">
+                            <!-- First column for data entry -->
+                            <div class="col-md-4">
+                                <!-- 1 -->
                                 <div class="form-group">
+                                    
                                     {{ form.region.label }}
                                     <!--If form had errors-->
                                     {% if form.region.errors %}
@@ -37,6 +40,59 @@
                                         {{ form.region(class="form-control")}}
                                     {% endif %}
                                 </div>
+
+                                <!-- 2 -->
+                                <div class="form-group">
+                                    {{ form.funding.label }}
+                                    <!--If form had errors-->
+                                    {% if form.funding.errors %}
+                                        {{ form.funding(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.funding.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %}
+                                        {{ form.funding(class="form-control")}}
+                                    {% endif %}
+                                </div>
+
+                                <!-- 3 -->
+                                <div class="form-group">
+                                    {{ form.procurement.label }}
+                                    <!--If form had errors-->
+                                    {% if form.procurement.errors %}
+                                        {{ form.procurement(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.procurement.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %}
+                                        {{ form.procurement(class="form-control")}}
+                                    {% endif %}
+                                </div>
+
+                                <!-- 4 -->
+                                <div class="form-group">
+                                    {{ form.contractor.label }}
+                                    <!--If form had errors-->
+                                    {% if form.contractor.errors %}
+                                        {{ form.contractor(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.contractor.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %}
+                                        {{ form.contractor(class="form-control")}}
+                                    {% endif %}
+                                </div>
+
+                                <!-- 5 -->
                                 <div class="form-group">
                                     {{ form.project.label }}
             
@@ -53,6 +109,8 @@
                                         {{ form.project(class="form-control")}} 
                                     {% endif %}
                                 </div>
+
+                                <!-- 6 -->
                                 <div class="form-group">
                                     {{ form.length.label }}
             
@@ -69,21 +127,19 @@
                                         {{ form.length(class="form-control")}}
                                     {% endif %}
                                 </div>
+                                
+                                <!-- 7 -->
                                 <div class="form-group">
-                                    {{ form.contractor.label }}
-                                    <!--If form had errors-->
-                                    {% if form.contractor.errors %}
-                                        {{ form.contractor(class="form-control", style="border-color: #a94442;") }}
-                                        <div class="form-group has-error">
-                                            {% for error in form.contractor.errors %}
-                                                <div class="help-block">{{ error }}</div>
-                                            {% endfor %}
+                                    {{ form.award_date.label }}
+                                    <div class="input-group datepicker">
+                                        {{ form.award_date(class="form-control")}}
+                                        <div class="input-group-addon">
+                                            <div class="glyphicon glyphicon-calendar"></div>
                                         </div>
-                                    <!--if there are no errors-->
-                                    {% else %}
-                                        {{ form.contractor(class="form-control")}} 
-                                    {% endif %}   
+                                    </div> 
                                 </div>
+
+                                <!-- 8 -->
                                 <div class="form-group">
                                     {{ form.date_commenced.label }}
                                     <div class="input-group datepicker">
@@ -93,15 +149,206 @@
                                         </div>
                                     </div> 
                                 </div>
+
+                                <!-- 9 -->
                                 <div class="form-group">
-                                    {{ form.date_completed.label }}
+                                    {{ form.revised_date.label }}
                                     <div class="input-group datepicker">
-                                        {{ form.date_completed(class="form-control")}}
+                                        {{ form.revised_date(class="form-control")}}
                                         <div class="input-group-addon">
                                             <div class="glyphicon glyphicon-calendar"></div>
                                         </div>
                                     </div> 
                                 </div>
+
+                                <!-- 10 -->
+                                
+                            </div>
+
+                            <!-- Second column for data entry -->
+                            <div class="col-md-4">
+                                
+                                <!-- 11 -->
+                                <div class="form-group">
+                                    {{ form.contract_sum.label }}
+            
+                                    <!--If form had errors-->
+                                    {% if form.contract_sum.errors %}
+                                        {{ form.contract_sum(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.contract_sum.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %} 
+                                        {{ form.contract_sum(class="form-control")}}
+                                    {% endif %}
+                                </div>
+
+                                <!-- 12 -->
+                                <div class="form-group">
+                                    {{ form.revised_sum.label }}
+            
+                                    <!--If form had errors-->
+                                    {% if form.revised_sum.errors %}
+                                        {{ form.revised_sum(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.revised_sum.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %} 
+                                        {{ form.revised_sum(class="form-control")}}
+                                    {% endif %}
+                                </div>
+
+                                <!-- 13 -->
+                                <div class="form-group">
+                                    {{ form.amt_to_date.label }}
+            
+                                    <!--If form had errors-->
+                                    {% if form.amt_to_date.errors %}
+                                        {{ form.amt_to_date(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.amt_to_date.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %} 
+                                        {{ form.amt_to_date(class="form-control")}}
+                                    {% endif %}
+                                </div>
+
+                                <!-- 14 -->
+                                <div class="form-group">
+                                    {{ form.cost_to_complete.label }}
+            
+                                    <!--If form had errors-->
+                                    {% if form.cost_to_complete.errors %}
+                                        {{ form.cost_to_complete(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.cost_to_complete.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %} 
+                                        {{ form.cost_to_complete(class="form-control")}}
+                                    {% endif %}
+                                </div>
+
+                                <!-- 15 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-info">
+                                        <strong>Progress</strong>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                {{ form.physical.label }}
+        
+                                        <!--If form had errors-->
+                                        {% if form.physical.errors %}
+                                            {{ form.physical(class="form-control", style="border-color: #a94442;") }}
+                                            <div class="form-group has-error">
+                                                {% for error in form.physical.errors %}
+                                                    <div class="help-block">{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        <!--if there are no errors-->
+                                        {% else %} 
+                                            {{ form.physical(class="form-control")}}
+                                        {% endif %}
+                                            </div>
+                                            <div class="col-sm-6">
+                                                {{ form.time_elapsed.label }}
+        
+                                        <!--If form had errors-->
+                                        {% if form.time_elapsed.errors %}
+                                            {{ form.time_elapsed(class="form-control", style="border-color: #a94442;") }}
+                                            <div class="form-group has-error">
+                                                {% for error in form.time_elapsed.errors %}
+                                                    <div class="help-block">{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        <!--if there are no errors-->
+                                        {% else %} 
+                                            {{ form.time_elapsed(class="form-control")}}
+                                        {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+
+                            
+                                <!-- 16 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-info">
+                                        <strong>Details of Work Progress</strong>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                {{ form.activity.label }}
+        
+                                        <!--If form had errors-->
+                                        {% if form.activity.errors %}
+                                            {{ form.activity(class="form-control", style="border-color: #a94442;") }}
+                                            <div class="form-group has-error">
+                                                {% for error in form.activity.errors %}
+                                                    <div class="help-block">{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        <!--if there are no errors-->
+                                        {% else %} 
+                                            {{ form.activity(class="form-control")}}
+                                        {% endif %}
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                {{ form.phy.label }}
+        
+                                        <!--If form had errors-->
+                                        {% if form.phy.errors %}
+                                            {{ form.phy(class="form-control", style="border-color: #a94442;") }}
+                                            <div class="form-group has-error">
+                                                {% for error in form.phy.errors %}
+                                                    <div class="help-block">{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        <!--if there are no errors-->
+                                        {% else %} 
+                                            {{ form.phy(class="form-control")}}
+                                        {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+
+                                <!-- 17 -->
+                                <div class="form-group">
+                                    {{ form.remarks.label }}
+            
+                                    <!--If form had errors-->
+                                    {% if form.remarks.errors %}
+                                        {{ form.remarks(class="form-control", style="border-color: #a94442;") }}
+                                        <div class="form-group has-error">
+                                            {% for error in form.remarks.errors %}
+                                                <div class="help-block">{{ error }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    <!--if there are no errors-->
+                                    {% else %} 
+                                        {{ form.remarks(class="form-control")}}
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                            <!-- Third column for data entry -->
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     {{ form.pic_one.label() }}
                                     {{ form.pic_one}}
@@ -111,8 +358,7 @@
                                         {% endfor %}
                                     {% endif %}
                                 </div>
-                            </div>
-                            <div class="col-md-6">
+
                                 <div class="sidebar_area" >
                                     <div class="form-group">
                                         {{ form.pic_two.label() }}
@@ -141,38 +387,41 @@
                                             <option value="Others">Others</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        {{ form.contract_sum.label }}
+                                    <!-- <div class="form-group"> -->
+                                        <!-- {{ form.contract_sum.label }} -->
                 
                                         <!--If form had errors-->
-                                        {% if form.contract_sum.errors %}
+                                        <!-- {% if form.contract_sum.errors %}
                                             {{ form.contract_sum(class="form-control", style="border-color: #a94442;") }}
                                             <div class="form-group has-error">
                                                 {% for error in form.contract_sum.errors %}
                                                     <div class="help-block">{{ error }}</div>
                                                 {% endfor %}
-                                            </div>
+                                            </div> -->
                                         <!--if there are no errors-->
-                                        {% else %} 
+                                        <!-- {% else %} 
                                             {{ form.contract_sum(class="form-control")}}
                                         {% endif %}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form.amt_to_date.label }}
+                                    </div> -->
+
+                                    <!-- <div class="form-group"> -->
+                                        <!-- {{ form.amt_to_date.label }} -->
                 
                                         <!--If form had errors-->
-                                        {% if form.amt_to_date.errors %}
-                                            {{ form.amt_to_date(class="form-control", style="border-color: #a94442;") }}
-                                            <div class="form-group has-error">
-                                                {% for error in form.amt_to_date.errors %}
-                                                    <div class="help-block">{{ error }}</div>
-                                                {% endfor %}
-                                            </div>
+                                        <!-- {% if form.amt_to_date.errors %} -->
+                                            <!-- {{ form.amt_to_date(class="form-control", style="border-color: #a94442;") }} -->
+                                            <!-- <div class="form-group has-error"> -->
+                                                <!-- {% for error in form.amt_to_date.errors %} -->
+                                                    <!-- <div class="help-block">{{ error }}</div> -->
+                                                <!-- {% endfor %} -->
+                                            <!-- </div> -->
                                         <!--if there are no errors-->
-                                        {% else %} 
-                                            {{ form.amt_to_date(class="form-control")}}
-                                        {% endif %}
-                                    </div> 
+                                        <!-- {% else %}  -->
+                                            <!-- {{ form.amt_to_date(class="form-control")}} -->
+                                        <!-- {% endif %} -->
+                                    <!-- </div>  -->
+
+
                                     <div class="form-group">
                                         {{ form.video_title.label }}
                                         
@@ -222,7 +471,10 @@
                                         {% endif %}
                                     </div>    
                                 </div>
-                            </div><br>
+
+                            </div>
+
+                            <br>
                         </fieldset>
                         <div class="form-group" style="text-align: center; margin-top: 2px;">
                             {{ form.submit(class="btn btn-primary") }}

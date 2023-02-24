@@ -1,71 +1,79 @@
 {% extends "includes/layout.html" %}
 {% block content %}
-<div class="container"> 
+<div class="container">
     <div class="row blog_details_inner" style="margin-left: 1%; width: fit-content;">
         <h3 class="table_h3" id="table_h3">
-            ASPHALTIC OVERLAY PROJECTS 
+            ASPHALTIC OVERLAY PROJECTS
             <span style="font-size: medium;">(ONGOING)</span>
         </h3>
-        
-        <table id="mytable" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>REGION</th>
-                    <th>PROJECT</th>
-                    <th>LENGTH (Km)</th>
-                    <th>CONTRACTOR</th>
-                    <th>DATE OF COMMENCE</th>
-                    <th>DATE OF COMPLETION</th>
-                    <th>REVISED COMPLETION DATE</th>
-                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
-                    <th>REVISED CONTRACT SUM(GH¢)</th>
-                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
-                    <th>VIEW DETAILS</th> 
-                </tr> 
-            </thead>
-            <tbody>
-                {% for overlay in overlay_list %} 
-                    <tr>  
-                        <td>{{ overlay.region }}</td>
-                        <td>{{ overlay.project }}</td>
-                        <td>{{ overlay.length }}</td>
-                        <td>{{ overlay.contractor }}</td>
-                        <td>{{ overlay.date_commenced }}</td>
-                        <td>{{ overlay.date_completed }}</td>
-                        <td>{{ overlay.revised_date }}</td>
-                        
-                        {% if overlay.contract_sum == "N/A" %}
+
+        <div class="row">
+            <div class="col-lg-12 col-md-11 col-sm-8 col-xs-8">
+                <table id="mytable" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>REGION</th>
+                            <th>PROJECT</th>
+                            <th>LENGTH (Km)</th>
+                            <th>CONTRACTOR</th>
+                            <th>DATE OF COMMENCE</th>
+                            <th>DATE OF COMPLETION</th>
+                            <th>REVISED COMPLETION DATE</th>
+                            <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                            <th>REVISED CONTRACT SUM(GH¢)</th>
+                            <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th>
+                            <th>VIEW DETAILS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for overlay in overlay_list %}
+                        <tr>
+                            <td>{{ overlay.region }}</td>
+                            <td>{{ overlay.project }}</td>
+                            <td>{{ overlay.length }}</td>
+                            <td>{{ overlay.contractor }}</td>
+                            <td>{{ overlay.date_commenced }}</td>
+                            <td>{{ overlay.date_completed }}</td>
+                            <td>{{ overlay.revised_date }}</td>
+
+                            {% if overlay.contract_sum == "N/A" %}
                             <td>{{ overlay.contract_sum }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(overlay.contract_sum|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if overlay.revised_sum == "N/A" %} 
+                            {% if overlay.revised_sum == "N/A" %}
                             <td>{{ overlay.revised_sum }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(overlay.revised_sum|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if overlay.amt_to_date == "N/A" %}
+                            {% if overlay.amt_to_date == "N/A" %}
                             <td>{{ overlay.amt_to_date }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(overlay.amt_to_date|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        <td style="text-align: center;">
-                            <a href="{{ url_for('ongoing_proj.overlay_contract', contract_id=overlay.id) }}"><i class="fa fa-eye"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table><br>
+                            <td style="text-align: center;">
+                                <a href="{{ url_for('ongoing_proj.overlay_contract', contract_id=overlay.id) }}"><i
+                                        class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <br>
         <div>
             <form action="" method="post">
                 <div class="col-md-6">
                     <label for="start_date">From :</label>
                     <div class="input-group date" id="datetimepicker6">
                         <input type="text" class="form-control" name="start_date" id="start_date">
-                        <span class="input-group-addon"> 
+                        <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
@@ -76,13 +84,13 @@
                         <input type="text" class="form-control" name="end_date" id="end_date">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span> 
+                        </span>
                     </div>
                 </div><br><br><br>
-                
+
                 <div class="col-md-6" id="ongoing_asphaltic_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name=""  value="{{ sum }}"readonly>
+                    <input class="form-control" type="text" name="" value="{{ sum }}" readonly>
                 </div><br><br><br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>
@@ -90,8 +98,8 @@
                 </div><br><br><br>-->
                 <div class="form-group col-md-6">
                     <input type="submit" class="btn btn-info" id="ongoing_asphaltic_sub" name="submit" value="Submit">
-                </div> 
-            </form>        
+                </div>
+            </form>
         </div>
     </div>
 </div>

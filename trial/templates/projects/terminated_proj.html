@@ -1,89 +1,93 @@
 {% extends "includes/layout.html" %}
 {% block content %}
-<div class="container"> 
+<div class="container">
     <div class="row blog_details_inner" style="margin-left: 1%; width: fit-content;">
         <h3 class="table_h3" id="table_h3">
-            TERMINATED PROJECTS 
+            TERMINATED PROJECTS
             <span style="font-size: medium;"></span>
         </h3>
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-8  col-xs-8">
+                    <table id="mytable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>REGION</th>
+                                <th>PROJECT</th>
+                                <th>LENGTH (Km)</th>
+                                <th>CONTRACTOR</th>
+                                <th>DATE OF COMMENCE</th>
+                                <th>DATE OF COMPLETION</th>
+                                <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                                <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th>
+                                <th>VIEW DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for terminated in terminated_list %}
+                            <tr>
+                                <td>{{ terminated.region }}</td>
+                                <td>{{ terminated.project }}</td>
+                                <td>{{ terminated.length }}</td>
+                                <td>{{ terminated.contractor }}</td>
+                                <td>{{ terminated.date_commenced }}</td>
+                                <td>{{ terminated.date_completed }}</td>
         
-        <table id="mytable" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>REGION</th>
-                    <th>PROJECT</th>
-                    <th>LENGTH (Km)</th>
-                    <th>CONTRACTOR</th>
-                    <th>DATE OF COMMENCE</th>
-                    <th>DATE OF COMPLETION</th>
-                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
-                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
-                    <th>VIEW DETAILS</th> 
-                </tr> 
-            </thead>
-            <tbody>
-                {% for terminated in terminated_list %} 
-                    <tr>  
-                        <td>{{ terminated.region }}</td>
-                        <td>{{ terminated.project }}</td>
-                        <td>{{ terminated.length }}</td>
-                        <td>{{ terminated.contractor }}</td>
-                        <td>{{ terminated.date_commenced }}</td>
-                        <td>{{ terminated.date_completed }}</td>
-                        
-                        {% if terminated.contract_sum == "N/A" %}
-                            <td>{{ terminated.contract_sum }}</td>
-                        {% else %}
-                            <td>{{ "{:,.2f}".format(terminated.contract_sum|float) }}</td>
-                        {% endif %}
-
-                        {% if terminated.amt_to_date == "N/A" %}
-                            <td>{{ terminated.amt_to_date }}</td>
-                        {% else %}
-                            <td>{{ "{:,.2f}".format(terminated.amt_to_date|float) }}</td>
-                        {% endif %}
-
-                        <td style="text-align: center;">
-                            <a href=""><i class="fa fa-eye"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table><br> 
-        <div>
-            <form action="" method="post">
-                <div class="col-md-6">
-                    <label for="start_date">From :</label>
-                    <div class="input-group date" id="datetimepicker6">
-                        <input type="text" class="form-control" name="start_date" id="start_date">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
+                                {% if terminated.contract_sum == "N/A" %}
+                                <td>{{ terminated.contract_sum }}</td>
+                                {% else %}
+                                <td>{{ "{:,.2f}".format(terminated.contract_sum|float) }}</td>
+                                {% endif %}
+        
+                                {% if terminated.amt_to_date == "N/A" %}
+                                <td>{{ terminated.amt_to_date }}</td>
+                                {% else %}
+                                <td>{{ "{:,.2f}".format(terminated.amt_to_date|float) }}</td>
+                                {% endif %}
+        
+                                <td style="text-align: center;">
+                                    <a href=""><i class="fa fa-eye"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-md-6">
-                    <label for="end_date">To :</label>
-                    <div class="input-group date" id="datetimepicker7">
-                        <input type="text" class="form-control" name="end_date" id="end_date">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span> 
+            </div>
+            <br>
+            <div>
+                <form action="" method="post">
+                    <div class="col-md-6">
+                        <label for="start_date">From :</label>
+                        <div class="input-group date" id="datetimepicker6">
+                            <input type="text" class="form-control" name="start_date" id="start_date">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                     </div>
-                </div><br><br><br>
-                
-                <div class="col-md-6" id="terminated_proj_sum">
-                    <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name=""  value="{{ sum }}"readonly>
-                </div><br><br><br>
-                <!--<div class="col-md-6">
+                    <div class="col-md-6">
+                        <label for="end_date">To :</label>
+                        <div class="input-group date" id="datetimepicker7">
+                            <input type="text" class="form-control" name="end_date" id="end_date">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div><br><br><br>
+
+                    <div class="col-md-6" id="terminated_proj_sum">
+                        <label for="">Contract Sum</label>
+                        <input class="form-control" type="text" name="" value="{{ sum }}" readonly>
+                    </div><br><br><br>
+                    <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>
                     <input class="form-control" type="text" name="" id="" value="0.00">
                 </div><br><br><br>-->
-                <div class="form-group col-md-6">
-                    <input type="submit" class="btn btn-info" id="terminated_proj_sub" name="submit" value="Submit">
-                </div> 
-            </form>        
+                    <div class="form-group col-md-6">
+                        <input type="submit" class="btn btn-info" id="terminated_proj_sub" name="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-{% endblock content %}
+    {% endblock content %}

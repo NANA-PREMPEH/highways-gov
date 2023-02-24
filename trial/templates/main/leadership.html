@@ -10,11 +10,12 @@
         text-align: center;
         margin: 0;
         padding: 10px;
-        box-shadow: 0 0 5px 5px rgb(153, 147, 147);
+        box-shadow: 10px 10px 40px grey;
         background: #fff;
         margin-bottom: 30px;
         width: 263px;
         height: 100px;
+        gap: 50px;
     }
 
     .team_name h4 {
@@ -22,6 +23,7 @@
     }
 
     #leader {
+        flex: 1;
         flex-wrap: wrap;
         display: flex;
     }
@@ -56,10 +58,53 @@
         position: relative;
         overflow: visible;
     }
+
     .slick-next {
         right: 0;
         top: 0;
         position: absolute;
+
+    }
+
+    .leadership {
+        width: 100%;
+        display: flex;
+    }
+    /* make distance betwwen corosel transition */
+    /* the slides */
+    .slick-slide {
+        margin: 0 35px;
+    }
+
+    /* the parent */
+    .slick-list {
+        margin: 0 -35px;
+    }
+    /* end of making distance betwwen corosel transition */
+
+    /* working  */
+    @media screen and (max-width: 480px) {
+        .leadership {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        #leader {
+            /* flex: 1; */
+            /* flex-wrap: wrap; */
+            /* display: flex; */
+            display: block;
+        }
+
+        .slick-track {
+            display: flex;
+        }
+    }
+
+    @media screen and (max-width: 768px) and (max-width: 992px) {
+        .slick-track {
+            display: flex;
+        }
 
     }
 </style>
@@ -67,14 +112,14 @@
 <div class="container">
     <div class="row blog_details_inner" style="margin-left: 2%;">
         <h3 class="table_h3" id="table_h3">LEADERSHIP</h3>
-        <!-- Divider headen  -->
+        <!-- Divider header  -->
         <div>
             <h5 id="no_news">Board of Directors</h5>
             <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
         </div>
 
-
-        <div data-slick='{"slidesToShow": 4, "slidesToScroll": 1}' class="leadership carousel_show" id="leader">
+        <div class="responsive" id="leader">
+            <!-- <div data-slick='{"slidesToShow": 4, "slidesToScroll": 1},"dots":false,"arrows":true, "leadership carousel_show":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}' class="leadership carousel_show" id="leader"> -->
             <div class="img_disp" id="try">
                 <img src="{{ url_for('static', filename='img/leaders/logoBM.png') }}" alt="pre-cons-left"
                     class="image_file">
@@ -236,14 +281,14 @@
 
         </div>
 
+        
 
-
-        <!-- Divider headen  -->
+        <!-- Divider header  -->
         <div>
             <h5 id="no_news">Chief Executive</h5>
             <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
         </div>
-        <!-- Divider headen  -->
+        <!-- Divider header  -->
         <div>
             <h5 id="no_news">Deputy Chief Executive</h5>
             <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
@@ -255,8 +300,8 @@
                     <div class="overlay">
                         <div id="pro">
                             <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                            <a href="{{ url_for('static', filename='img/leaders/LAWRENCE LLOYD LANKWEI LAMPTEY.jpg') }}" data-lightbox="profile"
-                                data-title="Pic-3" data-alt="Pic-3.jpg">
+                            <a href="{{ url_for('static', filename='img/leaders/LAWRENCE LLOYD LANKWEI LAMPTEY.jpg') }}"
+                                data-lightbox="profile" data-title="Pic-3" data-alt="Pic-3.jpg">
                                 Profile
                             </a>
                         </div>
@@ -275,7 +320,7 @@
         </div>
 
         <!-- first director -->
-        <div class="leadership" id="leader">
+        <div class="responsive" id="leader">
             <div class="img_disp" id="try">
                 <img src="{{ url_for('static', filename='img/leaders/Dr. Frank Mawuyome kwame Gamadey.jpg') }}"
                     alt="pre-cons-left" class="image_file">
@@ -283,8 +328,8 @@
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="{{ url_for('static', filename='img/leaders/Dr. Frank Mawuyome new.jpg') }}" data-lightbox="profile"
-                            data-title="Pic-1" data-alt="Pic-1.jpg">
+                        <a href="{{ url_for('static', filename='img/leaders/Dr. Frank Mawuyome new.jpg') }}"
+                            data-lightbox="profile" data-title="Pic-1" data-alt="Pic-1.jpg">
                             Profile
                         </a>
                     </div>
@@ -303,15 +348,15 @@
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/video-1.jpg') }}"  -->
-                        <a href="{{ url_for('static', filename='img/leaders/MAAMA SAWYERR-MARKWEI.jpg') }}" data-lightbox="profile"
-                            data-title="Pic-2" data-alt="Pic-2.jpg">
+                        <a href="{{ url_for('static', filename='img/leaders/MAAMA SAWYERR-MARKWEI.jpg') }}"
+                            data-lightbox="profile" data-title="Pic-2" data-alt="Pic-2.jpg">
                             Profile
                         </a>
                     </div>
                 </div>
                 <div class="team_name">
                     <h4>SAWYERR MAAMA-MARKWEI</h4>
-                    <span>Chief Executive Officer</span>
+                    <span>Director, Road Maintenance</span>
                 </div>
             </div>
 
@@ -322,8 +367,8 @@
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="{{ url_for('static', filename='img/leaders/Foster Ekuede Lelekele.jpg') }}" data-lightbox="profile"
-                            data-title="Pic-4" data-alt="Pic-4.jpg">
+                        <a href="{{ url_for('static', filename='img/leaders/Foster Ekuede Lelekele.jpg') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
                             Profile
                         </a>
                     </div>
@@ -340,8 +385,8 @@
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="{{ url_for('static', filename='img/leaders/Gordon Amarkwei Amartey new.jpg') }}" data-lightbox="profile"
-                            data-title="Pic-4" data-alt="Pic-4.jpg">
+                        <a href="{{ url_for('static', filename='img/leaders/Gordon Amarkwei Amartey new.jpg') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
                             Profile
                         </a>
                     </div>

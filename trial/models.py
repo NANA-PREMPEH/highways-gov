@@ -340,6 +340,10 @@ class CompletedProj(db.Model):
     cost_to_complete = db.Column(db.String(50), nullable=True, default='N/A')
     physical = db.Column(db.String(50), nullable=True, default='N/A')
     time_elapsed = db.Column(db.String(50), nullable=True, default='N/A')
+    # for details of work progress
+    activity = db.Column(db.String(50), nullable=True, default='N/A')
+    phy = db.Column(db.String(50), nullable=True, default='N/A')
+    
     remarks = db.Column(db.Text, nullable=True, default='N/A')
     funding = db.Column(db.String(50), nullable=True, default='N/A')
     status = db.Column(db.String(80), default='Project Completed')

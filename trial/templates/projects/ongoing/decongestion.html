@@ -1,64 +1,73 @@
 {% extends "includes/layout.html" %}
 {% block content %}
-<div class="container"> 
+<div class="container">
     <div class="row blog_details_inner" style="margin-left: 1%; width: fit-content;">
         <h3 class="table_h3" id="table_h3">
-            DECONGESTION PROJECTS 
+            DECONGESTION PROJECTS
             <span style="font-size: medium;">(ONGOING)</span>
         </h3>
-        
-        <table id="mytable" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>REGION</th>
-                    <th>PROJECT</th>
-                    <th>LENGTH (Km)</th>
-                    <th>CONTRACTOR</th>
-                    <th>DATE OF COMMENCE</th>
-                    <th>DATE OF COMPLETION</th>
-                    <th>REVISED COMPLETION DATE</th>
-                    <th>ORIGINAL CONTRACT SUM(GH¢)</th>
-                    <th>REVISED CONTRACT SUM(GH¢)</th>
-                    <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th> 
-                    <th>VIEW DETAILS</th> 
-                </tr> 
-            </thead>
-            <tbody>
-                {% for decongestion in deconges_list %} 
-                    <tr>  
-                        <td>{{ decongestion.region }}</td>
-                        <td>{{ decongestion.project }}</td>
-                        <td>{{ decongestion.length }}</td>
-                        <td>{{ decongestion.contractor }}</td>
-                        <td>{{ decongestion.date_commenced }}</td>
-                        <td>{{ decongestion.date_completed }}</td>
-                        <td>{{ decongestion.revised_date }}</td>
-                        
-                        {% if decongestion.contract_sum == "N/A" %}
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-11 col-sm-8 col-xs-8">
+                <table id="mytable" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>REGION</th>
+                            <th>PROJECT</th>
+                            <th>LENGTH (Km)</th>
+                            <th>CONTRACTOR</th>
+                            <th>DATE OF COMMENCE</th>
+                            <th>DATE OF COMPLETION</th>
+                            <th>REVISED COMPLETION DATE</th>
+                            <th>ORIGINAL CONTRACT SUM(GH¢)</th>
+                            <th>REVISED CONTRACT SUM(GH¢)</th>
+                            <th>TOTAL AMOUNT CERT. TO DATE(GH¢)</th>
+                            <th>VIEW DETAILS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for decongestion in deconges_list %}
+                        <tr>
+                            <td>{{ decongestion.region }}</td>
+                            <td>{{ decongestion.project }}</td>
+                            <td>{{ decongestion.length }}</td>
+                            <td>{{ decongestion.contractor }}</td>
+                            <td>{{ decongestion.date_commenced }}</td>
+                            <td>{{ decongestion.date_completed }}</td>
+                            <td>{{ decongestion.revised_date }}</td>
+
+                            {% if decongestion.contract_sum == "N/A" %}
                             <td>{{ decongestion.contract_sum }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(decongestion.contract_sum|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if decongestion.revised_sum == "N/A" %} 
+                            {% if decongestion.revised_sum == "N/A" %}
                             <td>{{ decongestion.revised_sum }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(decongestion.revised_sum|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if decongestion.amt_to_date == "N/A" %}
+                            {% if decongestion.amt_to_date == "N/A" %}
                             <td>{{ decongestion.amt_to_date }}</td>
-                        {% else %}
+                            {% else %}
                             <td>{{ "{:,.2f}".format(decongestion.amt_to_date|float) }}</td>
-                        {% endif %}
+                            {% endif %}
 
-                        <td style="text-align: center;">
-                            <a href="{{ url_for('ongoing_proj.decongestion_contract', contract_id=decongestion.id) }}"><i class="fa fa-eye"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table><br>
+                            <td style="text-align: center;">
+                                <a
+                                    href="{{ url_for('ongoing_proj.decongestion_contract', contract_id=decongestion.id) }}"><i
+                                        class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
         <div>
             <form action="" method="post">
                 <div class="col-md-6">
@@ -76,13 +85,13 @@
                         <input type="text" class="form-control" name="end_date" id="end_date">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span> 
+                        </span>
                     </div>
                 </div><br><br><br>
-                
+
                 <div class="col-md-6" id="ongoing_decongest_sum">
                     <label for="">Contract Sum</label>
-                    <input class="form-control" type="text" name=""  value="{{ sum }}"readonly>
+                    <input class="form-control" type="text" name="" value="{{ sum }}" readonly>
                 </div><br><br><br>
                 <!--<div class="col-md-6">
                     <label for="">Contract Sum</label>
@@ -90,8 +99,8 @@
                 </div><br><br><br>-->
                 <div class="form-group col-md-6">
                     <input type="submit" class="btn btn-info" id="ongoing_decongest_sub" name="submit" value="Submit">
-                </div> 
-            </form>        
+                </div>
+            </form>
         </div>
     </div>
 </div>
