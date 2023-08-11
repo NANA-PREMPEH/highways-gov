@@ -1,8 +1,30 @@
 {% extends "includes/layout.html" %}
 
 {% block content %}
+
+<style>
+    @media only screen and (max-width:600px){
+        #img_new{
+            width: 302px !important;
+            height: 360px !important;
+        }
+
+        #new_align{
+            width: 375px !important;
+            height: 187px !important;
+        }
+
+        .banner_area{
+            padding-top: 46px;
+        }
+
+        .p_100{
+            padding-top:28px;
+        }
+    }
+</style>
     <!--================Banner Area =================-->
-    <section class="banner_area" style="background: #b8c3ff; width: 1349px; height: 237px; background-size: cover">
+    <section id="new_align" class="banner_area" style="background: #b8c3ff; width: 1349px; height: 237px; background-size: cover">
         <div class="container">
             <div class="banner_inner_text">
                 <h4 style="color: #161515; font-weight: bold;">{{ single_post.title }}</h4>  
@@ -18,7 +40,7 @@
                 <div class="col-md-8">
                     <div style="padding-bottom: 20px;">
                         <div class="blog_details_img">
-                            <img src="{{ url_for('static', filename='blog_images/' +single_post.image) }}" style="width: 720px; height: 454px;" alt="">
+                            <img id="img_new" src="{{ url_for('static', filename='blog_images/' +single_post.image) }}" style="width: 720px; height: 454px;" alt="">
                             <div class="b_date">
                                 <h3>{{ single_post.pub_date.strftime('%d') }}</h3>
                                 <h5>{{ single_post.pub_date.strftime('%B, %Y') }}</h5> 
@@ -39,47 +61,47 @@
                             <p style="line-height: 40px;">{{ single_post.body |safe }}</p>
                         </div>
                     </div>
-                    <div class="comment_list">
-                        <h3>
-                            {% if single_post.comments == 1 %}
-                                {{ single_post.comments }} comment
-                            {% else %}
-                                {{ single_post.comments }} comments
-                            {% endif %}
-                        </h3>
-                        {% for comment in comments %}
-                        <div class="comment_list_inner" style="margin-top: -4%;">
-                            <div class="media">
-                                <div class="media-left">
-                                    <img src="{{ url_for('static', filename='img/comment-user/default.png') }}" 
-                                            style="width: 56px; height: 56px; border-radius: 50%;" alt="default.jpg">
-                                </div>
-                                <div class="media-body">
-                                    <h5>{{ comment.pub_date.strftime('%B %d %Y') }} AT {{ comment.pub_date.strftime('%I:%M %p') }}</h5>
-                                </div>
-                                <p>{{ comment.message }}</p>
-                                <a class="cm_reply" href="#"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <div class="comment_form_area">
-                        <h3>Leave a reply</h3>
-                        <form class="contact_us_form row" action="" method="post" id="contactForm" >
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Your Comment" required></textarea>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <button type="submit" value="submit" class="btn submit_btn form-control">Post Comment</button>
-                            </div>
-                        </form>
-                    </div> 
+                    <!--<div class="comment_list">-->
+                    <!--    <h3>-->
+                    <!--        {% if single_post.comments == 1 %}-->
+                    <!--            {{ single_post.comments }} comment-->
+                    <!--        {% else %}-->
+                    <!--            {{ single_post.comments }} comments-->
+                    <!--        {% endif %}-->
+                    <!--    </h3>-->
+                    <!--    {% for comment in comments %}-->
+                    <!--    <div class="comment_list_inner" style="margin-top: -4%;">-->
+                    <!--        <div class="media">-->
+                    <!--            <div class="media-left">-->
+                    <!--                <img src="{{ url_for('static', filename='img/comment-user/default.png') }}" -->
+                    <!--                        style="width: 56px; height: 56px; border-radius: 50%;" alt="default.jpg">-->
+                    <!--            </div>-->
+                    <!--            <div class="media-body">-->
+                    <!--                <h5>{{ comment.pub_date.strftime('%B %d %Y') }} AT {{ comment.pub_date.strftime('%I:%M %p') }}</h5>-->
+                    <!--            </div>-->
+                    <!--            <p>{{ comment.message }}</p>-->
+                    <!--            <a class="cm_reply" href="#"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a>-->
+                    <!--        </div>-->
+                    <!--    </div>-->
+                    <!--    {% endfor %}-->
+                    <!--</div>-->
+                    <!--<div class="comment_form_area">-->
+                    <!--    <h3>Leave a reply</h3>-->
+                    <!--    <form class="contact_us_form row" action="" method="post" id="contactForm" >-->
+                    <!--        <div class="form-group col-md-6">-->
+                    <!--            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>-->
+                    <!--        </div>-->
+                    <!--        <div class="form-group col-md-6">-->
+                    <!--            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>-->
+                    <!--        </div>-->
+                    <!--        <div class="form-group col-md-12">-->
+                    <!--            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Your Comment" required></textarea>-->
+                    <!--        </div>-->
+                    <!--        <div class="form-group col-md-12">-->
+                    <!--            <button type="submit" value="submit" class="btn submit_btn form-control">Post Comment</button>-->
+                    <!--        </div>-->
+                    <!--    </form>-->
+                    <!--</div> -->
                 </div>
                 <div class="col-md-4">
                     <div class="sidebar_area">

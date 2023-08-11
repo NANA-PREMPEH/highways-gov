@@ -1,10 +1,12 @@
 import os
 
+
 #Set the configurations
 class Config:
     
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('JAWSDB_URL') 
+    # SQLALCHEMY_DATABASE_URI = os.environ.get('JAWSDB_URL') 
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:root@localhost/newghadb"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
@@ -22,4 +24,7 @@ class Config:
     
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL') 
     POSTS_PER_PAGE = 3
+
+    #Code for robot detection
+    CAPTCHA_CONFIG = {'SECRET_CAPTCHA_KEY': 'wMmeltW4mhwidorQRli6Oijuhygtfgybunxx9VPXldz'}
 

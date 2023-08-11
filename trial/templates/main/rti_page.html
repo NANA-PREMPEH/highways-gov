@@ -2,10 +2,11 @@
 {% block content %}
 
 <style>
-    .rti{
-        width: 250px; height: 40px; 
+    .rti {
+        width: 250px;
+        height: 40px;
         display: inline-block;
-        background-color:#b8c3ff;
+        background-color: #b8c3ff;
         color: #333;
         text-align: center;
         padding-top: 16px;
@@ -22,7 +23,79 @@
         color: #fff;
     }
 
+    .policy-pdf {
+        margin: 20px 0px;
+        display: block;
+    }
 
+    .fa-file-pdf-o:before {
+        content: "\f1c1";
+    }
+
+    .policy-pdf-file {
+        background-color: #f7f7f7;
+        width: 90%;
+        display: flex;
+        box-sizing: border-box;
+        border: 1px solid #e5e5e5;
+        vertical-align: bottom;
+    }
+
+    .policy-pdf-file a {
+        font-size: 20px;
+        text-decoration: none;
+        flex: 1;
+        color: #41aed7;
+        padding: 5px;
+    }
+
+    .policy-pdf-file span {
+        flex: 16;
+        font-weight: 400;
+        display: inline-block;
+        padding: 10px;
+        border-right: 1px solid #e5e5e5;
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .rti {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .img_new {
+            height: 136px;
+            width: 316px;
+
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 5px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        #periodic {
+            line-height: 30px;
+        }
+
+        /* for aligning the button line of the page header */
+        .row {
+            margin-right: 0px;
+        }
+
+        #table_h3 {
+            margin-top: 9%;
+        }
+    }
 </style>
 
 <div class="container">
@@ -30,7 +103,7 @@
         <h3 class="table_h3" id="table_h3">RIGHT TO INFORMATION</h3>
         <div id="periodic" style="margin-top: 2%; display: flex;">
             <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
-            <div  style="display: block;">
+            <div style="display: block;">
                 <a class="rti" href="{{ url_for('main.rti_page') }}">Overview</a>
                 <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
                 <a class="rti" href="{{ url_for('main.application') }}">Application</a>
@@ -53,61 +126,109 @@
                     </tr>
                 </tbody>
             </table> -->
-            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+            <div id="view" style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
                 <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
 
-               <!-- ACCESS INFORMATION START HERE -->
-               <div style="align-items: center; justify-content: center; padding: 10px; width: 100%;">
-                <div class="image">
-                    <!-- <a width="100%" href="{{ url_for('static', filename='img/right.jpg') }}" alt="RTI image can not be found in the current directory"></a> -->
-                    <!-- <link rel="icon" width="100%" href="{{ url_for('static', filename='img/right.jpg') }}" type="image/x-icon" /> -->
-                    <img src="{{ url_for('static', filename='img/right.jpg') }}" height="270" width="860" alt="Right to Information Image not found">
-                    <!-- <img src="{{ url_for('static', filename='/img/right.jpg') }}" height="270" width="860" alt="Right to Information Image not found"> -->
-                </div>
-                <h2 style="text-align: center;">Right To Information ACT, 2019, ACT 989</h2>
-        
-                <div style="text-align: center; padding: 30px;" class="paragrapth">
-                    <span><i>Article 21 (1) (f) of the Constitution of Ghana Provides as follows: </i> </span>
-                    <h3 style="color: #01368c;">"All persons shall have the right to information, subject to such qualifications
-                        and laws as are
-                        necessary in a democratic society."</h3>
-        
-                </div>
-                <div style="line-height: 30px; padding-bottom: 20px;">
-                    <p>This means every person in the jurisdiction of Ghana, <b>citizen</b> or <b>non-citizen</b> has the right
-                        to information.</p>
-                    <p>It is in line with this regulation that <b>Ghana Highway Authority</b> has set up the <b>Right to
-                            Information (RTI)</b> Unit, which is being spearheaded by the <b>Public Affairs Division,</b>
-                        assisted by two RTI officers who have been trained to process applications for access to information</p>
-                    <p>The Authority is therefore positioned to receive and process requests as well as make basic information
-                        available to the general public through the Public Affairs Division. </p>
-                    <p>However, access to information would be subject to the exemptions that are relevant with the protection
-                        of the public interest as stipulated in the ACT.</p>
-                    <p>RTI aims at promoting the art of transparency, and accountability. </p>
-        
-                </div>
-                    <div class="procedure"  style="line-height: 30px;">
+                <!-- ACCESS INFORMATION START HERE -->
+                <div style="align-items: center; justify-content: center; padding: 10px; width: 100%;">
+                    <div class="image">
+                        <!-- <a width="100%" href="{{ url_for('static', filename='img/right.jpg') }}" alt="RTI image can not be found in the current directory"></a> -->
+                        <!-- <link rel="icon" width="100%" href="{{ url_for('static', filename='img/right.jpg') }}" type="image/x-icon" /> -->
+                        <img class="img_new" src="{{ url_for('static', filename='img/right.jpg') }}" height="270"
+                            width="860" alt="Right to Information Image not found">
+                        <!-- <img src="{{ url_for('static', filename='/img/right.jpg') }}" height="270" width="860" alt="Right to Information Image not found"> -->
+                    </div>
+                    <h2 style="text-align: center;">Right To Information ACT, 2019, ACT 989</h2>
+
+                    <div style="text-align: center; padding: 30px;" class="paragrapth">
+                        <span><i>Article 21 (1) (f) of the Constitution of Ghana Provides as follows: </i> </span>
+                        <h3 style="color: #01368c;">"All persons shall have the right to information, subject to such
+                            qualifications
+                            and laws as are
+                            necessary in a democratic society."</h3>
+
+                    </div>
+                    <div style="line-height: 30px; padding-bottom: 20px;">
+                        <p>This means every person in the jurisdiction of Ghana, <b>citizen</b> or <b>non-citizen</b>
+                            has the right
+                            to information.</p>
+                        <p>It is in line with this regulation that <b>Ghana Highway Authority</b> has set up the
+                            <b>Right to
+                                Information (RTI)</b> Unit, which is being spearheaded by the <b>Public Affairs
+                                Division,</b>
+                            assisted by two RTI officers who have been trained to process applications for access to
+                            information
+                        </p>
+                        <p>The Authority is therefore positioned to receive and process requests as well as make basic
+                            information
+                            available to the general public through the Public Affairs Division. </p>
+                        <p>However, access to information would be subject to the exemptions that are relevant with the
+                            protection
+                            of the public interest as stipulated in the ACT.</p>
+                        <p>RTI aims at promoting the art of transparency, and accountability. </p>
+
+                    </div>
+                    <div class="procedure" style="line-height: 30px; padding-bottom: 20px;">
                         <h2>Procedure for Access</h2>
-                        <p><i>The following are processes the public/applicant is expected to follow when making an application for
-                                access to information in a public institution. This provision is specified in <a 
-                                onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#b8c3ff'"  style="color: #01368c;"
-                                    href="{{ url_for('generalforms.download_Right_to_Info') }}" target="_blank">Section 18
+                        <p><i>The following are processes the public/applicant is expected to follow when making an
+                                application for
+                                access to information in a public institution. This provision is specified in <a
+                                    onmouseover="this.style.color='#b8c3ff'" onmouseout="this.style.color='#b8c3ff'"
+                                    style="color: #01368c;" href="{{ url_for('generalforms.download_Right_to_Info') }}"
+                                    target="_blank">Section 18
                                     of the RTI Act 2019, Act 989.</a>
                             </i></p>
-                            <p>For further enquiries, contact the Public Affairs Division via the following emails:</p>
-                            <p><a  href="mailto:public.affair@highways.gov.gh"><i>public.affair@highways.gov.gh</i></a></p>
-                            <p><a  href="mailto:hannah.bimpong@highways.gov.gh"><i>hannah.bimpong@highways.gov.gh,</i></a></p>
-                            <p><a  href="mailto:akosua.asareankomah@highways.gov.gh"><i>akosua.asareankomah@highways.gov.gh</i></a>
-                            </p>
+                        <p>For further enquiries, contact the Public Affairs Division via the following emails:</p>
+                        <p><a href="mailto:public.affair@highways.gov.gh"><i>public.affair@highways.gov.gh</i></a></p>
+                        <p><a href="mailto:hannah.bimpong@highways.gov.gh"><i>hannah.bimpong@highways.gov.gh,</i></a>
+                        </p>
+                        <p><a
+                                href="mailto:akosua.asare-ankomah@highways.gov.gh"><i>akosua.asare-ankomah@highways.gov.gh</i></a>
+                        </p>
                     </div>
-                    
+
+
+                    <div class="procedure" style="line-height: 30px;">
+                        <h2>Training Material</h2>
+                        <!-- <ol type="1">
+                            <li><a
+                                    href="{{ url_for('static', filename='other_forms/2022 ATID PRESENTATION (GHA).pdf') }}">2022
+                                    ATID Presentation</a></li>
+
+                            <li><a
+                                    href="{{ url_for('static', filename='other_forms/2022-Guidlines-for-the-publication-of-information-manuals.pdf')}}">2022
+                                    Guidlines for the publication of information manuals</a></li>
+                        </ol> -->
+
+                        <!-- 1st pdf -->
+                        <div class="policy-pdf">
+                            <div class="policy-pdf-file">
+                                <p style="padding-right: 9px;">1</p>
+                                <i class="fa fa-file-pdf-o" style="color: red; font-size: 33px; padding-top: 9px;"></i>
+                                <span>2022 ATID Presentation</span>
+                                <a href="{{ url_for('static', filename='other_forms/2022 ATID PRESENTATION (GHA).pdf') }}"
+                                    target=_blank>
+                                    <img src="{{ url_for('static', filename='img/download.png') }}"
+                                        alt="Image not found" width="40" height="40">
+                                </a>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+
+
                 </div>
-               <!-- ACCESS INFORMATION ENDS HERE -->
+
             </div>
+
+            <!-- ACCESS INFORMATION ENDS HERE -->
         </div>
-        
-        
-        
     </div>
+
+
+
+</div>
 </div>
 {% endblock content %}

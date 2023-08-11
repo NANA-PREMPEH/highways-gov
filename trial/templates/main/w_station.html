@@ -22,12 +22,62 @@
         background-color: #01368c;
         color: #fff;
     }
+
     h2 {
         text-transform: uppercase;
         padding-bottom: 10px;
         font-weight: bold;
     }
-    
+
+    /* This helps for the map to align with the page */
+    #align_map {
+        width: 860px
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .axl {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .img_new {
+            height: 150px;
+            width: 335px;
+            /* vertical-align: 10%; */
+            margin-left: 0px;
+        }
+
+        #periodic {
+            flex-direction: column;
+        }
+
+        .text {
+            /* height: 320px; */
+            width: 325px;
+            text-align: justify center;
+        }
+
+        .img_new {
+            width: 330px;
+            /* height: 270px; */
+            vertical-align: 0;
+        }
+
+        #align_map {
+            /* width: 0px; */
+            width: auto;
+        }
+
+        #no_news {
+            text-align: center;
+        }
+
+    }
 </style>
 
 <div class="container">
@@ -48,17 +98,18 @@
                 <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
 
                 <!-- Weighing Protocols STARTs HERE -->
-                <div 
-                    style="line-height: 26px; padding-left: 2px;  margin-left: 2%;width:860px">
+                <div style="line-height: 26px; padding-left: 2px;  margin-left: 2%;" id="align_map">
                     <h2 id="no_news">Location of the Weighbridge Stations</h2>
-                    <img style="height: 50%;" src="{{ url_for('static', filename='img/axleload/Axleload_stations.jpg')}}" alt="no image for Axleload_stations"/>
+                    <img class="img_new" style="height: 50%;"
+                        src="{{ url_for('static', filename='img/axleload/Axleload_stations.jpg')}}"
+                        alt="no image for Axleload_stations" />
                 </div>
 
-                
+
             </div>
 
 
-            
+
         </div>
     </div>
 </div>

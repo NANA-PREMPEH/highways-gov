@@ -103,6 +103,30 @@
         overflow: visible;
         margin-top: -10px;
     }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .lab {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .row{
+            margin-right: 0px;
+        }
+
+        #no_news{
+            text-align: center;
+            margin-top: 1rem;
+        }
+        #table_h3{
+            margin-top: 9%;
+        }
+    }
 </style>
 
 <div class="container">
@@ -118,6 +142,61 @@
 
             <div style="font-size: 18px; font-family: 'Montserrat', sans-serif; width: 100%;">
                 <h5 id="no_news">Annual report</h5>
+
+                <!--Start of Report for 2022 -->
+                <div>
+                    <div style="margin-top: -10px;">2022</div>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                </div>
+
+                <!-- <div class="policy-main"> -->
+                    <div class="policy-pdf">
+                        <div class="policy-pdf-file">
+                            <p style="padding-right: 20px;">1</p>
+                            <i class="fa fa-file-pdf-o" style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                            <span>2022 Annual Report</span>
+                            <a href="{{ url_for('static', filename='reports/annual/Ann2022.pdf') }}" target=_blank>
+                                <img src="{{ url_for('static', filename='img/download.png') }}" alt="Image not found"
+                                    width="40" height="40">
+                            </a>
+                        </div>
+                    </div>
+
+                <!--Start of Report for 2021 -->
+                <div>
+                    <div style="margin-top: -10px;">2021</div>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                </div>
+                <!-- <div class="policy-main"> -->
+                <div class="policy-pdf">
+                    <div class="policy-pdf-file">
+                        <p style="padding-right: 20px;">1</p>
+                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                        <span>2021 Annual Report</span>
+                        <a href="{{ url_for('static', filename='reports/annual/Ann2021.pdf') }}" target=_blank>
+                            <img src="{{ url_for('static', filename='img/download.png') }}" alt="Image not found"
+                                width="40" height="40">
+                        </a>
+                    </div>
+                </div>
+
+                <!--Start of Report for 2020 -->
+                <div>
+                    <div style="margin-top: -10px;">2020</div>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                </div>
+                <!-- <div class="policy-main"> -->
+                <div class="policy-pdf">
+                    <div class="policy-pdf-file">
+                        <p style="padding-right: 20px;">1</p>
+                        <i class="fa fa-file-pdf-o" style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                        <span>2020 Annual Report</span>
+                        <a href="{{ url_for('static', filename='reports/annual/Ann2020.pdf') }}" target=_blank>
+                            <img src="{{ url_for('static', filename='img/download.png') }}" alt="Image not found"
+                                width="40" height="40">
+                        </a>
+                    </div>
+                </div>
                 <div>
                     <div style="margin-top: -10px;">2019</div>
                     <hr id="hr_divider" class="divider_bg m_bottom_25 warning">

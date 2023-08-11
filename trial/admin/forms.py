@@ -8,7 +8,7 @@ from flask_login import current_user
 from flask_ckeditor import CKEditorField
 
 
-#Create Registration Form
+#Create Registration Form for A User to access the portal
 class RegistrationForm(FlaskForm):
     ref_no = StringField('Ref. No', validators=[DataRequired()])
     acc_gen = StringField('Acc-Gen Staff No.', validators=[DataRequired()])

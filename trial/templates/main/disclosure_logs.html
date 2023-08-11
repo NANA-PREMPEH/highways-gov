@@ -2,10 +2,11 @@
 {% block content %}
 
 <style>
-    .rti{
-        width: 250px; height: 40px; 
+    .rti {
+        width: 250px;
+        height: 40px;
         display: inline-block;
-        background-color:#b8c3ff;
+        background-color: #b8c3ff;
         color: #333;
         text-align: center;
         padding-top: 16px;
@@ -16,57 +17,85 @@
         font-family: "Montserrat", sans-serif;
         margin-bottom: 15px;
     }
-   
+
     .rti:hover {
         background-color: #01368c;
         color: #fff;
     }
 
 
-.application_text ul li {
-    list-style-type: none;
-    padding: 5px;
-}
+    .application_text ul li {
+        list-style-type: none;
+        padding: 5px;
+    }
 
-.text_two a{
-    color: #000;
-}
+    .text_two a {
+        color: #000;
+    }
 
-.text_two a:hover {
-    color: #d6d437;
+    .text_two a:hover {
+        color: #d6d437;
 
-}
-.download {
-    position: relative;
-    width: 350px;
-    height: 100px;
-    background-color: #ffcd00;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-}
+    }
 
-.download .download_background {
-    padding: 5px;
-    width: 100%;
-    background-color: white;
-    margin-right: 10px;
-    position: relative;
-}
+    .download {
+        position: relative;
+        width: 350px;
+        height: 100px;
+        background-color: #ffcd00;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+    }
 
-.download a {
-    color: black;
-    /* text-decoration: none; */
+    .download .download_background {
+        padding: 5px;
+        width: 100%;
+        background-color: white;
+        margin-right: 10px;
+        position: relative;
+    }
 
-}
+    .download a {
+        color: black;
+        /* text-decoration: none; */
 
-.application_text ul li b {
-    padding: 5px;
-}
+    }
 
+    .application_text ul li b {
+        padding: 5px;
+    }
 
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .rti {
+            width: 335px;
+        }
 
+        #periodic {
+            flex-direction: column;
+            line-height: 30px;
+
+        }
+
+        /* for aligning the button line of the page header */
+        .row{
+            margin-right: 0px;
+        }
+
+        #table_h3{
+            margin-top: 9%;
+        }
+
+        h2{
+            font-size: 20px;
+            /* text-align: center; */
+            font-weight: bold;
+            margin-left: 22px;
+        }
+
+    }
 </style>
 
 <div class="container">
@@ -77,10 +106,10 @@
         <div id="periodic" style="margin-top: 2%; display: flex;">
             <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
             <div>
-                <a  style="display: block;" class="rti" href="{{ url_for('main.rti_page') }}">Overview</a>
+                <a style="display: block;" class="rti" href="{{ url_for('main.rti_page') }}">Overview</a>
                 <a class="rti" href="{{ url_for('main.available_info') }}">Access to Information</a>
-                <a  style="display: block;" class="rti" href="{{ url_for('main.application') }}">Application</a>
-                <a   style="display: block;" class="rti" href="{{ url_for('main.exempt_info') }}">Exempt Information</a>
+                <a style="display: block;" class="rti" href="{{ url_for('main.application') }}">Application</a>
+                <a style="display: block;" class="rti" href="{{ url_for('main.exempt_info') }}">Exempt Information</a>
                 <a class="rti" href="">Disclosure Logs</a>
             </div>
             <!-- <table>
@@ -102,21 +131,21 @@
             <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
                 <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
 
-               <!-- Disclosure Logs START HERE -->
-               <div class="text" style="line-height: 26px; padding-left: 50px; padding-bottom: 20px; ">
-                <h2  style="padding-bottom: 10px">Disclosure Logs</h2>
-                <div class="application_text">
-                    <p>No Information for now.</p>
-                    
+                <!-- Disclosure Logs START HERE -->
+                <div class="text" style="line-height: 26px; padding-left: 50px; padding-bottom: 20px; ">
+                    <h2 style="padding-bottom: 10px">Disclosure Logs</h2>
+                    <div class="application_text">
+                        <p>No Information for now.</p>
+
+                    </div>
+
                 </div>
-               
-            </div>
-               <!-- Disclosure Logs ENDS HERE -->
+                <!-- Disclosure Logs ENDS HERE -->
             </div>
         </div>
-        
-        
-        
+
+
+
     </div>
 </div>
 {% endblock content %}

@@ -11,11 +11,13 @@ from flask_s3 import FlaskS3
 #for text editor
 from flask_ckeditor import CKEditor
 
+#FOR ROBOT DETECTION 
+from flask_simple_captcha import CAPTCHA
 
 
 
 
- 
+
 
 
 #Create a database Instance 
@@ -31,6 +33,8 @@ s3 = FlaskS3()
 #for text editor
 ckeditor = CKEditor()
 
+#FOR ROBOT DECTION
+captcha = CAPTCHA(config=Config.CAPTCHA_CONFIG)
 
 def create_app(config_class=Config):
     #Initialise flask
@@ -42,9 +46,13 @@ def create_app(config_class=Config):
     mail.init_app(app) 
     db.init_app(app)
     bcrypt.init_app(app)
-    login_manager.init_app(app)
     migrate.init_app(app, db) 
+    login_manager.init_app(app)
+    
     s3.init_app(app)
+
+    #FOR ROBOT DETECTION
+    app = captcha.init_app(app)
     ckeditor.init_app(app) #for text editor
 
 

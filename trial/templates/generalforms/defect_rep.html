@@ -24,7 +24,7 @@
     
                         <!--If form had errors-->
                         {% if form.road_desc.errors %}
-                        {{ form.road_desc(class="form-control", style="width: 27em; border-color: #a94442;") }}
+                        {{ form.road_desc(class="form-control", style=" border-color: #a94442;") }}
                         <div class="form-group has-error">
                             {% for error in form.road_desc.errors %}
                                 <span style="margin-left: 120px;" class="help-block">{{ error }}</span>
@@ -32,7 +32,7 @@
                         </div>
                         <!--if there are no errors-->
                         {% else %}
-                            {{ form.road_desc(class="form-control", style="width: 27em;")}}
+                            {{ form.road_desc(class="form-control", style="")}}
                         {% endif %}
                     </div>
                     <div class="form-group">
@@ -40,7 +40,7 @@
     
                         <!--If form had errors-->
                         {% if form.dist_desc.errors %}
-                        {{ form.dist_desc(class="form-control", style="width: 27em; border-color: #a94442;") }}
+                        {{ form.dist_desc(class="form-control", style=" border-color: #a94442;") }}
                         <div class="form-group has-error">
                             {% for error in form.dist_desc.errors %}
                                 <span style="margin-left: 120px;" class="help-block">{{ error }}</span>
@@ -48,7 +48,7 @@
                         </div>
                         <!--if there are no errors-->
                         {% else %}
-                            {{ form.dist_desc(class="form-control", style="width: 27em;")}}
+                            {{ form.dist_desc(class="form-control", style="")}}
                         {% endif %}
                     </div>
                     <div class="form-group">
@@ -56,7 +56,7 @@
     
                         <!--If form had errors-->
                         {% if form.reg_desc.errors %}
-                        {{ form.reg_desc(class="form-control", style="width: 27em; border-color: #a94442;") }}
+                        {{ form.reg_desc(class="form-control", style=" border-color: #a94442;") }}
                         <div class="form-group has-error">
                             {% for error in form.reg_desc.errors %}
                                 <span style="margin-left: 120px;" class="help-block">{{ error }}</span>
@@ -64,7 +64,7 @@
                         </div>
                         <!--if there are no errors-->
                         {% else %}
-                            {{ form.reg_desc(class="form-control", style="width: 27em;")}}
+                            {{ form.reg_desc(class="form-control", style="")}}
                         {% endif %}
                     </div>
                     
@@ -73,7 +73,7 @@
     
                         <!--If form had errors-->
                         {% if form.direction.errors %}
-                        {{ form.direction(class="form-control", style="width: 27em; border-color: #a94442;") }}
+                        {{ form.direction(class="form-control", style=" border-color: #a94442;") }}
                         <div class="form-group has-error">
                             {% for error in form.direction.errors %}
                                 <span style="margin-left: 120px;" class="help-block">{{ error }}</span>
@@ -81,12 +81,12 @@
                         </div>
                         <!--if there are no errors-->
                         {% else %}
-                            {{ form.direction(class="form-control", style="width: 27em;")}}
+                            {{ form.direction(class="form-control", style="")}}
                         {% endif %}
                     </div><br>
                     <h4 class="">Defect</h4>
                     <fieldset>
-                        <legend>Truck</legend>
+                        <legend>Trunk</legend>
                         <div class="obj">
                             <div class="items">
                                 <input type="checkbox" name="truck" id="" value="Uneven Surface">
@@ -206,7 +206,7 @@
     
                             <!--If form had errors-->
                             {% if form.name_desc.errors %}
-                            {{ form.name_desc(class="form-control", style="width: 360px; border-color: #a94442;") }}
+                            {{ form.name_desc(class="form-control", style=" border-color: #a94442;") }}
                             <div class="form-group has-error">
                                 {% for error in form.name_desc.errors %}
                                     <span style="margin-left: 2em;" class="help-block">{{ error }}</span>
@@ -214,7 +214,7 @@
                             </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.name_desc(class="form-control", style="width: 360px;")}}
+                                {{ form.name_desc(class="form-control", style="")}}
                             {% endif %}
                             
                         </div>
@@ -223,7 +223,7 @@
     
                             <!--If form had errors-->
                             {% if form.mobile_no.errors %}
-                            {{ form.mobile_no(class="form-control", style="width: 360px; border-color: #a94442;") }}
+                            {{ form.mobile_no(class="form-control", style=" border-color: #a94442;") }}
                             <div class="form-group has-error">
                                 {% for error in form.mobile_no.errors %}
                                     <span style="margin-left: 4em;" class="help-block">{{ error }}</span>
@@ -231,14 +231,14 @@
                             </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.mobile_no(class="form-control", style="width: 360px;")}}
+                                {{ form.mobile_no(class="form-control", style="")}}
                             {% endif %}
                         </div>
                         <div class="form-group">
                             {{ form.email.label(class="pers") }}
                             <!--If form had errors-->
                             {% if form.email.errors %}
-                            {{ form.email(class="form-control", style="width: 360px; border-color: #a94442;") }}
+                            {{ form.email(class="form-control", style=" border-color: #a94442;") }}
                             <div class="form-group has-error">
                                 {% for error in form.email.errors %}
                                     <span style="margin-left: 8em;" class="help-block">{{ error }}</span>
@@ -246,14 +246,14 @@
                             </div>
                             <!--if there are no errors-->
                             {% else %}
-                                {{ form.email(class="form-control", style="width: 360px;")}}
+                                {{ form.email(class="form-control", style="")}}
                             {% endif %}
                         </div>
                         <div class="form-group">
                             {{ form.date.label(class="pers") }}
     
                             <div class="input-group datepicker">
-                                {{ form.date(class="form-control", style="width: 360px;")}}
+                                {{ form.date(class="form-control", style="")}}
                                 <span class="input-group-addon" style="width: 10px;">
                                     <span class="glyphicon glyphicon-calendar" ></span>
                                 </span>
@@ -263,8 +263,14 @@
                     </div><br><br>
                 </div>
             </fieldset>
-            <div class="form-group col-md-6">
-                {{ form.submit(class="btn submit_btn form-control", style="margin-left: 270px;") }}
+
+            <!-- <div class="form-group col-md-6">
+                {{ form.submit(class="btn submit_btn form-control", style="margin-left: auto;") }}
+            </div>  -->
+
+            <!-- buttton to resize both big screen and small screen -->
+            <div class="form-group col-sm">
+                {{ form.submit(class="btn submit_btn form-control", style="margin: auto; width:95%") }}
             </div> 
             {{ form.csrf_token }}
         </form>
