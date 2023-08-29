@@ -4486,13 +4486,13 @@ input {
   display: flex;
   justify-content: space-between;
   padding: 1em;
-  background: #2c3e50;
+  background: #b8c3ff;
   font-weight: bold;
   cursor: pointer;
   /* Icon */
 }
 .tab-label:hover {
-  background: #1a252f;
+  background: #b8c3ff;
 }
 .tab-label::after {
   content: "❯";
@@ -4517,11 +4517,11 @@ input {
   cursor: pointer;
 }
 .tab-close:hover {
-  background: #1a252f;
+  background: #01368c;
 }
 
 input:checked + .tab-label {
-  background: #1a252f;
+  background: #01368c;
 }
 input:checked + .tab-label::after {
   transform: rotate(90deg);
