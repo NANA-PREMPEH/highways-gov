@@ -1,0 +1,175 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .lab {
+        width: 250px;
+        height: 40px;
+        display: block;
+        background-color: #b8c3ff;
+        color: #333;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 20px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+        margin-right: 20px;
+    }
+
+    .lab:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
+
+    .title_head {
+        padding-bottom: 10px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .policy-main {
+        margin-bottom: 10px;
+        padding: 10px;
+        font-family: 'Montserrat', sans-serif;
+        border: 1px dashed #ccc;
+    }
+
+    .policy-pdf {
+        margin: 20px 0px;
+        display: block;
+    }
+
+    .fa-file-pdf-o:before {
+        content: "\f1c1";
+    }
+
+    .policy-pdf-file {
+        background-color: #f7f7f7;
+        width: 100%;
+        display: flex;
+        box-sizing: border-box;
+        border: 1px solid #e5e5e5;
+        vertical-align: bottom;
+    }
+
+    .policy-pdf-file a {
+        font-size: 20px;
+        text-decoration: none;
+        flex: 1;
+        color: #41aed7;
+        padding: 5px;
+    }
+
+    .policy-pdf-file span {
+        flex: 16;
+        font-weight: 400;
+        display: inline-block;
+        padding: 10px;
+        border-right: 1px solid #e5e5e5;
+    }
+
+    .divider_bg::before {
+        content: "";
+        display: block;
+        border-bottom: 5px solid #b8c3ff;
+        position: absolute;
+        left: 0;
+        top: -1px;
+        width: 83px;
+        height: 1px;
+        opacity: 1;
+        z-index: 100;
+    }
+
+    #hr_divider {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    hr {
+        box-sizing: content-box;
+        height: 0;
+        border-top: 1px solid #eee;
+        border-color: #e5e5e5;
+        background-color: #e5e5e5;
+    }
+
+    .divider_bg {
+        position: relative;
+        overflow: visible;
+        margin-top: -10px;
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .lab {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .row{
+            margin-right: 0px;
+        }
+
+        #no_news{
+            text-align: center;
+            margin-top: 1rem;
+        }
+        #table_h3{
+            margin-top: 9%;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 id="table_h3">Reports</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <div>
+                <a class="lab" href="{{ url_for('main.reports') }}">Annual Report</a>
+                <a class="lab" href="{{ url_for('main.quarterly_report') }}">Quarterly Report</a>
+                <a class="lab" href="{{ url_for('main.status_report') }}">Status Report</a>
+                <a class="lab" href="{{ url_for('main.road_con_survey') }}">Road Con. And Survey</a>
+                <a class="lab" href="{{ url_for('main.gha_at_glance')}}">GHA @ Glance</a>
+            </div>
+
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif; width: 100%;">
+                <h5 id="no_news">GHA @ Glance</h5>
+
+                <!--Start of Report for 2022 -->
+                <div>
+                    <div style="margin-top: -10px;">2023</div>
+                    <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                </div>
+
+                <!-- <div class="policy-main"> -->
+                    <div class="policy-pdf">
+                        <div class="policy-pdf-file">
+                            <p style="padding-right: 20px;">1</p>
+                            <i class="fa fa-file-pdf-o" style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                            <span>2023, Ghana Highway Authority @ Glance</span>
+                            <a href="{{ url_for('static', filename='reports/gha @ glance/Ghana Highway Authority @ Glance, 2023.pdf') }}" target=_blank>
+                                <img src="{{ url_for('static', filename='img/download.png') }}" alt="Image not found"
+                                    width="40" height="40">
+                            </a>
+                        </div>
+                    </div>
+
+                
+
+            </div>
+        </div>
+
+
+        
+    </div>
+</div>
+{% endblock content %}

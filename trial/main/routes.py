@@ -59,6 +59,12 @@ def proj_funding():
     posts = Post.query.order_by(Post.id.desc()).all() 
     return render_template('main/proj_funding.html', title='2020 Report', posts=posts)
 
+#Create a route for 2020 report 
+@main.route('/gha_at_glance')
+def gha_at_glance():
+    posts = Post.query.order_by(Post.id.desc()).all() 
+    return render_template('main/gha_at_glance.html', title='GHA at Glance', posts=posts)
+
 @main.route('/institution_profile')
 def inst_prof():
     posts = Post.query.order_by(Post.id.desc()).all()
