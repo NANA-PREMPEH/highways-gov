@@ -122,7 +122,7 @@ def download_Right_to_Info():
 @generalforms.route('/download_RTI_MAN')
 #@login_required     
 def download_RTI_Man():
-    p = './static/other_forms/RTI_Manual-Ghana Highway Authority 2020.pdf'
+    p = './static/other_forms/RTI_Manual-Ghana Highway Authority 2023.pdf'
 
     return send_file(p, as_attachment=True)
 
