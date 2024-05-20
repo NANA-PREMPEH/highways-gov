@@ -1,6 +1,20 @@
 {% extends "includes/layout.html" %}
 
 {% block content %}
+
+<style>
+    @media only screen and (max-width:600px) {
+        #img_new{
+            width: 302px !important;
+            height: 360px !important;
+        }
+
+        /* for aligning the button line of the page header */
+        .row{
+            margin-right: 0px;
+        }
+    }
+</style>
     <section class="blog_details_area p_100">
         <div class="container">
             <div class="row blog_details_inner" style="margin-left: 2%;">
@@ -10,7 +24,7 @@
                     <div>
                         {% for post in posts[:1] %}
                         <div class="blog_details_img">
-                            <img src="{{ url_for('static', filename='blog_images/' +post.image) }}" style="width: 720px; height: 454px;" alt="">
+                            <img id="img_new" src="{{ url_for('static', filename='blog_images/' +post.image) }}" style="width: 720px; height: 454px;" alt="">
                             <div class="b_date">
                                 <h3>{{ post.pub_date.strftime('%d') }}</h3>
                                 <h5>{{ post.pub_date.strftime('%B, %Y') }}</h5>
@@ -30,7 +44,7 @@
                             {% for post in posts_pag.items %}
                             <div class="col-sm-6" style="padding-bottom: 20px;">
                                 <div class="like_post_item">
-                                    <img src="{{ url_for('static', filename='blog_images/' + post.image) }}" style="width: 345px; height: 235px;" alt="">
+                                    <img src="{{ url_for('static', filename='blog_images/' + post.image) }}" style="width: 308px; height: 235px;" alt="">
                                     <h5><a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}">{{ post.title | truncate(80, True) }}</a></h5>
                                 </div>
                             </div>

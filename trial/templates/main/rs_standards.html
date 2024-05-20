@@ -22,15 +22,56 @@
         background-color: #01368c;
         color: #fff;
     }
+
     h2 {
         text-transform: uppercase;
         padding-bottom: 10px;
         font-weight: bold;
     }
-    .img_new{
+
+    .img_new {
         width: 860px;
         height: 270px;
         vertical-align: 0;
+    }
+
+    .text {
+        line-height: 26px;
+        padding-left: 2px;
+        padding-bottom: 20px;
+        margin-left: 2%;
+        /* height: 270px; */
+        width: 860px
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .axl {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .img_new {
+            height: 170px;
+            width: 335px;
+            /* vertical-align: 10%; */
+            margin-left: 0px;
+        }
+
+        #periodic {
+            flex-direction: column;
+        }
+
+        .text {
+            /* height: 320px; */
+            width: 325px;
+            text-align: justify center;
+        }
+
     }
 </style>
 
@@ -43,16 +84,17 @@
                 <a class="axl" href="{{ url_for('main.road_safety') }}">Introduction</a>
                 <a class="axl" href="{{ url_for('main.rs_respon') }}">Responsibilities</a>
                 <a class="axl" href="{{ url_for('main.rs_standards') }}">Standards/Specifications</a>
-               
+
             </div>
 
             <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
                 <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
-                <img class="img_new" src="{{ url_for('static', filename='img/road_safety/Ghana Highways Authority traffic-signs1.jpg')}}" alt="Ghana Highways Authority traffic-signs1 image not found"/>
+                <img class="img_new"
+                    src="{{ url_for('static', filename='img/road_safety/Ghana Highways Authority traffic-signs1.jpg')}}"
+                    alt="Ghana Highways Authority traffic-signs1 image not found" />
 
                 <!-- STANDARDS / SPECIFICATIONS STARTs HERE -->
-                <div class="text"
-                    style="line-height: 26px; padding-left: 2px; padding-bottom: 20px; margin-left: 2%; height:270px ; width:860px">
+                <div class="text">
                     <h2 id="no_news">STANDARDS / SPECIFICATIONS</h2>
                     <div class="application_text">
 
@@ -71,7 +113,7 @@
             </div>
 
 
-            
+
         </div>
     </div>
 </div>

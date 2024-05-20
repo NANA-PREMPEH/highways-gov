@@ -28,7 +28,58 @@
         padding-bottom: 10px;
         font-weight: bold;
     }
-    
+
+    /* This helps for the image to align with the page */
+    #align_image {
+        width: 860px
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .axl {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .img_new {
+            /* height: 150px;
+            width: 335px; */
+            /* vertical-align: 10%; */
+            /* margin-left: 0px; */
+            background-image: url(static/img/axleload/axleload_d_limit_long.jpg) !important;
+           
+        }
+
+        img[src^="axleload_d_limit_new"] {
+            background-image: url("static/img/axleload/axleload_d_limit_long.jpg") !important;
+        }
+
+        #periodic {
+            flex-direction: column;
+        }
+
+        .text {
+            /* height: 320px; */
+            width: 325px;
+            text-align: justify center;
+        }
+
+
+
+        #align_image {
+            /* width: 0px; */
+            width: auto;
+        }
+
+        #no_news{
+            text-align: center;
+        }
+
+    }
 </style>
 
 <div class="container">
@@ -49,17 +100,26 @@
                 <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
 
                 <!-- dimension limits STARTs HERE -->
-                <div 
-                    style="line-height: 26px; padding-left: 2px;  margin-left: 2%;width:860px">
+                <div id="align_image" style="line-height: 26px; padding-left: 2px;  margin-left: 2%;">
                     <h2 id="no_news">Permissible axle load, gross weight and dimension limits</h2>
-                    <img style="height: 50%;" src="{{ url_for('static', filename='img/axleload/axleload_d_limit.jpg')}}" alt="no image for Axleload Dimension Limit" />
+
+                    <!-- for change of images based on the screen size -->
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/axleload/axleload_d_limit_long.jpg')}}" media="(max-width: 600px)">
+                        <img src="{{ url_for('static', filename='img/axleload/axleload_d_limit_new.jpg')}}" alt="Axleload limit picture">
+                    </picture>
+
+
+                    <!-- <img class="img_new" style="height: 50%;"
+                        src="{{ url_for('static', filename='img/axleload/axleload_d_limit_new.jpg')}}"
+                        alt="no image for Axleload Dimension Limit" /> -->
                 </div>
 
-                
+
             </div>
 
 
-            
+
         </div>
     </div>
 </div>

@@ -60,10 +60,58 @@
         width: 860px;
     }
 
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .lab {
+        width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+
+        .img_new {
+            height: 170px;
+            width: 335px;
+
+        }
+
+
+        table {
+            font-family: "Montserrat", sans-serif;
+            width: 100%;
+            margin-right: -2%;
+            font-size: 14px;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 0.5px;
+            line-height: 17px;
+        }
+
+        th {
+            border: 1px solid #dddddd;
+            border-collapse: collapse;
+            text-align: left;
+            padding: 8px;
+            line-height: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+       
+    }
+
 </style>
 
 <div class="container">
-    <div class="row blog_details_inner" style="margin-left: 2%;">
+    <div class="row blog_details_inner" style="margin-top: 30px; margin-left: 2%;">
         <h3 id="table_h3">Laboratory Tests And Services</h3>
         <div id="periodic" style="margin-top: 2%; display: flex;">
             <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
@@ -83,6 +131,8 @@
                     <h4>FEES AND CHARGES (AMENDMENT INSTRUMENT, 2014 (L.I. 2216)</h4>
                     <p>NEW RATES FOR LABORATORY TESTS AND SERVICES</p>
 
+                    <div style="overflow-x:auto;" class="col-md-12">
+                        <!-- Table for Soil, Aggregate and Concrete data -->
                     <table>
                         <tr>
                             <th>CODE NO.</th>
@@ -465,6 +515,7 @@
                                 <td>150.00</td>
                             </tr>
                     </table>
+                    </div>
             </div>
         </div>
         

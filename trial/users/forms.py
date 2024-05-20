@@ -8,7 +8,7 @@ from flask_wtf.file import FileField, FileAllowed
 #Create Login Form
 class LoginForm(FlaskForm):
     acc_gen = StringField('Staff No. / Email', validators=[DataRequired()])  
-    password = StringField('Password', validators=[DataRequired()]) 
+    password = PasswordField('Password', validators=[DataRequired()]) 
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
 

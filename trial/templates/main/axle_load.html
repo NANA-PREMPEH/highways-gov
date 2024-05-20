@@ -2,10 +2,11 @@
 {% block content %}
 
 <style>
-    .axl{
-        width: 250px; height: 40px; 
+    .axl {
+        width: 250px;
+        height: 40px;
         display: inline-block;
-        background-color:#b8c3ff;
+        background-color: #b8c3ff;
         color: #333;
         text-align: center;
         padding-top: 16px;
@@ -21,13 +22,60 @@
         background-color: #01368c;
         color: #fff;
     }
+
     h2 {
         text-transform: uppercase;
         padding-bottom: 10px;
         font-weight: bold;
     }
 
+    .img_new {
+        height: 270px;
+        width: 860px;
+    }
 
+    .text {
+        line-height: 26px;
+        padding-left: 2px;
+        padding-bottom: 20px;
+        margin-left: 2%;
+        /* height: 270px; */
+        width: 860px
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .axl {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .img_new {
+            height: 150px;
+            width: 335px;
+            /* vertical-align: 10%; */
+            margin-left: 0px;
+        }
+
+        #periodic {
+            flex-direction: column;
+        }
+
+        .text {
+            /* height: 320px; */
+            width: 325px;
+            text-align: justify center;
+        }
+
+        #no_news{
+            text-align: center;
+        }
+
+    }
 </style>
 
 <div class="container">
@@ -35,7 +83,7 @@
         <h3 class="table_h3" id="table_h3">AXLE LOAD</h3>
         <div id="periodic" style="margin-top: 2%; display: flex;">
             <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
-            <div  style="display: block;">
+            <div style="display: block;">
                 <a class="axl" href="{{ url_for('main.axle_load') }}">Introduction</a>
                 <a class="axl" href="{{ url_for('main.w_protocol') }}">Weighing Protocols</a>
                 <a class="axl" href="{{ url_for('main.w_station') }}">Weighbridge Stations</a>
@@ -43,62 +91,79 @@
                 <a class="axl" href="{{ url_for('main.overload_fine') }}">Overload Fine</a>
                 <a class="axl" href="{{ url_for('main.effects') }}">Effects</a>
             </div>
-           
+
             <div style="font-size: 18px; font-family: 'Montserrat', sans-serif">
-                <img src="{{ url_for('static', filename='img/axleload/Axle Load.jpg') }}" height="270" width="860" alt="Axle Load Image not found">
-                
-               <!-- AXLE LOAD INTRODUCTION START HERE -->
-               <div style="align-items: center; justify-content: center; padding: 5px; ">
-                <!-- <div class="image">
+                <img class="img_new" src="{{ url_for('static', filename='img/axleload/Axle Load.jpg') }}"
+                    alt="Axle Load Image not found">
+
+                <!-- AXLE LOAD INTRODUCTION START HERE -->
+                <div style="align-items: center; justify-content: center; padding: 5px; ">
+                    <!-- <div class="image">
                     <a width="100%" href="{{ url_for('static', filename='img/right.jpg') }}" alt="RTI image can not be found in the current directory"></a>
                     <link rel="icon" width="100%" href="{{ url_for('static', filename='img/right.jpg') }}" type="image/x-icon" />
                     
                     <img src="{{ url_for('static', filename='/img/right.jpg') }}" height="270" width="860" alt="Right to Information Image not found">
                 </div> -->
-                <br>
-                <h4 id="no_news">Introduction</h4>
-        
-                </div>
+                    <br>
 
-                <div style="line-height: 30px; padding-bottom: 10px; text-align:justify; padding-left: 20px; ">
-                    <p>The Ghana Highway Authority (GHA) through <b>the Ministry of Roads and Highways </b>has established an
-                        Axle Load Control Unit for the purpose of controlling overloading and dimensions of trucks on 
-                        the road network by installation of <b>axle weighing equipment</b> at vantage points along the road corridors. </p>
+                    <div class="text">
+                        <h4 id="no_news">Introduction</h4>
 
-                        <br>
 
-                    <p><b>Overloading of heavy goods vehicles </b>has been identified as one of the <b>major contributory factors </b>that cause 
-                        early deterioration of the road infrastructure and road traffic crashes. <b>GHA</b> enforces the <b>Road Traffic Regulations,
-                        2012 </b>on axle load, gross weight, and dimension control and revises strategies to control overloading of 
-                        motor vehicles on our road network</p>
 
-                        <br>
+                        <div style="line-height: 25px; padding-bottom: 10px; text-align:justify; padding-left: -20px; ">
+                        <!-- <div style="break-after: 18px; text-align:justify">  -->
+                            <p>The Ghana Highway Authority (GHA) through <b>the Ministry of Roads and Highways </b>has
+                                established an
+                                Axle Load Control Unit for the purpose of controlling overloading and dimensions of
+                                trucks
+                                on
+                                the road network by installation of <b>axle weighing equipment</b> at vantage points
+                                along
+                                the road corridors. </p>
 
-                    <p><b>The Axle Load Control Policy </b>seeks to <b>reduce overloading of heavy vehicles</b>, thereby preserving the investment
-                         made in the provision of road infrastructure as well as <b>reducing road traffic crashes</b> to the barest minimum 
-                         and vehicle operation costs.</p>
-                        <br>
-                  
-                </div>
-                
-                    <div class="procedure"  style="line-height: 30px;">
-                        <h4 id="no_news">Objectives of axle load control</h4>
-                        <ol style="list-style-type:disc">
-                            <li>Deter trucks operation in an overloading condition</li>
-                            <li>Preserve the design life of the road and overhead structures</li>
-                            <li>Improve road safety</li>
-                            <li>Improve travel time</li>
-                            <li>Reduce road maintenance cost</li>
-                        </ol>
+                            <br>
+
+                            <p><b>Overloading of heavy goods vehicles </b>has been identified as one of the <b>major
+                                    contributory factors </b>that cause
+                                early deterioration of the road infrastructure and road traffic crashes. <b>GHA</b>
+                                enforces
+                                the <b>Road Traffic Regulations,
+                                    2012 </b>on axle load, gross weight, and dimension control and revises strategies to
+                                control overloading of
+                                motor vehicles on our road network</p>
+
+                            <br>
+
+                            <p><b>The Axle Load Control Policy </b>seeks to <b>reduce overloading of heavy vehicles</b>,
+                                thereby preserving the investment
+                                made in the provision of road infrastructure as well as <b>reducing road traffic
+                                    crashes</b>
+                                to the barest minimum
+                                and vehicle operation costs.</p>
+                            <br>
+
+                        </div>
+
+                        <div class="procedure" style="line-height: 30px;">
+                            <h4 id="no_news">Objectives of axle load control</h4>
+                            <ol style="list-style-type:disc">
+                                <li>Deter trucks operation in an overloading condition</li>
+                                <li>Preserve the design life of the road and overhead structures</li>
+                                <li>Improve road safety</li>
+                                <li>Improve travel time</li>
+                                <li>Reduce road maintenance cost</li>
+                            </ol>
+                        </div>
                     </div>
-                    
                 </div>
-               <!-- ACCESS INFORMATION ENDS HERE -->
+                <!-- ACCESS INFORMATION ENDS HERE -->
             </div>
         </div>
-        
-        
-        
     </div>
+
+
+
+</div>
 </div>
 {% endblock content %}

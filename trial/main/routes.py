@@ -224,6 +224,12 @@ def upcoming_event():
     return render_template('/main/upcoming_event.html', title='Upcoming Event', posts=posts)
 
 
+@main.route('/xptShare')
+def xptShare():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/xptShare.html', title='Xpt Share', posts=posts)
+
+
 # Start of services route
 # Services
 @main.route('/lab_test_services')

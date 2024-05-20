@@ -104,6 +104,44 @@
         margin-top: -10px;
     }
 
+    /* .table{
+        margin-top: -12px;
+    } */
+
+    @media only screen and (max-width: 600px) {
+        .lab {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .row{
+            margin-right: 0px;
+        }
+
+        #no_news{
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        #table_h3{
+            margin-top: 9%;
+        }
+
+        /* .table{
+            margin-top: -19%;
+        } */
+        .view_btn1{
+            width: 142px;
+            height: 44px;
+            margin-left: 84px;
+        }
+       
+    }
+
 </style>
 
 <div class="container">
@@ -123,11 +161,11 @@
                 <!-- start here  -->
                 <div class="road_div" id="periodic">
                     <div>
-                        <p style="margin-top: -8%; line-height: 30px; text-align: center; font-size: 17px;">
+                        <p style="margin-top: -8%; line-height: 30px; text-align: left; font-size: 17px;">
                             <strong>Comparison of the surveyed trunk road surface network condition 2010-2019</strong>    
-                        </p><br><br>
-                        <div>
-                            <table class="table table-bordered" style="margin-left: 10px; text-align: center; margin-top: -9%;">
+                        </p><br>
+                        <div style="overflow-x: auto">
+                            <table class="table table-bordered" style="margin-left: 10px; text-align: center;">
                                 <thead style="font-weight: bolder; line-height: 45px; font-size: 15px;">
                                     <tr>
                                         <td rowspan="2">YEAR</td>
@@ -251,7 +289,7 @@
                             </table><br>
                         </div>    
                     </div>
-                    <section style="margin-top: -6%;">
+                    <section style="margin-top: 5%;">
                         <div class="col-sm-4">
                             <table>
                                 <tbody>

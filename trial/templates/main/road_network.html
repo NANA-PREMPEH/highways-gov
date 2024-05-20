@@ -2,15 +2,15 @@
 {% block content %}
 <div class="container">
     <div class="row blog_details_inner" style="margin-top: 50px;">
-        <div class="col-md-8" >
+        <div class="col-md-8">
             <h3 id="table_h3" style="width: auto;">Road Network</h3>
             <table id="road_id" style="margin-bottom: 8%;">
-                <thead> 
+                <thead>
                     <tr>
                         <td>Number</td>
                         <td>Route</td>
                         <td>Length (km)</td>
-                        <td>Length (mi)</td> 
+                        <td>Length (mi)</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,7 +20,7 @@
                         <td>540</td>
                         <td>340</td>
                     </tr>
-                    <tr id="ta_rw" >
+                    <tr id="ta_rw">
                         <td>N2</td>
                         <td>Tema - Bakwu</td>
                         <td>640</td>
@@ -32,8 +32,8 @@
                         <td>40</td>
                         <td>25</td>
                     </tr>
-                    <tr id="ta_rw" >
-                        <td >N4</td>
+                    <tr id="ta_rw">
+                        <td>N4</td>
                         <td>Accra - Bunso</td>
                         <td>110</td>
                         <td>68</td>
@@ -44,7 +44,7 @@
                         <td>40</td>
                         <td>25</td>
                     </tr>
-                    <tr id="ta_rw" >
+                    <tr id="ta_rw">
                         <td>N6</td>
                         <td>Accra - Kumasi</td>
                         <td>250</td>
@@ -56,7 +56,7 @@
                         <td>140</td>
                         <td>87</td>
                     </tr>
-                    <tr id="ta_rw" >
+                    <tr id="ta_rw">
                         <td>N8</td>
                         <td>Yamoransa - Kumasi</td>
                         <td>170</td>
@@ -68,7 +68,7 @@
                         <td>100</td>
                         <td>62</td>
                     </tr>
-                    <tr id="ta_rw" >
+                    <tr id="ta_rw">
                         <td>N10</td>
                         <td>Kumasi - Paga</td>
                         <td>610</td>
@@ -80,7 +80,7 @@
                         <td>100</td>
                         <td>62</td>
                     </tr>
-                    <tr id="ta_rw" >
+                    <tr id="ta_rw">
                         <td>N12</td>
                         <td>Elubo - Hamile</td>
                         <td>670</td>
@@ -92,7 +92,7 @@
                         <td>180</td>
                         <td>110</td>
                     </tr>
-                    <tr id="ta_rw" >
+                    <tr id="ta_rw">
                         <td>N14</td>
                         <td>Sakpeigu - Yawgu</td>
                         <td>120</td>
@@ -104,7 +104,7 @@
                         <td>20</td>
                         <td>12</td>
                     </tr>
-                    <tr id="ta_rw" >
+                    <tr id="ta_rw">
                         <td>N18</td>
                         <td>Wa - Heng</td>
                         <td>79</td>
@@ -114,12 +114,309 @@
             </table>
         </div>
         <div class="col-md-4">
-            <div class="sidebar_area" > 
-                <aside class="right_widget r_post_widget" style="border: none;" >
-                    <img src="{{ url_for('static', filename='img/road_net.png') }}" alt="" style="width: 420px; margin-left: -15%; height: 620px; margin-top: 60px;">      
+            <div class="sidebar_area">
+                <aside class="right_widget r_post_widget" style="border: none;">
+                    <img src="{{ url_for('static', filename='img/Ghana Highway Authority National Road Map.jpg') }}"
+                        alt="" style="width: 410px; margin-left: -15%; height: 620px; margin-top: 60px;">
                 </aside>
             </div>
         </div>
-    </div>  
+
+
+
+        <section">
+
+
+            <div class="row">
+                <div class="col">
+
+
+
+                    <h3 style="margin-left: 5%;">Other<b> Maps</b></h3>
+                    <div class="tabs">
+                        <div class="tab">
+                            <input type="checkbox" id="chck1">
+                            <label class="tab-label" for="chck1">Regional Trunk Road Network</label>
+                            <div class="tab-content">
+
+                                <!--Start, Ashanti Region Map -->
+
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Ashanti Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA ASHANTI REGION 2020_CE_withLake.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!--End, Ashanti Region Map -->
+
+
+                                <!--Start, Central Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Central Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA CENTRAL 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Central Region Map -->
+
+                                <!--Start, Eastern Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Eastern Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA EASTERN 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Eastern Region Map -->
+
+                                <!--Start, Greater Accra Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Greater Accra Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA GREATER ACCRA 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Greater Accra Region Map -->
+
+                                <!--Start, Northern Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Northern Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA NORTHERN 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Northern Region Map -->
+
+                                <!--Start, Upper East Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Upper East Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA UPPER EAST 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Upper East Region Map -->
+
+                                <!--Start, Upper West Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Upper West Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA UPPER WEST 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Upper West Region Map -->
+
+                                <!--Start, Volta Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Volta Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA VOLTA 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Volta Region Map -->
+
+                                <!--Start, Western Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Western Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA WESTERN 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Western Region Map -->
+
+                                <!--Start, Savannah Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Savannah Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA SAVANNAH 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Savannah Region Map -->
+
+                            
+
+                                <!--Start, Oti Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Oti Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA OTI 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Oti Region Map -->
+
+                                <!--Start, Ahafo  Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Ahafo Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='#') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Ahafo Region Map -->
+
+                                <!--Start, Bono Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Bono Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA BONO 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Bono Region Map -->
+
+                                <!--Start, Bono East Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Bono East Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA BONO EAST 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Bono East Region Map -->
+
+                                <!--Start, Western North  Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>Western North Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA WESTERN NORTH 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, Western North Region Map -->
+
+                                <!--Start, North East  Region Map -->
+                                <div class="policy-pdf">
+                                    <div class="policy-pdf-file">
+                                        <!-- <p style="padding-right: 20px;">1</p> -->
+                                        <i class="fa fa-file-pdf-o"
+                                            style="color: red; font-size: 33px; padding-top: 12px;"></i>
+                                        <span>North East Regional Trunk Road Network</span>
+                                        <a href="{{ url_for('static', filename='pdf/road_network/GHA NORTH EAST 2020_CE.pdf') }}"
+                                            target=_blank>
+                                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                                alt="Image not found" width="40" height="40">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--End, North East Region Map -->
+
+
+                            </div>
+                        </div>
+
+                        <!-- Not using this next tap functionality -->
+                        <!-- <div class="tab">
+                            <input type="checkbox" id="chck2">
+                            <label class="tab-label" for="chck2">Item 2</label>
+                            <div class="tab-content">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. A, in!
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+            </div>
+            </section>
+    </div>
 </div>
 {% endblock content %}

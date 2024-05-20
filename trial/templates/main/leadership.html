@@ -10,11 +10,12 @@
         text-align: center;
         margin: 0;
         padding: 10px;
-        box-shadow: 0 0 5px 5px rgb(153, 147, 147);
+        box-shadow: 10px 10px 40px grey;
         background: #fff;
         margin-bottom: 30px;
         width: 263px;
         height: 100px;
+        gap: 50px;
     }
 
     .team_name h4 {
@@ -22,6 +23,7 @@
     }
 
     #leader {
+        flex: 1;
         flex-wrap: wrap;
         display: flex;
     }
@@ -56,25 +58,69 @@
         position: relative;
         overflow: visible;
     }
+
     .slick-next {
         right: 0;
         top: 0;
         position: absolute;
 
     }
+
+    .leadership {
+        width: 100%;
+        display: flex;
+    }
+    /* make distance betwwen corosel transition */
+    /* the slides */
+    .slick-slide {
+        margin: 0 35px;
+    }
+
+    /* the parent */
+    .slick-list {
+        margin: 0 -35px;
+    }
+    /* end of making distance betwwen corosel transition */
+
+    /* working  */
+    @media screen and (max-width: 480px) {
+        .leadership {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        #leader {
+            /* flex: 1; */
+            /* flex-wrap: wrap; */
+            /* display: flex; */
+            display: block;
+        }
+
+        .slick-track {
+            display: flex;
+        }
+    }
+
+    @media screen and (max-width: 768px) and (max-width: 992px) {
+        .slick-track {
+            display: flex;
+        }
+
+    }
+    
 </style>
 
 <div class="container">
     <div class="row blog_details_inner" style="margin-left: 2%;">
         <h3 class="table_h3" id="table_h3">LEADERSHIP</h3>
-        <!-- Divider headen  -->
+        <!-- Divider header  -->
         <div>
             <h5 id="no_news">Board of Directors</h5>
             <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
         </div>
 
-
-        <div data-slick='{"slidesToShow": 4, "slidesToScroll": 1}' class="leadership carousel_show" id="leader">
+        <div class="responsive" id="leader">
+            <!-- <div data-slick='{"slidesToShow": 4, "slidesToScroll": 1},"dots":false,"arrows":true, "leadership carousel_show":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}' class="leadership carousel_show" id="leader"> -->
             <div class="img_disp" id="try">
                 <img src="{{ url_for('static', filename='img/leaders/logoBM.png') }}" alt="pre-cons-left"
                     class="image_file">
@@ -114,22 +160,42 @@
                 </div>
             </div>
 
-            <!-- next Board Member -->
-            <div class="img_disp" id="try">
+             <!-- next director -->
+             <div class="img_disp" id="try">
                 <img src="{{ url_for('static', filename='img/leaders/logoBM.png') }}" alt="pre-cons-right"
                     class="image_file">
                 <!-- <img src="static/img/leaders/_DSC6322.jpg" alt="pre-cons-right" class="image_file"> -->
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/video-1.jpg') }}"  -->
-                        <a href="static/img/leaders/Mangowa A. Ghanney.jpg" data-lightbox="profile" data-title="Pic-2"
+                        <a href="static/img/leaders/#" data-lightbox="profile" data-title="Pic-2"
                             data-alt="Pic-2.jpg">
                             Profile
                         </a>
                     </div>
                 </div>
                 <div class="team_name">
-                    <h4>Mrs. Mangowa Ghanney</h4>
+                    <h4>Mr. Isaac Fraikue</h4>
+                    <span>Board Member</span>
+                </div>
+            </div>
+
+             <!-- next director -->
+             <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/leaders/logoBM.png') }}" alt="pre-cons-right"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6322.jpg" alt="pre-cons-right" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/video-1.jpg') }}"  -->
+                        <a href="static/img/leaders/#" data-lightbox="profile" data-title="Pic-2"
+                            data-alt="Pic-2.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Mr. Patrick Nomo</h4>
                     <span>Board Member</span>
                 </div>
             </div>
@@ -174,26 +240,7 @@
                 </div>
             </div>
 
-            <!-- next Board Member -->
-            <div class="img_disp" id="try">
-                <img src="{{ url_for('static', filename='img/leaders/logoBM.png') }}" alt="pre-cons-right"
-                    class="image_file">
-                <!-- <img src="static/img/leaders/_DSC6322.jpg" alt="pre-cons-right" class="image_file"> -->
-                <div class="overlay">
-                    <div id="pro">
-                        <!-- <a href="{{ url_for('static', filename='img/leaders/video-1.jpg') }}"  -->
-                        <a href="static/img/leaders/Asare Bediako Cynthia.jpg" data-lightbox="profile"
-                            data-title="Pic-2" data-alt="Pic-2.jpg">
-                            Profile
-                        </a>
-                    </div>
-                </div>
-                <div class="team_name">
-                    <h4>Mrs. Cynthia A. Bediako</h4>
-                    <span>Board Member</span>
-                </div>
-            </div>
-
+        
             <!-- next Board Member -->
             <div class="img_disp" id="try">
                 <img src="{{ url_for('static', filename='img/leaders/logoBM.png') }}" alt="pre-cons-right"
@@ -214,40 +261,47 @@
                 </div>
             </div>
 
-            <!-- next Board Member -->
+        </div>
+
+        
+
+        <!-- Divider header  -->
+        <div>
+            <h5 id="no_news">Chief Executive</h5>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+            <!--Chief Executive  -->
+        </div>
+        <div class="leadership" id="leader">
+    
             <div class="img_disp" id="try">
-                <img src="{{ url_for('static', filename='img/leaders/logoBM.png') }}" alt="pre-cons-right"
+                <img src="{{ url_for('static', filename='img/leaders/logoBM.png') }}" alt="pre-cons-left"
                     class="image_file">
-                <!-- <img src="static/img/leaders/_DSC6322.jpg" alt="pre-cons-right" class="image_file"> -->
+                <!-- <img src="static/img/leaders/DR. FRANK M.K GAMADEY.jpg" alt="pre-cons-left" class="image_file"> -->
                 <div class="overlay">
                     <div id="pro">
-                        <!-- <a href="{{ url_for('static', filename='img/leaders/video-1.jpg') }}"  -->
-                        <a href="static/img/leaders/Ernest Oppong Boateng.jpg" data-lightbox="profile"
-                            data-title="Pic-2" data-alt="Pic-2.jpg">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/leaders/Ing. Collins Boadu Donkor.jpg') }}" data-lightbox="profile"
+                            data-title="Pic-1" data-alt="Pic-1.jpg">
                             Profile
                         </a>
                     </div>
                 </div>
                 <div class="team_name">
-                    <h4>Josephine Manu</h4>
-                    <span>Board Member</span>
+                    <h4>Ing. Collins B. Donkor</h4>
+                    <span>Ag. Chief Executive</span>
                 </div>
             </div>
-
         </div>
 
-
-
-        <!-- Divider headen  -->
-        <div>
-            <h5 id="no_news">Chief Executive</h5>
-            <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-        </div>
-        <!-- Divider headen  -->
+        <!-- Divider header  -->
         <div>
             <h5 id="no_news">Deputy Chief Executive</h5>
             <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+        </div>
+    
             <div class="leadership" id="leader">
+
+                <!-- for deputy Chief Executive (Mtce) -->
                 <div class="img_disp" id="try">
                     <img src="{{ url_for('static', filename='img/leaders/LAWRENCE LLOYD LAMPTEY.JPG') }}"
                         alt="pre-cons-left" class="image_file">
@@ -255,27 +309,69 @@
                     <div class="overlay">
                         <div id="pro">
                             <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                            <a href="{{ url_for('static', filename='img/leaders/LAWRENCE LLOYD LANKWEI LAMPTEY.jpg') }}" data-lightbox="profile"
-                                data-title="Pic-3" data-alt="Pic-3.jpg">
+                            <a href="{{ url_for('static', filename='img/leaders/LAWRENCE LLOYD LANKWEI LAMPTEY.jpg') }}"
+                                data-lightbox="profile" data-title="Pic-3" data-alt="Pic-3.jpg">
                                 Profile
                             </a>
                         </div>
                     </div>
                     <div class="team_name">
-                        <h4>LAWRENCE LLOYD LANKWEI LAMPTEY</h4>
-                        <span>Ag. Dy. Chief Executive (Mtce)</span>
+                        <h4>Ing. Lawrence Lloyd Lankwei Lamptey</h4>
+                        <span>Deputy Chief Executive (Maintenance)</span>
+                    </div>
+                </div>
+
+                <!-- for deputy Chief Executive (Admin) -->
+                <div class="img_disp" id="try">
+                    <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}"
+                        alt="pre-cons-left" class="image_file">
+                    <!-- <img src="static/img/leaders/_DSC6335.jpg" alt="pre-cons-left" class="image_file"> -->
+                    <div class="overlay">
+                        <div id="pro">
+                            <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                            <a href="{{ url_for('static', filename='img/leaders/Ing. Frederick Aduagyei.jpg') }}"
+                                data-lightbox="profile" data-title="Pic-3" data-alt="Pic-3.jpg">
+                                Profile
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team_name">
+                        <h4>Ing. Fredrick Aduagyei</h4>
+                        <span>Deputy Chief Executive (Development)</span>
+                    </div>
+                </div>
+
+
+                <!-- for deputy Chief Executive (Dev) -->
+                <div class="img_disp" id="try">
+                    <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}"
+                        alt="pre-cons-left" class="image_file">
+                    <!-- <img src="static/img/leaders/_DSC6335.jpg" alt="pre-cons-left" class="image_file"> -->
+                    <div class="overlay">
+                        <div id="pro">
+                            <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                            <a href="{{ url_for('static', filename='#') }}"
+                                data-lightbox="profile" data-title="Pic-3" data-alt="Pic-3.jpg">
+                                Profile
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team_name">
+                        <h4>Ing. Samuel Akuaku</h4>
+                        <span>Deputy Chief Executive (Administration)</span>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Divider headen  -->
+        <!-- Divider header  -->
         <div>
             <h5 id="no_news">Directors</h5>
             <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
         </div>
 
-        <!-- first director -->
-        <div class="leadership" id="leader">
+        <!-- For Administration -->
+        <!-- first director Audit -->
+        <div class="responsive" id="leader">
             <div class="img_disp" id="try">
                 <img src="{{ url_for('static', filename='img/leaders/Dr. Frank Mawuyome kwame Gamadey.jpg') }}"
                     alt="pre-cons-left" class="image_file">
@@ -283,38 +379,39 @@
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="{{ url_for('static', filename='img/leaders/Dr. Frank Mawuyome new.jpg') }}" data-lightbox="profile"
-                            data-title="Pic-1" data-alt="Pic-1.jpg">
+                        <a href="{{ url_for('static', filename='img/leaders/Dr. Frank Mawuyome new.jpg') }}"
+                            data-lightbox="profile" data-title="Pic-1" data-alt="Pic-1.jpg">
                             Profile
                         </a>
                     </div>
                 </div>
                 <div class="team_name">
-                    <h4>Dr. FRANK MAWUYOME KWAME GAMADEY</h4>
-                    <span>Director Audit</span>
+                    <h4>Dr. Frank Mawuyome Kwame Gamadey</h4>
+                    <span>Director, Audit</span>
                 </div>
             </div>
 
-            <!-- next director -->
+            <!-- next director, HR-->
             <div class="img_disp" id="try">
-                <img src="{{ url_for('static', filename='img/leaders/_DSC6322.JPG') }}" alt="pre-cons-right"
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-right"
                     class="image_file">
                 <!-- <img src="static/img/leaders/_DSC6322.jpg" alt="pre-cons-right" class="image_file"> -->
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/video-1.jpg') }}"  -->
-                        <a href="{{ url_for('static', filename='img/leaders/MAAMA SAWYERR-MARKWEI.jpg') }}" data-lightbox="profile"
-                            data-title="Pic-2" data-alt="Pic-2.jpg">
+                        <a href="{{ url_for('static', filename='img/leaders/MRS. VIVIAN YARCHOE.jpg') }}"
+                            data-lightbox="profile" data-title="Pic-2" data-alt="Pic-2.jpg">
                             Profile
                         </a>
                     </div>
                 </div>
                 <div class="team_name">
-                    <h4>SAWYERR MAAMA-MARKWEI</h4>
-                    <span>Chief Executive Officer</span>
+                    <h4>Mrs. Vivian Y. Ghansah</h4>
+                    <span>Director, Human Resources</span>
                 </div>
             </div>
 
+             <!-- next director, MIS-->
             <div class="img_disp" id="try">
                 <img src="{{ url_for('static', filename='img/leaders/_DSC6316.JPG') }}" alt="pre-cons-left"
                     class="image_file">
@@ -322,37 +419,287 @@
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="{{ url_for('static', filename='img/leaders/Foster Ekuede Lelekele.jpg') }}" data-lightbox="profile"
-                            data-title="Pic-4" data-alt="Pic-4.jpg">
+                        <a href="{{ url_for('static', filename='img/leaders/Foster Ekuede Lelekele.jpg') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
                             Profile
                         </a>
                     </div>
                 </div>
                 <div class="team_name">
-                    <h4>FOSTER EKUEDE LELEKELE</h4>
+                    <h4>Mr. Foster Ekuede Lelekele</h4>
                     <span>Ag. Director, MIS</span>
                 </div>
             </div>
+
+             <!-- next director, Finance -->
             <div class="img_disp" id="try">
-                <img src="{{ url_for('static', filename='img/leaders/GORDON AMARTEY.JPG') }}" alt="pre-cons-left"
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
                     class="image_file">
-                <!-- <img src="static/img/leaders/GORDON AMARTEY.jpg" alt="pre-cons-left" class="image_file"> -->
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
                 <div class="overlay">
                     <div id="pro">
                         <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
-                        <a href="{{ url_for('static', filename='img/leaders/Gordon Amarkwei Amartey new.jpg') }}" data-lightbox="profile"
-                            data-title="Pic-4" data-alt="Pic-4.jpg">
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
                             Profile
                         </a>
                     </div>
                 </div>
                 <div class="team_name">
-                    <h4>GORDON AMARKWEI AMARTEY</h4>
-                    <span>Director, Survey Design</span>
+                    <h4>Mr. Eric Ofori Amanfo (Esq.)</h4>
+                    <span>Director, Finance</span>
                 </div>
             </div>
+
+            <!-- next director, Legal Service -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Ms Irene Atobra (Esq.)</h4>
+                    <span>Ag. Director, Legal Services</span>
+                </div>
+            </div>
+
+            <!-- next director, Public Affairs -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Mr. Cecil Nii Obodai Wentum</h4>
+                    <span>Ag. Director, Public Affairs</span>
+                </div>
+            </div>
+
+            <!-- next director, Training and Development -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/leaders/JOYCE ESINU ADZO AGBEKA.jpg') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Mrs. Joyce Agbeka</h4>
+                    <span>Director, Training and Development</span>
+                </div>
+            </div>
+
         </div>
 
+
+        <!-- For Development -->
+        <!-- Director of Planning -->
+        <div class="responsive" id="leader">
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}"
+                    alt="pre-cons-left" class="image_file">
+                <!-- <img src="static/img/leaders/DR. FRANK M.K GAMADEY.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/leaders/#') }}"
+                            data-lightbox="profile" data-title="Pic-1" data-alt="Pic-1.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Ing. Eric Odosu</h4>
+                    <span>Director, Planning</span>
+                </div>
+            </div>
+
+            <!-- next director, Survey and Design-->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-right"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6322.jpg" alt="pre-cons-right" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/video-1.jpg') }}"  -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-2" data-alt="Pic-2.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Mr. Paul Yaw Adanse-Pippim Duah</h4>
+                    <span>Director, Survey and Design</span>
+                </div>
+            </div>
+
+             <!-- next director, Contracts-->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/leaders/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Contracts</h4>
+                    <span>Ag. Director, Contracts</span>
+                </div>
+            </div>
+
+             <!-- next director, Materials -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Ing. Edmund Obeng</h4>
+                    <span>Ag. Director, Materials</span>
+                </div>
+            </div>
+
+            <!-- next director, Bridges -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Bridges</h4>
+                    <span>Director, Bridges</span>
+                </div>
+            </div>
+
+            <!-- next director, Road Safety and Environment -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Ing. Joseph Atsu Amedzake</h4>
+                    <span>Director, Road Safety and Environment</span>
+                </div>
+            </div>
+
+            <!-- next director, Quantities -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Mr. Mallam Issah Issahaku </h4>
+                    <span>Director, Quantities</span>
+                </div>
+            </div>
+
+
+            <!-- next director, Road Maintenance -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Ing. Mark Okyere</h4>
+                    <span>Director, Road Maintenance</span>
+                </div>
+            </div>
+
+
+            <!-- next director, Plant and Equipment -->
+            <div class="img_disp" id="try">
+                <img src="{{ url_for('static', filename='img/HIGHWAYS OFFICIAL LOGO main.jpg') }}" alt="pre-cons-left"
+                    class="image_file">
+                <!-- <img src="static/img/leaders/_DSC6316.jpg" alt="pre-cons-left" class="image_file"> -->
+                <div class="overlay">
+                    <div id="pro">
+                        <!-- <a href="{{ url_for('static', filename='img/leaders/pre-cons-left.jpg') }}" -->
+                        <a href="{{ url_for('static', filename='img/#') }}"
+                            data-lightbox="profile" data-title="Pic-4" data-alt="Pic-4.jpg">
+                            Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="team_name">
+                    <h4>Mr. Gershon Dzakpata</h4>
+                    <span>Ag. Director, Plant and Equipment</span>
+                </div>
+            </div>
+
+        </div>
+       
 
     </div>
 </div>

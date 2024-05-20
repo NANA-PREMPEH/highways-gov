@@ -1,0 +1,63 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    /* Media and News tab */
+    /* ============================================================================================ */
+    /* Start of XptShare video css */
+
+    /* for reducing the spaces between the Accordions */
+    #tbl_h3 div {
+        margin-bottom: -3px;
+    }
+
+    /* Start of XptShare video css */
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
+        <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;">
+            <h3 id="table_h3">XptShare Videos</h3>
+
+            <!-- <section>
+                <div class="latest_news_item">
+                    <div class="news_image">
+                        <img src="{{ url_for('static', filename='img/CE x-share.jpg') }}" alt="Image not found">
+                    </div>
+                </div>
+
+            </section> -->
+
+            <section>
+
+
+                <div class="row">
+                    <div class="col">
+                        <h2>Click to <b>Span</b></h2>
+                        <div class="tabs">
+                            <div class="tab">
+                                <input type="checkbox" id="chck1">
+                                <label class="tab-label" for="chck1">Design Innovation and Maintenance of Bridges - Chris Blackson, MSc. DIC., C.Eng., P.Eng.</label>
+                                <div class="tab-content">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum, reiciendis!
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <input type="checkbox" id="chck2">
+                                <label class="tab-label" for="chck2">Item 2</label>
+                                <div class="tab-content">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. A, in!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+        </div>
+        {% include 'includes/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}
