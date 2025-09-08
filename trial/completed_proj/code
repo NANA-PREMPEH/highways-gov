@@ -1,0 +1,45 @@
+# Import required Flask modules for templating, redirecting, handling requests, creating blueprints and JSON responses
+from flask import render_template, redirect, request, Blueprint, jsonify
+# Import database instance from trial package
+from trial import db
+# Import datetime for handling date operations
+from datetime import datetime
+# Import database models for Post and CompletedProj
+from trial.models import Post, CompletedProj
+
+# Create a Blueprint instance named 'completed_proj' for modular application structure
+completed_proj = Blueprint('completed_proj', __name__)
+# Define route for rehabilitation project with both GET and POST methods
+@completed_proj.route('/completed/periodic/rehabilitation', methods=['GET', 'POST'])
+def rehabilitation():
+    # Query CompletedProj table to get all rehabilitation projects
+    rehab_list = CompletedProj.query.filter_by(category="Rehabilitation")
+    # Query Post table to get all posts ordered by descending ID
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    # Check if the request method is POST (for date range filtering)
+    if request.method == "POST":
+        # Parse start date from form data and format it to YYYY-mm-dd
+        start_date = datetime.strptime(request.form['start_date'], "%Y-%m-%d").strftime("%Y-%m-%d")
+        # Parse end date from form data and format it to YYYY-mm-dd
+        end_date = datetime.strptime(request.form['end_date'], "%Y-%m-%d").strftime("%Y-%m-%d")
+
+        # Execute raw SQL query to calculate totals within date range
+        q = db.engine.execute("""
+            SELECT FORMAT((t1.col_total), 2)  As col_total \
+            FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total 
+                 FROM completed_proj \
+                 WHERE category = 'Rehabilitation'  
+                 and date_commenced >= %s  
+                 and date_completed<= %s) t1""", \
+            (start_date, end_date)).first()
+
+        # Return JSON response with rendered template for AJAX updates
+        return jsonify({
+            'data': render_template('projects/completed/rehab_json.html', q=q)
+        })
+    # For GET requests, render the full rehabilitation template
+    return render_template('projects/completed/rehabilitation.html',
+                         title='Rehabilitation',
+                         rehab_list=rehab_list,  # Pass the list of rehabilitation projects
+                         posts=posts)  # Pass the list of posts

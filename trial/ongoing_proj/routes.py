@@ -27,6 +27,7 @@ def rehabilitation():
 
     return render_template('projects/ongoing/rehabilitation.html', title='Rehabilitation', rehab_list=rehab_list, posts=posts)
 
+
 @ongoing_proj.route('/ongoing/periodic/resealing', methods=['GET', 'POST']) 
 def resealing():
     

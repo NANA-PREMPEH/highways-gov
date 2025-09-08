@@ -1,970 +1,1397 @@
-{% extends "includes/layout.html" %}
-{% block content %}
+{% extends "includes/layout.html" %} {% block content %}
 
 <style>
-    .lab {
-        width: 250px;
-        height: 40px;
-        display: block;
-        background-color: #b8c3ff;
-        color: #333;
-        text-align: center;
-        padding-top: 16px;
-        padding-bottom: 44px;
-        border-radius: 10px;
-        line-height: 20px;
-        font-size: 18px;
-        font-family: "Montserrat", sans-serif;
-        margin-bottom: 15px;
-        margin-right: 20px;
-    }
+  .lab {
+    width: 250px;
+    height: 40px;
+    display: block;
+    background-color: #b8c3ff;
+    color: #333;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 44px;
+    border-radius: 10px;
+    line-height: 20px;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+    margin-right: 20px;
+  }
 
-    .lab:hover {
-        background-color: #01368c;
-        color: #fff;
-    }
+  .lab:hover {
+    background-color: #01368c;
+    color: #fff;
+  }
 
+  .title_head {
+    padding-bottom: 10px;
+    color: #000;
+    font-weight: bold;
+  }
 
-    .title_head {
-        padding-bottom: 10px;
-        color: #000;
-        font-weight: bold;
-    }
+  .policy-main {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px dashed #ccc;
+  }
 
-    .policy-main {
-        margin-bottom: 10px;
-        padding: 10px;
-        font-family: 'Montserrat', sans-serif;
-        border: 1px dashed #ccc;
-    }
+  .policy-pdf {
+    margin: 20px 0px;
+    display: block;
+  }
 
-    .policy-pdf {
-        margin: 20px 0px;
-        display: block;
-    }
+  .fa-file-pdf-o:before {
+    content: '\f1c1';
+  }
 
-    .fa-file-pdf-o:before {
-        content: "\f1c1";
-    }
+  .policy-pdf-file {
+    background-color: #f7f7f7;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid #e5e5e5;
+    vertical-align: bottom;
+  }
 
-    .policy-pdf-file {
-        background-color: #f7f7f7;
-        width: 100%;
-        display: flex;
-        box-sizing: border-box;
-        border: 1px solid #e5e5e5;
-        vertical-align: bottom;
-    }
+  .policy-pdf-file a {
+    font-size: 20px;
+    text-decoration: none;
+    flex: 1;
+    color: #41aed7;
+    padding: 5px;
+  }
 
-    .policy-pdf-file a {
-        font-size: 20px;
-        text-decoration: none;
-        flex: 1;
-        color: #41aed7;
-        padding: 5px;
-    }
+  .policy-pdf-file span {
+    flex: 16;
+    font-weight: 400;
+    display: inline-block;
+    padding: 10px;
+    border-right: 1px solid #e5e5e5;
+  }
 
-    .policy-pdf-file span {
-        flex: 16;
-        font-weight: 400;
-        display: inline-block;
-        padding: 10px;
-        border-right: 1px solid #e5e5e5;
-    }
+  .divider_bg::before {
+    content: '';
+    display: block;
+    border-bottom: 5px solid #b8c3ff;
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 83px;
+    height: 1px;
+    opacity: 1;
+    z-index: 100;
+  }
 
-    .divider_bg::before {
-        content: "";
-        display: block;
-        border-bottom: 5px solid #b8c3ff;
-        position: absolute;
-        left: 0;
-        top: -1px;
-        width: 83px;
-        height: 1px;
-        opacity: 1;
-        z-index: 100;
-    }
+  #hr_divider {
+    opacity: 1;
+    z-index: 1;
+  }
 
-    #hr_divider {
-        opacity: 1;
-        z-index: 1;
-    }
+  hr {
+    box-sizing: content-box;
+    height: 0;
+    border-top: 1px solid #eee;
+    border-color: #e5e5e5;
+    background-color: #e5e5e5;
+  }
 
-    hr {
-        box-sizing: content-box;
-        height: 0;
-        border-top: 1px solid #eee;
-        border-color: #e5e5e5;
-        background-color: #e5e5e5;
-    }
+  .divider_bg {
+    position: relative;
+    overflow: visible;
+    margin-top: -10px;
+  }
 
-    .divider_bg {
-        position: relative;
-        overflow: visible;
-        margin-top: -10px;
-    }
-
-    /* Start of Styling for tap options */
-    /* body {
+  /* Start of Styling for tap options */
+  /* body {
     /* background: #ccc; */
-    /* font-family: 'Roboto', sans-serif; */
-    /* } */
-    .mytabs {
-        display: flex;
-        flex-wrap: wrap;
-        /* max-width: 600px; */
-        /* margin: 1px auto; */
-        /* padding: 1px; */
+  /* font-family: 'Roboto', sans-serif; */
+  /* } */
+  .mytabs {
+    display: flex;
+    flex-wrap: wrap;
+    /* max-width: 600px; */
+    /* margin: 1px auto; */
+    /* padding: 1px; */
+  }
+
+  .mytabs input[type='radio'] {
+    display: none;
+  }
+
+  .mytabs label {
+    padding: 7px;
+    background: #b8c3ff;
+    font-weight: bold;
+    border-radius: 12px;
+  }
+
+  .mytabs .tab {
+    width: 100%;
+    padding: 0px;
+    background: #ffffff;
+    order: 1;
+    display: none;
+    color: #000;
+  }
+
+  .mytabs .tab h2 {
+    font-size: 3em;
+  }
+
+  .mytabs input[type='radio']:checked + label + .tab {
+    display: block;
+  }
+
+  .mytabs input[type='radio']:checked + label {
+    background: #01368c;
+    color: #fff;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .lab {
+      width: 335px;
     }
 
-    .mytabs input[type="radio"] {
-        display: none;
+    #periodic {
+      flex-direction: column;
+    }
+
+    .row {
+      margin-right: 0px;
+    }
+
+    #no_news {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    #table_h3 {
+      margin-top: 9%;
     }
 
     .mytabs label {
-        padding: 7px;
-        background: #b8c3ff;
-        font-weight: bold;
-        border-radius: 12px;
-
+      padding: 0px;
+      margin-left: 11px;
+      font-size: medium;
     }
+  }
 
-    .mytabs .tab {
-        width: 100%;
-        padding: 0px;
-        background: #fff;
-        order: 1;
-        display: none;
-    }
+  /* taps for quarterly_report for 2018 */
 
-    .mytabs .tab h2 {
-        font-size: 3em;
-    }
-
-    .mytabs input[type='radio']:checked+label+.tab {
-        display: block;
-    }
-
-    .mytabs input[type="radio"]:checked+label {
-        background: #01368c;
-        color: #fff;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .lab {
-            width: 335px;
-        }
-
-        #periodic {
-            flex-direction: column;
-
-        }
-
-        .row {
-            margin-right: 0px;
-        }
-
-        #no_news {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        #table_h3 {
-            margin-top: 9%;
-        }
-
-        .mytabs label {
-            padding: 0px;
-            margin-left: 11px;
-            font-size: medium;
-        }
-    }
-
-
-    /* taps for quarterly_report for 2018 */
-
-
-    /* End of Styling for tap options */
+  /* End of Styling for tap options */
 </style>
 
 <div class="container">
-    <div class="row blog_details_inner" style="margin-left: 2%;">
-        <h3 id="table_h3">Reports</h3>
-        <div id="periodic" style="margin-top: 2%; display: flex;">
-            <div>
-                <a class="lab" href="{{ url_for('main.reports') }}">Annual Report</a>
-                <a class="lab" href="{{ url_for('main.quarterly_report') }}">Quarterly Report</a>
-                <a class="lab" href="{{ url_for('main.status_report') }}">Status Report</a>
-                <a class="lab" href="{{ url_for('main.road_con_survey') }}">Road Con. And Survey</a>
-            </div>
+  <div class="row blog_details_inner" style="margin-left: 2%">
+    <h3 id="table_h3">Reports</h3>
+    <div id="periodic" style="margin-top: 2%; display: flex">
+      <div>
+        <a class="lab" href="{{ url_for('main.reports') }}">Annual Report</a>
+        <a class="lab" href="{{ url_for('main.quarterly_report') }}"
+          >Quarterly Report</a
+        >
+        <a class="lab" href="{{ url_for('main.status_report') }}"
+          >Status Report</a
+        >
+        <a class="lab" href="{{ url_for('main.road_con_survey') }}"
+          >Road Con. And Survey</a
+        >
+      </div>
 
-            <!-- for displaying message to user when PDF file is not available -->
+      <!-- for displaying message to user when PDF file is not available -->
 
-            <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <p style="text-align:center"><b>Sorry file not available for download</b></p>
-                    </div>
-                </div>
-            </div>
+      <div
+        class="modal fade bd-example-modal-sm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mySmallModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <p style="text-align: center">
+              <b>Sorry file not available for download</b>
+            </p>
+          </div>
+        </div>
+      </div>
 
-            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif; width: 100%;">
-                <h5 id="no_news">Quarterly report</h5>
+      <div
+        style="
+          font-size: 18px;
+          font-family: 'Montserrat', sans-serif;
+          width: 100%;
+        "
+      >
+        <h5 id="no_news">Quarterly report</h5>
 
-
-               <!-- Year 2023 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2023</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab33" name="mytabs" checked="checked">
-                                <label for="tab33">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2023.pdf') }}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab32" name="mytabs"> 
-                                <label for="tab32">2<sup>nd </sup> Quarter</label> 
-                                <div class="tab">
-                                    <div class="policy-pdf">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2023.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <!-- <input type="radio" id="tab31" name="mytabs">
-                                <label for="tab31">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2021.pdf')}}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-
-                    </div>
+        <!-- Year 2025 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2025</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab39"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab39">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2025.pdf') }}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
                 </div>
 
-                <!-- year 2022 -->
-                <!-- <div>
-                    <div>
-                        <div style="margin-top: -10px;">2022</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                <!-- <input type="radio" id="tab38" name="mytabs"> 
+                <label for="tab38">2<sup>nd </sup> Quarter</label> 
+                <div class="tab">
+                    
+                    <div class="policy-pdf-file">
+                        <p style="padding-right: 20px;">2</p>
+                        <i class="fa fa-file-pdf-o"
+                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
+                        <span>2<sup>nd </sup> Quarterly Report</span>
+                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2024.pdf')}}"
+                            target=_blank>
+                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                alt="Image not found" width="40" height="40">
+                        </a>
                     </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab30" name="mytabs" checked="checked">
-                                <label for="tab30">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2021.pdf') }}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab29" name="mytabs">
-                                <label for="tab29">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2021.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab28" name="mytabs">
-                                <label for="tab28">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2021.pdf')}}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                
                 </div> -->
 
-                <!-- year 2021 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2021</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
+                <!-- <input type="radio" id="tab37" name="mytabs">
+                <label for="tab37">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                    <div class="policy-pdf-file">
+                        <p style="padding-right: 20px;">3</p>
+                        <i class="fa fa-file-pdf-o"
+                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
+                        <span>3<sup>rd </sup> Quarterly Report</span>
+                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2024.pdf')}}"
+                            target="_blank">
+                            <img src="{{ url_for('static', filename='img/download.png') }}"
+                                alt="Image not found" width="40" height="40">
+                        </a>
                     </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab27" name="mytabs" checked="checked">
-                                <label for="tab27">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2021.pdf') }}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab26" name="mytabs">
-                                <label for="tab26">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2021.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab25" name="mytabs">
-                                <label for="tab25">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2021.pdf')}}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- year 2020 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2020</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab24" name="mytabs" checked="checked">
-                                <label for="tab24">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-
-                                        <!-- To display not available report message -->
-                                        <a href="#" data-toggle="modal" data-target=".bd-example-modal-sm">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab23" name="mytabs">
-                                <label for="tab23">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2020.pdf')}}"
-                                            target="_blank">
-
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab22" name="mytabs">
-                                <label for="tab22">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2020.pdf')}}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- year 2019 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2019</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab21" name="mytabs" checked="checked">
-                                <label for="tab21">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2019.pdf')}}"
-                                            target="_blank">
-
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab20" name="mytabs">
-                                <label for="tab20">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/2nd Quarter 2019.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab19" name="mytabs">
-                                <label for="tab19">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2019.pdf')}}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- the next year 2018-->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2018</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab18" name="mytabs" checked="checked">
-                                <label for="tab18">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2018.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab17" name="mytabs">
-                                <label for="tab17">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <!-- onclick = "replicateTab()" -->
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2018.pdf')}}"
-                                            target="_blank">
-
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab16" name="mytabs">
-                                <label for="tab16">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2018.pdf')}}"
-                                            target="_blank">
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- the next year 2017 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2017</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab15" name="mytabs" checked="checked">
-                                <label for="tab15">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2017.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab14" name="mytabs">
-                                <label for="tab14">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/2nd  Quarter 2017.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab13" name="mytabs">
-                                <label for="tab13">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/3rd  Quarter 2017.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- the next year 2016 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2016</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab12" name="mytabs" checked="checked">
-                                <label for="tab12">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2016.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab11" name="mytabs">
-                                <label for="tab11">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/2nd  Quarter 2016.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab10" name="mytabs">
-                                <label for="tab10">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/3rd  Quarter 2016.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- the next year 2015 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2015</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab9" name="mytabs" checked="checked">
-                                <label for="tab9">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2015.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab8" name="mytabs">
-                                <label for="tab8">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/2nd Quarter 2015.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab7" name="mytabs">
-                                <label for="tab7">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/3rd  Quarter 2015.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- the next year 2014 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2014</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab6" name="mytabs" checked="checked">
-                                <label for="tab6">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2014.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab5" name="mytabs">
-                                <label for="tab5">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/2nd Quarter 2014.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab4" name="mytabs">
-                                <label for="tab4">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/3rd Quarter 2014.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- the next year 2013 -->
-                <div>
-                    <div>
-                        <div style="margin-top: -10px;">2013</div>
-                        <hr id="hr_divider" class="divider_bg m_bottom_25 warning">
-                    </div>
-                    <div class="policy-main">
-                        <div class="policy-pdf">
-
-                            <div class="mytabs">
-                                <input type="radio" id="tab3" name="mytabs" checked="checked">
-                                <label for="tab3">1<sup>st </sup> Quarter</label>
-                                <div class="tab">
-
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">1</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>1<sup>st </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2013.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <input type="radio" id="tab2" name="mytabs">
-                                <label for="tab2">2<sup>nd </sup> Quarter</label>
-                                <div class="tab">
-                                    <!-- <div class="policy-pdf"> -->
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">2</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>2<sup>nd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/2nd  Quarter 2013.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-
-                                <input type="radio" id="tab1" name="mytabs">
-                                <label for="tab1">3<sup>rd</sup> Quarter</label>
-                                <div class="tab">
-                                    <div class="policy-pdf-file">
-                                        <p style="padding-right: 20px;">3</p>
-                                        <i class="fa fa-file-pdf-o"
-                                            style="color: red; font-size: 30px; padding-top: 14px;"></i>
-                                        <span>3<sup>rd </sup> Quarterly Report</span>
-                                        <a href="{{ url_for('static', filename='reports/quarterly/3rd Quarter 2013.pdf')}}"
-                                            target=_blank>
-                                            <img src="{{ url_for('static', filename='img/download.png') }}"
-                                                alt="Image not found" width="40" height="40">
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-
+                </div> -->
+              </div>
             </div>
+          </div>
         </div>
 
+        <!-- Year 2024 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2024</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab36"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab36">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2024.pdf') }}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
 
+                <input type="radio" id="tab35" name="mytabs" />
+                <label for="tab35">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2024.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
 
+                <input type="radio" id="tab34" name="mytabs" />
+                <label for="tab34">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2024.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year 2023 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2023</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab33"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab33">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2023.pdf') }}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab32" name="mytabs" />
+                <label for="tab32">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2023.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab31" name="mytabs" />
+                <label for="tab31">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2023.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- year 2022 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2022</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab30"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab30">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2021.pdf') }}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab29" name="mytabs" />
+                <label for="tab29">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2021.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab28" name="mytabs" />
+                <label for="tab28">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2021.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- year 2021 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2021</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab27"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab27">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2021.pdf') }}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab26" name="mytabs" />
+                <label for="tab26">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2021.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab25" name="mytabs" />
+                <label for="tab25">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2021.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- year 2020 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2020</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab24"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab24">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+
+                    <!-- To display not available report message -->
+                    <a
+                      href="#"
+                      data-toggle="modal"
+                      data-target=".bd-example-modal-sm"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab23" name="mytabs" />
+                <label for="tab23">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2020.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab22" name="mytabs" />
+                <label for="tab22">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2020.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- year 2019 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2019</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab21"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab21">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 1st Quarter Report - 2019.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab20" name="mytabs" />
+                <label for="tab20">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/2nd Quarter 2019.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab19" name="mytabs" />
+                <label for="tab19">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2019.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- the next year 2018-->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2018</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab18"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab18">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2018.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab17" name="mytabs" />
+                <label for="tab17">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <!-- onclick = "replicateTab()" -->
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 2nd Quarter Report - 2018.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab16" name="mytabs" />
+                <label for="tab16">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/Highways 3rd Quarter Report - 2018.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- the next year 2017 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2017</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab15"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab15">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2017.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab14" name="mytabs" />
+                <label for="tab14">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/2nd  Quarter 2017.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab13" name="mytabs" />
+                <label for="tab13">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/3rd  Quarter 2017.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- the next year 2016 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2016</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input
+                  type="radio"
+                  id="tab12"
+                  name="mytabs"
+                  checked="checked"
+                />
+                <label for="tab12">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2016.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab11" name="mytabs" />
+                <label for="tab11">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/2nd  Quarter 2016.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab10" name="mytabs" />
+                <label for="tab10">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/3rd  Quarter 2016.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- the next year 2015 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2015</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input type="radio" id="tab9" name="mytabs" checked="checked" />
+                <label for="tab9">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2015.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab8" name="mytabs" />
+                <label for="tab8">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/2nd Quarter 2015.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab7" name="mytabs" />
+                <label for="tab7">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/3rd  Quarter 2015.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- the next year 2014 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2014</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input type="radio" id="tab6" name="mytabs" checked="checked" />
+                <label for="tab6">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2014.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab5" name="mytabs" />
+                <label for="tab5">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/2nd Quarter 2014.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab4" name="mytabs" />
+                <label for="tab4">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/3rd Quarter 2014.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- the next year 2013 -->
+        <div>
+          <div>
+            <div style="margin-top: -10px">2013</div>
+            <hr id="hr_divider" class="divider_bg m_bottom_25 warning" />
+          </div>
+          <div class="policy-main">
+            <div class="policy-pdf">
+              <div class="mytabs">
+                <input type="radio" id="tab3" name="mytabs" checked="checked" />
+                <label for="tab3">1<sup>st </sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">1</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>1<sup>st </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/1st Quarter 2013.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <input type="radio" id="tab2" name="mytabs" />
+                <label for="tab2">2<sup>nd </sup> Quarter</label>
+                <div class="tab">
+                  <!-- <div class="policy-pdf"> -->
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">2</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>2<sup>nd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/2nd  Quarter 2013.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <input type="radio" id="tab1" name="mytabs" />
+                <label for="tab1">3<sup>rd</sup> Quarter</label>
+                <div class="tab">
+                  <div class="policy-pdf-file">
+                    <p style="padding-right: 20px">3</p>
+                    <i
+                      class="fa fa-file-pdf-o"
+                      style="color: red; font-size: 30px; padding-top: 14px"
+                    ></i>
+                    <span>3<sup>rd </sup> Quarterly Report</span>
+                    <a
+                      href="{{ url_for('static', filename='reports/quarterly/3rd Quarter 2013.pdf')}}"
+                      target="_blank"
+                    >
+                      <img
+                        src="{{ url_for('static', filename='img/download.png') }}"
+                        alt="Image not found"
+                        width="40"
+                        height="40"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock content %}

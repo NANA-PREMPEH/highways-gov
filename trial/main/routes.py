@@ -337,3 +337,10 @@ def search():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('main/search.html', title='Search', search_posts=search_posts,
                            next_url=next_url, prev_url=prev_url, posts=posts)
+
+
+# Section for Assests Management App 
+@main.route('/assets_mgt')
+def assets_mgt():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/assets_mgt.html', title='Assets Management', posts=posts)

@@ -86,6 +86,27 @@
         width: 50px;
         height: 50px;
     }
+
+    /* start for quotes fuction */
+    button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    #quote {
+            margin-top: 20px;
+            font-style: italic;
+            color: white;
+        }
+        /* end for quotes fuction */
 </style>
 
 <body>
@@ -268,7 +289,7 @@
                                     <li><a href="{{ url_for('main.photo_gallery') }}">Photo Gallery</a></li>
                                     <li><a href="{{ url_for('main.video_gallery') }}">Video Gallery</a></li>
                                     <li><a href="{{ url_for('main.road_net') }}">Road Network</a></li>
-                                    <li><a href="{{ url_for('main.xptShare') }}">XptShare Videos</a></li>
+                                    <!-- <li><a href="{{ url_for('main.xptShare') }}">XptShare Videos</a></li> -->
                                 </ul>
                             </li>
                             <li><a href="{{ url_for('main.contacts_page') }}">Contact Us</a></li>
@@ -324,7 +345,7 @@
                         <div class="media-body">
                             <h4>Office Address :</h4>
                             <h5>HEAD OFFICE</h5>
-                            <h5>P.O.Box 1641</h5>
+                            <h5>P.O.Box GP 1641</h5>
                             <h5>Ministries</h5>
                             <h5>Accra - Ghana</h5>
                         </div>
@@ -336,9 +357,9 @@
                             <img src="{{ url_for('static', filename='img/icon/phone-icon.png') }}" alt="">
                         </div>
                         <div class="media-body">
-                            <h5>03039-67364 (Reception)</h5>
-                            <h5>03202-961616</h5>
-                            <h5>03202-961620</h5>
+                            <h5>0303-967364 (Reception)</h5>
+                            <h5>0302-961616</h5>
+                            <h5>0302-961620</h5>
                         </div>
                     </div>
                 </div>
@@ -434,7 +455,7 @@
                                         <i class="fa fa-address-card-o"></i>
                                     </div>
                                     <div class="media-body">
-                                        <p>P.O.Box 1641</p>
+                                        <p>P.O.Box GP 1641</p>
                                     </div>
                                 </div>
                                 <div class="media">
@@ -450,9 +471,9 @@
                                         <i class="fa fa-phone"></i>
                                     </div>
                                     <div class="media-body">
-                                        <p>03039-67364 (Reception)</p>
-                                        <p>03202-961616</p>
-                                        <p>03202-961620</p>
+                                        <p>0303-967364 (Reception)</p>
+                                        <p>0302-961616</p>
+                                        <p>0302-961620</p>
                                     </div>
                                 </div>
                                 <div class="media">
@@ -479,8 +500,8 @@
                         <aside class="f_widget give_us_widget">
                             <h5>Give Us A Call</h5>
                             <h3 style="color: yellow;">Reception:</h3>
-                            <h3 style="color: #b8c3ff">03039-67364</h3>
-                            <h4>03202-961616/<br>961620/961641<br>961427/966303</h4>
+                            <h3 style="color: #b8c3ff">0303-967364</h3>
+                            <h4>0302-961616/<br>961620/961641<br>961427/966303</h4>
                             <br><br>
                             <a class="get_bg_btn" href="{{ url_for('main.landing_page') }}">
                                 PORTAL
@@ -831,6 +852,97 @@
         });
     </script>
 
+    <!-- section for quotes -->
+     <script>
+        const quotes = [
+            "The engineer has been, and is, a maker of history.",
+            "Engineering is the art of directing the great sources of power in nature for the use and convenience of man.",
+            "Civil engineering is the art of directing the great sources of power in nature for the use and convenience of man.",
+            "The civilized man has built a coach, but has lost the use of his feet.",
+            "Engineering is not merely knowing and being knowledgeable, like a walking encyclopedia; engineering is not merely analysis; engineering is not merely the possession of the capacity to get elegant solutions to non-existent engineering problems; engineering is practicing the art of the organized forcing of technological change.",
+            "Scientists study the world as it is; engineers create the world that has never been.",
+            "One man's 'magic' is another man's engineering.",
+            "The engineer has been, and is, a maker of history.",
+            "Engineering is the professional art of applying science to the optimum conversion of natural resources to the benefit of man.",
+            "Civil engineers build the world, make it a better place to live in and connect people.",
+            '"The difference between theory and practice is smaller in theory than it is in practice." - Albert Einstein',
+            '"Architecture begins where engineering ends." - Walter Gropius',
+            '"An optimist will tell you the glass is half-full; the pessimist, half-empty; and the engineer will tell you the glass is twice the size it needs to be." - Oscar Wilde',
+            '"Engineers like to solve problems. If there are no problems handily available, they will create their own problems." - Scott Adams',
+            '"Aerodynamics are for people who cannot build engines." - Enzo Ferrari',
+            '"A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools." - Douglas Adams',
+            '"The road to success is always under construction." - Lily Tomlin',
+            '"We shape our buildings, thereafter they shape us." - Winston Churchill',
+            '"The civil engineer is the real 19th-century architect." - William Burges',
+            '"Architects and engineers are among the most fortunate of men since they build their own monuments with public consent, public approval and often public money." - John Prebble',
+            '"We shape our buildings, thereafter they shape us."- Winston Churchill',
+
+'"There can be little doubt that in many ways the story of bridge building is the story of  civilization. By it, we can readily measure an important part of a people’s progress."-  Franklin D Roosevelt, 1931',
+
+'"When engineers and quantity surveyors discuss aesthetics and architects study what cranes do we are on the right road."- Ove Arup',
+
+'"This is not the age of pamphleteers. It is the age of engineers. The spark gap is mightier than the pen. Democracy will not be salvaged by men who talk fluently, debate forcefully, and quote aptly."- Lancelot Hogben',
+
+'"The major difference between a thing that might go wrong and a thing that cannot possibly go wrong is that when a thing that cannot possibly go wrong goes wrong, it usually turns out to be impossible to get at and repair."- Douglas Adams',
+
+'"The joy of engineering is to find a straight line on a double logarithmic diagram."-Thomas Koenig',
+
+'"One has to watch out for engineers – they begin with the sewing machine and end up with the atomic bomb."- Marcel Pagnol',
+
+'"Nothing is so inspiring as seeing big works well laid out and planned and a real engineering organization."- Frederick Handley Page',
+
+'"Nothing can be of great worth or holy which is the work of builders and mechanics."- Zeno, Stoic Philosopher',
+
+'"No greater care is required upon any works than upon such as are to withstand the action of  water; for this reason, all parts of the work need to be done exactly according to the rules of the art which all workmen know, but few observe."- Sextus Julius Frontinus',
+
+'"Men build bridges and throw railroads across deserts, and yet they contend successfully that the job of sewing on a button is beyond them. Accordingly, they don’t have to sew buttons."- Heywood Broun',
+
+'"It takes an engineer to undertake the training of an engineer and not, as often happens, a theoretical engineer who is clever on a blackboard with mathematical formulae but useless as far as production is concerned."- The Rev EB Evans',
+
+'"His father loved him dearly, but his work, that of a civil engineer, had left him with but little time for his family. Energetic, active, and always taken up with some responsible work, he did not spoil his children with excessive tenderness."- Mme Estafavia',
+
+'"Go for civil engineering, because civil engineering is the branch of engineering which teaches you the most about managing people. Managing people is a skill that is very, very useful and applies almost regardless of what you do."- Sir John Harvey Jones',
+
+'"From the laying out of a line of a tunnel to its final completion, the work may be either a series of experiments made at the expense of the proprietors of the project or a series of judicious applications of the results of previous experience."- HS Drinker',
+
+'"Engineers … are not mere technicians and should not approve or lend their name to any project that does not promise to be beneficent to man and the advancement of civilization"- John Fowler',
+
+'"Engineering refers to the practice of organizing the design and construction [and, I would add operation] of any artifice which transforms the physical world around us to meet some recognized need."- GFC Rogers',
+
+'"Engineering is the art of modeling  materials we do not wholly understand, into shapes we cannot precisely analyze so as to withstand forces we cannot properly assess, in such a way that the public has no reason to suspect the extent of our ignorance."- Dr AR Dykes',
+
+'"Architects and engineers are among the most fortunate of men since they build their own monuments with public consent, public approval and often public money."- John Prebble',
+
+'"A great bridge is a great monument that should serve to make known the splendor and genius of a nation; one should not occupy oneself with efforts to perfect it architecturally, for taste is always susceptible to change, but to conserve always in its form and decoration the character of solidity which is proper."- Jean Peronnet',
+
+'"A good scientist is a person with original ideas. A good engineer is a person who makes a design that works with as few original ideas as possible"- Freeman Dyson',
+
+'"A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools."- Douglas Adams',
+
+'"Scientists dream about doing great things. Engineers do them."- James A. Michener',
+
+'"Scientists investigate that which already is; Engineers create that which has never been."- Albert Einstein',
+
+'"Each type of knowledge has value; however, from an engineering point of view, practical knowledge seems to be more valuable than theoretical knowledge."- Eraldo Banovac',
+
+'"An engineer is someone who is good with figures but doesn’t have the personality of an accountant."- An Arts graduate’s view of engineers',
+
+'"Life is like a gas turbine, After every compressor, there is always a turbine!;"- Benyamin Bidabad',
+
+'"Engineering is the art and science of nuts and bolts."- Haresh Sippy',
+
+'"“One man’s “magic” is another man’s engineering. “Supernatural” is a null word.”"- Robert A. Heinlein',
+
+'"In engineering, the joints are the most crucial. They have to be both firm and flexible, exactly like the joints in our body.;"- Haresh Sippy',
+        ];
+
+        function generateQuote() {
+            const quoteElement = document.getElementById('quote');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElement.textContent = quotes[randomIndex];
+        }
+    </script>
+    <!-- end section for quotes -->
 
 </body>
 
