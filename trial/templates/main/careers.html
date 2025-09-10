@@ -1,0 +1,449 @@
+{% extends "includes/layout.html" %} {% block content %}
+
+<style>
+  /* Media and News tab */
+  /* ============================================================================================ */
+  /* Start of XptShare video css */
+
+  @media only screen and (max-width: 600px) {
+    
+    .row .col:last-child{
+      margin-right: 2em;
+    }
+
+    
+    
+  
+  }
+  
+
+  /* for reducing the spaces between the Accordions */
+  #tbl_h3 div {
+    margin-bottom: -3px;
+  }
+
+  /* Start of XptShare video css */
+</style>
+
+<div class="container">
+  <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%">
+    <div class="col-md-8" id="tbl_h3" style="margin-top: -2%">
+      <h3 id="table_h3">Careers</h3>
+
+      <!-- <section>
+                <div class="latest_news_item">
+                    <div class="news_image">
+                        <img src="{{ url_for('static', filename='img/CE x-share.jpg') }}" alt="Image not found">
+                    </div>
+                </div>
+
+            </section> -->
+
+      <section>
+        <div class="row">
+          <div class="col">
+            <h3><b>SENIOR AND JUNIOR RECRUITMENT</b></h3>
+            <h4 style="text-align: justify;">
+              The Ghana Highway Authority is looking for suitably qualified
+              Ghanaians for appointment to the following senior /junior staff
+              job positions.
+            </h4>
+            <br />
+            <h4>Click to expand</h4>
+
+            <!-- Assistant Engineers Start-->
+            <div class="tabs" style="font-size: large;">
+              <div class="tab">
+                <input type="checkbox" id="chck1" />
+                <label class="tab-label" for="chck1">1. Assistant
+                  Engineers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED - <b>BSc. (Civil Engineering)</b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least One (1) year post qualification experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>To carry out Civil Engineering activities that will lead to
+                    the planning, development, maintenance and administration of
+                    trunk road system in the country.</b>
+                </div>
+              </div>
+              <!-- Assistant Engineers End -->
+
+              <!-- Assistant Administrative Officers Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck2" />
+                <label class="tab-label" for="chck2">2. Assistant Administrative
+                  Officers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>BSc. Human Resource Management, Business Administration,
+                    Public Administration, Social Sciences</b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least One (1) year post qualification experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To provide operational support for effective and efficient
+                    performance of the human resources management of the
+                    Authority.
+                  </b>
+                </div>
+              </div>
+              <!-- Assistant Administrative Officers End-->
+
+              <!-- Assistant Quantity Surveyors Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck3" />
+                <label class="tab-label" for="chck3">3. Assistant Quantity
+                  Surveyors</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>BSc. in Building Technology/BSc. Quantity Surveying &
+                    Construction Economics, Construction Technology &
+                    Management</b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least One (1) year post qualification experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To provide operational support for the efficient and
+                    effective performance of the quantity surveying functions of
+                    the Authority.
+                  </b>
+                </div>
+              </div>
+              <!-- Assistant Quantity Surveyors End-->
+
+              <!-- Accountants Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck4" />
+                <label class="tab-label" for="chck4">4. Accountants</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>ICA (GH) Part II or its equivalent BSc. Admin. (Accounting
+                    Option)
+                  </b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least One (1) year post qualification experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To supervise voucher activity, performance control at Head
+                    Office and Regions accounting activities in the ledger up to
+                    Trial Balance and budget section. Performs Treasury
+                    Functions. Prepares bank reconciliation.
+                  </b>
+                </div>
+              </div>
+              <!-- Accountants End-->
+
+              <!-- Internal Auditors Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck5" />
+                <label class="tab-label" for="chck5">5. Internal
+                  Auditors</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>ICA (GH) Part II or its equivalent BSc. Admin. (Accounting
+                    Option)
+                  </b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least One (1) year post qualification experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b> To direct, control and check audit activities. </b>
+                </div>
+              </div>
+              <!-- Internal Auditors End-->
+
+              <!-- Supply Officers Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck6" />
+                <label class="tab-label" for="chck6">6. Supply Officers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>BSc. Purchasing and Supply </b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least One (1) year post qualification experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To co-ordinate and supervise the receiving, storage, issuing
+                    and regional store control activities of the Central Stores.
+                  </b>
+                </div>
+              </div>
+              <!-- Supply Officers End-->
+
+              <!-- Investigations Officer Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck7" />
+                <label class="tab-label" for="chck7">7. Investigations
+                  Officer</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>
+                    Higher National Diploma (HND) in Criminal Psychology or its
+                    equivalent
+                  </b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b> At least Six (6) years post qualification experience. </b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To provide technical and operational support for the
+                    effective and efficient performance of Investigations and
+                    Security functions of the Authority.
+                  </b>
+                </div>
+              </div>
+              <!-- Investigations Officer End-->
+
+              <!-- Technician Engineers Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck8" />
+                <label class="tab-label" for="chck8">8. Technician
+                  Engineers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b> Higher National Diploma (HND) (Civil Engineering)</b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least One (1) year post qualification experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To provide overall supervision and undertake Civil
+                    Engineering activities in the Engineering Divisions.
+                  </b>
+                </div>
+              </div>
+              <!-- Technician Engineers End-->
+
+              <!-- Personnel Officers Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck9" />
+                <label class="tab-label" for="chck9">9. Personnel
+                  Officers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>Higher National Diploma (HND) in Management Studies</b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least One (1) year post qualification experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To perform clerical duties in the Divisions and Regional
+                    Offices.
+                  </b>
+                </div>
+              </div>
+              <!-- Personnel Officers End-->
+
+              <!-- Stenographers Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck10" />
+                <label class="tab-label" for="chck10">10. Stenographers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>HND Secretaryship & Management</b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least one (1) year relevant post-qualification
+                    experience.</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b> To provide Secretarial Services to Directors. </b>
+                </div>
+              </div>
+              <!-- Stenographers End-->
+
+              <!-- Drivers Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck11" />
+                <label class="tab-label" for="chck11">11. Drivers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>SSSCE/WASSCE or its equivalent. Driving License Category
+                    ‘C' or higher
+                  </b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least five (5) years post-driving license experience,
+                    accident-free record.
+                  </b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To provide operational support for the efficient and
+                    effective performance of the Transport Management functions
+                    of the authority.
+                  </b>
+                </div>
+              </div>
+              <!-- Drivers End-->
+
+              <!-- Security Officers -->
+              <div class="tab">
+                <input type="checkbox" id="chck12" />
+                <label class="tab-label" for="chck12">12. Security
+                  Officers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>SSSCE/WASSCE or its equivalent.</b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least one (1) year relevant post-qualification
+                    experience</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>
+                    To provide operational support for the efficient and
+                    effective performance of the Security functions of the
+                    Authority.
+                  </b>
+                </div>
+              </div>
+              <!-- Security Officers End-->
+
+              <!-- Labourers Start-->
+              <div class="tab">
+                <input type="checkbox" id="chck13" />
+                <label class="tab-label" for="chck13">13. Labourers</label>
+                <div class="tab-content">
+                  BASIC QUALIFICATION REQUIRED -
+                  <b>SSSCE/WASSCE or its equivalent.</b>
+                </div>
+                <div class="tab-content">
+                  MINIMUM YEARS OF EXPERIENCE -
+                  <b>At least one (1) year relevant post-qualification
+                    experience</b>
+                </div>
+                <div class="tab-content">
+                  JOB PURPOSE -
+                  <b>To carry out various manual duties in an assigned area of
+                    the Authority.
+                  </b>
+                </div>
+              </div>
+              <!-- Labourers End-->
+            </div>
+          </div>
+        </section>
+
+        <br>
+
+        <section>
+          <div class="row">
+            <div class="col">
+              <h4 style="text-align: justify;"><b>Degree holders should have a
+                  minimum of Second Class lower
+                  and Credit in English, Maths and Integrated Science in WASSCE
+                  or SSSCE</b></h4>
+              <br>
+
+              <div>
+                <h4><b><u>TERMS AND CONDITIONS</u></b></h4>
+                <h4>
+                  Attractive remuneration and conditions of employment.
+                </h4>
+
+                <br>
+
+                <h4><b><u>JOB LOCATION</u></b></h4>
+                <h4>
+
+                  Ghana Highway Authority Regional Offices.
+                </h4>
+
+              </div>
+
+              <br>
+              <div>
+                <h4><b><u>MODE OF APPLICATION </u></b></h4>
+                <h4 style="text-align: justify;">
+                  Interested persons who meet the above criteria are requested
+                  to hand deliver
+                  their applications together with their Curriculum Vitae (CVs)
+                  and photocopies
+                  of certificate(s) including WASSCE or SSSCE indicating postal
+                  addresses,
+                  contact telephone number(s), email address and names of two
+                  (2No.) referees to:
+
+                </h4>
+                <br>
+                <h4><b>The Acting Chief Executive, <br>
+                    Ghana Highway Authority, <br>
+                    Head Office, <br>
+                    Hall of Technology, <br>
+                    Accra. <br>
+                    GPS Address: GL – 038-6758.</b></h4>
+
+                <br>
+                <h4><b>ROOM 305,<br>
+                    Ghana Highway Authority,<br>
+                    P.O. Box 1641,<br>
+                    Head Office,<br>
+                    Hall of Technology,<br>
+                    Accra.</b></h4>
+                <br>
+
+                <h4><b>Job Description:</b> Copies of the detailed Job
+                  Description
+                  will be forwarded to Shortlisted Candidates, prior to the
+                  selection interview.</h4>
+                <br>
+                <h4><b>Age Limit:</b> Forty-five (45) years and below for all
+                  job positions.</h4>
+                <br>
+                <h4><b>Application Deadline:</b> Friday, 19th September, 2025 at
+                  5pm.</h4>
+                <br>
+
+                <h4>All interested persons should apply for consideration.</h4>
+                <br>
+                <h4>Only Short-listed candidates will be contacted.</h4>
+
+              </div>
+
+            </section>
+            <br>
+          </div>
+          {% include 'includes/sidebar.html' %}
+        </div>
+      </div>
+      {% endblock content %}

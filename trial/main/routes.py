@@ -230,6 +230,12 @@ def xptShare():
     return render_template('/main/xptShare.html', title='Xpt Share', posts=posts)
 
 
+@main.route('/careers')
+def careers():
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('/main/careers.html', title='Careers', posts=posts)
+
+
 # Start of services route
 # Services
 @main.route('/lab_test_services')

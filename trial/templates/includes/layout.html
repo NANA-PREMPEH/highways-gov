@@ -197,6 +197,7 @@
                                     <li><a href="{{ url_for('main.inst_prof') }}">Institution Profile</a></li>
                                     <!-- <li><a href="{{ url_for('main.contractors') }}">Eng. Consultancies</a></li> -->
                                     <li><a href="{{ url_for('main.regional_directors') }}">Regional Directors</a></li>
+                                    <li><a href="{{ url_for('main.careers') }}">Careers</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown submenu">
@@ -272,9 +273,9 @@
                                             <span class="fa fa-plus"></span>
                                         </a>
                                         <ul>
-                                            <li><a href="{{ url_for('generalforms.defect') }}">Defect Report</a></li>
+                                            <!-- <li><a href="{{ url_for('generalforms.defect') }}">Defect Report</a></li> -->
                                             <!-- <li ><a href="{{ url_for('generalforms.leave') }}">Leave</a></li> -->
-                                            <!-- <li ><a href="{{ url_for('generalforms.others') }}">Others</a></li>  -->
+                                            <li ><a href="{{ url_for('generalforms.others') }}">Others</a></li> 
                                         </ul>
                                     </li>
                                 </ul>
@@ -293,7 +294,7 @@
                                 </ul>
                             </li>
                             <li><a href="{{ url_for('main.contacts_page') }}">Contact Us</a></li>
-                            <li><a href="#">
+                            <li><a href="{{ url_for('main.careers') }}">Careers</a></li>
                                     <!-- for the search box -->
                                     <!-- {% if g.search_form %}
                                         <form method="get" action="#">
